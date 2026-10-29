@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     '/**': ['./data/seed/*.json', './data/drugs/otc_core.json'],
   },
+  // 사진 등록(서버 액션) 요청 크기. 기본 1MB라 큰 사진이 막힌다. 화면에서 먼저 줄여 보내지만 여유를 둔다(Vercel 한도 4.5MB).
+  experimental: {
+    serverActions: { bodySizeLimit: '4mb' },
+  },
   turbopack: {
     rules: {
       '*.css': {
