@@ -23,10 +23,17 @@ canvas:
 personas:
   - id: P1
     description: |-
-      영양제를 챙겨먹는 사람
+      건강을 위해 영양제를 챙겨먹는 사람
       영양제에 많은 지식이 없는 사람
-    source: 종이 문제정의 캔버스 뒷면
-experiences: []
+    source: 종이 문제정의 캔버스 뒷면, 2026-10-29 대화에서 보강
+experiences:
+  - id: E1
+    when: null
+    what_happened: 갑상선약+칼슘을 같이 먹으면 흡수를 방해함.
+    workaround: null
+    feeling: null
+    quote: null
+    source: null
 sources: []
 five_whys:
   symptom: null
