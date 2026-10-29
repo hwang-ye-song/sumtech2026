@@ -4,10 +4,11 @@ import { getCurrentUser } from '@/lib/session'
 import { ensureReady } from '@/lib/ready'
 import { aiConfigured } from '@/lib/ai'
 import { doseText, listUserItems, type UserItem } from '@/lib/items'
-import { isSupplement, itemKey, parseItemKey, searchCatalog } from '@/lib/catalog'
-import { DeleteItemButton } from '@/components/DeleteItemButton'
+import { isSupplement, itemKey, nameItems, parseItemKey, searchCatalog } from '@/lib/catalog'
+import { removeItemAction } from '@/app/actions/items'
 import { NoRecordCard } from '@/components/NoRecordCard'
-import { SearchRegister } from '@/components/SearchRegister'
+import { KindBadge, RegisterPanel } from '@/components/RegisterPanel'
+import { GetButton } from '@/components/GetButton'
 import { PhotoAdd } from '@/components/PhotoAdd'
 import { Toast } from '@/components/Toast'
 
@@ -16,7 +17,10 @@ export const metadata = { title: '복용 목록' }
 type Params = Record<string, string | string[] | undefined>
 const one = (v: string | string[] | undefined) => (typeof v === 'string' ? v : '')
 
-/** 복용 목록: 왼쪽 등록 패널(검색 | 사진), 오른쪽 약·영양제 표. 등록·삭제 결과도 여기서 보여 준다. */
+/**
+ * 복용 목록: 왼쪽 등록 패널(검색 | 사진), 오른쪽 약·영양제 표. 등록·삭제 결과도 여기서 보여 준다.
+ * 검색 결과 고르기(?pick=)와 삭제 확인 창(?confirm=)은 주소로 그린다. 화면 스크립트가 준비되기 전에 눌러도 동작한다.
+ */
 export default async function ListPage({ searchParams }: { searchParams: Promise<Params> }) {
   await ensureReady()
   const user = await getCurrentUser()
@@ -28,12 +32,25 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
   const added = parseItemKey(one(params.added))
   const status = one(params.status)
   const deleted = params.deleted === '1'
+  const pickRef = mode === 'search' ? parseItemKey(one(params.pick)) : null
+  const confirmId = Number(one(params.confirm))
 
   const [items, hits] = await Promise.all([listUserItems(user.id), mode === 'search' && q.length >= 2 ? searchCatalog(q) : Promise.resolve([])])
   const inUse = user.first_checked_at !== null
   const addedItem = added ? items.find((i) => itemKey(i) === itemKey(added)) : undefined
   const drugs = items.filter((i) => !isSupplement(i))
   const sups = items.filter(isSupplement)
+  const confirmItem = Number.isInteger(confirmId) ? items.find((i) => i.id === confirmId) : undefined
+  // 고른 항목: 검색 결과에 있으면 그대로, 아니면 DB에서 이름을 찾는다(없는 참조면 고르지 않은 것으로 본다).
+  let picked: { key: string; name: string; sub: string } | null = null
+  if (pickRef) {
+    const hit = hits.find((h) => itemKey(h) === itemKey(pickRef)) ?? (await nameItems([pickRef]))[0]
+    if (hit && hit.sub) picked = { key: itemKey(pickRef), name: hit.name, sub: hit.sub }
+  }
+  const searchHref = q ? `/list?q=${encodeURIComponent(q)}` : '/list'
+  // 경고 창 '취소'로 돌아올 때 붙어 오는 입력값(짧은 숫자 글자만 받는다)
+  const short = (v: string) => v.replace(/[^0-9.,mgMG ]/g, '').slice(0, 12)
+  const initial = { count: short(one(params.count)), amount: short(one(params.amount)) }
 
   return (
     <main className="page">
@@ -56,7 +73,7 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
             </nav>
             <div style={{ marginTop: 16 }}>
               {mode === 'photo' ? (
-                <PhotoAdd aiReady={aiConfigured()} />
+                <PhotoAdd aiReady={aiConfigured()} agreed={params.agree === '1'} />
               ) : (
                 <>
                   <form action="/list" method="get" role="search">
@@ -82,12 +99,36 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
                       <span className="hint">일반의약품은 제품 이름, 처방약과 영양제는 성분 이름으로 찾아요.</span>
                     </div>
                   </form>
-                  {q.length >= 2 && hits.length === 0 ? (
+                  {picked ? (
+                    <RegisterPanel
+                      key={picked.key}
+                      pick={{ ...picked, nutrient: picked.sub === '영양제 성분' }}
+                      backHref={searchHref}
+                      pickHref={`/list?q=${encodeURIComponent(q)}&pick=${encodeURIComponent(picked.key)}`}
+                      initial={initial}
+                    />
+                  ) : null}
+                  {!picked && q.length >= 2 && hits.length === 0 ? (
                     <div className="empty" data-testid="search-empty">
                       찾는 제품이 없어요. 성분 이름(예 칼슘)으로 검색해 보세요
                     </div>
                   ) : null}
-                  {hits.length > 0 ? <SearchRegister key={q} hits={hits} /> : null}
+                  {!picked && hits.length > 0 ? (
+                    <ul className="results" aria-label="검색 결과" data-testid="results" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                      {hits.map((hit) => (
+                        <li key={itemKey(hit)}>
+                          <GetButton action="/list" params={{ q, pick: itemKey(hit) }} className="result" aria-label={hit.name} data-testid="result">
+                            <span>
+                              <span className="n">{hit.name}</span> <KindBadge sub={hit.sub} />
+                              <br />
+                              <span className="s">{hit.sub}</span>
+                            </span>
+                            <span className="faint">고르기</span>
+                          </GetButton>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </>
               )}
             </div>
@@ -134,6 +175,27 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
           </section>
         </div>
       </div>
+      {confirmItem ? (
+        <div className="overlay">
+          <div className="modal" role="dialog" aria-modal="true" aria-labelledby="delete-title" data-testid="modal">
+            <h3 id="delete-title">삭제할까요?</h3>
+            <p className="muted">
+              <strong>{confirmItem.name}</strong>을(를) 목록에서 지워요. 검진 리포트에서도 사라져요.
+            </p>
+            <div className="actions">
+              <GetButton action="/list" params={{}} className="btn">
+                취소
+              </GetButton>
+              <form action={removeItemAction} style={{ display: 'contents' }}>
+                <input type="hidden" name="id" value={confirmItem.id} />
+                <button type="submit" className="btn btn-black" data-testid="confirm-delete" autoFocus>
+                  삭제
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </main>
   )
 }
@@ -164,7 +226,9 @@ function ItemTable({ items, label }: { items: UserItem[]; label: string }) {
             </td>
             <td>{doseText(item)}</td>
             <td style={{ textAlign: 'right' }}>
-              <DeleteItemButton id={item.id} name={item.name} />
+              <GetButton action="/list" params={{ confirm: String(item.id) }} className="btn btn-sm" data-testid="row-delete">
+                삭제
+              </GetButton>
             </td>
           </tr>
         ))}

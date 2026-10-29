@@ -20,6 +20,8 @@ export interface RegisterState {
   /** '등록'을 누를 때마다 바뀐다. 같은 경고라도 창을 다시 연다. */
   attempt?: number
   warnings?: Warning[]
+  /** 다시 그릴 때 칸에 남겨 둘 값(오류·경고 뒤에도 입력이 지워지지 않게) */
+  values?: { count: string; amount: string }
 }
 
 function readDose(formData: FormData): Dose | string {
@@ -43,23 +45,24 @@ function readDose(formData: FormData): Dose | string {
 export async function registerItem(_prev: RegisterState, formData: FormData): Promise<RegisterState> {
   const user = await requireUser()
   const item = parseItemKey(String(formData.get('item') ?? ''))
-  if (!item) return { error: '등록할 약·영양제를 먼저 골라 주세요.' }
+  const values = { count: String(formData.get('daily_count') ?? ''), amount: String(formData.get('unit_amount') ?? '') }
+  if (!item) return { error: '등록할 약·영양제를 먼저 골라 주세요.', values }
   const dose = readDose(formData)
-  if (typeof dose === 'string') return { error: dose }
+  if (typeof dose === 'string') return { error: dose, values }
   const force = formData.get('force') === '1'
   const inUse = user.first_checked_at !== null
 
   const current = await listUserItems(user.id)
   if (current.some((i) => itemKey(i) === itemKey(item))) {
-    return { error: '이미 내 목록에 있어요. 복용량을 바꾸려면 목록에서 지운 뒤 다시 등록해 주세요.' }
+    return { error: '이미 내 목록에 있어요. 복용량을 바꾸려면 목록에서 지운 뒤 다시 등록해 주세요.', values }
   }
   if (inUse && !force) {
     const warnings = await checkItems([...current, item], item)
-    if (warnings.length > 0) return { attempt: Date.now(), warnings }
+    if (warnings.length > 0) return { attempt: Date.now(), warnings, values }
   }
 
   const ok = await addUserItem(user.id, item, dose)
-  if (!ok) return { error: '그 항목을 찾지 못했어요. 다시 검색해 주세요.' }
+  if (!ok) return { error: '그 항목을 찾지 못했어요. 다시 검색해 주세요.', values }
   revalidatePath('/list')
   const status = !inUse ? 'new' : force ? 'warned' : 'clear'
   redirect(`/list?added=${encodeURIComponent(itemKey(item))}&status=${status}`)

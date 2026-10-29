@@ -1,19 +1,27 @@
 'use client'
 
-import { useActionState, useRef, useState } from 'react'
+import { useActionState, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { recognizePhoto, type PhotoState } from '@/app/actions/photo'
 import { SearchRegister } from '@/components/SearchRegister'
+import { GetButton } from '@/components/GetButton'
 
 const TIPS = ['플래시를 켜 주세요', '처방전이 보이게 찍어 주세요', '상표명이 보이게 찍어 주세요', '흐리지 않게 찍어 주세요']
 const CONSENT = '사진을 AI로 보내 글자를 읽어요. 읽은 뒤 사진은 바로 지우고 저장하지 않아요'
 
-/** 사진 등록: 동의 → 촬영 안내 → 사진 올리기 → (흐리면 다시 찍기) → 후보 고르기 → 하루 개수 → 등록 */
-export function PhotoAdd({ aiReady }: { aiReady: boolean }) {
+/**
+ * 사진 등록: 동의 → 촬영 안내 → 사진 올리기 → (흐리면 다시 찍기) → 후보 고르기 → 하루 개수 → 등록
+ * 동의는 주소(?agree=1)로 받는다. 화면 스크립트가 준비되기 전에 눌러도 동작한다.
+ */
+export function PhotoAdd({ aiReady, agreed }: { aiReady: boolean; agreed: boolean }) {
   const [state, formAction, pending] = useActionState<PhotoState, FormData>(recognizePhoto, {})
-  const [agreed, setAgreed] = useState(false)
   const [retakeOf, setRetakeOf] = useState<PhotoState | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
+  const fileRef = useRef<HTMLInputElement>(null)
+  // 스크립트가 준비되기 전에 사진을 골랐으면(변경 이벤트를 놓쳤으면) 준비되자마자 보낸다.
+  useEffect(() => {
+    if (fileRef.current?.files?.length) formRef.current?.requestSubmit()
+  }, [])
   // '다시 찍기'를 누르면 직전 결과를 숨기고 올리기 칸을 다시 보여 준다.
   const shown = retakeOf === state ? {} : state
 
@@ -30,9 +38,9 @@ export function PhotoAdd({ aiReady }: { aiReady: boolean }) {
       <div className="stack" data-testid="photo-consent">
         <p>{CONSENT}</p>
         <div className="row">
-          <button type="button" className="btn btn-primary" onClick={() => setAgreed(true)} data-testid="photo-agree">
+          <GetButton action="/list" params={{ mode: 'photo', agree: '1' }} className="btn btn-primary" data-testid="photo-agree">
             동의하고 찍기
-          </button>
+          </GetButton>
           <Link className="btn" href="/list">
             검색으로 등록
           </Link>
@@ -111,6 +119,7 @@ export function PhotoAdd({ aiReady }: { aiReady: boolean }) {
           <br />
           <span className="faint">처방전·약 봉투·약 상자·영양제 상표 (JPG·PNG, 8MB 이하)</span>
           <input
+            ref={fileRef}
             type="file"
             name="photo"
             accept="image/*"
