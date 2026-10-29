@@ -32,7 +32,7 @@ test("S7 성분표를 읽기 어려운 50~60대 부모님이 약 상자를 사�
   await expect(candidates).toBeVisible({ timeout: 60_000 })
   await expect(candidates.getByTestId("candidate")).toHaveCount(1)
   await expect(candidates.getByRole("checkbox", { name: /훼로바-유서방정/ })).toBeChecked()
-  await expect(candidates.getByRole("spinbutton", { name: /훼로바-유서방정 하루에 먹는 개수/ })).toHaveValue("1")
+  await expect(candidates.getByRole("spinbutton", { name: /훼로바-유서방정.*하루에 먹는 개수/ })).toHaveValue("1")
   await page.getByRole("button", { name: "고른 1개 모두 등록" }).click()
 
   // expected: "시간을 띄워 드세요"와 "레보티록신(갑상선약) ↔ 철분" 경고가 출처와 함께
