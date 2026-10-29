@@ -246,6 +246,13 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
 .seg a{display:inline-flex;align-items:center;min-height:40px;padding:0 18px;border-radius:var(--r-pill);text-decoration:none;font-weight:700;color:var(--ink-2)}
 .seg a[aria-current="page"]{background:var(--bg);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
 @media (max-width:760px){.persona-grid{grid-template-columns:1fr}}
+/* 로그인 뒤 아래 탭 '홈'·'복용 목록'·'검진하기'는 PC 화면에서도 보인다(PRD NFR-3, scenarios.yaml S4·S8) */
+body.app{padding-bottom:72px}
+body.app .bottombar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;height:64px;justify-content:center;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+body.app .bottombar a{flex:0 1 240px;display:grid;place-items:center;text-decoration:none;color:var(--ink-2);font-weight:700}
+body.app .bottombar a[aria-current="page"]{color:var(--brand-ink)}
+body.app .toast{bottom:88px}
+@media (max-width:760px){body.app .bottombar a{flex:1;font-size:var(--fs-1)}}
 @media print{
   .nav,.bottombar,#pillfield,.no-print{display:none!important}
   body{background:#fff}

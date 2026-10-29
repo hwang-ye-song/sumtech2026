@@ -16,7 +16,7 @@ export function DeleteItemButton({ id, name }: { id: number; name: string }) {
           <div className="modal" role="dialog" aria-modal="true" aria-labelledby={`delete-title-${id}`} data-testid="modal" style={{ textAlign: 'left' }}>
             <h3 id={`delete-title-${id}`}>삭제할까요?</h3>
             <p className="muted">
-              <strong>{name}</strong>을(를) 목록에서 지워요. 분석 리포트에서도 사라져요.
+              <strong>{name}</strong>을(를) 목록에서 지워요. 검진 리포트에서도 사라져요.
             </p>
             <form action={removeItemAction} className="actions">
               <input type="hidden" name="id" value={id} />

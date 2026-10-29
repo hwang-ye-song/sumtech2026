@@ -103,7 +103,7 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
             ) : null}
             {addedItem && status === 'new' ? (
               <div className="notice" role="status">
-                &lsquo;{addedItem.name}&rsquo;을(를) 넣었어요. 지금 먹는 것을 다 넣었으면 &lsquo;분석하기&rsquo;에서 한 번에 확인하세요.
+                &lsquo;{addedItem.name}&rsquo;을(를) 넣었어요. 지금 먹는 것을 다 넣었으면 &lsquo;검진하기&rsquo;에서 한 번에 확인하세요.
               </div>
             ) : null}
 
@@ -124,11 +124,11 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
               </>
             )}
             <p className="faint">
-              {inUse ? '사용 중: 새로 등록할 때마다 자동으로 점검해요.' : "다 넣은 뒤 '분석하기'에서 한 번 점검하면, 그 뒤로는 등록할 때마다 자동으로 점검해요."}
+              {inUse ? '사용 중: 새로 등록할 때마다 자동으로 점검해요.' : "다 넣은 뒤 '검진하기'에서 한 번 점검하면, 그 뒤로는 등록할 때마다 자동으로 점검해요."}
             </p>
             <div>
               <Link className="btn btn-primary btn-lg" href="/check" data-testid="list-analyze">
-                분석하기
+                검진하기
               </Link>
             </div>
           </section>

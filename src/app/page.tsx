@@ -3,7 +3,7 @@ import { getCurrentUser } from '@/lib/session'
 import { listUserItems } from '@/lib/items'
 import { isSupplement } from '@/lib/catalog'
 import { personaByEmail } from '@/lib/personas'
-import { enterPersona } from '@/app/actions/auth'
+import { resetMyPersona } from '@/app/actions/auth'
 import { Logo } from '@/components/Header'
 import { SubmitButton } from '@/components/SubmitButton'
 import { CONSULT_NOTE } from '@/lib/labels'
@@ -315,7 +315,7 @@ function Landing() {
   )
 }
 
-/** 로그인한 사람의 홈: '복용 목록'·'분석하기' 두 칸과 '영양제 추천받기'. 시연 계정이면 그 페르소나 설명을 위에 둔다. */
+/** 로그인한 사람의 홈: '복용 목록'·'검진하기' 두 칸과 '영양제 추천받기'. 시연 계정이면 그 페르소나 설명을 위에 둔다. */
 async function UserHome({ userId, email, name, inUse }: { userId: number; email: string; name: string; inUse: boolean }) {
   const [items, persona] = await Promise.all([listUserItems(userId), personaByEmail(email)])
   const sups = items.filter(isSupplement).length
@@ -333,9 +333,8 @@ async function UserHome({ userId, email, name, inUse }: { userId: number; email:
         {persona ? (
           <div className="card card-soft" style={{ marginBottom: 16 }} data-testid="persona-note">
             <div className="row" style={{ justifyContent: 'space-between' }}>
-              <strong>시연 계정 {persona.id} · 가상 인물</strong>
-              <form action={enterPersona}>
-                <input type="hidden" name="persona" value={persona.id} />
+              <strong>시연 계정 {persona.id} · 가상 인물 · 바꾸려면 로그아웃 후 다시 고르기</strong>
+              <form action={resetMyPersona}>
                 <SubmitButton className="btn btn-sm" pendingLabel="되돌리는 중…">
                   처음 상태로 되돌리기
                 </SubmitButton>
@@ -362,9 +361,9 @@ async function UserHome({ userId, email, name, inUse }: { userId: number; email:
           </Link>
           <Link className="card card-link" href="/check" data-testid="home-analyze">
             <div className="eyebrow">리포트</div>
-            <h3>분석하기</h3>
+            <h3>검진하기</h3>
             <p className="muted" style={{ marginTop: 8 }}>
-              {inUse ? '약사·의사에게 보여 줄 복용 리포트' : '다 넣은 뒤 한 번 분석하면, 그 뒤로는 더할 때마다 자동으로 점검해요'}
+              {inUse ? '약사·의사에게 보여 줄 복용 리포트' : '다 넣은 뒤 한 번 검진하면, 그 뒤로는 더할 때마다 자동으로 점검해요'}
             </p>
           </Link>
         </div>

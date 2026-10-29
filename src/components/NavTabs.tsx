@@ -16,7 +16,7 @@ const ITEMS: { href: string; label: React.ReactNode; match: string[] }[] = [
     match: ['/explore'],
   },
   { href: '/list', label: '복용 목록', match: ['/list', '/add'] },
-  { href: '/check', label: '분석하기', match: ['/check', '/rules', '/report'] },
+  { href: '/check', label: '검진하기', match: ['/check', '/rules', '/report'] },
   { href: '/recommend', label: '영양제 추천', match: ['/recommend'] },
 ]
 
@@ -41,13 +41,13 @@ export function NavTabs({ authed }: { authed: boolean }) {
   )
 }
 
-/** 휴대폰 화면 아래 탭(로그인한 사람만). PRD NFR-3: '홈'·'복용 목록'·'분석하기' 3개 고정 */
+/** 아래 탭(로그인한 사람만, 모든 화면 너비). PRD NFR-3: '홈'·'복용 목록'·'검진하기' 3개 고정 */
 export function BottomBar() {
   const pathname = usePathname()
   const tabs = [
     { href: '/', label: '홈', current: pathname === '/' },
     { href: '/list', label: '복용 목록', current: isCurrent(pathname, ['/list', '/add']) },
-    { href: '/check', label: '분석하기', current: isCurrent(pathname, ['/check', '/rules', '/report']) },
+    { href: '/check', label: '검진하기', current: isCurrent(pathname, ['/check', '/rules', '/report']) },
   ]
   return (
     <nav className="bottombar" aria-label="아래 탭">

@@ -3,12 +3,13 @@ import { redirect } from 'next/navigation'
 import { AuthForm } from '@/components/AuthForm'
 import { signUp } from '@/app/actions/auth'
 import { getCurrentUser } from '@/lib/session'
+import { safeNext } from '@/lib/next-path'
 
 export const metadata = { title: '회원가입' }
 
 export default async function SignupPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const raw = (await searchParams).next
-  const next = typeof raw === 'string' && raw.startsWith('/') && !raw.startsWith('//') ? raw : undefined
+  const next = safeNext(raw)
   if (await getCurrentUser()) redirect(next ?? '/')
   return (
     <main className="page">

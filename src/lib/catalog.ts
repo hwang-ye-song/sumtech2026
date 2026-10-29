@@ -43,25 +43,40 @@ export function isSupplement(item: Pick<CatalogHit, 'type' | 'sub'>): boolean {
   return item.type === 'substance' && item.sub === kindLabel('nutrient')
 }
 
+// '비타민씨'처럼 영문 글자를 한글로 적은 검색어
+const VITAMIN_LETTER: Record<string, string> = { 에이: 'a', 비: 'b', 씨: 'c', 디: 'd', 이: 'e', 케이: 'k' }
+
+/** 검색어를 비교용으로 맞춘다: 소문자, 띄어쓰기·하이픈 제거, '비타민씨' → '비타민c' */
+export function normalizeQuery(raw: string): string {
+  const q = raw.trim().toLowerCase().replace(/[\s-]+/g, '')
+  const m = q.match(/^비타민(에이|케이|비|씨|디|이)(.*)$/)
+  return m ? `비타민${VITAMIN_LETTER[m[1]]}${m[2]}` : q
+}
+
+// DB 쪽 값도 같은 규칙(소문자, 띄어쓰기·하이픈 제거)으로 맞춰 비교한다.
+const norm = (col: string) => `replace(replace(lower(${col}), ' ', ''), '-', '')`
+
 export async function searchCatalog(rawQuery: string, limit = 20): Promise<CatalogHit[]> {
-  const q = rawQuery.trim().replace(/\s+/g, '')
+  const q = normalizeQuery(rawQuery)
   if (!q) return []
   const db = await getDb()
   const pattern = likePattern(q)
 
+  // 이름·다른 이름·쉬운 이름(예: 레보티록신(갑상선약) → '갑상선약')으로 찾는다.
   const substances = await db.query<{ id: string; name: string; kind: string; exact: boolean }>(
-    `SELECT id, name, kind, (lower(name) = lower($2)) AS exact
+    `SELECT id, name, kind, (${norm('name')} = $2) AS exact
        FROM substance
-      WHERE name ILIKE $1
-         OR EXISTS (SELECT 1 FROM jsonb_array_elements_text(aliases) AS a WHERE a ILIKE $1)
-      ORDER BY (lower(name) = lower($2)) DESC, length(name), name
+      WHERE ${norm('name')} LIKE $1
+         OR ${norm("coalesce(display_name, '')")} LIKE $1
+         OR EXISTS (SELECT 1 FROM jsonb_array_elements_text(aliases) AS a WHERE ${norm('a')} LIKE $1)
+      ORDER BY (${norm('name')} = $2) DESC, length(name), name
       LIMIT $3`,
     [pattern, q, limit],
   )
   const drugs = await db.query<{ item_seq: string; item_name: string; company: string | null; category: string | null }>(
     `SELECT item_seq, item_name, company, category
        FROM drug
-      WHERE replace(item_name, ' ', '') ILIKE $1
+      WHERE ${norm('item_name')} LIKE $1
       ORDER BY length(item_name), item_name
       LIMIT $2`,
     [pattern, limit],

@@ -63,7 +63,7 @@ export function PhotoAdd({ aiReady }: { aiReady: boolean }) {
             <p>
               <strong>사진에서 읽은 후보예요.</strong> 맞는 것을 골라 주세요.
             </p>
-            <SearchRegister hits={shown.matches} testId="candidates" />
+            <SearchRegister hits={shown.matches} testId="candidates" label="후보 목록" />
           </>
         )}
         <div className="row">
@@ -89,8 +89,15 @@ export function PhotoAdd({ aiReady }: { aiReady: boolean }) {
         </ul>
       </div>
       {shown.blurry ? (
-        <div className="notice notice-warn" role="alert" data-testid="photo-error">
-          사진이 흐려서 읽지 못했어요. 다시 찍어 주세요
+        <div className="stack">
+          <div className="notice notice-warn" role="alert" data-testid="photo-error">
+            사진이 흐려서 읽지 못했어요. 다시 찍어 주세요
+          </div>
+          <div>
+            <button type="button" className="btn btn-primary" onClick={() => setRetakeOf(state)} data-testid="photo-retry">
+              다시 찍기
+            </button>
+          </div>
         </div>
       ) : null}
       {shown.error ? (
@@ -98,9 +105,9 @@ export function PhotoAdd({ aiReady }: { aiReady: boolean }) {
           {shown.error}
         </div>
       ) : null}
-      <form ref={formRef} action={formAction}>
+      <form ref={formRef} action={formAction} hidden={Boolean(shown.blurry)}>
         <label className="drop">
-          <strong>{shown.blurry || shown.error ? '다시 찍기' : '사진 올리기'}</strong>
+          <strong>사진 올리기</strong>
           <br />
           <span className="faint">처방전·약 봉투·약 상자·영양제 상표 (JPG·PNG, 8MB 이하)</span>
           <input

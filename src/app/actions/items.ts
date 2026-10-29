@@ -49,8 +49,11 @@ export async function registerItem(_prev: RegisterState, formData: FormData): Pr
   const force = formData.get('force') === '1'
   const inUse = user.first_checked_at !== null
 
+  const current = await listUserItems(user.id)
+  if (current.some((i) => itemKey(i) === itemKey(item))) {
+    return { error: '이미 내 목록에 있어요. 복용량을 바꾸려면 목록에서 지운 뒤 다시 등록해 주세요.' }
+  }
   if (inUse && !force) {
-    const current = (await listUserItems(user.id)).filter((i) => itemKey(i) !== itemKey(item))
     const warnings = await checkItems([...current, item], item)
     if (warnings.length > 0) return { attempt: Date.now(), warnings }
   }

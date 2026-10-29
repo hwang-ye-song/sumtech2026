@@ -4,15 +4,16 @@ import { AuthForm } from '@/components/AuthForm'
 import { SubmitButton } from '@/components/SubmitButton'
 import { enterPersona, logIn } from '@/app/actions/auth'
 import { getCurrentUser } from '@/lib/session'
+import { safeNext } from '@/lib/next-path'
 import { listPersonas } from '@/lib/personas'
 
 export const metadata = { title: '로그인' }
 
-const MENU_NAME: Record<string, string> = { '/list': '복용 목록', '/check': '분석하기', '/check/report': '복용 리포트', '/recommend': '영양제 추천' }
+const MENU_NAME: Record<string, string> = { '/list': '복용 목록', '/check': '검진하기', '/check/report': '복용 리포트', '/recommend': '영양제 추천' }
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  const raw = (await searchParams).next
-  const next = typeof raw === 'string' && raw.startsWith('/') && !raw.startsWith('//') ? raw : undefined
+  const params = await searchParams
+  const next = safeNext(params.next)
   if (await getCurrentUser()) redirect(next ?? '/')
   const personas = await listPersonas()
   const menu = next ? (MENU_NAME[next] ?? (next.startsWith('/rules/') ? '근거 보기' : null)) : null
@@ -36,7 +37,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
             가상 페르소나로 <b>바로 들어가기</b>
           </h3>
           <p className="muted" style={{ marginTop: 8 }}>
-            모두 지어낸 인물이에요. 누를 때마다 그 페르소나의 처음 상태(복용 목록·첫 검진 여부)로 되돌린 뒤 들어가요.
+            모두 지어낸 인물이에요. 누를 때마다 그 페르소나의 처음 상태(복용 목록·첫 검진 여부)가 담긴 새 시연 계정으로 들어가요. 여러 사람이 같은 페르소나를 동시에 써도 서로 섞이지 않고, 시연 계정은 하루 뒤 지워져요.
           </p>
           <div className="persona-grid" style={{ marginTop: 16 }}>
             {personas.map((p) => (
@@ -49,7 +50,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
                 </div>
                 <p className="profile">{p.profile}</p>
                 <p className="faint" style={{ margin: 0 }}>
-                  {p.email} · 목록 {p.items.length}개
+                  처음 목록 {p.items.length}개
                 </p>
                 <form action={enterPersona}>
                   <input type="hidden" name="persona" value={p.id} />

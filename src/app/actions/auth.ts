@@ -4,8 +4,9 @@ import { redirect } from 'next/navigation'
 import { getDb } from '@/lib/db'
 import { ensureReady } from '@/lib/ready'
 import { hashPassword, verifyPassword } from '@/lib/password'
-import { createSession, destroySession } from '@/lib/session'
-import { resetPersona } from '@/lib/personas'
+import { createSession, destroySession, getCurrentUser } from '@/lib/session'
+import { createPersonaSession, isReservedEmail, resetPersonaAccount } from '@/lib/personas'
+import { safeNext } from '@/lib/next-path'
 
 export interface AuthState {
   error?: string
@@ -13,10 +14,9 @@ export interface AuthState {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-/** 로그인 전에 누른 메뉴(?next=)로 돌려보낸다. 같은 사이트 안의 경로만 받는다. */
+/** 로그인 전에 누른 메뉴(?next=)로 돌려보낸다. 앱 안의 정해진 화면만 받는다. */
 function nextPath(formData: FormData): string {
-  const next = String(formData.get('next') ?? '')
-  return next.startsWith('/') && !next.startsWith('//') && !next.startsWith('/\\') ? next : '/'
+  return safeNext(formData.get('next')) ?? '/'
 }
 
 function readCredentials(formData: FormData) {
@@ -33,7 +33,8 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
   if (!EMAIL_RE.test(email)) return { error: '이메일 형식을 확인해 주세요.' }
   if (password.length < 8) return { error: '비밀번호는 8자 이상이어야 해요.' }
   if (password !== passwordConfirm) return { error: '비밀번호 확인이 비밀번호와 달라요.' }
-  if (formData.get('consent') !== 'on') return { error: '동의해야 가입할 수 있어요.' }
+  // 시연 계정 이메일(저장된 페르소나 계정·임시 시연 계정 도메인)은 가입으로 가져갈 수 없다.
+  if (await isReservedEmail(email)) return { error: '이미 가입한 이메일이에요' }
 
   await ensureReady()
   const db = await getDb()
@@ -67,13 +68,21 @@ export async function logIn(_prev: AuthState, formData: FormData): Promise<AuthS
   redirect(nextPath(formData))
 }
 
-/** 로그인 화면의 '시연 계정' 버튼: 고른 페르소나 계정을 시드 상태로 되돌리고 그 계정으로 들어간다. */
+/** 로그인 화면의 페르소나 버튼: 그 페르소나의 시작 상태가 담긴 새 시연 계정을 만들어 들어간다. */
 export async function enterPersona(formData: FormData): Promise<void> {
   await ensureReady()
-  const userId = await resetPersona(String(formData.get('persona') ?? ''))
+  const userId = await createPersonaSession(String(formData.get('persona') ?? ''))
   if (userId === null) redirect('/login')
   await createSession(userId)
   redirect(nextPath(formData))
+}
+
+/** 홈의 '처음 상태로 되돌리기': 지금 들어와 있는 페르소나 계정만 시작 상태로 되돌린다. */
+export async function resetMyPersona(): Promise<void> {
+  const user = await getCurrentUser()
+  if (!user) redirect('/login')
+  await resetPersonaAccount(user.id, user.email)
+  redirect('/')
 }
 
 export async function logOut(): Promise<void> {

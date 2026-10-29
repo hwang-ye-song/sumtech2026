@@ -6,7 +6,7 @@ import { listUserItems } from '@/lib/items'
 import { startCheckAction } from '@/app/actions/items'
 import { SubmitButton } from '@/components/SubmitButton'
 
-export const metadata = { title: '분석하기' }
+export const metadata = { title: '검진하기' }
 
 export default async function CheckPage() {
   await ensureReady()
@@ -18,7 +18,7 @@ export default async function CheckPage() {
     <main className="page">
       <div className="wrap prose">
         <div className="page-head">
-          <div className="eyebrow">분석하기</div>
+          <div className="eyebrow">검진하기</div>
           <h2>
             목록 전체를 <b>DB로만</b> 점검해요
           </h2>
@@ -41,8 +41,8 @@ export default async function CheckPage() {
               등록된 항목 <span className="num">{items.length}</span>개: {items.map((i) => i.name).join(', ')}
             </p>
             <form action={startCheckAction}>
-              <SubmitButton className="btn btn-primary btn-lg" pendingLabel="분석 중…" data-testid="analyze-start">
-                분석 시작
+              <SubmitButton className="btn btn-primary btn-lg" pendingLabel="검진 중…" data-testid="analyze-start">
+                검진 시작
               </SubmitButton>
             </form>
           </>
