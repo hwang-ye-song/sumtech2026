@@ -1,6 +1,7 @@
 'use server'
 
 import { redirect } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
 import { getDb } from '@/lib/db'
 import { ensureReady } from '@/lib/ready'
 import { hashPassword, verifyPassword } from '@/lib/password'
@@ -14,9 +15,9 @@ export interface AuthState {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-/** 로그인 전에 누른 메뉴(?next=)로 돌려보낸다. 앱 안의 정해진 화면만 받는다. */
+/** 로그인 전에 누른 메뉴(?next=)로 돌려보낸다. 없으면 마이페이지로 간다. 앱 안의 정해진 화면만 받는다. */
 function nextPath(formData: FormData): string {
-  return safeNext(formData.get('next')) ?? '/'
+  return safeNext(formData.get('next')) ?? '/mypage'
 }
 
 function readCredentials(formData: FormData) {
@@ -47,6 +48,8 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
     [email, hash],
   )
   await createSession(rows[0].id)
+  // 로그인 상태가 바뀌었으니, 로그인 전에 들렀던 화면들의 캐시(로그인으로 튕기는 결과가 그대로 남아 있을 수 있다)를 지운다.
+  revalidatePath('/', 'layout')
   redirect(nextPath(formData))
 }
 
@@ -65,6 +68,8 @@ export async function logIn(_prev: AuthState, formData: FormData): Promise<AuthS
     return { error: '이메일 또는 비밀번호가 맞지 않아요' }
   }
   await createSession(user.id)
+  // 로그인 상태가 바뀌었으니, 로그인 전에 들렀던 화면들의 캐시(로그인으로 튕기는 결과가 그대로 남아 있을 수 있다)를 지운다.
+  revalidatePath('/', 'layout')
   redirect(nextPath(formData))
 }
 
@@ -74,18 +79,22 @@ export async function enterPersona(formData: FormData): Promise<void> {
   const userId = await createPersonaSession(String(formData.get('persona') ?? ''))
   if (userId === null) redirect('/login')
   await createSession(userId)
+  // 로그인 상태가 바뀌었으니, 로그인 전에 들렀던 화면들의 캐시(로그인으로 튕기는 결과가 그대로 남아 있을 수 있다)를 지운다.
+  revalidatePath('/', 'layout')
   redirect(nextPath(formData))
 }
 
-/** 홈의 '처음 상태로 되돌리기': 지금 들어와 있는 페르소나 계정만 시작 상태로 되돌린다. */
+/** 마이페이지의 '처음 상태로 되돌리기': 지금 들어와 있는 페르소나 계정만 시작 상태로 되돌린다. */
 export async function resetMyPersona(): Promise<void> {
   const user = await getCurrentUser()
   if (!user) redirect('/login')
   await resetPersonaAccount(user.id, user.email)
-  redirect('/')
+  redirect('/mypage')
 }
 
 export async function logOut(): Promise<void> {
   await destroySession()
+  // 로그인 상태가 바뀌었으니, 로그인 중에 들렀던 화면들의 캐시를 지운다.
+  revalidatePath('/', 'layout')
   redirect('/')
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 
 // 사진(1152×2048)에서 알약 하나씩 잘라 낸 값. c = [x, y, w, h]. 알약 둘레 여백을 두고 가장자리를 흐려 배경에 녹인다
 // side: 왼쪽/오른쪽 가장자리, j: 여백 안에서 흔드는 정도, speed: 스크롤을 얼마나 따라가는가(클수록 가깝다)
@@ -17,11 +18,19 @@ const FIELD = [
   { c: [959, 457, 193, 324], side: 'R', j: -0.12, y: 880, speed: 0.1, rot: 0.012, base: 0, k: 0.6 },
 ]
 
-/** 화면 양옆 여백에서 스크롤에 따라 흘러가는 알약 사진(프로토타입의 #pillfield) */
+/** 화면 양옆 여백에서 스크롤에 따라 흘러가는 알약 사진(프로토타입의 #pillfield). 첫 화면(홈)에서만 보여 준다. */
 export function PillField() {
   const host = useRef<HTMLDivElement>(null)
+  const isHome = usePathname() === '/'
+
+  // 첫 화면일 때만 body에 알약 배경용 클래스를 붙인다. 다른 화면은 globals.css의 테마 단색 배경을 그대로 쓴다.
+  useEffect(() => {
+    document.body.classList.toggle('home', isHome)
+    return () => document.body.classList.remove('home')
+  }, [isHome])
 
   useEffect(() => {
+    if (!isHome) return
     const el = host.current
     if (!el) return
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
@@ -78,7 +87,8 @@ export function PillField() {
       window.removeEventListener('scroll', queue)
       window.removeEventListener('resize', onResize)
     }
-  }, [])
+  }, [isHome])
 
+  if (!isHome) return null
   return <div id="pillfield" ref={host} aria-hidden="true" />
 }

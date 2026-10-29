@@ -1,13 +1,6 @@
 import Link from 'next/link'
-import { getCurrentUser } from '@/lib/session'
-import { listUserItems } from '@/lib/items'
-import { isSupplement } from '@/lib/catalog'
-import { personaByEmail } from '@/lib/personas'
-import { resetMyPersona } from '@/app/actions/auth'
 import { Logo } from '@/components/Header'
-import { SubmitButton } from '@/components/SubmitButton'
 import { PromiseCarousel } from '@/components/PromiseCarousel'
-import { CONSULT_NOTE } from '@/lib/labels'
 
 const LANDING_DISCLAIMER = '이 서비스는 처방이나 진단을 하지 않아요. 복용을 바꾸기 전에 약사·의사와 상담하세요'
 const SRC_URL = {
@@ -16,9 +9,9 @@ const SRC_URL = {
   R12: 'https://medlineplus.gov/druginfo/meds/a682461.html',
 }
 
-export default async function HomePage() {
-  const user = await getCurrentUser()
-  return user ? <UserHome userId={user.id} email={user.email} name={user.display_name ?? user.email.split('@')[0]} inUse={user.first_checked_at !== null} /> : <Landing />
+/** 첫 화면(TwoPills 로고를 누르면 로그인 여부와 상관없이 항상 이 소개 화면으로 온다. 내 계정 화면은 /mypage) */
+export default function HomePage() {
+  return <Landing />
 }
 
 /** 헤드라인 단어 하나. 아래에서 올라오며 나타난다(wordReveal). dim은 흐리게, em은 굵게. */
@@ -30,7 +23,7 @@ function Word({ t, d, dim, em }: { t: string; d: number; dim?: boolean; em?: boo
   )
 }
 
-/** 로그인하지 않은 사람이 보는 첫 화면(프로토타입 랜딩) */
+/** 첫 화면(프로토타입 랜딩). 로그인 여부와 상관없이 TwoPills 로고를 누르면 항상 이 화면이다. */
 function Landing() {
   return (
     <main>
@@ -328,74 +321,6 @@ function Landing() {
           </div>
         </div>
       </footer>
-    </main>
-  )
-}
-
-/** 로그인한 사람의 홈: '복용 목록'·'검진하기' 두 칸과 '영양제 추천받기'. 시연 계정이면 그 페르소나 설명을 위에 둔다. */
-async function UserHome({ userId, email, name, inUse }: { userId: number; email: string; name: string; inUse: boolean }) {
-  const [items, persona] = await Promise.all([listUserItems(userId), personaByEmail(email)])
-  const sups = items.filter(isSupplement).length
-  const drugs = items.length - sups
-  return (
-    <main className="page">
-      <div className="wrap">
-        <div className="page-head">
-          <div className="eyebrow">홈</div>
-          <h2>
-            안녕하세요, <b>{name}</b>님
-          </h2>
-        </div>
-
-        {persona ? (
-          <div className="card card-soft" style={{ marginBottom: 16 }} data-testid="persona-note">
-            <div className="row" style={{ justifyContent: 'space-between' }}>
-              <strong>시연 계정 {persona.id} · 가상 인물 · 바꾸려면 로그아웃 후 다시 고르기</strong>
-              <form action={resetMyPersona}>
-                <SubmitButton className="btn btn-sm" pendingLabel="되돌리는 중…">
-                  처음 상태로 되돌리기
-                </SubmitButton>
-              </form>
-            </div>
-            <p className="muted" style={{ margin: '8px 0 0' }}>
-              {persona.profile}
-            </p>
-          </div>
-        ) : null}
-
-        {items.length === 0 ? (
-          <div className="notice" data-testid="home-empty">
-            먹고 있는 약이나 영양제를 추가해 보세요
-          </div>
-        ) : null}
-        <div className="grid grid-2" style={{ marginTop: 16 }}>
-          <Link className="card card-link" href="/list" data-testid="home-list">
-            <div className="eyebrow">등록·점검</div>
-            <h3>복용 목록</h3>
-            <p className="muted" style={{ marginTop: 8 }}>
-              약 <span className="num">{drugs}</span>개 · 영양제 <span className="num">{sups}</span>개
-            </p>
-          </Link>
-          <Link className="card card-link" href="/check" data-testid="home-analyze">
-            <div className="eyebrow">리포트</div>
-            <h3>검진하기</h3>
-            <p className="muted" style={{ marginTop: 8 }}>
-              {inUse ? '약사·의사에게 보여 줄 복용 리포트' : '다 넣은 뒤 한 번 검진하면, 그 뒤로는 더할 때마다 자동으로 점검해요'}
-            </p>
-          </Link>
-        </div>
-        <div className="row" style={{ marginTop: 24 }}>
-          <Link className="btn btn-black btn-lg" href="/recommend" data-testid="home-recommend">
-            영양제 추천받기
-          </Link>
-          <Link className="btn btn-lg" href="/explore" data-testid="home-explore">
-            약·영양제 알아보기
-          </Link>
-        </div>
-        <div className="disclaimer" style={{ marginTop: 24 }}>
-          {CONSULT_NOTE}
-        </div>
-      </div>
     </main>
   )
 }

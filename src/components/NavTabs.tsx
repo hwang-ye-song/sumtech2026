@@ -41,22 +41,3 @@ export function NavTabs({ authed }: { authed: boolean }) {
     </nav>
   )
 }
-
-/** 아래 탭(로그인한 사람만, 모든 화면 너비). PRD NFR-3: '홈'·'복용 목록'·'검진하기' 3개 고정 */
-export function BottomBar() {
-  const pathname = usePathname()
-  const tabs = [
-    { href: '/', label: '홈', current: pathname === '/' },
-    { href: '/list', label: '복용 목록', current: isCurrent(pathname, ['/list', '/add']) },
-    { href: '/check', label: '검진하기', current: isCurrent(pathname, ['/check', '/rules', '/report']) },
-  ]
-  return (
-    <nav className="bottombar" aria-label="아래 탭">
-      {tabs.map((t) => (
-        <Link key={t.href} href={t.href} aria-current={t.current ? 'page' : undefined}>
-          {t.label}
-        </Link>
-      ))}
-    </nav>
-  )
-}

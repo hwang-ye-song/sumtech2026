@@ -51,6 +51,7 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
   const cards = entries
     .map((e) => ({ e, ws: related(e) }))
     .filter(({ e, ws }) => (q.length >= 2 || e.type === 'substance' || ws.length > 0) && (kind === '전체' || (kind === '영양제') === isSupplement(e)))
+    .sort((a, b) => Number(b.ws.length > 0) - Number(a.ws.length > 0))
 
   const href = (k: string) => `/explore?${new URLSearchParams({ ...(q ? { q } : {}), ...(k !== '전체' ? { kind: k } : {}) })}`
 
@@ -66,7 +67,7 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
             식약처 원문과 논문에 기록된 주의사항만 보여 줘요. 로그인 없이 볼 수 있고, 내 목록에 더하면 같이 먹는 것끼리 자동으로 점검해요.
           </p>
         </div>
-        <form action="/explore" method="get" role="search" className="field" style={{ maxWidth: 520 }}>
+        <form action="/explore" method="get" role="search" className="field" style={{ maxWidth: 520, margin: '0 auto 16px' }}>
           <label htmlFor="ex-q">제품명·성분·흔히 부르는 이름</label>
           <div className="row" style={{ flexWrap: 'nowrap' }}>
             <input className="input" id="ex-q" name="q" type="search" placeholder="예 칼슘, 씬지로이드, 비맥스" defaultValue={q} autoComplete="off" data-testid="ex-input" />
@@ -90,41 +91,44 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
             찾는 제품이 없어요. 성분 이름(예 칼슘)으로 검색해 보세요
           </div>
         ) : (
-          <div className="grid grid-2">
+          <div className="ex-list">
             {cards.map(({ e, ws }) => (
-              <article key={`${e.type}:${e.ref}`} className="card stack" data-testid="ex-card">
-                <div className="row" style={{ justifyContent: 'space-between', flexWrap: 'nowrap' }}>
-                  <h4>{e.name}</h4>
+              <details key={`${e.type}:${e.ref}`} className="ex-row" data-testid="ex-card">
+                <summary className="ex-row-head">
+                  <span className="ex-row-name">{e.name}</span>
                   <KindBadge sub={e.sub} />
+                  {ws.length > 0 ? <span className="ex-row-warn">주의 {ws.length}건</span> : <span className="ex-row-ok">기록 없음</span>}
+                </summary>
+                <div className="ex-row-body">
+                  <p className="faint" style={{ margin: 0 }}>
+                    {e.sub}
+                  </p>
+                  {ws.length === 0 ? (
+                    <div className="ex-none">{NO_RECORD_MESSAGE}</div>
+                  ) : (
+                    ws.map((w) => (
+                      <div key={w.ruleId} className="ex-w" data-testid="ex-warn">
+                        <LevelBadge level={w.relation} />
+                        <strong>
+                          {w.a.name} ↔ {w.b.name}
+                        </strong>
+                        <span>{w.action}</span>
+                        <span className="why">
+                          {w.effect ? `${w.effect} ` : ''}출처:{' '}
+                          <a href={w.sources[0]?.source_url} target="_blank" rel="noopener noreferrer" data-testid="src-link">
+                            {w.sources[0]?.source_title}
+                          </a>
+                        </span>
+                      </div>
+                    ))
+                  )}
+                  <div>
+                    <Link className="btn btn-sm" href={user ? `/list?q=${encodeURIComponent(e.name)}` : '/login'}>
+                      내 목록에 더하기
+                    </Link>
+                  </div>
                 </div>
-                <p className="faint" style={{ margin: 0 }}>
-                  {e.sub}
-                </p>
-                {ws.length === 0 ? (
-                  <div className="ex-none">{NO_RECORD_MESSAGE}</div>
-                ) : (
-                  ws.map((w) => (
-                    <div key={w.ruleId} className="ex-w" data-testid="ex-warn">
-                      <LevelBadge level={w.relation} />
-                      <strong>
-                        {w.a.name} ↔ {w.b.name}
-                      </strong>
-                      <span>{w.action}</span>
-                      <span className="why">
-                        {w.effect ? `${w.effect} ` : ''}출처:{' '}
-                        <a href={w.sources[0]?.source_url} target="_blank" rel="noopener noreferrer" data-testid="src-link">
-                          {w.sources[0]?.source_title}
-                        </a>
-                      </span>
-                    </div>
-                  ))
-                )}
-                <div>
-                  <Link className="btn btn-sm" href={user ? `/list?q=${encodeURIComponent(e.name)}` : '/login'}>
-                    내 목록에 더하기
-                  </Link>
-                </div>
-              </article>
+              </details>
             ))}
           </div>
         )}
