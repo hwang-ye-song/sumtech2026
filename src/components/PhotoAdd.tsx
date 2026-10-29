@@ -138,6 +138,12 @@ export function PhotoAdd({ aiReady }: { aiReady: boolean }) {
         <p className="faint" style={{ marginTop: 8 }}>
           {CONSENT}
         </p>
+        {/* AI 키가 없으면 올리기 칸이 잠기므로, 검색으로 등록하라고 알려 준다(problem.yaml F2). */}
+        {!aiReady ? (
+          <div className="notice notice-none" role="status" data-testid="photo-unavailable">
+            지금은 사진 읽기를 쓸 수 없어요. 검색창에 이름을 넣어 등록해 주세요
+          </div>
+        ) : null}
       </form>
     </div>
   )
