@@ -39,8 +39,11 @@ export function SourceLine({ s }: { s: Pick<RuleSource, 'source_kind' | 'source_
   )
 }
 
-/** 경고 한 건: 단계 → 할 일 → 두 성분 → 원문 → 출처 → 약사에게 물을 질문 → '자세히' */
-export function WarningCard({ w, detail = true }: { w: Warning; detail?: boolean }) {
+/**
+ * 경고 한 건: 단계 → 할 일 → 두 성분 → 원문 → 출처 → 약사에게 물을 질문 → '자세히'
+ * detail='new-tab': 화면을 떠나면 사라지는 창(사진 후보)에서는 '자세히'를 새 탭으로 연다.
+ */
+export function WarningCard({ w, detail = true }: { w: Warning; detail?: boolean | 'new-tab' }) {
   const main = w.sources[0]
   return (
     <article className={`finding ${w.relation === 'avoid' ? 'finding-danger' : 'finding-warn'}`} data-testid="warning-card" data-rule={w.ruleId} aria-label={`${w.a.name} ↔ ${w.b.name}`}>
@@ -80,7 +83,12 @@ export function WarningCard({ w, detail = true }: { w: Warning; detail?: boolean
       </div>
       {detail ? (
         <div style={{ marginTop: 12 }}>
-          <Link className="btn btn-sm" href={`/rules/${encodeURIComponent(w.ruleId)}`} data-testid="finding-detail">
+          <Link
+            className="btn btn-sm"
+            href={`/rules/${encodeURIComponent(w.ruleId)}`}
+            data-testid="finding-detail"
+            {...(detail === 'new-tab' ? { target: '_blank', rel: 'noopener' } : {})}
+          >
             자세히
           </Link>
         </div>

@@ -78,7 +78,7 @@ export interface BulkRegisterState {
 /**
  * 사진 후보 여러 개를 한 번에 등록한다('모두 등록'). 고른 항목마다 하루 개수(count:<항목 키>)를 받는다.
  * 사용 중인 사람이면 새로 넣는 것들이 끼는 조합을 먼저 점검해 경고가 있으면 넣지 않고 경고 창을 띄운다('그래도 모두 추가'는 force).
- * 이미 목록에 있는 항목은 건너뛴다.
+ * 이미 목록에 있는 항목은 건너뛰고, 몇 개를 건너뛰었는지 목록 화면에서 알려 준다(skipped).
  */
 export async function registerMany(_prev: BulkRegisterState, formData: FormData): Promise<BulkRegisterState> {
   const user = await requireUser()
@@ -122,7 +122,8 @@ export async function registerMany(_prev: BulkRegisterState, formData: FormData)
   }
   revalidatePath('/list')
   const status = !inUse ? 'new' : force ? 'warned' : 'clear'
-  redirect(`/list?added=${encodeURIComponent(itemKey(fresh[0].item))}&addedCount=${fresh.length}&status=${status}`)
+  const skipped = picked.length - fresh.length
+  redirect(`/list?added=${encodeURIComponent(itemKey(fresh[0].item))}&addedCount=${fresh.length}&status=${status}${skipped > 0 ? `&skipped=${skipped}` : ''}`)
 }
 
 export async function removeItemAction(formData: FormData): Promise<void> {

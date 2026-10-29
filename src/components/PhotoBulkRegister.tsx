@@ -93,7 +93,7 @@ export function PhotoBulkRegister({ hits }: { hits: CatalogHit[] }) {
             <div className="faint">등록하기 전에 확인하세요</div>
             <h3 id="bulk-warning-title">{RELATION_LABEL[top.relation]}</h3>
             {state.warnings.map((w) => (
-              <WarningCard key={`${w.ruleId}|${w.a.ref}|${w.b.ref}`} w={w} detail={false} />
+              <WarningCard key={`${w.ruleId}|${w.a.ref}|${w.b.ref}`} w={w} detail="new-tab" />
             ))}
             <div className="disclaimer" style={{ marginTop: 16 }}>
               {CONSULT_NOTE}

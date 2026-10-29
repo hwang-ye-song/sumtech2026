@@ -43,6 +43,8 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
   // 사진으로 여러 개를 한 번에 넣었으면 '훼로바-유서방정 외 2개'처럼 보여 준다.
   const addedCount = Number(one(params.addedCount)) || 1
   const addedLabel = addedItem ? (addedCount > 1 ? `${addedItem.name} 외 ${addedCount - 1}개` : addedItem.name) : ''
+  // 사진 일괄 등록에서 이미 목록에 있어 건너뛴 개수
+  const skipped = Math.min(20, Number(one(params.skipped)) || 0)
   const drugs = items.filter((i) => !isSupplement(i))
   const sups = items.filter(isSupplement)
   const confirmItem = Number.isInteger(confirmId) ? items.find((i) => i.id === confirmId) : undefined
@@ -151,6 +153,11 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
             {addedItem && status === 'warned' ? (
               <div className="notice notice-warn" role="status">
                 &lsquo;{addedLabel}&rsquo;{josa(addedLabel, '을/를')} 경고를 확인하고 넣었어요. 복용을 바꾸기 전에 약사·의사와 상담하세요
+              </div>
+            ) : null}
+            {addedItem && skipped > 0 ? (
+              <div className="notice notice-none" role="status" data-testid="skipped-notice">
+                고른 것 중 {skipped}개는 이미 목록에 있어서 다시 넣지 않았어요.
               </div>
             ) : null}
             {addedItem && status === 'new' ? (

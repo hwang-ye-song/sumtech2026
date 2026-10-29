@@ -20,6 +20,8 @@ export default async function ReportPage() {
   if (!user) redirect('/login?next=/check/report')
 
   const items = await listUserItems(user.id)
+  // 빈 목록이면 '문제 없어요'처럼 읽히지 않게, 먼저 등록하라는 안내가 있는 검진하기 화면으로 보낸다.
+  if (items.length === 0) redirect('/check')
   const [warnings, intake] = await Promise.all([checkItems(items), checkIntake(items)])
   const total = warnings.length + intake.length
   const sups = items.filter(isSupplement)
