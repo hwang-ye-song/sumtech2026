@@ -653,4 +653,22 @@ INSERT INTO nutrient_interaction_source (id, interaction_id, kind, title, url, p
 INSERT INTO nutrient_interaction_source (id, interaction_id, kind, title, url, pmid, doi, quote, verified) VALUES (467, 183, '논문', 'High incidence of significant urinary ascorbic acid concentrations in a west coast population--implications for routine urinalysis (Clin Chem 1992)', 'https://europepmc.org/article/MED/1547565', '1547565', NULL, 'The mean urinary vitamin C concentration in this population was 2120 mumol/L.', 'pmid_ok_quote_ok');
 INSERT INTO nutrient_interaction_source (id, interaction_id, kind, title, url, pmid, doi, quote, verified) VALUES (468, 184, '식약처_의약품허가', '씬지로이드정0.05밀리그램 사용상의 주의사항 - 10. 임상검사치에의 영향', 'https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=200401821', NULL, NULL, '2) 의약용 또는 식이성 요오드는 모든 방사선 요오드 흡착 생체내 (in vivo) 시험을 방해하여 낮은 흡착율을 보이는데, 이것은 호르몬 생합성이 실제로 감소함을 반영하는 것은 아니다.', 'quote_ok');
 INSERT INTO nutrient_interaction_source (id, interaction_id, kind, title, url, pmid, doi, quote, verified) VALUES (469, 184, '식약처_의약품허가', '치오단정130밀리그램(요오드화칼륨) 사용상의 주의사항 - 9. 임상검사치에의 영향', 'https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=201102783', NULL, NULL, '131I 섭취율, PBI 검사를 하는 경우에는 1주일 전에 투여를 중지한다.', 'quote_ok');
+-- 하루 기준량(nutrient_daily_limit)과 성분→영양소 매핑(nutrient_ingredient_map). 스크립트가 만든 부분이 아니라 손으로 추가했다.
+-- 기준량은 nutrient_interaction_source의 원문 문장(칼슘은 docs/problem.yaml R13)에서 옮겼다. 매핑의 비율은 분자량으로 계산한 값이다.
+INSERT INTO nutrient_daily_limit (id, nutrient, limit_type, age_group, amount, unit, source_title, source_url, quote) VALUES
+(1, '칼슘', 'upper', '19~50세', 2500, '밀리그램', 'Calcium in diet (MedlinePlus Medical Encyclopedia)', 'https://medlineplus.gov/ency/article/002412.htm', NULL),
+(2, '칼슘', 'upper', '50세 초과', 2000, '밀리그램', 'Calcium in diet (MedlinePlus Medical Encyclopedia)', 'https://medlineplus.gov/ency/article/002412.htm', NULL),
+(3, '셀레늄', 'upper', '성인', 400, '마이크로그램', '셀레늄의 2020 한국인 영양소 섭취기준 개정 및 권장식단의 셀레늄 함량 평가 (J Nutr Health 2022)', 'https://koreascience.kr/article/JAKO202226461023414.pdf', '한국 성인의 셀레늄 상한섭취량은 400 µg/일로 결정하였다.'),
+(4, '아연', 'upper', '성인', 35, '밀리그램', '2020 한국인 영양소 섭취기준: 아연 (J Nutr Health 2022)', 'https://koreascience.kr/article/JAKO202226461024414.pdf', '아연 평균필요량과 권장섭취량은 6–10 mg/day이고, 상한섭취량은 35 mg/day로 제시되고 있다.'),
+(5, '비타민A', 'mfds_label', '성인', 5000, '아이.유', '멀티비타원프리미엄정 허가사항 사용상의 주의사항 (의약품안전나라)', 'https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=200800955', '이 제품에 함유된 비타민A는 정상적인 식이에서 충분히 공급되므로 보조요법의 용량은 1일 5,000IU이상을 넘지 않도록 한다.'),
+(6, '비타민B6', 'mfds_label', '성인', 50, '밀리그램', '뉴로비정300밀리그램(피리독신염산염) 허가사항 사용상의 주의사항 (의약품안전나라)', 'https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=202200702', '피리독신을 1일 50 mg 이상의 용량으로 장기간 투여시 감각 이상(paresthesias) 등 말초신경병증이 보고된 바 있다.');
+INSERT INTO nutrient_ingredient_map (ingredient_name, nutrient, elemental_ratio, notes) VALUES
+('침강탄산칼슘', '칼슘', 0.400, 'CaCO3 분자량 기준 Ca 40.0%'),
+('탄산칼슘', '칼슘', 0.400, 'CaCO3 분자량 기준 Ca 40.0%'),
+('산화마그네슘', '마그네슘', 0.603, 'MgO 분자량 기준 Mg 60.3%'),
+('산화아연', '아연', 0.803, 'ZnO 분자량 기준 Zn 80.3%'),
+('아스코르브산', '비타민C', 1.0, '성분 자체가 비타민C'),
+('시트르산칼슘수화물', '칼슘', NULL, '수화물 수가 이름에 없어 비율 미정'),
+('셀레늄함유건조효모', '셀레늄', NULL, '효모 무게라 함량 비율을 알 수 없음'),
+('콜레칼시페롤농축분말', '비타민D', NULL, '분말 무게라 비타민D 양으로 환산 불가');
 COMMIT;

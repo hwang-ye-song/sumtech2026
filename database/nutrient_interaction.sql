@@ -38,3 +38,28 @@ CREATE TABLE IF NOT EXISTS nutrient_interaction_source (
 CREATE INDEX IF NOT EXISTS idx_ni_nutrient ON nutrient_interaction (nutrient);
 CREATE INDEX IF NOT EXISTS idx_ni_counterpart ON nutrient_interaction (counterpart);
 CREATE INDEX IF NOT EXISTS idx_nis_interaction ON nutrient_interaction_source (interaction_id);
+
+-- 과다 섭취 판정(F4·F5)에 쓰는 성분별 하루 기준량. 출처 원문에 숫자가 있는 것만 넣는다.
+-- 앱은 나이를 받지 않으므로 같은 성분의 기준 중 가장 낮은 값으로 판정하고, 행 전체를 화면에 보여 준다.
+CREATE TABLE IF NOT EXISTS nutrient_daily_limit (
+  id            INTEGER PRIMARY KEY,
+  nutrient      TEXT NOT NULL,  -- nutrient_interaction.nutrient와 같은 이름(예: 칼슘, 아연)
+  limit_type    TEXT NOT NULL,  -- upper(상한섭취량) / mfds_label(식약처 허가 문구의 1일 기준)
+  age_group     TEXT NOT NULL,  -- 출처에 적힌 연령 구간 그대로(예: 19~50세, 50세 초과, 성인)
+  amount        REAL NOT NULL,  -- 하루 기준량(영양소 자체의 양. 화합물 무게 아님)
+  unit          TEXT NOT NULL,  -- drug_ingredient.unit과 같은 표기: 밀리그램 / 마이크로그램 / 아이.유
+  source_title  TEXT NOT NULL,
+  source_url    TEXT NOT NULL,
+  quote         TEXT            -- 근거 원문 문장. 원문을 확인하지 못했으면 NULL
+);
+
+-- drug_ingredient.ingredient_name → 영양소. 여기 있는 성분만 합산한다(이름 LIKE 검색 금지: 로수바스타틴칼슘·판토텐산칼슘이 칼슘으로 잡힘).
+CREATE TABLE IF NOT EXISTS nutrient_ingredient_map (
+  ingredient_name  TEXT PRIMARY KEY,  -- drug_ingredient.ingredient_name 그대로
+  nutrient         TEXT NOT NULL,     -- nutrient_daily_limit.nutrient와 같은 이름
+  elemental_ratio  REAL,              -- 화합물 무게 중 영양소 비율(예: 탄산칼슘 0.400). 모르면 NULL → 판정하지 않음
+  notes            TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_ndl_nutrient ON nutrient_daily_limit (nutrient);
+CREATE INDEX IF NOT EXISTS idx_nim_nutrient ON nutrient_ingredient_map (nutrient);
