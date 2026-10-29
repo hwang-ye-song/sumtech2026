@@ -76,13 +76,10 @@ input,textarea{font:inherit;color:inherit}
 .btn-block{width:100%}
 
 /* 로그인/회원가입 버튼 호버: 테두리가 알약 둘레처럼 밝게 번지며 반응한다(아이콘 없이 테두리만) */
-[data-testid="nav-login"]:hover,[data-testid="nav-login"]:focus-visible{
+[data-testid="nav-login"]:hover,[data-testid="nav-login"]:focus-visible,
+[data-testid="nav-signup"]:hover,[data-testid="nav-signup"]:focus-visible{
   border-color:var(--brand);
   box-shadow:0 0 0 3px var(--brand-bg);
-}
-[data-testid="nav-signup"]:hover,[data-testid="nav-signup"]:focus-visible{
-  border-color:#fff;
-  box-shadow:0 0 0 3px rgba(255,255,255,.28);
 }
 .btn[disabled]{opacity:.5;cursor:not-allowed}
 .chip{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:var(--r-pill);border:1px solid var(--line-2);background:var(--bg);cursor:pointer;font-size:var(--fs-2)}
