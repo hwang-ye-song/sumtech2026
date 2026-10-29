@@ -65,5 +65,123 @@
       }
     ],
     "first_check_done": true
+  },
+  {
+    "id": "S1",
+    "display_name": "S1 새로 가입한 20~30대(가상)",
+    "email": "s1@example.com",
+    "profile": "빈 계정. 가입 직후 홈의 빈 목록 안내(\"먹고 있는 약이나 영양제를 추가해 보세요\")를 보여 줄 때 쓴다.",
+    "items": [],
+    "first_check_done": false
+  },
+  {
+    "id": "S2",
+    "display_name": "S2 칼슘을 먹는 20~30대(가상)",
+    "email": "s2@example.com",
+    "profile": "레보티록신·칼슘을 먹고 첫 검진을 마친 상태. 비맥스제트정을 더하면 식약처 e약은요 칼슘염 경고가 뜬다.",
+    "items": [
+      {
+        "type": "substance",
+        "ref": "levothyroxine"
+      },
+      {
+        "type": "substance",
+        "ref": "calcium"
+      }
+    ],
+    "first_check_done": true
+  },
+  {
+    "id": "S3",
+    "display_name": "S3 감기에 걸린 20~30대(가상)",
+    "email": "s3@example.com",
+    "profile": "레보티록신·칼슘을 먹고 첫 검진을 마친 상태. 비타민C를 더하면 확인한 자료에 기록이 없다는 안내가 뜨고, 지워 볼 수 있다.",
+    "items": [
+      {
+        "type": "substance",
+        "ref": "levothyroxine"
+      },
+      {
+        "type": "substance",
+        "ref": "calcium"
+      }
+    ],
+    "first_check_done": true
+  },
+  {
+    "id": "S4",
+    "display_name": "S4 철분을 사 드리려는 30~40대 자녀(가상)",
+    "email": "s4@example.com",
+    "profile": "부모님 약(레보티록신)과 칼슘을 자기 목록에 넣고 첫 검진을 마친 상태. 철분을 더하면 레보티록신×철분, 칼슘×철분 경고가 뜬다.",
+    "items": [
+      {
+        "type": "substance",
+        "ref": "levothyroxine"
+      },
+      {
+        "type": "substance",
+        "ref": "calcium"
+      }
+    ],
+    "first_check_done": true
+  },
+  {
+    "id": "S5",
+    "display_name": "S5 리포트를 보는 30~40대 자녀(가상)",
+    "email": "s5@example.com",
+    "profile": "부모님 약(레보티록신)과 칼슘이 든 목록. 검진하면 레보티록신×칼슘 경고와 출처가 리포트에 보인다.",
+    "items": [
+      {
+        "type": "substance",
+        "ref": "levothyroxine"
+      },
+      {
+        "type": "substance",
+        "ref": "calcium"
+      }
+    ],
+    "first_check_done": true
+  },
+  {
+    "id": "S6",
+    "display_name": "S6 비타민 추천을 받는 30~40대 자녀(가상)",
+    "email": "s6@example.com",
+    "profile": "부모님 약(레보티록신)과 칼슘이 든 목록. 검진 뒤 비타민 추천을 받으면 칼슘·철분처럼 부딪히는 성분은 추천에서 빠진다.",
+    "items": [
+      {
+        "type": "substance",
+        "ref": "levothyroxine"
+      },
+      {
+        "type": "substance",
+        "ref": "calcium"
+      }
+    ],
+    "first_check_done": true
+  },
+  {
+    "id": "S7",
+    "display_name": "S7 사진으로 등록하는 50~60대 부모님(가상)",
+    "email": "s7@example.com",
+    "profile": "본인 목록에 레보티록신·칼슘이 있고 첫 검진을 마친 상태. 약 상자 사진으로 철분제를 더해 보는 장면에 쓴다.",
+    "items": [
+      {
+        "type": "substance",
+        "ref": "levothyroxine"
+      },
+      {
+        "type": "substance",
+        "ref": "calcium"
+      }
+    ],
+    "first_check_done": true
+  },
+  {
+    "id": "S8",
+    "display_name": "S8 칼슘을 많이 드시는 50~60대 부모님(가상)",
+    "email": "s8@example.com",
+    "profile": "빈 계정. 가입 직후 칼슘을 처음 등록하고 검진하는 장면에 쓴다.",
+    "items": [],
+    "first_check_done": false
   }
 ]

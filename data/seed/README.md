@@ -8,7 +8,7 @@
 |---|---|---|
 | `substances.json` | 성분 목록. 영양제 성분(`nutrient`)과 처방약 성분(`rx_ingredient`) | 34개(영양제 24, 처방약 10) |
 | `interaction_rules.json` | 같이 먹을 때 조심할 조합. 원문 문장·출처·행동·약사에게 물을 질문 | 26개 |
-| `personas.json` | 가상 페르소나 데모 계정 P1~P3. 상세는 [docs/personas.md](../../docs/personas.md) | 3개 |
+| `personas.json` | 시연 계정: 가상 페르소나 P1~P3, 시나리오별 S1~S8. 상세는 [docs/personas.md](../../docs/personas.md) | 11개 |
 
 - 조합 규칙 26개의 행동: 시간 띄우기(`separate_timing`) 10, 함께 먹지 말 것(`avoid`) 9, 의사·약사와 상의(`consult`) 6, 그 밖의 주의(`caution`) 1.
 - 출처 종류: 식약처 e약은요 15, MedlinePlus(미국 국립의학도서관) 9, 논문 2.
