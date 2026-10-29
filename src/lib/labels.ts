@@ -9,7 +9,7 @@ export const RELATION_LABEL: Record<Relation, string> = {
   caution: '주의하세요',
 }
 
-export const SAFE_MESSAGE = '현재 기준으로 안전해요. 약사에게도 확인하세요'
+export const SAFE_MESSAGE = '확인한 자료에서는 보고된 문제가 없어요. 걱정되면 약사에게 확인하세요'
 
 export function sourceLinkLabel(w: { source_kind: string; source_id: string }): string {
   switch (w.source_kind) {

@@ -28,7 +28,7 @@ test("S6 검진을 마친 사람이 간단한 설문에 답하고 지금 먹는 
   await page.getByRole("button", { name: "추천받기" }).click()
   await expect(page.getByRole("heading", { name: "추천 결과" })).toBeVisible({ timeout: 60_000 })
 
-  // expected: 추천마다 식약처 기능성 문구·출처 링크·"현재 기준으로 안전해요. 약사에게도 확인하세요", 칼슘은 없음, 제품 이름·구매 링크 없음
+  // expected: 추천마다 식약처 기능성 문구·출처 링크·"확인한 자료에서는 보고된 문제가 없어요. 걱정되면 약사에게 확인하세요", 칼슘은 없음, 제품 이름·구매 링크 없음
   const items = page.getByTestId("recommendation")
   await expect(items.first()).toBeVisible()
   const count = await items.count()
@@ -37,7 +37,7 @@ test("S6 검진을 마친 사람이 간단한 설문에 답하고 지금 먹는 
     const item = items.nth(i)
     await expect(item).toContainText("식약처 기능성 내용")
     await expect(item.getByRole("link", { name: "식약처 출처 보기" })).toBeVisible()
-    await expect(item).toContainText("현재 기준으로 안전해요. 약사에게도 확인하세요")
+    await expect(item).toContainText("확인한 자료에서는 보고된 문제가 없어요. 걱정되면 약사에게 확인하세요")
     await expect(item.getByRole("heading")).not.toHaveText("칼슘")
     await expect(item).not.toContainText("구매")
   }
