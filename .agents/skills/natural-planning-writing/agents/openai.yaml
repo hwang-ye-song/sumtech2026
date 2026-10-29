@@ -1,0 +1,4 @@
+interface:
+  display_name: "기획서 문체 다듬기"
+  short_description: "문제 기획서의 근거와 의도를 보존하고 반복과 번역투를 자연스럽게 다듬기"
+  default_prompt: "$natural-planning-writing으로 문제 기획서만 다듬어 줘. 내용·수치·출처·가정은 유지하고 PRD는 수정하지 마."
