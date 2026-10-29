@@ -38,6 +38,9 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
   const [items, hits] = await Promise.all([listUserItems(user.id), q.length >= 2 ? searchCatalog(q) : Promise.resolve([])])
   const inUse = user.first_checked_at !== null
   const addedItem = added ? items.find((i) => itemKey(i) === itemKey(added)) : undefined
+  // 사진으로 여러 개를 한 번에 넣었으면 '훼로바-유서방정 외 2개'처럼 보여 준다.
+  const addedCount = Number(one(params.addedCount)) || 1
+  const addedLabel = addedItem ? (addedCount > 1 ? `${addedItem.name} 외 ${addedCount - 1}개` : addedItem.name) : ''
   const drugs = items.filter((i) => !isSupplement(i))
   const sups = items.filter(isSupplement)
   const confirmItem = Number.isInteger(confirmId) ? items.find((i) => i.id === confirmId) : undefined
@@ -142,15 +145,15 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
 
           <section className="stack" aria-label="내 목록">
             {deleted ? <Toast message="등록된 약·영양제가 목록에서 삭제되었습니다." /> : null}
-            {addedItem && status === 'clear' ? <NoRecordCard lead={`'${addedItem.name}'을(를) 목록에 넣었어요.`} /> : null}
+            {addedItem && status === 'clear' ? <NoRecordCard lead={`'${addedLabel}'을(를) 목록에 넣었어요.`} /> : null}
             {addedItem && status === 'warned' ? (
               <div className="notice notice-warn" role="status">
-                &lsquo;{addedItem.name}&rsquo;을(를) 경고를 확인하고 넣었어요. 복용을 바꾸기 전에 약사·의사와 상담하세요
+                &lsquo;{addedLabel}&rsquo;을(를) 경고를 확인하고 넣었어요. 복용을 바꾸기 전에 약사·의사와 상담하세요
               </div>
             ) : null}
             {addedItem && status === 'new' ? (
               <div className="notice" role="status">
-                &lsquo;{addedItem.name}&rsquo;을(를) 넣었어요. 지금 먹는 것을 다 넣었으면 &lsquo;검진하기&rsquo;에서 한 번에 확인하세요.
+                &lsquo;{addedLabel}&rsquo;을(를) 넣었어요. 지금 먹는 것을 다 넣었으면 &lsquo;검진하기&rsquo;에서 한 번에 확인하세요.
               </div>
             ) : null}
 
