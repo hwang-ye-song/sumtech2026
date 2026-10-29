@@ -137,7 +137,7 @@ function Landing() {
             <div className="card">
               <div className="tag">부모님께 사 드리는 자녀</div>
               <h4>사 드리기 전에</h4>
-              <p className="muted">부모님이 드시는 약과 사 드릴 영양제를 내 목록에 넣어 미리 점검해요. 결과는 한 장으로 정리해서 부모님이나 약사에게 보여 드릴 수 있어요.</p>
+              <p className="muted">부모님이 드시는 약과 사 드릴 영양제를 내 목록에 넣어 미리 점검해요. 결과는 한 장의 리포트로 정리돼요.</p>
             </div>
             <div className="card">
               <div className="tag">약을 매일 드시는 부모님</div>

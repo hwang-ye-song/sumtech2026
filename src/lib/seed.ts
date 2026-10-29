@@ -4,6 +4,7 @@
 //     data/catalog/drugs.json·health_foods.json·product_substances.json  팀원 제품 축약본(scripts/import_team_db.mjs가 만듦)
 //     data/drugs/otc_core.json·data/seed/extra_drugs.json                e약은요 원문(약 제품에 덧붙임)
 //     data/seed/substances.json·interaction_rules.json                    성분·조합 규칙
+//     data/drugs/drug_caution_rule.csv                                     e약은요 원문의 주의 문장(알아보기 화면에 보여 줌)
 // - 시드 계정: E2E용 `복용자` 계정(compose의 SEED_USER_EMAIL·SEED_USER_PASSWORD)과
 //   시연 계정(data/seed/personas.json, 비밀번호는 SEED_PERSONA_PASSWORD).
 // 시드 파일이 아직 없으면 그 부분은 건너뛰고 경고만 남긴다(앱은 뜬다).
@@ -151,6 +152,17 @@ export interface TeamRuleSeed {
   members: { side: 'a' | 'b'; type: ItemType; ref: string; basis: string }[]
 }
 
+/** e약은요 원문의 주의 문장 한 건(data/drugs/drug_caution_rule.csv) */
+export interface DrugCautionSeed {
+  id: string
+  item_seq: string
+  counterpart: string
+  counterpart_type: string
+  relation: string
+  quote: string
+  source_url: string
+}
+
 export interface Catalog {
   teamRules: TeamRuleSeed[]
   drugs: DrugSeed[]
@@ -159,14 +171,14 @@ export interface Catalog {
   links: ProductSubstanceSeed[]
   substances: SubstanceSeed[]
   rules: RuleSeed[]
+  cautions: DrugCautionSeed[]
   /** 파일 내용 해시. 바뀌었을 때만 기준 데이터를 다시 넣는다. */
   hash: string
 }
 
-async function readJson<T>(rel: string): Promise<{ data: T; raw: string } | null> {
+async function readText(rel: string): Promise<string | null> {
   try {
-    const raw = await fs.readFile(path.join(DATA_DIR, rel), 'utf8')
-    return { data: JSON.parse(raw.replace(/^﻿/, '')) as T, raw }
+    return await fs.readFile(path.join(DATA_DIR, rel), 'utf8')
   } catch (err) {
     if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
       console.warn(`[seed] ${rel} 파일이 없어 건너뜁니다.`)
@@ -174,6 +186,43 @@ async function readJson<T>(rel: string): Promise<{ data: T; raw: string } | null
     }
     throw new Error(`[seed] ${rel} 읽기 실패: ${err instanceof Error ? err.message : String(err)}`)
   }
+}
+
+async function readJson<T>(rel: string): Promise<{ data: T; raw: string } | null> {
+  const raw = await readText(rel)
+  return raw === null ? null : { data: JSON.parse(raw.replace(/^﻿/, '')) as T, raw }
+}
+
+/** CSV(따옴표 안의 쉼표·줄바꿈과 ""를 지원)를 머리줄 이름으로 된 행들로 읽는다. */
+function parseCsv(text: string): Record<string, string>[] {
+  const rows: string[][] = []
+  let row: string[] = []
+  let cell = ''
+  let quoted = false
+  const s = text.replace(/^﻿/, '')
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i]
+    if (quoted) {
+      if (ch !== '"') cell += ch
+      else if (s[i + 1] === '"') {
+        cell += '"'
+        i++
+      } else quoted = false
+    } else if (ch === '"') quoted = true
+    else if (ch === ',') {
+      row.push(cell)
+      cell = ''
+    } else if (ch === '\n' || ch === '\r') {
+      if (ch === '\r' && s[i + 1] === '\n') i++
+      row.push(cell)
+      rows.push(row)
+      row = []
+      cell = ''
+    } else cell += ch
+  }
+  if (cell || row.length) rows.push([...row, cell])
+  const [head, ...body] = rows.filter((r) => r.some((c) => c !== ''))
+  return head ? body.map((r) => Object.fromEntries(head.map((h, i) => [h, r[i] ?? '']))) : []
 }
 
 export async function readCatalog(): Promise<Catalog> {
@@ -187,9 +236,22 @@ export async function readCatalog(): Promise<Catalog> {
     rules: await readJson<RuleSeed[]>('seed/interaction_rules.json'),
     teamRules: await readJson<TeamRuleSeed[]>('catalog/nutrient_interactions.json'),
   }
+  const cautionsCsv = await readText('drugs/drug_caution_rule.csv')
   const hash = createHash('sha256').update(SCHEMA_SQL).update(SCHEMA_VERSION)
   for (const f of Object.values(files)) hash.update(f?.raw ?? '')
+  hash.update(cautionsCsv ?? '')
   return {
+    cautions: (cautionsCsv ? parseCsv(cautionsCsv) : [])
+      .filter((r) => r.id && r.item_seq && r.quote && r.source_url)
+      .map((r) => ({
+        id: r.id,
+        item_seq: r.item_seq,
+        counterpart: r.counterpart,
+        counterpart_type: r.counterpart_type,
+        relation: r.relation,
+        quote: r.quote,
+        source_url: r.source_url,
+      })),
     drugs: files.drugs?.data ?? [],
     easy: [...(files.core?.data ?? []), ...(files.extra?.data ?? [])],
     healthFoods: files.healthFoods?.data ?? [],
@@ -390,8 +452,17 @@ export async function loadCatalog(db: Db, c: Catalog): Promise<void> {
     teamRules.flatMap((r) => r.members.filter(resolves).map((m) => [r.id, m.side, m.type, m.ref, m.basis])),
     { onConflict: 'ON CONFLICT DO NOTHING' },
   )
+
+  const cautions = c.cautions.filter((r) => ids.drug.has(r.item_seq))
+  await insertMany(
+    db,
+    'drug_caution',
+    ['id', 'item_seq', 'counterpart', 'counterpart_type', 'relation', 'quote', 'source_url'],
+    cautions.map((r) => [r.id, r.item_seq, r.counterpart, r.counterpart_type, r.relation, r.quote, r.source_url]),
+    { onConflict: 'ON CONFLICT (id) DO NOTHING' },
+  )
   console.log(
-    `[seed] 기준 데이터: 약 ${drugRows.length}개, 건강기능식품 ${c.healthFoods.length}개, 성분 ${c.substances.length}개, 제품-성분 ${c.links.length}개, 규칙 ${c.rules.length - skipped}개${skipped ? ` (건너뜀 ${skipped})` : ''} + 조합 모음 ${teamRules.length}개`,
+    `[seed] 기준 데이터: 약 ${drugRows.length}개, 건강기능식품 ${c.healthFoods.length}개, 성분 ${c.substances.length}개, 제품-성분 ${c.links.length}개, 규칙 ${c.rules.length - skipped}개${skipped ? ` (건너뜀 ${skipped})` : ''} + 조합 모음 ${teamRules.length}개, 설명서 주의 문장 ${cautions.length}개`,
   )
 }
 
@@ -458,12 +529,54 @@ export async function ensureSchemaAndSeed(): Promise<void> {
 
   // 이미 준비된 DB면 여기서 끝낸다(왕복 2번). 서버가 새로 뜰 때마다 원격 DB와 수십 번 주고받지 않으려는 것이다.
   await db.exec('CREATE TABLE IF NOT EXISTS seed_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)')
-  const meta = new Map((await db.query<{ key: string; value: string }>('SELECT key, value FROM seed_meta')).map((r) => [r.key, r.value]))
-  if (meta.get('schema_version') === SCHEMA_VERSION && meta.get('catalog_hash') === catalog.hash && meta.get('users_hash') === usersHash) {
-    console.log(`[seed] 이미 준비된 DB라 건너뜁니다 (${Date.now() - started}ms, ${db.kind})`)
-    return
+  const isPrepared = async () => {
+    const meta = new Map((await db.query<{ key: string; value: string }>('SELECT key, value FROM seed_meta')).map((r) => [r.key, r.value]))
+    return meta.get('schema_version') === SCHEMA_VERSION && meta.get('catalog_hash') === catalog.hash && meta.get('users_hash') === usersHash
   }
+  // Vercel처럼 서버가 여러 개 동시에 뜨면, 한 서버만 시드를 넣고 나머지는 끝날 때까지 기다린다.
+  // (여럿이 동시에 지우고 넣으면 서로 빈 표를 보고 실패한다.)
+  for (let waited = 0; ; waited += SEED_LOCK_POLL_MS) {
+    if (await isPrepared()) {
+      console.log(`[seed] 이미 준비된 DB라 건너뜁니다 (${Date.now() - started}ms, ${db.kind})`)
+      return
+    }
+    if (await acquireSeedLock(db)) break
+    if (waited >= SEED_LOCK_WAIT_MS) throw new Error('다른 서버가 시드를 넣고 있어 기다리다 시간이 지났어요. 잠시 뒤 다시 시도해 주세요.')
+    await new Promise((resolve) => setTimeout(resolve, SEED_LOCK_POLL_MS))
+  }
+  try {
+    await seedNow(db, catalog, personas, { demoEmail, demoPassword, personaPassword, usersHash })
+  } finally {
+    await db.query(`DELETE FROM seed_meta WHERE key = 'seed_lock'`)
+  }
+  console.log(`[seed] 완료 (${Date.now() - started}ms, ${db.kind})`)
+}
 
+const SEED_LOCK_POLL_MS = 1000
+const SEED_LOCK_WAIT_MS = 110_000
+/** 이보다 오래된 잠금은 시드 중에 꺼진 서버의 것이라 보고 가져온다. */
+const SEED_LOCK_STALE_MS = 120_000
+
+/** 시드 잠금(seed_meta의 'seed_lock' = 잡은 시각). 아무도 안 잡았거나 오래된 잠금이면 가져온다. */
+async function acquireSeedLock(db: Db): Promise<boolean> {
+  const now = Date.now()
+  const rows = await db.query<{ key: string }>(
+    `INSERT INTO seed_meta (key, value) VALUES ('seed_lock', $1)
+     ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value WHERE seed_meta.value::bigint < $2
+     RETURNING key`,
+    [String(now), now - SEED_LOCK_STALE_MS],
+  )
+  return rows.length > 0
+}
+
+/** 스키마·기준 데이터·시드 계정을 실제로 넣는다(잠금을 잡은 서버만 부른다). */
+async function seedNow(
+  db: Db,
+  catalog: Catalog,
+  personas: PersonaSeed[],
+  env: { demoEmail?: string; demoPassword?: string; personaPassword?: string; usersHash: string },
+): Promise<void> {
+  const { demoEmail, demoPassword, personaPassword, usersHash } = env
   await migrateReferenceTables(db)
   await db.exec(SCHEMA_SQL)
   await setMeta(db, 'schema_version', SCHEMA_VERSION)
@@ -497,5 +610,4 @@ export async function ensureSchemaAndSeed(): Promise<void> {
   }
 
   await setMeta(db, 'users_hash', usersHash)
-  console.log(`[seed] 완료 (${Date.now() - started}ms, ${db.kind})`)
 }

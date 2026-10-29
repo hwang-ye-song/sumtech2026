@@ -1,12 +1,12 @@
 import { expect, test } from "@playwright/test"
 import { E2E_USER_EMAIL, E2E_USER_PASSWORD } from "../env"
-import { listRows, logInFromHome, openCheckFromHome, register, searchAndPick } from "../helpers"
+import { listRows, logInFromHome, openListFromHome, register, searchAndPick } from "../helpers"
 
 test("S3 감기에 걸린 20~30대가 비타민C를 더하면 안전하다고 단정하지 않는 안내를 받고, 잘못 넣은 것은 지운다", async ({ page }) => {
   await logInFromHome(page, E2E_USER_EMAIL, E2E_USER_PASSWORD)
 
-  // 1~6. '검진하기' → '비타민C' 검색 → '비타민C' → 하루 1개 → '등록'
-  await openCheckFromHome(page)
+  // 1~6. '복용 목록' → '비타민C' 검색 → '비타민C' → 하루 1개 → '등록'
+  await openListFromHome(page)
   await searchAndPick(page, "비타민C", "비타민C")
   await register(page, 1)
 

@@ -762,5 +762,91 @@
     },
     "source_note": null,
     "more_sources": []
+  },
+  {
+    "id": "acetaminophen-duplicate",
+    "a": {
+      "type": "substance",
+      "ref": "acetaminophen"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "acetaminophen"
+    },
+    "relation": "avoid",
+    "effect": "같은 성분이 든 약을 겹쳐 먹으면 하루 양이 더해져요. 원문은 아세트아미노펜 일일 최대 용량(4,000 mg)을 넘기면 간손상을 일으킬 수 있다고 적고 있어요.",
+    "quote": "아세트아미노펜을 포함하는 다른 제품과 함께 복용하지 마십시오.",
+    "quote_ko": null,
+    "action": "아세트아미노펜이 든 약은 한 가지만 드세요. 타이레놀과 여러 감기약·진통제에 들어 있어요.",
+    "pharmacist_question": "지금 먹는 약 중 아세트아미노펜이 든 것이 두 가지인데, 어떤 것만 먹으면 되나요?",
+    "source_id": "R6",
+    "source_title": "타이레놀정500밀리그람(아세트아미노펜) e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=202106092",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-30",
+      "how": "otc_core.json의 e약은요 원문(warning·precautions·interactions)에 quote가 글자 그대로 있음을 스크립트로 대조했고, 출처 주소가 열리고 같은 문장이 있는 것을 확인함. 원문이 '함께 복용하지 마십시오'라 relation=avoid. 같은 성분이 든 서로 다른 두 제품을 함께 먹는 경우에만 걸린다(data/drugs/drug_caution_rule.csv의 duplicate_ingredient)."
+    },
+    "source_note": null,
+    "more_sources": [
+      {
+        "source_id": "R6",
+        "source_title": "판콜에이내복액 e약은요 (식약처 의약품안전나라)",
+        "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=196800036",
+        "source_kind": "mfds_easy_drug",
+        "source_note": null,
+        "quote": "아세트아미노펜을 포함하는 다른 제품과 함께 복용하지 마십시오.",
+        "quote_ko": null
+      },
+      {
+        "source_id": "R6",
+        "source_title": "게보린정(수출명:돌로린정) e약은요 (식약처 의약품안전나라)",
+        "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=197900277",
+        "source_kind": "mfds_easy_drug",
+        "source_note": null,
+        "quote": "아세트아미노펜을 포함하는 다른 제품과 함께 복용하지 마십시오.",
+        "quote_ko": null
+      },
+      {
+        "source_id": "R6",
+        "source_title": "콜대원콜드시럽 e약은요 (식약처 의약품안전나라)",
+        "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=201503959",
+        "source_kind": "mfds_easy_drug",
+        "source_note": null,
+        "quote": "아세트아미노펜을 포함하는 다른 제품과 함께 복용하지 마십시오.",
+        "quote_ko": null
+      }
+    ]
+  },
+  {
+    "id": "diphenhydramine-duplicate",
+    "a": {
+      "type": "substance",
+      "ref": "diphenhydramine"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "diphenhydramine"
+    },
+    "relation": "avoid",
+    "effect": null,
+    "quote": "이 약과 동일한 성분의 다른 제제, 다른 최면진정제, MAO억제제, 감기약, 해열진통제, 진해거담약, 항히스타민제를 함유하고 있는 내복약(비염용 내복약, 멀미약, 알러지용약)과 함께 복용하지 마십시오.",
+    "quote_ko": null,
+    "action": "디펜히드라민이 든 약(수면유도제·일부 감기약)은 한 가지만 드세요.",
+    "pharmacist_question": "수면유도제와 감기약에 디펜히드라민이 둘 다 들어 있는데, 어떤 것만 먹으면 되나요?",
+    "source_id": "R6",
+    "source_title": "슬리펠정25밀리그램(디펜히드라민염산염) e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=200807310",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-30",
+      "how": "otc_core.json의 e약은요 원문(warning·precautions·interactions)에 quote가 글자 그대로 있음을 스크립트로 대조했고, 출처 주소가 열리고 같은 문장이 있는 것을 확인함. 원문이 '함께 복용하지 마십시오'라 relation=avoid. 같은 성분이 든 서로 다른 두 제품을 함께 먹는 경우에만 걸린다(data/drugs/drug_caution_rule.csv의 duplicate_ingredient)."
+    },
+    "source_note": null,
+    "more_sources": []
   }
 ]

@@ -3,7 +3,7 @@
 import { useActionState, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { recognizePhoto, type PhotoState } from '@/app/actions/photo'
-import { SearchRegister } from '@/components/SearchRegister'
+import { PhotoBulkRegister } from '@/components/PhotoBulkRegister'
 
 // 서버 액션은 요청을 1MB(설정으로 4MB)까지만 받고 Vercel은 4.5MB까지만 받는다. 휴대폰 사진(2~5MB)은
 // 보내기 전에 긴 변 1600px JPEG로 줄인다. 글자 읽기에는 이 크기로 충분하다. 줄이지 못하면 원본을 보낸다.
@@ -80,9 +80,9 @@ export function PhotoAdd({ aiReady }: { aiReady: boolean }) {
         ) : (
           <>
             <p>
-              <strong>사진에서 읽은 후보예요.</strong> 맞는 것을 골라 주세요.
+              <strong>사진에서 읽은 약이에요.</strong> 맞지 않는 것만 체크를 끄고 한 번에 등록하세요.
             </p>
-            <SearchRegister hits={shown.matches} testId="candidates" label="후보 목록" />
+            <PhotoBulkRegister hits={shown.matches} />
           </>
         )}
         <div className="row">

@@ -63,17 +63,74 @@ export async function registerItem(_prev: RegisterState, formData: FormData): Pr
 
   const ok = await addUserItem(user.id, item, dose)
   if (!ok) return { error: '그 항목을 찾지 못했어요. 다시 검색해 주세요.', values }
-  revalidatePath('/check')
+  revalidatePath('/list')
   const status = !inUse ? 'new' : force ? 'warned' : 'clear'
-  redirect(`/check?added=${encodeURIComponent(itemKey(item))}&status=${status}`)
+  redirect(`/list?added=${encodeURIComponent(itemKey(item))}&status=${status}`)
+}
+
+export interface BulkRegisterState {
+  error?: string
+  /** '모두 등록'을 누를 때마다 바뀐다. 같은 경고라도 창을 다시 연다. */
+  attempt?: number
+  warnings?: Warning[]
+}
+
+/**
+ * 사진 후보 여러 개를 한 번에 등록한다('모두 등록'). 고른 항목마다 하루 개수(count:<항목 키>)를 받는다.
+ * 사용 중인 사람이면 새로 넣는 것들이 끼는 조합을 먼저 점검해 경고가 있으면 넣지 않고 경고 창을 띄운다('그래도 모두 추가'는 force).
+ * 이미 목록에 있는 항목은 건너뛴다.
+ */
+export async function registerMany(_prev: BulkRegisterState, formData: FormData): Promise<BulkRegisterState> {
+  const user = await requireUser()
+  const picked = formData
+    .getAll('item')
+    .map((v) => parseItemKey(String(v)))
+    .filter((i): i is NonNullable<typeof i> => i !== null)
+  if (picked.length === 0) return { error: '등록할 약·영양제를 하나 이상 골라 주세요.' }
+
+  const doses: Dose[] = []
+  for (const item of picked) {
+    const count = Number(String(formData.get(`count:${itemKey(item)}`) ?? '1').trim())
+    if (!Number.isInteger(count) || count < 1 || count > 20) return { error: "'하루에 먹는 개수'를 1~20 사이 숫자로 넣어 주세요." }
+    doses.push({ daily_count: count, unit_amount: null, unit: null })
+  }
+
+  const current = await listUserItems(user.id)
+  const have = new Set(current.map(itemKey))
+  const fresh = picked.map((item, i) => ({ item, dose: doses[i] })).filter(({ item }) => !have.has(itemKey(item)))
+  if (fresh.length === 0) return { error: '고른 항목이 모두 이미 내 목록에 있어요.' }
+
+  const inUse = user.first_checked_at !== null
+  const force = formData.get('force') === '1'
+  if (inUse && !force) {
+    const all = [...current, ...fresh.map((f) => f.item)]
+    const seen = new Set<string>()
+    const warnings: Warning[] = []
+    for (const { item } of fresh) {
+      for (const w of await checkItems(all, item)) {
+        const key = `${w.ruleId}|${itemKey(w.a)}|${itemKey(w.b)}`
+        if (seen.has(key)) continue
+        seen.add(key)
+        warnings.push(w)
+      }
+    }
+    if (warnings.length > 0) return { attempt: Date.now(), warnings }
+  }
+
+  for (const { item, dose } of fresh) {
+    if (!(await addUserItem(user.id, item, dose))) return { error: '고른 항목 중 찾지 못한 것이 있어요. 다시 찍어 주세요.' }
+  }
+  revalidatePath('/list')
+  const status = !inUse ? 'new' : force ? 'warned' : 'clear'
+  redirect(`/list?added=${encodeURIComponent(itemKey(fresh[0].item))}&addedCount=${fresh.length}&status=${status}`)
 }
 
 export async function removeItemAction(formData: FormData): Promise<void> {
   const user = await requireUser()
   const id = Number(formData.get('id'))
   if (Number.isInteger(id)) await removeUserItem(user.id, id)
-  revalidatePath('/check')
-  redirect('/check?deleted=1')
+  revalidatePath('/list')
+  redirect('/list?deleted=1')
 }
 
 /** '검진 시작': 첫 검진이면 '사용 중' 상태로 바꾸고 검진 리포트로 간다. */

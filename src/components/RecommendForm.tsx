@@ -87,11 +87,11 @@ export function RecommendForm() {
 
 /** 추천 결과 화면: 설문 대신 이 화면만 보여 준다. */
 function Result({ state, onBack }: { state: RecommendState; onBack: () => void }) {
-  // 설문 맨 아래 '추천 보기'에서 넘어오므로, 결과는 맨 위부터 보이게 한다.
+  // 설문 맨 아래 '추천 보기'를 누른 자리에 머물지 않게, 결과가 나오면 화면 맨 위로 올린다.
   useEffect(() => {
+    // 부드럽게(smooth) 올리면 창이 가려져 있을 때 움직이지 않는 브라우저가 있어 바로 올린다.
     window.scrollTo({ top: 0 })
   }, [state])
-
   return (
     <section aria-live="polite" className="stack">
       <div className="eyebrow">추천 결과</div>

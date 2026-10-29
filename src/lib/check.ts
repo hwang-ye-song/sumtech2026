@@ -263,7 +263,12 @@ async function describeRules(rules: LoadedRule[]): Promise<Warning[]> {
     type === 'group'
       ? { type: 'substance', ref, name: label ?? ref }
       : { type, ref, name: labelOf.get(`${type}:${ref}`) ?? ref }
-  return rules.map(({ row, a, b }) => toWarning(row, sideOf(row.a_type, row.a_ref, row.a_label), sideOf(row.b_type, row.b_ref, row.b_label), { a, b }))
+  return rules.map(({ row, a, b }) => {
+    const bSide = sideOf(row.b_type, row.b_ref, row.b_label)
+    // 같은 성분 중복 규칙(아세트아미노펜 × 아세트아미노펜)은 상대 쪽을 '같은 성분이 든 다른 약'으로 적는다.
+    const sameIngredient = row.a_type !== 'group' && row.a_type === row.b_type && row.a_ref === row.b_ref
+    return toWarning(row, sideOf(row.a_type, row.a_ref, row.a_label), sameIngredient ? { ...bSide, name: '같은 성분이 든 다른 약' } : bSide, { a, b })
+  })
 }
 
 /** 근거 화면('자세히')용: 규칙 하나 */

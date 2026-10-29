@@ -74,8 +74,8 @@ export default async function RulePage({ params }: { params: Promise<{ id: strin
           <Link className="btn" href="/check/report">
             리포트로
           </Link>
-          <Link className="btn btn-ghost" href="/check">
-            목록으로
+          <Link className="btn btn-ghost" href="/list">
+            복용 목록
           </Link>
         </div>
       </div>

@@ -50,7 +50,8 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
   await createSession(rows[0].id)
   // 로그인 상태가 바뀌었으니, 로그인 전에 들렀던 화면들의 캐시(로그인으로 튕기는 결과가 그대로 남아 있을 수 있다)를 지운다.
   revalidatePath('/', 'layout')
-  redirect(nextPath(formData))
+  // 처음 가입한 사람은 목록이 비어 있으니, 홈 대신 바로 약·영양제 등록 화면으로 보낸다(로그인 전에 고른 화면이 있으면 그곳으로).
+  redirect(safeNext(formData.get('next')) ?? '/list?welcome=1')
 }
 
 export async function logIn(_prev: AuthState, formData: FormData): Promise<AuthState> {

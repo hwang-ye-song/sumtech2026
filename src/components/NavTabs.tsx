@@ -15,7 +15,8 @@ const ITEMS: { href: string; label: React.ReactNode; match: string[] }[] = [
     ),
     match: ['/explore'],
   },
-  { href: '/check', label: '검진하기', match: ['/check', '/list', '/add', '/rules', '/report'] },
+  { href: '/list', label: '복용 목록', match: ['/list', '/add'] },
+  { href: '/check', label: '검진하기', match: ['/check', '/rules', '/report'] },
   { href: '/recommend', label: '영양제 추천', match: ['/recommend'] },
 ]
 

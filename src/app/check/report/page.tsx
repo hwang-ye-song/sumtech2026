@@ -39,7 +39,8 @@ export default async function ReportPage() {
           <h2 data-testid="report-title">
             주의할 항목 <b className="num">{total}</b>개
           </h2>
-          <p className="faint">{user.display_name ?? user.email} · 약사·의사에게 보여 주세요</p>
+          {/* 화면에 이메일은 찍지 않는다. 이름이 있을 때만 누구 결과인지 적는다. */}
+          <p className="faint">{user.display_name ? `${user.display_name}님이` : '지금'} 먹고 있는 약·영양제를 점검한 결과예요.</p>
         </div>
         <div className="summary">
           <div className={`card ${total ? 'warn' : ''}`}>
@@ -71,7 +72,7 @@ export default async function ReportPage() {
         <section className="card" style={{ marginTop: 24 }} data-testid="report-list">
           <h4>복용 중인 약·영양제</h4>
           <p className="muted">
-            약사에게 보여 줄 한 줄: <strong data-testid="report-oneline">{oneLine || '없음'}</strong>
+            한 줄 요약: <strong data-testid="report-oneline">{oneLine || '없음'}</strong>
           </p>
           <table className="tbl" aria-label="복용 중인 약·영양제">
             <thead>
@@ -118,8 +119,8 @@ export default async function ReportPage() {
           <Link className="btn btn-black btn-lg" href="/recommend" data-testid="report-recommend">
             영양제 추천받기
           </Link>
-          <Link className="btn btn-lg" href="/check">
-            목록으로
+          <Link className="btn btn-lg" href="/list">
+            복용 목록
           </Link>
         </div>
       </div>

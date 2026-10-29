@@ -34,6 +34,9 @@ const foodIng = (await db.query('SELECT * FROM new_health_food_ingredient ORDER 
 const SUBSTANCE_RULES = [
   [/스테아린산마그네슘|에스오메프라졸마그네슘|메타규산알루민산마그네슘|스타틴칼슘|클라불란산칼륨|요오드칼륨|칼시트리올|알파칼시돌|이산화규소|덱스트린|전분|아라비아검|설탕|글리세린지방산/, null],
   [/레보티록신/, 'levothyroxine'],
+  // 같은 성분 중복 규칙(아세트아미노펜·디펜히드라민이 든 약을 둘 이상 같이 먹는 경우)에 쓰는 일반의약품 성분
+  [/아세트아미노펜/, 'acetaminophen'],
+  [/디펜히드라민/, 'diphenhydramine'],
   [/와파린/, 'warfarin'],
   [/암로디핀/, 'amlodipine'],
   [/로사르탄/, 'losartan'],

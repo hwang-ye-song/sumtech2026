@@ -28,6 +28,8 @@ export function startApp(): Promise<void> {
         globalThis.__neulReadyState = 'failed'
         globalThis.__neulReadyError = err instanceof Error ? err.message : String(err)
         console.error('[startup] 스키마·시드 실패:', err)
+        // 실패를 붙잡아 두지 않는다. 다음 요청이 다시 시도하게 한다(다른 서버가 시드를 넣는 중이었을 수 있다).
+        globalThis.__neulReady = undefined
         throw err
       },
     )

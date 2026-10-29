@@ -55,6 +55,12 @@
  },
  {
   "product_type": "drug",
+  "product_ref": "196800036",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
   "product_ref": "197000037",
   "substance_id": "vitamin_b1",
   "basis": "ingredient"
@@ -105,6 +111,12 @@
   "product_type": "drug",
   "product_ref": "197800391",
   "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "197900277",
+  "substance_id": "acetaminophen",
   "basis": "ingredient"
  },
  {
@@ -1010,6 +1022,12 @@
  {
   "product_type": "drug",
   "product_ref": "200605371",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200605371",
   "substance_id": "vitamin_b1",
   "basis": "ingredient"
  },
@@ -1178,6 +1196,12 @@
  {
   "product_type": "drug",
   "product_ref": "200607843",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200607843",
   "substance_id": "vitamin_b1",
   "basis": "ingredient"
  },
@@ -1197,6 +1221,12 @@
   "product_type": "drug",
   "product_ref": "200608255",
   "substance_id": "losartan",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200610627",
+  "substance_id": "acetaminophen",
   "basis": "ingredient"
  },
  {
@@ -1227,6 +1257,12 @@
   "product_type": "drug",
   "product_ref": "200700468",
   "substance_id": "losartan",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200700547",
+  "substance_id": "acetaminophen",
   "basis": "ingredient"
  },
  {
@@ -1591,6 +1627,12 @@
  },
  {
   "product_type": "drug",
+  "product_ref": "200806191",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
   "product_ref": "200806637",
   "substance_id": "vitamin_e",
   "basis": "ingredient"
@@ -1659,6 +1701,18 @@
   "product_type": "drug",
   "product_ref": "200806797",
   "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200807251",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200807310",
+  "substance_id": "diphenhydramine",
   "basis": "ingredient"
  },
  {
@@ -1761,6 +1815,12 @@
   "product_type": "drug",
   "product_ref": "200809204",
   "substance_id": "vitamin_b7",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200810700",
+  "substance_id": "acetaminophen",
   "basis": "ingredient"
  },
  {
@@ -3151,6 +3211,12 @@
  },
  {
   "product_type": "drug",
+  "product_ref": "201300036",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
   "product_ref": "201306109",
   "substance_id": "calcium",
   "basis": "ingredient"
@@ -3488,6 +3554,12 @@
  {
   "product_type": "drug",
   "product_ref": "201401034",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201401034",
   "substance_id": "vitamin_b1",
   "basis": "ingredient"
  },
@@ -3620,6 +3692,12 @@
  {
   "product_type": "drug",
   "product_ref": "201405635",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201405635",
   "substance_id": "vitamin_c",
   "basis": "ingredient"
  },
@@ -3675,6 +3753,12 @@
   "product_type": "drug",
   "product_ref": "201503512",
   "substance_id": "metformin",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201503959",
+  "substance_id": "acetaminophen",
   "basis": "ingredient"
  },
  {
@@ -4778,6 +4862,12 @@
  {
   "product_type": "drug",
   "product_ref": "201700124",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201700124",
   "substance_id": "vitamin_b1",
   "basis": "ingredient"
  },
@@ -5570,6 +5660,12 @@
  {
   "product_type": "drug",
   "product_ref": "201804619",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201804619",
   "substance_id": "vitamin_b1",
   "basis": "ingredient"
  },
@@ -5589,6 +5685,12 @@
   "product_type": "drug",
   "product_ref": "201805293",
   "substance_id": "amlodipine",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201900045",
+  "substance_id": "acetaminophen",
   "basis": "ingredient"
  },
  {
@@ -5967,6 +6069,12 @@
   "product_type": "drug",
   "product_ref": "201907106",
   "substance_id": "ciprofloxacin",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201907116",
+  "substance_id": "acetaminophen",
   "basis": "ingredient"
  },
  {
@@ -6415,6 +6523,12 @@
  },
  {
   "product_type": "drug",
+  "product_ref": "202008963",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
   "product_ref": "202009337",
   "substance_id": "calcium",
   "basis": "ingredient"
@@ -6501,6 +6615,12 @@
   "product_type": "drug",
   "product_ref": "202104688",
   "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202106092",
+  "substance_id": "acetaminophen",
   "basis": "ingredient"
  },
  {
@@ -6903,6 +7023,18 @@
   "product_type": "drug",
   "product_ref": "202200398",
   "substance_id": "amlodipine",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202200407",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202200525",
+  "substance_id": "acetaminophen",
   "basis": "ingredient"
  },
  {
@@ -8924,6 +9056,12 @@
  {
   "product_type": "drug",
   "product_ref": "202402327",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202402327",
   "substance_id": "vitamin_c",
   "basis": "ingredient"
  },
@@ -10178,6 +10316,12 @@
  {
   "product_type": "drug",
   "product_ref": "202600156",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202600156",
   "substance_id": "vitamin_c",
   "basis": "ingredient"
  },
@@ -10352,7 +10496,19 @@
  {
   "product_type": "drug",
   "product_ref": "202601276",
+  "substance_id": "acetaminophen",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202601276",
   "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202601276",
+  "substance_id": "diphenhydramine",
   "basis": "ingredient"
  },
  {
