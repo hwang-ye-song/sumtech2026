@@ -11,6 +11,8 @@ export const metadata = { title: '약·영양제 알아보기' }
 
 type Params = Record<string, string | string[] | undefined>
 const KINDS = ['전체', '약', '영양제'] as const
+/** 카드 하나에 보여 줄 경고 수. 성분 하나에 조합이 수십 개라 다 그리면 화면이 수 MB가 된다(규칙은 무거운 순으로 정렬돼 있다). */
+const MAX_WARNINGS_PER_CARD = 8
 
 /** 로그인 없이 보는 화면: 성분·약마다 DB에 기록된 조합 주의사항과 출처 */
 export default async function ExplorePage({ searchParams }: { searchParams: Promise<Params> }) {
@@ -20,8 +22,8 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
   const kind = KINDS.find((k) => k === params.kind) ?? '전체'
 
   const [rules, user] = await Promise.all([listAllRules(), getCurrentUser()])
-  // 검색어가 없으면 성분 전체와, 규칙에 걸리는 제품만 보여 준다(아래 filter).
-  const entries: CatalogHit[] = q.length >= 2 ? await searchCatalog(q, 40) : await listCatalog()
+  // 검색어가 없으면 성분만 보여 준다. 제품(약·건강기능식품 2,000개)은 검색으로 찾는다(한 화면에 다 그리면 수십 MB가 된다).
+  const entries: CatalogHit[] = q.length >= 2 ? await searchCatalog(q, 40) : (await listCatalog()).filter((e) => e.type === 'substance')
 
   // 제품은 그 제품에 든 성분으로도 성분 규칙에 걸린다(판정과 같은 방식).
   const inProducts = await substancesInProducts(entries)
@@ -87,7 +89,7 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
                   {ws.length === 0 ? (
                     <div className="ex-none">{NO_RECORD_MESSAGE}</div>
                   ) : (
-                    ws.map((w) => (
+                    ws.slice(0, MAX_WARNINGS_PER_CARD).map((w) => (
                       <div key={w.ruleId} className="ex-w" data-testid="ex-warn">
                         <LevelBadge level={w.relation} />
                         <strong>
@@ -103,6 +105,11 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
                       </div>
                     ))
                   )}
+                  {ws.length > MAX_WARNINGS_PER_CARD ? (
+                    <p className="faint" style={{ margin: 0 }}>
+                      외 {ws.length - MAX_WARNINGS_PER_CARD}건. 내 목록에 더하면 같이 먹는 것과의 조합만 골라 보여 드려요.
+                    </p>
+                  ) : null}
                   <div>
                     <Link className="btn btn-sm" href={user ? `/list?q=${encodeURIComponent(e.name)}` : '/login'}>
                       내 목록에 더하기

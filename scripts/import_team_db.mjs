@@ -17,6 +17,7 @@ function forPglite(sql) {
     .join('\n')
 }
 
+await fs.mkdir(OUT_DIR, { recursive: true })
 const db = await PGlite.create()
 for (const f of ['01_new_drug.sql', '02_new_health_food.sql', '03_new_nutrient_interaction.sql']) {
   const sql = await fs.readFile(path.join(ROOT, 'database', f), 'utf8')
@@ -117,6 +118,7 @@ const foodOut = foods.map((f) => ({
 const CATEGORY_SUBSTANCE = {
   칼슘: 'calcium', 철분: 'iron', 비타민C: 'vitamin_c', 오메가3: 'omega3', 마그네슘: 'magnesium', 비타민D: 'vitamin_d',
   유산균: 'probiotics', 루테인: 'lutein', 밀크씨슬: 'milk_thistle', 코엔자임Q10: 'coenzyme_q10', 은행잎: 'ginkgo', 비타민K: 'vitamin_k',
+  아연: 'zinc', 엽산: 'vitamin_b9', 비오틴: 'vitamin_b7', 셀레늄: 'selenium',
 }
 const links = []
 const addLink = (product_type, product_ref, substance_id, basis) => {
@@ -184,7 +186,6 @@ for (const f of foodOut) for (const i of f.ingredients) if (i.ingredient_type ==
 report.push('', '[연결 안 된 기능성 원재료]', ...[...unmapped].sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k}(${v})`))
 await fs.writeFile(path.join(ROOT, 'data', 'catalog', 'mapping_report.txt'), report.join('\n') + '\n')
 
-await fs.mkdir(OUT_DIR, { recursive: true })
 await fs.writeFile(path.join(OUT_DIR, 'drugs.json'), JSON.stringify(drugOut, null, 1) + '\n')
 await fs.writeFile(path.join(OUT_DIR, 'health_foods.json'), JSON.stringify(foodOut, null, 1) + '\n')
 console.log(`약 ${drugOut.length}개(성분 ${drugIng.length}행), 건강기능식품 ${foodOut.length}개(원재료 ${foodIng.length}행) → data/catalog/`)
