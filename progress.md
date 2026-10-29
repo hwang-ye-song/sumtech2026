@@ -6,7 +6,7 @@ Agent가 서비스 저장소 루트의 `progress.md`로 복사해 이어 쓴다(
 
 - 실제 서비스 저장소 폴더: D:\Desktop\SUMTECH_project\sumtech2026
 - 현재 단계 / 다음 행동: 2단계. problem.yaml 2차 수정·scenarios.yaml 초안을 로컬에만 반영(학생 지시로 push 보류, 2026-10-29) → 학생 확인 후 push
-- 학생에게 확인할 내용: 서비스 이름(미정) / Why 보강(친구에게 같이 먹은 시간·이유·병원에 알렸는지 확인) / 저장소 private 전환 여부
+- 학생에게 확인할 내용: 서비스 이름(미정) / Why 보강(? 붙은 원인 확인), 직접 인터뷰로 실제 사례 추가 / 저장소 private 전환 여부
 
 ## 1. GitHub 준비
 
