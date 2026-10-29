@@ -216,8 +216,10 @@ export async function checkItems(items: ItemRef[], focus?: ItemRef): Promise<War
     const pair = [pa.index, pb.index].sort((x, y) => x - y).join('-')
     byPair.set(pair, [...(byPair.get(pair) ?? []), w])
   }
+  // 대표는 원래 규칙(식약처·논문 원문을 직접 대조한 것)을 먼저 쓰고, 팀원 조합 모음의 출처는 그 아래에 더한다.
+  const curatedFirst = (x: Warning, y: Warning) => Number(x.ruleId.startsWith('ni-')) - Number(y.ruleId.startsWith('ni-')) || compareWarnings(x, y)
   const warnings = [...byPair.values()].map((ws) => {
-    const [top, ...rest] = ws.sort(compareWarnings)
+    const [top, ...rest] = ws.sort(curatedFirst)
     const urls = new Set(top.sources.map((s) => s.source_url))
     for (const s of rest.flatMap((w) => w.sources)) {
       if (urls.has(s.source_url) || top.sources.length >= 5) continue
