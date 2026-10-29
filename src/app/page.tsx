@@ -238,7 +238,7 @@ function Landing() {
             </div>
             <div className="card card-soft">
               <h4>사진은 읽은 뒤 바로 지워요</h4>
-              <p className="muted">보내기 전에 동의를 받고, 서버와 DB 어디에도 저장하지 않아요.</p>
+              <p className="muted">사진을 골라야만 보내고, 글자를 읽은 뒤 바로 지워 서버와 DB 어디에도 저장하지 않아요.</p>
             </div>
           </div>
         </div>

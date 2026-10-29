@@ -1,5 +1,5 @@
-// git push 직전에 실행된다. 푸시할 커밋에 화면(src/app, src/components, frontend) 변경이 있는데
-// E2E 테스트(e2e/, frontend/e2e/) 변경이 없으면 한 번 막고, 테스트를 화면에 맞춰 고치라고 알린다.
+// git push 직전에 실행된다. 푸시할 커밋에 화면(src/app, src/components) 변경이 있는데
+// E2E 테스트(e2e/) 변경이 없으면 한 번 막고, 테스트를 화면에 맞춰 고치라고 알린다.
 // 같은 HEAD로 다시 푸시하면 통과시킨다(검토 결과 테스트를 고칠 필요가 없을 때).
 import { execSync } from "node:child_process"
 import fs from "node:fs"
@@ -20,8 +20,8 @@ if (!base) process.exit(0)
 
 const head = git("rev-parse HEAD")
 const changed = git(`diff --name-only ${base}...HEAD`).split("\n").filter(Boolean)
-const isTest = (f) => f.startsWith("e2e/") || f.startsWith("frontend/e2e/")
-const isFront = (f) => !isTest(f) && /^(src\/app|src\/components|frontend)\//.test(f)
+const isTest = (f) => f.startsWith("e2e/")
+const isFront = (f) => !isTest(f) && /^(src\/app|src\/components)\//.test(f)
 
 const front = changed.filter(isFront)
 if (!front.length || changed.some(isTest)) process.exit(0)
@@ -35,7 +35,7 @@ const reason = [
   "바뀐 화면 파일:",
   ...front.map((f) => `  - ${f}`),
   "",
-  "e2e/scenarios/*.spec.ts, e2e/helpers.ts (필요하면 frontend/e2e/run.mjs, docs/scenarios.yaml)에서",
+  "e2e/scenarios/*.spec.ts, e2e/helpers.ts (필요하면 docs/scenarios.yaml)에서",
   "바뀐 문구·버튼·흐름을 쓰는 부분을 찾아 화면에 맞게 고치고, 커밋한 뒤 다시 푸시하세요.",
   "검토해 보니 고칠 테스트가 없다면 지금 상태 그대로 다시 푸시하면 통과합니다.",
 ].join("\n")

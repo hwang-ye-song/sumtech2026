@@ -1,4 +1,4 @@
-/* TwoPills 디자인(frontend/index.html, frontend/DESIGN.md)을 그대로 옮긴 스타일. 화면 클래스 이름도 프로토타입과 같다. */
+/* TwoPills 디자인(archive/prototype-2026-10-29의 index.html·DESIGN.md)을 그대로 옮긴 스타일. 화면 클래스 이름도 프로토타입과 같다. */
 @font-face{font-family:'KofihJongwook';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/KOFIHDrLEEJWTTF-L.woff2') format('woff2');font-weight:300;font-display:swap}
 @font-face{font-family:'KofihJongwook';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/KOFIHDrLEEJWTTF-B.woff2') format('woff2');font-weight:700;font-display:swap}
 /* ───────── 토큰 (DESIGN.md) ───────── */
@@ -365,3 +365,19 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
   .nav,#pillfield,.no-print{display:none!important}
   body{background:#fff}
 }
+/* 화면 옮기는 중(loading.tsx) */
+.loading{display:flex;flex-direction:column;align-items:center;gap:16px;padding:96px 24px}
+.loading-dots{display:inline-flex;gap:8px}
+.loading-dots i{width:10px;height:10px;border-radius:50%;background:var(--brand-ink);animation:dot 1s var(--ease) infinite}
+.loading-dots i:nth-child(2){animation-delay:.15s}.loading-dots i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-4px)}}
+/* 휴대폰: 로그인 뒤 주 메뉴를 화면 아래 탭 바로(위쪽 머리글에는 자리가 없어 숨겨져 있었다) */
+@media (max-width:760px){
+  .nav{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(22,19,26,.96)}
+  .nav .tabs:not(.tabs-pub){display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;gap:0;padding:6px 8px calc(6px + env(safe-area-inset-bottom));background:rgba(22,19,26,.96);border-top:1px solid var(--line)}
+  .nav .tabs:not(.tabs-pub) a{flex:1;display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 4px;border:0;border-radius:var(--r-1);font-size:var(--fs-1);text-align:center}
+  .nav .tabs:not(.tabs-pub) a[aria-current="page"]{background:var(--bg-3);color:var(--brand-ink)}
+  body:has(.nav .tabs:not(.tabs-pub)){padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  body:has(.nav .tabs:not(.tabs-pub)) .toast{bottom:calc(80px + env(safe-area-inset-bottom))}
+}
+@media print{.nav .tabs{display:none!important}}

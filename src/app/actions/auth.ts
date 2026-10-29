@@ -34,6 +34,8 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
   if (!EMAIL_RE.test(email)) return { error: '이메일 형식을 확인해 주세요.' }
   if (password.length < 8) return { error: '비밀번호는 8자 이상이어야 해요.' }
   if (password !== passwordConfirm) return { error: '비밀번호 확인이 비밀번호와 달라요.' }
+  // 건강 정보(복용 목록·약 봉투 사진)는 따로 분명하게 동의를 받는다. 가입할 때 한 번 받고 사진을 올릴 때마다 묻지 않는다.
+  if (formData.get('health_consent') !== 'on') return { error: '건강 정보 수집·이용과 사진 AI 판독에 동의해야 가입할 수 있어요.' }
   // 시연 계정 이메일(저장된 페르소나 계정·임시 시연 계정 도메인)은 가입으로 가져갈 수 없다.
   if (await isReservedEmail(email)) return { error: '이미 가입한 이메일이에요' }
 

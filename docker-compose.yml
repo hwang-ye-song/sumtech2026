@@ -13,11 +13,11 @@ services:
     environment:
       RELEASE_ID: ${RELEASE_ID:-dev}
       DATABASE_URL: postgres://app:app@db:5432/app
-      # E2E용 시드 계정(역할 `데모`): 앱이 기동할 때 만드는 로컬 전용 계정. 첫 검진을 마친 '사용 중' 상태이고 목록에 비맥스제트정이 있다.
+      # E2E용 시드 계정(역할 `데모`): 앱이 기동할 때 만드는 로컬 전용 계정. 첫 검진을 마친 '사용 중' 상태이고 목록에 레보티록신(하루 1정)·칼슘(하루 1000mg)이 있다.
       # 배포 사이트의 실제 계정과 같은 비밀번호를 쓰지 않는다.
       SEED_USER_EMAIL: demo@example.com
       SEED_USER_PASSWORD: neulkeukeu-2026
-      # 가상 페르소나 데모 계정(P1~P3, data/seed/personas.json)의 공통 비밀번호. 비우면 페르소나 계정을 만들지 않는다.
+      # 가상 페르소나 데모 계정(P1~P3·S1~S8, data/seed/personas.json)의 공통 비밀번호. 비우면 페르소나 계정을 만들지 않는다.
       SEED_PERSONA_PASSWORD: persona-2026
       # 로그인 쿠키 서명 키(로컬 docker 전용 값). 배포 환경에서는 다른 값을 넣는다.
       SESSION_SECRET: local-docker-session-secret-change-me

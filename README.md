@@ -14,7 +14,7 @@ SUMTECH 2026 루프톤 팀 늘크크의 서비스 저장소예요.
 
 ### 핵심 흐름
 
-빈 목록 → 검색이나 사진으로 약·영양제 등록(처음엔 경고 없이 넣어요) → **'검진하기'** 로 목록 전체를 한 번에 점검 → 리포트에서 주의할 조합·하루 기준량 초과·약사에게 물을 질문 확인 → 그 뒤로는 새로 더할 때마다 넣기 전에 자동으로 경고 → '자세히'에서 원문과 출처 확인 → 약국에서 리포트를 그대로 보여 주기. 필요하면 설문으로 내 약과 부딪히지 않는 비타민을 추천받아요.
+빈 목록 → 검색이나 사진으로 약·영양제 등록(처음엔 경고 없이 넣어요) → **'검진하기'** 로 목록 전체를 한 번에 점검 → 리포트에서 주의할 조합·하루 기준량 초과·약사에게 물을 질문 확인 → 그 뒤로는 새로 더할 때마다 넣기 전에 자동으로 경고 → '자세히'에서 원문과 출처 확인 → 복용 간격을 지키거나, 걱정되면 리포트에 적힌 질문으로 약사와 상의. 필요하면 설문으로 내 약과 부딪히지 않는 비타민을 추천받아요.
 
 ### 저장하는 것과 볼 수 있는 사람
 
@@ -26,7 +26,7 @@ SUMTECH 2026 루프톤 팀 늘크크의 서비스 저장소예요.
 | 영양제 추천(F5) | 설문과 추천 결과 | 본인만 |
 | 약·성분·조합 규칙과 출처 | 시드 파일(`data/`)에서 넣은 기준 데이터 | 누구나 읽기(F6), 바꾸는 건 팀만(저장소 커밋) |
 
-사진은 AI로 글자만 읽고 저장하지 않아요. 보내기 전에 동의를 받아요.
+사진은 AI로 글자만 읽고 저장하지 않아요. 사진 칸 아래에 이 안내가 늘 보이고, 사진을 골라야만 보내요.
 
 ### 잘못 넣었거나 실패했을 때
 
@@ -50,13 +50,13 @@ SUMTECH 2026 루프톤 팀 늘크크의 서비스 저장소예요.
 
 ### 주 사용 플랫폼
 
-`desktop`. 데모와 주최 측 실행은 PC 웹 화면 기준이에요. 복용 목록·검진 리포트·근거 원문을 한 화면에 넓게 펼쳐 보여 주는 장면이 중심이라서요. 휴대폰 화면 최적화는 다음 단계예요.
+`desktop`. 데모와 주최 측 실행은 PC 웹 화면 기준이에요. 복용 목록·검진 리포트·근거 원문을 한 화면에 넓게 펼쳐 보여 주는 장면이 중심이라서요. 휴대폰 폭(375px)에서도 화면이 넘치지 않고, 로그인 뒤 메뉴는 화면 아래 탭 바로 바뀌어요. 다만 흐름 검증(S1~S8)은 PC 화면으로만 해요.
 
 ### 우선순위, 뺀 것, 아직 확인 못 한 것
 
 - **먼저 만든 것**: 등록 → 검진 → 자동 경고 → 근거 확인. 그다음 사진 등록과 비타민 추천.
 - **뺀 것**: 약끼리 조합(병원·약국 DUR이 이미 봐요), 처방·복용 지시, 특정 제품 추천(제품 데이터와 추천 기준이 부족해요).
-- **다음 버전**: 가족 그룹, 휴대폰 화면.
+- **다음 버전**: 가족 그룹, 휴대폰 화면 흐름 검증.
 - **아직 확인 못 한 것**: 부모님이 직접 목록을 만들고 계속 관리할 수 있는지, 약사가 리포트를 실제로 쓸모 있다고 보는지, 사진 인식이 얼마나 정확한지.
 
 ### AI는 어디에 쓰나요
@@ -66,7 +66,6 @@ SUMTECH 2026 루프톤 팀 늘크크의 서비스 저장소예요.
 ## 문서
 
 - 문제 정의·기능 명세(F1~F6): `docs/problem.yaml`
-- 제품 요구사항: `docs/PRD-약영양제-병용점검.md`
 - 가상 페르소나와 데모 계정: `docs/personas.md`
 - 사용자 핵심 흐름(S1~S8)·주 사용 플랫폼: `docs/scenarios.yaml`
 - 일반의약품 데이터(e약은요 58개와 병용 주의 규칙): `data/drugs/README.md`
@@ -79,11 +78,11 @@ SUMTECH 2026 루프톤 팀 늘크크의 서비스 저장소예요.
 
 | 표 | 내용 | 시드 파일 |
 |---|---|---|
-| `drug`, `drug_ingredient` | 약 제품 105개(팀원 축약본 104개 + 니코레트)와 주성분·함량, e약은요 원문 | `data/catalog/drugs.json`, `data/drugs/otc_core.json` |
-| `health_food`, `health_food_ingredient` | 건강기능식품 100개와 원재료, 식약처 기능성 내용 | `data/catalog/health_foods.json` |
-| `substance` | 성분 34개(칼슘·철분·레보티록신…) | `data/seed/substances.json` |
-| `product_substance` | 제품 → 성분 연결 458개. 제품을 등록하면 이 성분으로 조합을 점검해요 | `data/catalog/product_substances.json` |
-| `interaction_rule` | 원문 근거가 있는 조합 규칙 26개 + 팀원 조합 모음 121개(근거 329개) | `data/seed/interaction_rules.json`, `data/catalog/nutrient_interactions.json` |
+| `drug`, `drug_ingredient` | 약 제품 1,003개(팀원 DB `database/01_new_drug.sql`)와 주성분·함량, e약은요 원문 | `data/catalog/drugs.json`, `data/drugs/otc_core.json` |
+| `health_food`, `health_food_ingredient` | 건강기능식품 1,000개와 원재료, 식약처 기능성 내용 | `data/catalog/health_foods.json` |
+| `substance` | 성분 36개(칼슘·철분·레보티록신…) | `data/seed/substances.json` |
+| `product_substance` | 제품 → 성분 연결 4,991개. 제품을 등록하면 이 성분으로 조합을 점검해요 | `data/catalog/product_substances.json` |
+| `interaction_rule` | 원문 근거가 있는 조합 규칙 28개 + 팀원 조합 모음 156개 | `data/seed/interaction_rules.json`, `data/catalog/nutrient_interactions.json` |
 | `rule_member` | 조합 모음 규칙의 양쪽에 걸리는 제품·성분 | `data/catalog/nutrient_interactions.json` |
 | `app_user`, `user_item`, `recommendation` | 회원·복용 목록·추천 기록(앱이 만듦) | — |
 
@@ -96,7 +95,7 @@ SUMTECH 2026 루프톤 팀 늘크크의 서비스 저장소예요.
 - AI(Vercel AI Gateway, 환경변수 `AI_GATEWAY_API_KEY`)는 두 곳에만 써요: 사진에서 약·영양제 이름 읽기, 설문을 읽고 비타민 후보 중 고르기. 키가 없어도 앱은 뜨고 그 두 기능만 안내 문구를 보여 줘요.
 - `GET /__health`: 시드가 끝나면 200과 `{ "releaseId": "<배포 commit>" }`, 끝나기 전에는 503.
 
-주요 화면: `/`(소개) → `/signup`·`/login` → `/list`(내 목록) → `/add`(검색 추가)·`/add/photo`(사진 추가) → `/check`(검진 결과) → `/report`(복용 리포트)·`/recommend`(비타민 추천).
+주요 화면: `/`(소개) → `/signup`·`/login` → `/list`(복용 목록: 검색·사진 등록) → `/check`(검진, 끝나면 `/check/report` 검진 리포트) → `/rules/[id]`(근거 자세히) → `/recommend`(비타민 추천). `/explore`(약·영양제 알아보기)는 로그인 없이 열려요. 예전 주소 `/add`·`/add/photo`·`/report`는 새 화면으로 넘겨 줘요.
 
 ## 설치·실행
 
@@ -136,7 +135,7 @@ cd e2e && npm install && npx playwright install chromium && npx playwright test
 | ---- | ---- | --------- |
 | `DATABASE_URL` | PostgreSQL 연결 주소. 없으면 로컬 내장 DB(PGlite) | docker-compose.yml, 배포 환경 |
 | `RELEASE_ID` | 배포 commit SHA. `/__health`의 `releaseId` | docker 빌드 인자(compose), CI, 배포 환경 |
-| `SEED_USER_EMAIL` / `SEED_USER_PASSWORD` | E2E용 `데모` 시드 계정(첫 검진 완료, 비맥스제트정 보유) | docker-compose.yml(값 직접), 로컬 `.env.local` |
+| `SEED_USER_EMAIL` / `SEED_USER_PASSWORD` | E2E용 `데모` 시드 계정(첫 검진 완료, 레보티록신·칼슘 보유) | docker-compose.yml(값 직접), 로컬 `.env.local` |
 | `SEED_PERSONA_PASSWORD` | 가상 페르소나 데모 계정(`data/seed/personas.json`) 공통 비밀번호. 비우면 만들지 않음 | docker-compose.yml, 배포 환경(선택) |
 | `SESSION_SECRET` | 로그인 쿠키 서명 키(16자 이상). 없으면 서버마다 임의 값 | docker-compose.yml(로컬 값), 배포 환경 |
 | `AI_GATEWAY_API_KEY` | 서비스 AI 기능(사진 인식·비타민 추천) Vercel AI Gateway 키 | 로컬 `.env.local`, 배포 환경, GitHub Secrets |
