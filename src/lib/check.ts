@@ -76,16 +76,28 @@ interface LoadedRule {
   b: string[]
 }
 
-async function loadRules(where = '', params: unknown[] = []): Promise<LoadedRule[]> {
+/**
+ * 규칙과 양쪽 멤버를 읽는다. onlyKeys를 주면 그 항목 키(예: 'substance:calcium')에 해당하는 멤버만 읽는다.
+ * 조합 모음의 멤버는 수만 줄이라, 점검할 때는 내 목록에 있는 것만 읽는다.
+ */
+async function loadRules(where = '', params: unknown[] = [], onlyKeys?: string[]): Promise<LoadedRule[]> {
   const db = await getDb()
   const rows = await db.query<RuleRow>(`SELECT * FROM interaction_rule ${where} ORDER BY id`, params)
-  const members = await db.query<{ rule_id: string; side: 'a' | 'b'; item_type: string; item_ref: string }>(
-    `SELECT rule_id, side, item_type, item_ref FROM rule_member`,
-  )
+  const members =
+    onlyKeys && onlyKeys.length === 0
+      ? []
+      : await db.query<{ rule_id: string; side: 'a' | 'b'; item_type: string; item_ref: string }>(
+          onlyKeys
+            ? `SELECT rule_id, side, item_type, item_ref FROM rule_member WHERE (item_type || ':' || item_ref) = ANY(string_to_array($1, ','))`
+            : `SELECT rule_id, side, item_type, item_ref FROM rule_member`,
+          onlyKeys ? [onlyKeys.join(',')] : [],
+        )
   const bySide = new Map<string, string[]>()
   for (const m of members) {
     const k = `${m.rule_id}|${m.side}`
-    bySide.set(k, [...(bySide.get(k) ?? []), `${m.item_type}:${m.item_ref}`])
+    const list = bySide.get(k)
+    if (list) list.push(`${m.item_type}:${m.item_ref}`)
+    else bySide.set(k, [`${m.item_type}:${m.item_ref}`])
   }
   return rows.map((row) => ({
     row,
@@ -176,8 +188,8 @@ async function providersFor(items: ItemRef[]): Promise<Provider[]> {
  */
 export async function checkItems(items: ItemRef[], focus?: ItemRef): Promise<Warning[]> {
   if (items.length < 2) return []
-  const rules = await loadRules()
   const providers = await providersFor(items)
+  const rules = await loadRules('', [], [...new Set(providers.map((p) => p.key))])
   const byKey = new Map<string, Provider[]>()
   for (const p of providers) byKey.set(p.key, [...(byKey.get(p.key) ?? []), p])
   const focusIndex = focus ? items.findIndex((i) => itemKey(i) === itemKey(focus)) : -1
@@ -216,8 +228,10 @@ export async function checkItems(items: ItemRef[], focus?: ItemRef): Promise<War
     const pair = [pa.index, pb.index].sort((x, y) => x - y).join('-')
     byPair.set(pair, [...(byPair.get(pair) ?? []), w])
   }
+  // 대표는 원래 규칙(식약처·논문 원문을 직접 대조한 것)을 먼저 쓰고, 팀원 조합 모음의 출처는 그 아래에 더한다.
+  const curatedFirst = (x: Warning, y: Warning) => Number(x.ruleId.startsWith('ni-')) - Number(y.ruleId.startsWith('ni-')) || compareWarnings(x, y)
   const warnings = [...byPair.values()].map((ws) => {
-    const [top, ...rest] = ws.sort(compareWarnings)
+    const [top, ...rest] = ws.sort(curatedFirst)
     const urls = new Set(top.sources.map((s) => s.source_url))
     for (const s of rest.flatMap((w) => w.sources)) {
       if (urls.has(s.source_url) || top.sources.length >= 5) continue

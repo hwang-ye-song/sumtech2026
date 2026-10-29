@@ -446,11 +446,28 @@ async function migrateReferenceTables(db: Db): Promise<void> {
 export async function ensureSchemaAndSeed(): Promise<void> {
   const started = Date.now()
   const db = await getDb()
+  const catalog = await readCatalog()
+  const personas = (await readJson<PersonaSeed[]>('seed/personas.json'))?.data ?? []
+  const demoEmail = process.env.SEED_USER_EMAIL
+  const demoPassword = process.env.SEED_USER_PASSWORD
+  const personaPassword = process.env.SEED_PERSONA_PASSWORD
+  // 시드 계정 구성이 바뀌었는지 보는 값(비밀번호 자체는 넣지 않는다)
+  const usersHash = createHash('sha256')
+    .update(JSON.stringify([demoEmail ?? '', Boolean(demoPassword), Boolean(personaPassword), personas, TAKER_ITEMS, catalog.hash]))
+    .digest('hex')
+
+  // 이미 준비된 DB면 여기서 끝낸다(왕복 2번). 서버가 새로 뜰 때마다 원격 DB와 수십 번 주고받지 않으려는 것이다.
+  await db.exec('CREATE TABLE IF NOT EXISTS seed_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)')
+  const meta = new Map((await db.query<{ key: string; value: string }>('SELECT key, value FROM seed_meta')).map((r) => [r.key, r.value]))
+  if (meta.get('schema_version') === SCHEMA_VERSION && meta.get('catalog_hash') === catalog.hash && meta.get('users_hash') === usersHash) {
+    console.log(`[seed] 이미 준비된 DB라 건너뜁니다 (${Date.now() - started}ms, ${db.kind})`)
+    return
+  }
+
   await migrateReferenceTables(db)
   await db.exec(SCHEMA_SQL)
   await setMeta(db, 'schema_version', SCHEMA_VERSION)
 
-  const catalog = await readCatalog()
   if ((await getMeta(db, 'catalog_hash')) !== catalog.hash) {
     await loadCatalog(db, catalog)
     await setMeta(db, 'catalog_hash', catalog.hash)
@@ -458,8 +475,6 @@ export async function ensureSchemaAndSeed(): Promise<void> {
     console.log('[seed] 기준 데이터가 이미 최신이라 건너뜁니다.')
   }
 
-  const demoEmail = process.env.SEED_USER_EMAIL
-  const demoPassword = process.env.SEED_USER_PASSWORD
   if (demoEmail && demoPassword) {
     const id = await ensureUser(db, { email: demoEmail, password: demoPassword, display_name: '복용자', role: '복용자', first_check_done: true })
     await ensureItems(db, id, TAKER_ITEMS)
@@ -467,8 +482,6 @@ export async function ensureSchemaAndSeed(): Promise<void> {
     console.warn('[seed] SEED_USER_EMAIL·SEED_USER_PASSWORD가 없어 복용자 계정을 만들지 않습니다.')
   }
 
-  const personas = (await readJson<PersonaSeed[]>('seed/personas.json'))?.data ?? []
-  const personaPassword = process.env.SEED_PERSONA_PASSWORD
   if (personaPassword && personas.length > 0) {
     for (const p of personas) {
       const id = await ensureUser(db, {
@@ -483,5 +496,6 @@ export async function ensureSchemaAndSeed(): Promise<void> {
     console.log(`[seed] 페르소나 계정 ${personas.length}개 준비`)
   }
 
+  await setMeta(db, 'users_hash', usersHash)
   console.log(`[seed] 완료 (${Date.now() - started}ms, ${db.kind})`)
 }

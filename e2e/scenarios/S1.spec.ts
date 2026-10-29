@@ -1,24 +1,23 @@
 import { expect, test } from "@playwright/test"
-import { addBySearch, signUpFromHome } from "../helpers"
+import { expectHome } from "../helpers"
 
-test("S1 처음 가입한 사람이 지금 먹는 갑상선약과 칼슘을 넣고 검진해 흡수 감소 경고를 받는다", async ({ page }) => {
-  // 1~2. 첫 화면에서 '회원가입' → 이메일·비밀번호 → '가입하기'
-  await signUpFromHome(page, "s1")
+test("S1 유튜브 추천 영양제를 먹는 20~30대가 서비스 소개를 보고 회원가입한다", async ({ page }) => {
+  // 1. 첫 화면에서 서비스 소개와 '처방이나 진단을 하지 않아요' 안내를 확인한다
+  await page.goto("/")
+  const main = page.getByRole("main")
+  await expect(main.getByRole("heading", { level: 1 })).toContainText("TwoPills")
+  await expect(main.getByText("처방이나 진단을 하지 않아요")).toBeVisible()
 
-  // 3~5. '약·영양제 추가' → 검색창 '레보티록신' → '레보티록신'의 '추가'
-  await addBySearch(page, "레보티록신", "레보티록신")
+  // 2. 첫 화면의 '회원가입'
+  await main.getByRole("link", { name: "회원가입" }).click()
 
-  // 6~8. '약·영양제 추가' → 검색창 '칼슘' → '칼슘'의 '추가'
-  await addBySearch(page, "칼슘", "칼슘")
+  // 3~6. 이메일 · 8자 이상 비밀번호 · 비밀번호 확인 → '가입하기'
+  await page.getByLabel("이메일").fill(`s1-${Date.now()}@example.com`)
+  await page.getByLabel("비밀번호", { exact: true }).fill("test-1234")
+  await page.getByLabel("비밀번호 확인").fill("test-1234")
+  await page.getByRole("button", { name: "가입하기" }).click()
 
-  // 9. 내 목록에서 '검진하기'
-  await page.getByRole("button", { name: "검진하기" }).click()
-  await expect(page.getByRole("heading", { name: "검진 결과" })).toBeVisible()
-
-  // expected: 레보티록신과 칼슘의 흡수 감소 경고, 논문(R3) 출처 링크, 약사에게 물을 질문
-  const card = page.getByTestId("warning-card").filter({ hasText: "레보티록신" }).filter({ hasText: "칼슘" })
-  await expect(card).toBeVisible()
-  await expect(card).toContainText("흡수")
-  await expect(card.getByRole("link", { name: "논문 원문 보기 (R3)" })).toBeVisible()
-  await expect(card).toContainText("약사에게 물어보세요")
+  // expected: 홈에 '복용 목록'·'검진하기' 두 칸과 '영양제 추천받기', "먹고 있는 약이나 영양제를 추가해 보세요"
+  await expectHome(page)
+  await expect(page.getByRole("main").getByText("먹고 있는 약이나 영양제를 추가해 보세요")).toBeVisible()
 })

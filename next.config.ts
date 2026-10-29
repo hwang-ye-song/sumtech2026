@@ -8,7 +8,11 @@ const nextConfig: NextConfig = {
   // 시드·페르소나 JSON은 실행 중에 경로를 만들어 읽으므로(src/lib/seed.ts·personas.ts) 자동 추적되지 않는다.
   // Vercel 함수·standalone 묶음에 같이 넣는다.
   outputFileTracingIncludes: {
-    '/**': ['./data/seed/*.json', './data/drugs/otc_core.json'],
+    '/**': ['./data/seed/*.json', './data/drugs/otc_core.json', './data/catalog/*.json'],
+  },
+  // 사진 등록(서버 액션) 요청 크기. 기본 1MB라 큰 사진이 막힌다. 화면에서 먼저 줄여 보내지만 여유를 둔다(Vercel 한도 4.5MB).
+  experimental: {
+    serverActions: { bodySizeLimit: '4mb' },
   },
   turbopack: {
     rules: {
