@@ -30,15 +30,21 @@ export function parseItemKey(key: string): ItemRef | null {
   return { type, ref }
 }
 
+const escapeLike = (q: string) => q.replace(/[\\%_]/g, (m) => `\\${m}`)
+
 function likePattern(q: string): string {
-  const escaped = q.replace(/[\\%_]/g, (m) => `\\${m}`)
-  return `%${escaped}%`
+  return `%${escapeLike(q)}%`
+}
+
+function prefixPattern(q: string): string {
+  return `${escapeLike(q)}%`
 }
 
 export const HEALTH_FOOD_LABEL = '건강기능식품'
 
 export function kindLabel(kind: string): string {
   if (kind === 'rx_ingredient') return '처방약 성분'
+  if (kind === 'otc_ingredient') return '일반의약품 성분'
   if (kind === 'nutrient') return '영양제 성분'
   return kind
 }
@@ -82,17 +88,19 @@ export async function searchCatalog(rawQuery: string, limit = 20): Promise<Catal
       LIMIT $3`,
     [pattern, q, limit],
   )
-  // 약은 제품명으로, 처방약은 성분명으로도 찾는다(예: '레보티록신' → 씬지로이드정).
-  // '칼슘'으로 크레스토정(로수바스타틴칼슘)이 나오지 않게, 성분명 검색은 이어진 처방약 성분으로만 한다.
+  // 약은 제품명으로, 성분명으로도 찾는다(예: '레보티록신' → 씬지로이드정, '아세트아미노펜' → 판콜에이내복액).
+  // '칼슘'으로 크레스토정(로수바스타틴칼슘)이 나오지 않게, 성분명은 앞부분이 맞을 때만(아세트아미노펜 → 아세트아미노펜미분화) 찾고
+  // 이어진 성분 검색은 약 성분(처방약·일반의약품 성분)으로만 한다.
   const drugs = await db.query<{ item_seq: string; name: string; company: string | null; category: string | null }>(
     `SELECT item_seq, name, company, category
        FROM drug d
       WHERE ${norm('name')} LIKE $1
          OR EXISTS (SELECT 1 FROM product_substance ps JOIN substance s ON s.id = ps.substance_id
-                     WHERE ps.product_type = 'drug' AND ps.product_ref = d.item_seq AND s.kind = 'rx_ingredient' AND ${norm('s.name')} LIKE $1)
+                     WHERE ps.product_type = 'drug' AND ps.product_ref = d.item_seq AND s.kind <> 'nutrient' AND ${norm('s.name')} LIKE $1)
+         OR EXISTS (SELECT 1 FROM drug_ingredient di WHERE di.item_seq = d.item_seq AND ${norm('di.ingredient_name')} LIKE $3)
       ORDER BY (${norm('name')} LIKE $1) DESC, length(name), name
       LIMIT $2`,
-    [pattern, limit],
+    [pattern, limit, prefixPattern(q)],
   )
   const foods = await db.query<{ report_no: string; name: string; company: string | null }>(
     `SELECT report_no, name, company
@@ -177,7 +185,7 @@ export async function nameItems(items: ItemRef[]): Promise<NamedItem[]> {
         name: r.name,
         sub: kindLabel(r.kind),
         label: r.display_name ?? r.name,
-        countUnit: r.kind === 'rx_ingredient' ? '정' : '알',
+        countUnit: r.kind === 'nutrient' ? '알' : '정',
       })
     }
   }
@@ -217,6 +225,78 @@ export async function substancesInProducts(items: ItemRef[]): Promise<Map<string
   for (const r of rows) {
     const key = `${r.product_type}:${r.product_ref}`
     out.set(key, [...(out.get(key) ?? []), r.substance_id])
+  }
+  return out
+}
+
+/** 약 설명서 주의 문장의 대상 종류. 화면에 작은 배지로 보인다. */
+export const CAUTION_TYPE_LABEL: Record<string, string> = {
+  duplicate: '같은 성분',
+  alcohol: '음주',
+  drug: '다른 약',
+  supplement_nutrient: '영양제',
+  food_drink: '음식·음료',
+  caffeine: '카페인',
+  other: '기타',
+}
+// 화면 순서: 음주·같은 성분 중복처럼 누구에게나 해당하는 것부터
+const CAUTION_ORDER = ['alcohol', 'duplicate', 'drug', 'supplement_nutrient', 'food_drink', 'caffeine', 'other']
+
+export interface ProductNote {
+  /** 약 설명서(식약처 e약은요)의 주의 문장. 같은 문장은 한 번만 */
+  cautions: { type: string; quote: string }[]
+  /** 이 제품의 원문 주소(약: e약은요, 없으면 의약품 허가정보) */
+  sourceUrl: string | null
+  sourceTitle: string | null
+  /** 건강기능식품의 '섭취 시 주의사항'(식약처 신고 문구) */
+  precautions: string | null
+}
+
+/**
+ * 알아보기 화면용: 제품 설명서에 적힌 주의사항. 조합 규칙과 별개로 원문을 그대로 보여 준다.
+ * (예: 타이레놀은 영양제 조합 기록은 없지만 e약은요에 '복용 중에 음주하지 마십시오'가 있다)
+ */
+export async function productNotes(items: ItemRef[]): Promise<Map<string, ProductNote>> {
+  const out = new Map<string, ProductNote>()
+  const db = await getDb()
+  const drugRefs = refsOf(items, 'drug')
+  if (drugRefs.length) {
+    const [drugs, cautions] = await Promise.all([
+      db.query<{ item_seq: string; easy_source_url: string | null; source_url: string }>(
+        `SELECT item_seq, easy_source_url, source_url FROM drug WHERE item_seq = ANY(string_to_array($1, ','))`,
+        [drugRefs.join(',')],
+      ),
+      db.query<{ item_seq: string; counterpart_type: string; relation: string; quote: string }>(
+        `SELECT item_seq, counterpart_type, relation, quote FROM drug_caution WHERE item_seq = ANY(string_to_array($1, ',')) ORDER BY item_seq, id`,
+        [drugRefs.join(',')],
+      ),
+    ])
+    for (const d of drugs) {
+      const sorted = cautions
+        .filter((c) => c.item_seq === d.item_seq)
+        .map((c) => ({ type: c.relation === 'duplicate_ingredient' ? 'duplicate' : c.counterpart_type, quote: c.quote }))
+        .sort((x, y) => CAUTION_ORDER.indexOf(x.type) - CAUTION_ORDER.indexOf(y.type))
+      const seen = new Set<string>()
+      const unique = sorted.filter((c) => !seen.has(c.quote) && seen.add(c.quote))
+      // 카드에는 몇 줄만 보이므로 종류마다 하나씩 먼저 두고(음주 → 같은 성분 → 다른 약 …) 나머지를 뒤에 둔다.
+      const firstOfType = unique.filter((c, i) => unique.findIndex((x) => x.type === c.type) === i)
+      out.set(`drug:${d.item_seq}`, {
+        cautions: [...firstOfType, ...unique.filter((c) => !firstOfType.includes(c))],
+        sourceUrl: d.easy_source_url ?? d.source_url,
+        sourceTitle: d.easy_source_url ? '식약처 e약은요 원문' : '식약처 의약품 허가정보',
+        precautions: null,
+      })
+    }
+  }
+  const foodRefs = refsOf(items, 'health_food')
+  if (foodRefs.length) {
+    const rows = await db.query<{ report_no: string; precautions: string | null }>(
+      `SELECT report_no, precautions FROM health_food WHERE report_no = ANY(string_to_array($1, ','))`,
+      [foodRefs.join(',')],
+    )
+    for (const r of rows) {
+      out.set(`health_food:${r.report_no}`, { cautions: [], sourceUrl: null, sourceTitle: null, precautions: r.precautions?.trim() || null })
+    }
   }
   return out
 }

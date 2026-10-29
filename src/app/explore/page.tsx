@@ -1,7 +1,17 @@
 import Link from 'next/link'
 import { ensureReady } from '@/lib/ready'
 import { getCurrentUser } from '@/lib/session'
-import { isSupplement, itemKey, listCatalog, searchCatalog, substancesInProducts, type CatalogHit } from '@/lib/catalog'
+import {
+  CAUTION_TYPE_LABEL,
+  isSupplement,
+  itemKey,
+  listCatalog,
+  productNotes,
+  searchCatalog,
+  substancesInProducts,
+  type CatalogHit,
+  type ProductNote,
+} from '@/lib/catalog'
 import { listAllRules, type Warning } from '@/lib/check'
 import { CONSULT_NOTE, NO_RECORD_MESSAGE } from '@/lib/labels'
 import { KindBadge } from '@/components/RegisterPanel'
@@ -15,6 +25,8 @@ const PAGE_SIZE = 10
 const PAGE_GROUP = 10
 /** 카드 하나에 보여 줄 경고 수. 성분 하나에 조합이 수십 개라 다 그리면 화면이 수 MB가 된다(규칙은 무거운 순으로 정렬돼 있다). */
 const MAX_WARNINGS_PER_CARD = 8
+/** 카드 하나에 보여 줄 약 설명서 주의 문장 수(나머지는 원문 링크로) */
+const MAX_CAUTIONS_PER_CARD = 4
 
 /** 로그인 없이 보는 화면: 성분·약마다 DB에 기록된 조합 주의사항과 출처 */
 export default async function ExplorePage({ searchParams }: { searchParams: Promise<Params> }) {
@@ -28,7 +40,8 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
   const entries: CatalogHit[] = q.length >= 2 ? await searchCatalog(q, 40) : (await listCatalog()).filter((e) => e.type === 'substance')
 
   // 제품은 그 제품에 든 성분으로도 성분 규칙에 걸린다(판정과 같은 방식).
-  const inProducts = await substancesInProducts(entries)
+  // 조합 기록과 별개로, 제품 설명서에 적힌 주의사항(음주·다른 약 등)도 원문 그대로 함께 보여 준다.
+  const [inProducts, notes] = await Promise.all([substancesInProducts(entries), productNotes(entries)])
   const related = (e: CatalogHit): Warning[] => {
     const keys = new Set([itemKey(e), ...(inProducts.get(itemKey(e)) ?? []).map((id) => `substance:${id}`)])
     return rules.filter((r) => r.members.a.some((k) => keys.has(k)) || r.members.b.some((k) => keys.has(k)))
@@ -87,49 +100,57 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
             <p className="faint" style={{ margin: '0 0 4px' }} data-testid="ex-count">
               총 {cards.length}개 · {page}/{pageCount}쪽
             </p>
-            {shown.map(({ e, ws }) => (
-              <details key={`${e.type}:${e.ref}`} className="ex-row" data-testid="ex-card">
-                <summary className="ex-row-head">
-                  <span className="ex-row-name">{e.name}</span>
-                  <KindBadge sub={e.sub} />
-                  {ws.length > 0 ? <span className="ex-row-warn">주의 {ws.length}건</span> : <span className="ex-row-ok">기록 없음</span>}
-                </summary>
-                <div className="ex-row-body">
-                  <p className="faint" style={{ margin: 0 }}>
-                    {e.sub}
-                  </p>
-                  {ws.length === 0 ? (
-                    <div className="ex-none">{NO_RECORD_MESSAGE}</div>
-                  ) : (
-                    ws.slice(0, MAX_WARNINGS_PER_CARD).map((w) => (
-                      <div key={w.ruleId} className="ex-w" data-testid="ex-warn">
-                        <LevelBadge level={w.relation} />
-                        <strong>
-                          {w.a.name} ↔ {w.b.name}
-                        </strong>
-                        <span>{w.action}</span>
-                        <span className="why">
-                          {w.effect ? `${w.effect} ` : ''}출처:{' '}
-                          <a href={w.sources[0]?.source_url} target="_blank" rel="noopener noreferrer" data-testid="src-link">
-                            {w.sources[0]?.source_title}
-                          </a>
-                        </span>
-                      </div>
-                    ))
-                  )}
-                  {ws.length > MAX_WARNINGS_PER_CARD ? (
+            {shown.map(({ e, ws }) => {
+              const note = notes.get(itemKey(e))
+              const hasNote = Boolean(note && (note.cautions.length > 0 || note.precautions))
+              return (
+                <details key={`${e.type}:${e.ref}`} className="ex-row" data-testid="ex-card">
+                  <summary className="ex-row-head">
+                    <span className="ex-row-name">{e.name}</span>
+                    <KindBadge sub={e.sub} />
+                    {ws.length > 0 ? <span className="ex-row-warn">주의 {ws.length}건</span> : <span className="ex-row-ok">조합 기록 없음</span>}
+                    {note && note.cautions.length > 0 ? <span className="ex-row-note">설명서 주의 {note.cautions.length}건</span> : null}
+                  </summary>
+                  <div className="ex-row-body">
                     <p className="faint" style={{ margin: 0 }}>
-                      외 {ws.length - MAX_WARNINGS_PER_CARD}건. 내 목록에 더하면 같이 먹는 것과의 조합만 골라 보여 드려요.
+                      {e.sub}
                     </p>
-                  ) : null}
-                  <div>
-                    <Link className="btn btn-sm" href={user ? `/list?q=${encodeURIComponent(e.name)}` : '/login'}>
-                      내 목록에 더하기
-                    </Link>
+                    {ws.length === 0 ? (
+                      <div className="ex-none">
+                        {hasNote ? '같이 먹으면 안 되는 조합으로 기록된 것은 없어요. 아래 제품 설명서의 주의사항은 꼭 확인하세요.' : NO_RECORD_MESSAGE}
+                      </div>
+                    ) : (
+                      ws.slice(0, MAX_WARNINGS_PER_CARD).map((w) => (
+                        <div key={w.ruleId} className="ex-w" data-testid="ex-warn">
+                          <LevelBadge level={w.relation} />
+                          <strong>
+                            {w.a.name} ↔ {w.b.name}
+                          </strong>
+                          <span>{w.action}</span>
+                          <span className="why">
+                            {w.effect ? `${w.effect} ` : ''}출처:{' '}
+                            <a href={w.sources[0]?.source_url} target="_blank" rel="noopener noreferrer" data-testid="src-link">
+                              {w.sources[0]?.source_title}
+                            </a>
+                          </span>
+                        </div>
+                      ))
+                    )}
+                    {ws.length > MAX_WARNINGS_PER_CARD ? (
+                      <p className="faint" style={{ margin: 0 }}>
+                        외 {ws.length - MAX_WARNINGS_PER_CARD}건. 내 목록에 더하면 같이 먹는 것과의 조합만 골라 보여 드려요.
+                      </p>
+                    ) : null}
+                    {note ? <ProductNoteBox note={note} /> : null}
+                    <div>
+                      <Link className="btn btn-sm" href={user ? `/list?q=${encodeURIComponent(e.name)}` : '/login'}>
+                        내 목록에 더하기
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </details>
-            ))}
+                </details>
+              )
+            })}
           </div>
         )}
         {pageCount > 1 ? (
@@ -156,5 +177,47 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
         </div>
       </div>
     </main>
+  )
+}
+
+/** 제품 설명서의 주의사항: 약은 e약은요 원문 문장, 건강기능식품은 식약처 신고 '섭취 시 주의사항'. 없으면 원문 링크만 */
+function ProductNoteBox({ note }: { note: ProductNote }) {
+  if (note.precautions) {
+    return (
+      <div className="ex-note" data-testid="ex-note">
+        <strong>제품 설명서의 섭취 시 주의사항 (식약처 신고 문구)</strong>
+        <p>{note.precautions}</p>
+      </div>
+    )
+  }
+  if (!note.sourceUrl) return null
+  const link = (
+    <a href={note.sourceUrl} target="_blank" rel="noopener noreferrer" data-testid="ex-note-link">
+      {note.sourceTitle}
+    </a>
+  )
+  if (note.cautions.length === 0) {
+    return (
+      <p className="faint" style={{ margin: 0 }} data-testid="ex-note">
+        이 약 자체의 주의사항은 {link}에서 확인하세요.
+      </p>
+    )
+  }
+  return (
+    <div className="ex-note" data-testid="ex-note">
+      <strong>이 약 설명서의 주의사항 (식약처 e약은요 원문)</strong>
+      <ul>
+        {note.cautions.slice(0, MAX_CAUTIONS_PER_CARD).map((c) => (
+          <li key={c.quote}>
+            <span className="badge">{CAUTION_TYPE_LABEL[c.type] ?? CAUTION_TYPE_LABEL.other}</span>
+            <span>{c.quote}</span>
+          </li>
+        ))}
+      </ul>
+      <p>
+        {note.cautions.length > MAX_CAUTIONS_PER_CARD ? `외 ${note.cautions.length - MAX_CAUTIONS_PER_CARD}건과 전체 내용은 ` : '전체 내용은 '}
+        {link}에서 확인하세요.
+      </p>
+    </div>
   )
 }

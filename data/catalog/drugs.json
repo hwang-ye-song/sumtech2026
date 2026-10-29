@@ -253,7 +253,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M050058",
@@ -772,7 +772,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M223183",
@@ -6883,7 +6883,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M101061",
@@ -7381,7 +7381,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M040417",
@@ -7567,7 +7567,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M040499",
@@ -7888,7 +7888,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    }
   ]
  },
@@ -9565,7 +9565,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M203364",
@@ -9841,7 +9841,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M222724",
@@ -9871,7 +9871,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "diphenhydramine"
    }
   ]
  },
@@ -10363,7 +10363,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M223183",
@@ -14566,7 +14566,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M050058",
@@ -16228,7 +16228,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M223183",
@@ -17128,7 +17128,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M223211",
@@ -17581,7 +17581,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M223211",
@@ -21157,7 +21157,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M223211",
@@ -23575,7 +23575,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M223211",
@@ -23719,7 +23719,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M258994",
@@ -25414,7 +25414,7 @@
     "amount_raw": null,
     "unit": null,
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M258994",
@@ -27139,7 +27139,7 @@
     "amount_raw": null,
     "unit": null,
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M050058",
@@ -28129,7 +28129,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    }
   ]
  },
@@ -29287,7 +29287,7 @@
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    }
   ]
  },
@@ -29308,7 +29308,7 @@
     "amount_raw": null,
     "unit": "그램",
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    }
   ]
  },
@@ -35059,7 +35059,7 @@
     "amount_raw": null,
     "unit": null,
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M258994",
@@ -38296,7 +38296,7 @@
     "amount_raw": null,
     "unit": null,
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M284657",
@@ -39028,7 +39028,7 @@
     "amount_raw": null,
     "unit": null,
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "acetaminophen"
    },
    {
     "ingredient_code": "M258994",
@@ -39046,7 +39046,7 @@
     "amount_raw": null,
     "unit": null,
     "source": "식약처 주성분",
-    "substance_id": null
+    "substance_id": "diphenhydramine"
    },
    {
     "ingredient_code": "M222957",

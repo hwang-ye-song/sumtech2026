@@ -5,13 +5,15 @@
 //   - substance: 판정·추천에 쓰는 성분(data/seed/substances.json)
 //   - product_substance: 제품 → 성분 연결. 제품을 목록에 넣으면 여기 이어진 성분으로 조합을 점검한다.
 //   - interaction_rule: 원문 근거가 있는 조합 규칙(data/seed/interaction_rules.json)
+//   - drug_caution: 자주 쓰는 일반의약품 설명서(e약은요)의 주의 문장(data/drugs/drug_caution_rule.csv). 알아보기 화면에 원문 그대로 보여 준다.
 // 사용자 데이터(app_user·user_item·recommendation)는 앱이 만든다.
 
 /** 기준 데이터 표 구조를 바꾸면 올린다. 값이 다르면 기준 데이터 표를 지우고 새로 만든다(사용자 데이터는 남긴다). */
-export const SCHEMA_VERSION = '3-team-interactions'
+export const SCHEMA_VERSION = '4-drug-caution'
 
 /** 구조가 바뀌었을 때 지우는 기준 데이터 표(의존 순서대로) */
 export const REFERENCE_TABLES = [
+  'drug_caution',
   'rule_member',
   'product_substance',
   'interaction_rule',
@@ -149,6 +151,18 @@ CREATE TABLE IF NOT EXISTS rule_member (
 );
 CREATE INDEX IF NOT EXISTS idx_rule_member_item ON rule_member (item_type, item_ref);
 
+-- 약 설명서(e약은요)에 적힌 주의 문장. 조합 판정에는 쓰지 않고 원문을 그대로 보여 주는 데만 쓴다.
+CREATE TABLE IF NOT EXISTS drug_caution (
+  id                TEXT PRIMARY KEY,   -- data/drugs/drug_caution_rule.csv의 id
+  item_seq          TEXT NOT NULL,
+  counterpart       TEXT NOT NULL,      -- 같이 먹으면 주의할 대상(알코올, 와파린, 아세트아미노펜 …)
+  counterpart_type  TEXT NOT NULL,      -- drug / alcohol / food_drink / caffeine / supplement_nutrient / other
+  relation          TEXT NOT NULL,      -- avoid / consult / separate_timing / caution / duplicate_ingredient
+  quote             TEXT NOT NULL,      -- 원문 문장 그대로
+  source_url        TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_drug_caution_item ON drug_caution (item_seq);
+
 CREATE TABLE IF NOT EXISTS app_user (
   id                SERIAL PRIMARY KEY,
   email             TEXT NOT NULL UNIQUE,
@@ -197,6 +211,7 @@ ALTER TABLE substance ENABLE ROW LEVEL SECURITY;
 ALTER TABLE product_substance ENABLE ROW LEVEL SECURITY;
 ALTER TABLE interaction_rule ENABLE ROW LEVEL SECURITY;
 ALTER TABLE rule_member ENABLE ROW LEVEL SECURITY;
+ALTER TABLE drug_caution ENABLE ROW LEVEL SECURITY;
 ALTER TABLE app_user ENABLE ROW LEVEL SECURITY;
 ALTER TABLE user_item ENABLE ROW LEVEL SECURITY;
 ALTER TABLE recommendation ENABLE ROW LEVEL SECURITY;

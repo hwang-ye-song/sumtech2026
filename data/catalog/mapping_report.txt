@@ -1,4 +1,4 @@
-제품-성분 연결 4965개
+제품-성분 연결 4991개
 
 [약] 아네모정: calcium,magnesium
 [약] 테라싸이클린캅셀250밀리그람(염산테트라싸이클린): -
@@ -7,7 +7,7 @@
 [약] 삐콤정: vitamin_b1,vitamin_b2,vitamin_b6,vitamin_b3,vitamin_b5,vitamin_b12,vitamin_c
 [약] 디고신정(디곡신): -
 [약] 라식스정(푸로세미드): -
-[약] 판콜에이내복액: -
+[약] 판콜에이내복액: acetaminophen
 [약] 아로나민골드정: vitamin_b1,vitamin_b2,vitamin_b6,vitamin_b12,vitamin_c,vitamin_e
 [약] 셉트린정: -
 [약] 자이로릭정(알로푸리놀): -
@@ -27,7 +27,7 @@
 [약] 메코민캡슐(메코발라민): vitamin_b12
 [약] 유유알로푸리놀정: -
 [약] 유한메토트렉세이트정: -
-[약] 게보린정(수출명:돌로린정): -
+[약] 게보린정(수출명:돌로린정): acetaminophen
 [약] 리포덱스정300밀리그람(리팜피신): -
 [약] 국제독시사이클린하이클레이트수화물캡슐100밀리그램: doxycycline
 [약] 대웅프리미돈정: -
@@ -256,19 +256,19 @@
 [약] 코로자정50밀리그람(로사르탄칼륨): losartan
 [약] 로사르정50밀리그램(로사르탄칼륨): losartan
 [약] 토르신정10밀리그람(토르세미드): -
-[약] 래피콜에이캡슐: vitamin_b1,vitamin_b2,vitamin_c
+[약] 래피콜에이캡슐: acetaminophen,vitamin_b1,vitamin_b2,vitamin_c
 [약] 브이텐연질캡슐: vitamin_e,vitamin_c,coenzyme_q10,zinc,selenium
 [약] 마이코놀캡슐250밀리그램(미코페놀레이트모페틸): -
 [약] 칼디플러스정: calcium,vitamin_d
 [약] 애니세프캡슐100밀리그램(세프디니르): -
 [약] 트루비타정: vitamin_a,vitamin_b5,vitamin_b12,vitamin_b7,iron,magnesium,zinc,calcium,selenium,vitamin_e,vitamin_c,vitamin_b9,vitamin_b1,vitamin_b2,vitamin_b6,vitamin_b3
 [약] 덴타자임캡슐: vitamin_c,vitamin_e
-[약] 콜그린에이캡슐: vitamin_b1,vitamin_b2
+[약] 콜그린에이캡슐: acetaminophen,vitamin_b1,vitamin_b2
 [약] 클로아트정(클로피도그렐황산염): -
 [약] 로사닌플러스에프정: losartan
 [약] 로사닌플러스정: losartan
 [약] 클로본스정(클로피도그렐황산염): -
-[약] 사리돈에이정: -
+[약] 사리돈에이정: acetaminophen
 [약] 노바스크정5밀리그람(암로디핀베실산염): amlodipine
 [약] 지르텍정(세티리진염산염): -
 [약] 라베드정(라베프라졸나트륨): -
@@ -279,7 +279,7 @@
 [약] 대한뉴팜로잘탄플러스정: losartan
 [약] 칼시롤정: calcium,vitamin_d
 [약] 로자살탄플러스에프정: losartan
-[약] 판피린큐액: -
+[약] 판피린큐액: acetaminophen
 [약] 텐텐츄정: vitamin_a,magnesium,coenzyme_q10,vitamin_d,vitamin_b1,vitamin_b2,vitamin_b6,vitamin_b12,vitamin_c,vitamin_e,vitamin_b9,vitamin_b3,calcium
 [약] 플라빅스정75밀리그램(클로피도그렐황산염): -
 [약] 코다론정(아미오다론염산염): -
@@ -331,13 +331,13 @@
 [약] 아미노포르테정: vitamin_b1,vitamin_e,vitamin_b2,vitamin_b3,vitamin_b6
 [약] 카디페어정5/10mg: amlodipine
 [약] 리피다운캡슐60밀리그램(오르리스타트): -
-[약] 씨콜드플러스정: vitamin_c,vitamin_b2,vitamin_b1
+[약] 씨콜드플러스정: vitamin_c,vitamin_b2,vitamin_b1,acetaminophen
 [약] 액티콤연질캡슐: vitamin_e,vitamin_c,coenzyme_q10,zinc,selenium
 [약] 네오티가손캡슐10밀리그램(아시트레틴): -
 [약] 조인트빅300연질캡슐: vitamin_b1,vitamin_b2,vitamin_b3,vitamin_b5,vitamin_b6,vitamin_b12,vitamin_e
 [약] 이센트레스정(랄테그라비르칼륨): -
-[약] 테라플루데이타임건조시럽: -
-[약] 슬리펠정25밀리그램(디펜히드라민염산염): -
+[약] 테라플루데이타임건조시럽: acetaminophen
+[약] 슬리펠정25밀리그램(디펜히드라민염산염): diphenhydramine
 [약] 야즈정: -
 [약] 조코정20밀리그램(심바스타틴): -
 [약] 코사탄플러스정: losartan
@@ -348,7 +348,7 @@
 [약] 아토바디핀정5mg/10mg: amlodipine
 [약] 마노엘정: magnesium
 [약] 구아내정: vitamin_b2,vitamin_b6,vitamin_c,vitamin_b3,vitamin_b5,vitamin_b7
-[약] 펜잘큐정: -
+[약] 펜잘큐정: acetaminophen
 [약] 로수로드정10밀리그램(로수바스타틴칼슘): -
 [약] 뉴바스트정10밀리그램(아토르바스타틴스트론튬오수화물): -
 [약] 센파워민정: vitamin_b1,vitamin_e,vitamin_b2,vitamin_b3,vitamin_b6
@@ -433,7 +433,7 @@
 [약] 씨프론정250mg(시프로플록사신염산염수화물): ciprofloxacin
 [약] 비타포린정: vitamin_b6,vitamin_b12,vitamin_b9
 [약] 레나신정(레보플록사신수화물): levofloxacin
-[약] 화이투벤큐연질캡슐: -
+[약] 화이투벤큐연질캡슐: acetaminophen
 [약] 아스텍트정(아스피린): -
 [약] 본단정(이반드론산나트륨일수화물): -
 [약] 실로탄정100밀리그램(실로스타졸): -
@@ -483,7 +483,7 @@
 [약] 유한아스피린장용정(아스피린): -
 [약] 판피록정40mg(판토프라졸나트륨세스키히드레이트): -
 [약] 크레스바정10mg(로수바스타틴칼슘): -
-[약] 욱씬정: vitamin_b1
+[약] 욱씬정: acetaminophen,vitamin_b1
 [약] 씨엠지아스피린장용정100mg: -
 [약] 오메조탄플러스정: -
 [약] 마이렙트현탁용분말1g/5ml(미코페놀레이트모페틸): -
@@ -516,7 +516,7 @@
 [약] 란소졸캡슐30밀리그램(란소프라졸): -
 [약] 베아솔론정(메틸프레드니솔론): -
 [약] 로이탄연질캡슐(이소트레티노인): -
-[약] 엑스콜콜드에프캡슐: vitamin_c
+[약] 엑스콜콜드에프캡슐: acetaminophen,vitamin_c
 [약] 조이록신정400밀리그램(목시플록사신염산염): -
 [약] 본필플러스디정: alendronate,vitamin_d
 [약] 클로피오정(클로피도그렐황산염): -
@@ -529,7 +529,7 @@
 [약] 시타폴민정50/500밀리그램: metformin
 [약] 로수젯정10/5밀리그램: -
 [약] 트리멕정: -
-[약] 콜대원콜드시럽: -
+[약] 콜대원콜드시럽: acetaminophen
 [약] 암로잘탄정5/50밀리그램(암로디핀, 로사르탄칼륨): amlodipine,losartan
 [약] 라피졸정10mg(라베프라졸나트륨): -
 [약] 트리도파정100/25/200밀리그램: -
@@ -605,7 +605,7 @@
 [약] 헤모나민정: iron,vitamin_b5,vitamin_b9
 [약] 액티나민플러스정: vitamin_b12,vitamin_b3,vitamin_b2,vitamin_e,vitamin_b7,vitamin_b9,vitamin_c,vitamin_b5,iron,vitamin_b1,vitamin_b6,selenium,zinc
 [약] 크라보신정250밀리그램(레보플록사신수화물): levofloxacin
-[약] 이지콜씨플러스캡슐: vitamin_b1,vitamin_b2,vitamin_c
+[약] 이지콜씨플러스캡슐: acetaminophen,vitamin_b1,vitamin_b2,vitamin_c
 [약] 삐콤씨액티브정: vitamin_b1,vitamin_b2,vitamin_b6,vitamin_b12,vitamin_c,vitamin_e
 [약] 메가트루액티브정: vitamin_b1,selenium,zinc,vitamin_b2,vitamin_b3,vitamin_b6,vitamin_b5,vitamin_b12,vitamin_c,vitamin_d,vitamin_b7
 [약] 모아헬드원정: vitamin_a,vitamin_b6,vitamin_b12,vitamin_b5,iron,zinc,selenium,coenzyme_q10,vitamin_d,vitamin_e,vitamin_c,vitamin_b9,vitamin_b1,vitamin_b2,vitamin_b3
@@ -658,10 +658,10 @@
 [약] 로수틴엠정10mg(로수바스타틴칼슘): -
 [약] 팜젠산화마그네슘정: magnesium
 [약] 비엘심바정20밀리그램(심바스타틴): -
-[약] 엑스콜노즈정: vitamin_b1,vitamin_b2,vitamin_c
+[약] 엑스콜노즈정: acetaminophen,vitamin_b1,vitamin_b2,vitamin_c
 [약] 메피솔론정(메틸프레드니솔론): -
 [약] 세비원에이치씨티정5/40/12.5밀리그램: amlodipine
-[약] 엑스콜디과립: vitamin_c,vitamin_b2,vitamin_b1
+[약] 엑스콜디과립: acetaminophen,vitamin_c,vitamin_b2,vitamin_b1
 [약] 애드민플러스정: calcium,vitamin_d
 [약] 빅타비정: -
 [약] 씨프록정250밀리그램(시프로플록사신염산염수화물): ciprofloxacin
@@ -710,7 +710,7 @@
 [약] 더마톡연질캡슐30mg(알리트레티노인): -
 [약] 알티톡연질캡슐30밀리그램(알리트레티노인): -
 [약] 시프라신정250밀리그램(시프로플록사신염산염수화물): ciprofloxacin
-[약] 케이파이콜싹과립: vitamin_c,vitamin_b2
+[약] 케이파이콜싹과립: acetaminophen,vitamin_c,vitamin_b2
 [약] 투엑스비골드100정: vitamin_b1,zinc,vitamin_e,selenium,magnesium,coenzyme_q10,vitamin_b2,vitamin_b3,vitamin_b5,vitamin_b6,vitamin_b7,vitamin_b9,vitamin_b12,vitamin_c
 [약] 알리가연질캡슐30밀리그램(알리트레티노인): -
 [약] 텔미로원정40/5밀리그램: -
@@ -754,7 +754,7 @@
 [약] 사이크린연질캡슐100밀리그램(사이클로스포린): -
 [약] 로수코마연질캡슐: omega3
 [약] 칸데로원정5/8밀리그램(로수바스타틴, 칸데사르탄): -
-[약] 하벤에스액: -
+[약] 하벤에스액: acetaminophen
 [약] 디카테오엘씨정: calcium,vitamin_d
 [약] 아토티브정10/10밀리그램: -
 [약] 아리토린정10/10밀리그램: -
@@ -781,7 +781,7 @@
 [약] 에스메졸듀오정20/800밀리그램: -
 [약] 넥시리움듀오정20/800밀리그램: -
 [약] 경동파니틴정10밀리그램(파모티딘): -
-[약] 타이레놀정500밀리그람(아세트아미노펜): -
+[약] 타이레놀정500밀리그람(아세트아미노펜): acetaminophen
 [약] 메가원정: vitamin_b6,vitamin_c,vitamin_b2,selenium,vitamin_b7,vitamin_b12,vitamin_e,vitamin_b9,vitamin_b1,vitamin_b3,vitamin_b5,zinc
 [약] 브이포지알정5/160/10밀리그램: amlodipine
 [약] 메티졸정5밀리그램(메티마졸): -
@@ -804,8 +804,8 @@
 [약] 메가비텐프리미엄정: vitamin_b7,vitamin_b3,vitamin_b6,vitamin_b12,vitamin_c,magnesium,zinc,vitamin_e,selenium,vitamin_b9,vitamin_d,coenzyme_q10,vitamin_b1,vitamin_b2,vitamin_b5
 [약] 자누다움엠정50/500밀리그램: -
 [약] 칸타벨에이정8/5/10밀리그램: amlodipine
-[약] 타이레놀8시간이알서방정(아세트아미노펜): -
-[약] 어린이타이레놀현탁액(아세트아미노펜): -
+[약] 타이레놀8시간이알서방정(아세트아미노펜): acetaminophen
+[약] 어린이타이레놀현탁액(아세트아미노펜): acetaminophen
 [약] 센타민프로정: vitamin_a,vitamin_b9,vitamin_b12,vitamin_c,vitamin_d,vitamin_e,calcium,magnesium,vitamin_b1,selenium,zinc,coenzyme_q10,vitamin_b2,vitamin_b3,vitamin_b5,vitamin_b6,vitamin_b7
 [약] 칼슈머정: calcium,vitamin_d
 [약] 벤포벨케이정: vitamin_b1,vitamin_d,zinc,magnesium,vitamin_b5,vitamin_b7,vitamin_b9,vitamin_b12,vitamin_b2,vitamin_b6
@@ -907,7 +907,7 @@
 [약] 라베비카정20/700밀리그램(라베프라졸나트륨,탄산수소나트륨): -
 [약] 파라메트듀오정20/700밀리그램(라베프라졸나트륨, 탄산수소나트륨): -
 [약] 투엑스비멀티플정: vitamin_b1,calcium,vitamin_e,zinc,magnesium,iron,vitamin_c,coenzyme_q10,vitamin_b7,vitamin_b9,vitamin_b12,vitamin_b5,vitamin_d,vitamin_b2,vitamin_b3,vitamin_b6,selenium
-[약] 엑스콜디정: vitamin_c,vitamin_b2,vitamin_b1
+[약] 엑스콜디정: acetaminophen,vitamin_c,vitamin_b2,vitamin_b1
 [약] 아스라베캡슐100/5밀리그램(아스피린,라베프라졸): -
 [약] 휴세탄정(세벨라머탄산염): -
 [약] 애드민디에스정: calcium,vitamin_d,vitamin_b12,vitamin_b9
@@ -972,7 +972,7 @@
 [약] 비카돌연질캡슐1마이크로그램(알파칼시돌): -
 [약] 본알파연질캡슐0.5마이크로그램(알파칼시돌): -
 [약] 텔미디핀프로정80/5/25밀리그램(텔미사르탄,암로디핀,클로르탈리돈): amlodipine
-[약] 카푸린플러스비씨정: vitamin_b1,vitamin_b2,vitamin_c
+[약] 카푸린플러스비씨정: vitamin_b1,vitamin_b2,acetaminophen,vitamin_c
 [약] 트윈클로정40/5/12.5밀리그램(텔미사르탄,암로디핀,클로르탈리돈): amlodipine
 [약] 알파돌정1마이크로그램(알파칼시돌): -
 [약] 라베피드정20/600밀리그램(라베프라졸나트륨, 침강탄산칼슘): calcium
@@ -985,7 +985,7 @@
 [약] 트리플로우정40/5/12.5밀리그램(텔미사르탄,암로디핀,클로르탈리돈): amlodipine
 [약] 젠빅트리플스피드액: magnesium,vitamin_b6,vitamin_b3,vitamin_b2
 [약] 레보살탄플러스정2.5/160/2.5밀리그램(에스암로디핀,발사르탄,인다파미드): amlodipine
-[약] 모드콜티나이트발포정: vitamin_c
+[약] 모드콜티나이트발포정: acetaminophen,vitamin_c,diphenhydramine
 [약] 카포트리정2.5/80/1.25밀리그램(에스암로디핀, 발사르탄, 인다파미드): amlodipine
 [약] 아시돌정1마이크로그램(알파칼시돌): -
 [약] 엑스듀오플러스정2.5/80/1.25밀리그램(에스암로디핀,발사르탄,인다파미드): amlodipine
