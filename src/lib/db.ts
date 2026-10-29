@@ -27,9 +27,14 @@ async function createDb(): Promise<Db> {
     const { Pool } = await import('pg')
     // Supabase처럼 자체 인증서(CA)로 SSL을 받는 DB는 그 CA(PEM)를 DATABASE_SSL_CA에 넣으면 인증서를 검증하며 붙는다.
     // (Supabase: Project Settings → Database → SSL Configuration → Download certificate.) 주소의 sslmode는 이 설정과 겹치므로 뺀다.
+    // CA가 없으면 Supabase 주소에 한해 암호화는 하되 인증서 검증은 건너뛴다(Supabase 연동이 넣어 주는 주소 그대로 붙게).
+    // 검증까지 하려면 DATABASE_SSL_CA를 넣는다.
     const ca = process.env.DATABASE_SSL_CA?.replace(/\\n/g, '\n')
-    const connectionString = ca ? url.replace(/([?&])sslmode=[^&]*&?/, '$1').replace(/[?&]$/, '') : url
-    const pool = new Pool({ connectionString, max: process.env.VERCEL ? 3 : 10, ...(ca ? { ssl: { ca, rejectUnauthorized: true } } : {}) })
+    const supabaseNoCa = !ca && /supabase\.(com|co)\b/.test(url)
+    if (supabaseNoCa) console.warn('[db] DATABASE_SSL_CA가 없어 Supabase에 인증서 검증 없이 암호화 연결합니다.')
+    const ssl = ca ? { ca, rejectUnauthorized: true } : supabaseNoCa ? { rejectUnauthorized: false } : undefined
+    const connectionString = ssl ? url.replace(/([?&])sslmode=[^&]*&?/, '$1').replace(/[?&]$/, '') : url
+    const pool = new Pool({ connectionString, max: process.env.VERCEL ? 3 : 10, ...(ssl ? { ssl } : {}) })
     return {
       kind: 'pg',
       async query<T extends Row>(sql: string, params: unknown[] = []) {

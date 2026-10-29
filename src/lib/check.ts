@@ -1,7 +1,7 @@
 // 조합 점검(F3)과 하루 기준량 확인. 판정은 DB의 interaction_rule·substance 조회로만 한다.
 // 같은 목록은 몇 번을 점검해도 같은 결과가 나온다.
 import { getDb } from './db'
-import { itemKey, nameItems, substancesInDrugs, type ItemRef } from './catalog'
+import { itemKey, nameItems, substancesInProducts, type ItemRef, type ItemType } from './catalog'
 import type { Relation } from './labels'
 import type { UserItem } from './items'
 
@@ -33,13 +33,22 @@ export interface Warning {
   /** 첫 번째가 대표 출처다. */
   sources: RuleSource[]
   checked_on: string | null
+  /** 팀원 조합 모음의 심각도(major/moderate/minor). 원래 규칙은 null */
+  severity: string | null
+  /** 문제가 되는 용량·형태 조건 */
+  condition: string | null
+  /** 이 규칙 양쪽에 걸리는 항목 키(알아보기 화면용) */
+  members: { a: string[]; b: string[] }
 }
+
+/** a_type·b_type: 원래 규칙은 drug/substance, 팀원 조합 모음은 group(양쪽 멤버는 rule_member) */
+type RuleSideType = ItemType | 'group'
 
 interface RuleRow {
   id: string
-  a_type: 'drug' | 'substance'
+  a_type: RuleSideType
   a_ref: string
-  b_type: 'drug' | 'substance'
+  b_type: RuleSideType
   b_ref: string
   relation: Relation
   effect: string | null
@@ -54,15 +63,55 @@ interface RuleRow {
   source_note: string | null
   more_sources: RuleSource[] | string | null
   checked_on: string | null
+  a_label: string | null
+  b_label: string | null
+  severity: string | null
+  condition: string | null
+}
+
+/** 규칙과 양쪽에 걸리는 항목 키 */
+interface LoadedRule {
+  row: RuleRow
+  a: string[]
+  b: string[]
+}
+
+async function loadRules(where = '', params: unknown[] = []): Promise<LoadedRule[]> {
+  const db = await getDb()
+  const rows = await db.query<RuleRow>(`SELECT * FROM interaction_rule ${where} ORDER BY id`, params)
+  const members = await db.query<{ rule_id: string; side: 'a' | 'b'; item_type: string; item_ref: string }>(
+    `SELECT rule_id, side, item_type, item_ref FROM rule_member`,
+  )
+  const bySide = new Map<string, string[]>()
+  for (const m of members) {
+    const k = `${m.rule_id}|${m.side}`
+    bySide.set(k, [...(bySide.get(k) ?? []), `${m.item_type}:${m.item_ref}`])
+  }
+  return rows.map((row) => ({
+    row,
+    a: row.a_type === 'group' ? (bySide.get(`${row.id}|a`) ?? []) : [`${row.a_type}:${row.a_ref}`],
+    b: row.b_type === 'group' ? (bySide.get(`${row.id}|b`) ?? []) : [`${row.b_type}:${row.b_ref}`],
+  }))
 }
 
 const SEVERITY: Record<Relation, number> = { avoid: 0, separate_timing: 1, consult: 2, caution: 3 }
+const RULE_SEVERITY: Record<string, number> = { major: 0, moderate: 1, minor: 2 }
 
-/** 목록 항목 하나가 판정에 내놓는 대상: 자기 자신과(약이면) 그 약에 든 영양 성분 */
+/** 화면 순서: 행동이 무거운 것 → 심각도 → 원래 규칙(식약처·논문 직접 확인) → id */
+function compareWarnings(x: Warning, y: Warning): number {
+  return (
+    SEVERITY[x.relation] - SEVERITY[y.relation] ||
+    (RULE_SEVERITY[x.severity ?? 'moderate'] ?? 1) - (RULE_SEVERITY[y.severity ?? 'moderate'] ?? 1) ||
+    Number(x.ruleId.startsWith('ni-')) - Number(y.ruleId.startsWith('ni-')) ||
+    x.ruleId.localeCompare(y.ruleId)
+  )
+}
+
+/** 목록 항목 하나가 판정에 내놓는 대상: 자기 자신과(제품이면) 그 제품에 든 성분 */
 interface Provider {
   index: number
   key: string
-  /** 약에 든 성분으로 내놓은 것이면 그 약 이름 */
+  /** 제품에 든 성분으로 내놓은 것이면 그 제품 이름 */
   viaDrug: string | null
 }
 
@@ -78,8 +127,11 @@ function parseSources(v: RuleRow['more_sources']): RuleSource[] {
   return v
 }
 
-function toWarning(r: RuleRow, a: WarningSide, b: WarningSide): Warning {
+function toWarning(r: RuleRow, a: WarningSide, b: WarningSide, members: { a: string[]; b: string[] } = { a: [], b: [] }): Warning {
   return {
+    severity: r.severity,
+    condition: r.condition,
+    members,
     ruleId: r.id,
     relation: r.relation,
     a,
@@ -104,16 +156,15 @@ function toWarning(r: RuleRow, a: WarningSide, b: WarningSide): Warning {
 }
 
 async function providersFor(items: ItemRef[]): Promise<Provider[]> {
-  const drugs = items.filter((i) => i.type === 'drug')
-  const [inDrugs, named] = await Promise.all([substancesInDrugs(drugs.map((i) => i.ref)), nameItems(drugs)])
-  const drugName = new Map(named.map((n) => [n.ref, n.name]))
+  const products = items.filter((i) => i.type !== 'substance')
+  const [inProducts, named] = await Promise.all([substancesInProducts(products), nameItems(products)])
+  const productName = new Map(named.map((n) => [itemKey(n), n.name]))
   const out: Provider[] = []
   items.forEach((item, index) => {
-    out.push({ index, key: itemKey(item), viaDrug: null })
-    if (item.type === 'drug') {
-      for (const id of inDrugs.get(item.ref) ?? []) {
-        out.push({ index, key: `substance:${id}`, viaDrug: drugName.get(item.ref) ?? item.ref })
-      }
+    const key = itemKey(item)
+    out.push({ index, key, viaDrug: null })
+    for (const id of inProducts.get(key) ?? []) {
+      out.push({ index, key: `substance:${id}`, viaDrug: productName.get(key) ?? item.ref })
     }
   })
   return out
@@ -125,23 +176,22 @@ async function providersFor(items: ItemRef[]): Promise<Provider[]> {
  */
 export async function checkItems(items: ItemRef[], focus?: ItemRef): Promise<Warning[]> {
   if (items.length < 2) return []
-  const db = await getDb()
-  const rules = await db.query<RuleRow>('SELECT * FROM interaction_rule')
+  const rules = await loadRules()
   const providers = await providersFor(items)
   const byKey = new Map<string, Provider[]>()
   for (const p of providers) byKey.set(p.key, [...(byKey.get(p.key) ?? []), p])
   const focusIndex = focus ? items.findIndex((i) => itemKey(i) === itemKey(focus)) : -1
 
-  const matched: { rule: RuleRow; pa: Provider; pb: Provider }[] = []
+  const matched: { rule: LoadedRule; pa: Provider; pb: Provider }[] = []
   for (const rule of rules) {
-    const as = byKey.get(`${rule.a_type}:${rule.a_ref}`) ?? []
-    const bs = byKey.get(`${rule.b_type}:${rule.b_ref}`) ?? []
+    const as = rule.a.flatMap((k) => byKey.get(k) ?? [])
+    const bs = rule.b.flatMap((k) => byKey.get(k) ?? [])
     let found: { pa: Provider; pb: Provider } | null = null
     for (const pa of as) {
       for (const pb of bs) {
         if (pa.index === pb.index) continue
         if (focus && pa.index !== focusIndex && pb.index !== focusIndex) continue
-        // 직접 등록한 항목끼리 걸린 것을 약 성분으로 걸린 것보다 먼저 쓴다.
+        // 직접 등록한 항목끼리 걸린 것을 제품 성분으로 걸린 것보다 먼저 쓴다.
         if (!found || (!pa.viaDrug && !pb.viaDrug)) found = { pa, pb }
       }
     }
@@ -149,47 +199,70 @@ export async function checkItems(items: ItemRef[], focus?: ItemRef): Promise<War
   }
   if (matched.length === 0) return []
 
-  const refs: ItemRef[] = []
-  for (const { rule } of matched) refs.push({ type: rule.a_type, ref: rule.a_ref }, { type: rule.b_type, ref: rule.b_ref })
-  const named = await nameItems(refs)
+  // 경고 양쪽 이름: 걸린 항목(성분이면 쉬운 이름, 제품 성분으로 걸렸으면 '철분(광동 철분 성분)')
+  const keys = [...new Set(matched.flatMap(({ pa, pb }) => [pa.key, pb.key]))]
+  const named = await nameItems(keys.map((k) => parseKey(k)))
   const labelOf = new Map(named.map((n) => [itemKey(n), n.label]))
-  const side = (type: 'drug' | 'substance', ref: string, p: Provider): WarningSide => {
-    const label = labelOf.get(`${type}:${ref}`) ?? ref
-    return { type, ref, name: p.viaDrug ? `${label}(${p.viaDrug} 성분)` : label }
+  const side = (p: Provider): WarningSide => {
+    const ref = parseKey(p.key)
+    const label = labelOf.get(p.key) ?? ref.ref
+    return { ...ref, name: p.viaDrug ? `${label}(${p.viaDrug} 성분)` : label }
   }
 
-  const warnings = matched.map(({ rule: r, pa, pb }) => toWarning(r, side(r.a_type, r.a_ref, pa), side(r.b_type, r.b_ref, pb)))
-  warnings.sort((x, y) => SEVERITY[x.relation] - SEVERITY[y.relation] || x.ruleId.localeCompare(y.ruleId))
+  // 같은 두 항목에 규칙이 여럿 걸리면(원래 규칙과 조합 모음이 겹치는 등) 가장 무거운 하나만 보여 주고 출처를 합친다.
+  const byPair = new Map<string, Warning[]>()
+  for (const { rule, pa, pb } of matched) {
+    const w = toWarning(rule.row, side(pa), side(pb), { a: rule.a, b: rule.b })
+    const pair = [pa.index, pb.index].sort((x, y) => x - y).join('-')
+    byPair.set(pair, [...(byPair.get(pair) ?? []), w])
+  }
+  const warnings = [...byPair.values()].map((ws) => {
+    const [top, ...rest] = ws.sort(compareWarnings)
+    const urls = new Set(top.sources.map((s) => s.source_url))
+    for (const s of rest.flatMap((w) => w.sources)) {
+      if (urls.has(s.source_url) || top.sources.length >= 5) continue
+      urls.add(s.source_url)
+      top.sources.push(s)
+    }
+    return top
+  })
+  warnings.sort(compareWarnings)
   return warnings
+}
+
+function parseKey(key: string): ItemRef {
+  const idx = key.indexOf(':')
+  return { type: key.slice(0, idx) as ItemType, ref: key.slice(idx + 1) }
+}
+
+/** 규칙 하나를 화면용으로(목록과 상관없이 규칙 자체의 양쪽 이름) */
+async function describeRules(rules: LoadedRule[]): Promise<Warning[]> {
+  const plain = rules.filter((r) => r.row.a_type !== 'group')
+  const named = await nameItems(
+    plain.flatMap(({ row }) => [
+      { type: row.a_type as ItemType, ref: row.a_ref },
+      { type: row.b_type as ItemType, ref: row.b_ref },
+    ]),
+  )
+  const labelOf = new Map(named.map((n) => [itemKey(n), n.label]))
+  const sideOf = (type: RuleSideType, ref: string, label: string | null): WarningSide =>
+    type === 'group'
+      ? { type: 'substance', ref, name: label ?? ref }
+      : { type, ref, name: labelOf.get(`${type}:${ref}`) ?? ref }
+  return rules.map(({ row, a, b }) => toWarning(row, sideOf(row.a_type, row.a_ref, row.a_label), sideOf(row.b_type, row.b_ref, row.b_label), { a, b }))
 }
 
 /** 근거 화면('자세히')용: 규칙 하나 */
 export async function getRule(id: string): Promise<Warning | null> {
-  const db = await getDb()
-  const rows = await db.query<RuleRow>('SELECT * FROM interaction_rule WHERE id = $1', [id])
-  const r = rows[0]
-  if (!r) return null
-  const named = await nameItems([
-    { type: r.a_type, ref: r.a_ref },
-    { type: r.b_type, ref: r.b_ref },
-  ])
-  return toWarning(r, { type: r.a_type, ref: r.a_ref, name: named[0].label }, { type: r.b_type, ref: r.b_ref, name: named[1].label })
+  const rules = await loadRules('WHERE id = $1', [id])
+  if (rules.length === 0) return null
+  return (await describeRules(rules))[0]
 }
 
-/** '약·영양제 알아보기'용: 규칙 전체(양쪽 이름은 경고에 쓰는 이름 그대로) */
+/** '약·영양제 알아보기'용: 규칙 전체 */
 export async function listAllRules(): Promise<Warning[]> {
-  const db = await getDb()
-  const rows = await db.query<RuleRow>('SELECT * FROM interaction_rule ORDER BY id')
-  const named = await nameItems(rows.flatMap((r) => [{ type: r.a_type, ref: r.a_ref }, { type: r.b_type, ref: r.b_ref }]))
-  const labelOf = new Map(named.map((n) => [itemKey(n), n.label]))
-  const out = rows.map((r) =>
-    toWarning(
-      r,
-      { type: r.a_type, ref: r.a_ref, name: labelOf.get(`${r.a_type}:${r.a_ref}`) ?? r.a_ref },
-      { type: r.b_type, ref: r.b_ref, name: labelOf.get(`${r.b_type}:${r.b_ref}`) ?? r.b_ref },
-    ),
-  )
-  out.sort((x, y) => SEVERITY[x.relation] - SEVERITY[y.relation] || x.ruleId.localeCompare(y.ruleId))
+  const out = await describeRules(await loadRules())
+  out.sort(compareWarnings)
   return out
 }
 

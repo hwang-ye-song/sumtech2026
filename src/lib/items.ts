@@ -1,6 +1,6 @@
 // 내 목록(user_item) 읽기·추가·삭제
 import { getDb } from './db'
-import { nameItems, type ItemRef, type NamedItem } from './catalog'
+import { itemExists, nameItems, type ItemRef, type ItemType, type NamedItem } from './catalog'
 
 export interface Dose {
   /** 하루에 먹는 개수 */
@@ -19,7 +19,7 @@ export async function listUserItems(userId: number): Promise<UserItem[]> {
   const db = await getDb()
   const rows = await db.query<{
     id: number
-    item_type: 'drug' | 'substance'
+    item_type: ItemType
     item_ref: string
     added_at: Date
     daily_count: number
@@ -52,11 +52,7 @@ export function doseText(item: Pick<UserItem, 'countUnit'> & Dose): string {
 /** 참조가 실제로 있는 항목인지 확인한 뒤 넣는다. 이미 있으면 복용량만 바꾼다. */
 export async function addUserItem(userId: number, item: ItemRef, dose: Dose): Promise<boolean> {
   const db = await getDb()
-  const exists =
-    item.type === 'drug'
-      ? await db.query('SELECT 1 FROM drug WHERE item_seq = $1', [item.ref])
-      : await db.query('SELECT 1 FROM substance WHERE id = $1', [item.ref])
-  if (exists.length === 0) return false
+  if (!(await itemExists(item))) return false
   await db.query(
     `INSERT INTO user_item (user_id, item_type, item_ref, daily_count, unit_amount, unit) VALUES ($1, $2, $3, $4, $5, $6)
      ON CONFLICT (user_id, item_type, item_ref)

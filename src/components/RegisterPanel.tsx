@@ -14,9 +14,10 @@ export interface Pick {
   nutrient: boolean
 }
 
-/** 종류 배지: 일반약 / 처방약 / 영양제 */
+/** 종류 배지: 일반약 / 처방약 / 영양제. sub는 catalog.ts가 만든 보조 설명이다. */
 export function KindBadge({ sub }: { sub: string }) {
-  const kind = sub === '영양제 성분' ? '영양제' : sub === '처방약 성분' ? '처방약' : '일반약'
+  const kind =
+    sub === '영양제 성분' || sub.startsWith('건강기능식품') ? '영양제' : sub === '처방약 성분' || sub.startsWith('전문의약품') ? '처방약' : '일반약'
   return <span className={`badge ${kind === '영양제' ? 'badge-cobalt' : ''}`}>{kind}</span>
 }
 

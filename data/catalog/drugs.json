@@ -1,0 +1,3860 @@
+[
+ {
+  "item_seq": "196000008",
+  "name": "다이크로짇정(히드로클로로티아지드)",
+  "company": "(주)유한양행",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "히드로클로로티아지드 25.0밀리그램",
+  "ingredients_en": "Hydrochlorothiazide",
+  "pick_reason": "영양제와 부딪히는 약: 이뇨제(히드로클로로티아지드)",
+  "ingredients": [
+   {
+    "ingredient_code": "M223356",
+    "ingredient_name": "히드로클로로티아지드",
+    "amount": 25,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "196200032",
+  "name": "유한짓정100mg(이소니아지드)(군납명:이소니아지드정케이.피100밀리그람)",
+  "company": "(주)유한양행",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "이소니아지드 100.0밀리그램",
+  "ingredients_en": "Isoniazid",
+  "pick_reason": "영양제와 부딪히는 약: 결핵약(이소니아지드)",
+  "ingredients": [
+   {
+    "ingredient_code": "M223170",
+    "ingredient_name": "이소니아지드",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "196300001",
+  "name": "디고신정(디곡신)",
+  "company": "에이치케이이노엔(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "디곡신 0.25밀리그램",
+  "ingredients_en": "Digoxin",
+  "pick_reason": "영양제와 부딪히는 약: 강심제(디곡신)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040091",
+    "ingredient_name": "디곡신",
+    "amount": 0.25,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "196400037",
+  "name": "라식스정(푸로세미드)",
+  "company": "(주)한독",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "푸로세미드 40밀리그램",
+  "ingredients_en": "Furosemide",
+  "pick_reason": "영양제와 부딪히는 약: 이뇨제(푸로세미드)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040715",
+    "ingredient_name": "푸로세미드",
+    "amount": 40,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "196800036",
+  "name": "판콜에이내복액",
+  "company": "동화약품(주)",
+  "category": "일반의약품",
+  "ingredient_count": 6,
+  "ingredients_text": "아세트아미노펜 300.0밀리그램 | 구아이페네신 80.0밀리그램 | 펜톡시베린시트르산염 15.0밀리그램 | 페닐레프린염산염 10.0밀리그램 | 클로르페니라민말레산염 2.5밀리그램 | 카페인무수물 30.0밀리그램",
+  "ingredients_en": "Acetaminophen/Anhydrous Caffeine/Chlorpheniramine Maleate/Guaifenesin/Pentoxyverine Citrate/Phenylephrine Hydrochloride",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 감기)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": 300,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M050058",
+    "ingredient_name": "구아이페네신",
+    "amount": 80,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223287",
+    "ingredient_name": "펜톡시베린시트르산염",
+    "amount": 15,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M222724",
+    "ingredient_name": "페닐레프린염산염",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223211",
+    "ingredient_name": "클로르페니라민말레산염",
+    "amount": 2.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223183",
+    "ingredient_name": "카페인무수물",
+    "amount": 30,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "197000037",
+  "name": "아로나민골드정",
+  "company": "일동제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 12,
+  "ingredients_text": "푸르설티아민 50밀리그램 | 리보플라빈부티레이트 2.5밀리그램 | 피리독살포스페이트수화물 2.5밀리그램 | 히드록소코발라민아세트산염 5.22마이크로그램 | 아스코르브산 72.2밀리그램 | 토코페롤아세테이트 2배산 40밀리그램",
+  "ingredients_en": "Ascorbic Acid/Ascorbic Acid/Fursultiamine/Fursultiamine/Hydroxocobalamin Acetate/Hydroxocobalamin Acetate/Pyridoxal Phosphate Hydrate/Pyridoxal Phosphate Hydrate/Riboflavin Butyrate/Riboflavin Butyrate/Tocopherol Acetate Powder 50%/Tocopherol Acetate Powder 50%",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 비타민미네랄)",
+  "ingredients": [
+   {
+    "ingredient_code": "M051415",
+    "ingredient_name": "푸르설티아민",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b1"
+   },
+   {
+    "ingredient_code": "M222995",
+    "ingredient_name": "리보플라빈부티레이트",
+    "amount": 2.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b2"
+   },
+   {
+    "ingredient_code": "M248795",
+    "ingredient_name": "피리독살포스페이트수화물",
+    "amount": 2.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b6"
+   },
+   {
+    "ingredient_code": "M223357",
+    "ingredient_name": "히드록소코발라민아세트산염",
+    "amount": 5.22,
+    "amount_raw": null,
+    "unit": "마이크로그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b12"
+   },
+   {
+    "ingredient_code": "M258994",
+    "ingredient_name": "아스코르브산",
+    "amount": 72.2,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_c"
+   },
+   {
+    "ingredient_code": "M255819",
+    "ingredient_name": "토코페롤아세테이트 2배산",
+    "amount": 40,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_e"
+   }
+  ]
+ },
+ {
+  "item_seq": "197000050",
+  "name": "자이로릭정(알로푸리놀)",
+  "company": "삼일제약(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "알로푸리놀 100밀리그램",
+  "ingredients_en": "Allopurinol",
+  "pick_reason": "영양제와 부딪히는 약: 통풍약(알로푸리놀)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040387",
+    "ingredient_name": "알로푸리놀",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "197000104",
+  "name": "부광페니토인캡슐100밀리그램",
+  "company": "부광약품(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "페니토인 100밀리그램",
+  "ingredients_en": "Phenytoin",
+  "pick_reason": "영양제와 부딪히는 약: 항경련제(페니토인)",
+  "ingredients": [
+   {
+    "ingredient_code": "M051706",
+    "ingredient_name": "페니토인",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "197400246",
+  "name": "마그밀정(수산화마그네슘)",
+  "company": "삼남제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "수산화마그네슘 500.0밀리그램",
+  "ingredients_en": "Magnesium Hydroxide",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 변비설사)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040306",
+    "ingredient_name": "수산화마그네슘",
+    "amount": 500,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "magnesium"
+   }
+  ]
+ },
+ {
+  "item_seq": "197400278",
+  "name": "씬지로이드정0.1밀리그램(레보티록신나트륨수화물)",
+  "company": "부광약품(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "레보티록신나트륨수화물 0.1밀리그램",
+  "ingredients_en": "Levothyroxine Sodium Hydrate",
+  "pick_reason": "시나리오: S2~S7 레보티록신(갑상선약) 제품 / 영양제와 부딪히는 약: 갑상선약(레보티록신)",
+  "ingredients": [
+   {
+    "ingredient_code": "M222989",
+    "ingredient_name": "레보티록신나트륨수화물",
+    "amount": 0.1,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "levothyroxine"
+   }
+  ]
+ },
+ {
+  "item_seq": "197700120",
+  "name": "부루펜정200밀리그램(이부프로펜)",
+  "company": "삼일제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "이부프로펜 200밀리그램",
+  "ingredients_en": "Ibuprofen",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M051259",
+    "ingredient_name": "이부프로펜",
+    "amount": 200,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "197900145",
+  "name": "유한메토트렉세이트정",
+  "company": "(주)유한양행",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "메토트렉세이트 2.5밀리그램",
+  "ingredients_en": "Methotrexate",
+  "pick_reason": "영양제와 부딪히는 약: 항류마티스제(메토트렉세이트)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040168",
+    "ingredient_name": "메토트렉세이트",
+    "amount": 2.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "197900277",
+  "name": "게보린정(수출명:돌로린정)",
+  "company": "삼진제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 3,
+  "ingredients_text": "아세트아미노펜 300밀리그램 | 카페인무수물 50밀리그램 | 이소프로필안티피린 150밀리그램",
+  "ingredients_en": "Acetaminophen/Anhydrous Caffeine/Isopropylantipyrine",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": 300,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223183",
+    "ingredient_name": "카페인무수물",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040499",
+    "ingredient_name": "이소프로필안티피린",
+    "amount": 150,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "198100119",
+  "name": "우루사정100밀리그램(우르소데옥시콜산)",
+  "company": "(주)대웅제약",
+  "category": "일반의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "우르소데옥시콜산 100밀리그램",
+  "ingredients_en": "Ursodeoxycholic Acid/Ursodeoxycholic Acid",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 간피로)",
+  "ingredients": [
+   {
+    "ingredient_code": "M223167",
+    "ingredient_name": "우르소데옥시콜산",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "198300718",
+  "name": "모노신정(독시사이클린하이클레이트수화물)",
+  "company": "고려제약(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "독시사이클린하이클레이트수화물 100밀리그램",
+  "ingredients_en": "Doxycycline Hyclate Hydrate",
+  "pick_reason": "영양제와 부딪히는 약: 테트라사이클린계 항생제(독시사이클린)",
+  "ingredients": [
+   {
+    "ingredient_code": "M222960",
+    "ingredient_name": "독시사이클린하이클레이트수화물",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "doxycycline"
+   }
+  ]
+ },
+ {
+  "item_seq": "198400661",
+  "name": "아락실과립",
+  "company": "부광약품(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "아기오락스 원료과립(Agiolax pregranules) 2.70그램",
+  "ingredients_en": "Agiolax Pregranules",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 변비설사)",
+  "ingredients": [
+   {
+    "ingredient_code": "M225556",
+    "ingredient_name": "아기오락스 원료과립(Agiolax pregranules)",
+    "amount": 2.7,
+    "amount_raw": null,
+    "unit": "그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "198500321",
+  "name": "다이아벡스정500밀리그램(메트포르민염산염)",
+  "company": "(주)대웅제약",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "메트포르민염산염 500밀리그램",
+  "ingredients_en": "Metformin Hydrochloride",
+  "pick_reason": "영양제와 부딪히는 약: 당뇨약(메트포르민)",
+  "ingredients": [
+   {
+    "ingredient_code": "M223014",
+    "ingredient_name": "메트포르민염산염",
+    "amount": 500,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "metformin"
+   }
+  ]
+ },
+ {
+  "item_seq": "198501028",
+  "name": "미노씬캡슐50mg(미노사이클린염산염)",
+  "company": "에스케이케미칼(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "미노사이클린염산염 50밀리그램",
+  "ingredients_en": "Minocycline Hydrochloride",
+  "pick_reason": "영양제와 부딪히는 약: 테트라사이클린계 항생제(미노사이클린)",
+  "ingredients": [
+   {
+    "ingredient_code": "M223036",
+    "ingredient_name": "미노사이클린염산염",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "198700405",
+  "name": "베아제정",
+  "company": "(주)대웅제약",
+  "category": "일반의약품",
+  "ingredient_count": 7,
+  "ingredients_text": "디아스타제·프로테아제·셀룰라제 50밀리그램 | 리파제 15밀리그램 | 판프로신 20밀리그램 | 판셀라제 30밀리그램 | 판크레아틴장용과립 78.6밀리그램 | 우르소데옥시콜산 10밀리그램 | 시메티콘 40밀리그램",
+  "ingredients_en": "Diastase·Protease·Cellulase/Lipase/Pancellase/Pancreatin Enteric Coated Granules/Panprosin/Simethicone/Ursodeoxycholic Acid",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 소화위장)",
+  "ingredients": [
+   {
+    "ingredient_code": "M267745",
+    "ingredient_name": "디아스타제·프로테아제·셀룰라제",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M050379",
+    "ingredient_name": "리파제",
+    "amount": 15,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M247372",
+    "ingredient_name": "판프로신",
+    "amount": 20,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M247370",
+    "ingredient_name": "판셀라제",
+    "amount": 30,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M082071",
+    "ingredient_name": "판크레아틴장용과립",
+    "amount": 78.6,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223167",
+    "ingredient_name": "우르소데옥시콜산",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223083",
+    "ingredient_name": "시메티콘",
+    "amount": 40,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "198700430",
+  "name": "알마겔정(알마게이트)(수출명:유한가스트라겔정)",
+  "company": "(주)유한양행",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "알마게이트 500밀리그램",
+  "ingredients_en": "Almagate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 소화위장)",
+  "ingredients": [
+   {
+    "ingredient_code": "M081294",
+    "ingredient_name": "알마게이트",
+    "amount": 500,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "198801219",
+  "name": "콜킨정(콜키신)",
+  "company": "한국유나이티드제약(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "콜키신 0.6밀리그램",
+  "ingredients_en": "Colchicine",
+  "pick_reason": "영양제와 부딪히는 약: 통풍약(콜키신)",
+  "ingredients": [
+   {
+    "ingredient_code": "M091703",
+    "ingredient_name": "콜키신",
+    "amount": 0.6,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "198900667",
+  "name": "까스활명수큐액",
+  "company": "동화약품(주)",
+  "category": "일반의약품",
+  "ingredient_count": 11,
+  "ingredients_text": "아선약 100.0밀리그램 | 후박 50.0밀리그램 | 창출 3.0밀리그램 | L-멘톨 16.0밀리그램 | 진피 250.0밀리그램 | 고추틴크 0.06밀리리터 | 현호색 180.0밀리그램 | 육계 30.0밀리그램 | 정향 12.0밀리그램 | 건강 12.0밀리그램 | 육두구 6.0밀리그램",
+  "ingredients_en": "Atractylodes Rhizome/Capsicum Tincture/Cinnamon Bark/Citrus Unshiu Peel/Clove/Corydalis Tuber/Gambir/Ginger/L-Menthol/Magnolia Bark/Nutmeg",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 소화위장)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040350",
+    "ingredient_name": "아선약",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040813",
+    "ingredient_name": "후박",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040548",
+    "ingredient_name": "창출",
+    "amount": 3,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M279284",
+    "ingredient_name": "L-멘톨",
+    "amount": 16,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040538",
+    "ingredient_name": "진피",
+    "amount": 250,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M070048",
+    "ingredient_name": "고추틴크",
+    "amount": 0.06,
+    "amount_raw": null,
+    "unit": "밀리리터",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040775",
+    "ingredient_name": "현호색",
+    "amount": 180,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M050036",
+    "ingredient_name": "육계",
+    "amount": 30,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040527",
+    "ingredient_name": "정향",
+    "amount": 12,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040007",
+    "ingredient_name": "건강",
+    "amount": 12,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040486",
+    "ingredient_name": "육두구",
+    "amount": 6,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "198900711",
+  "name": "아론정(독시라민숙신산염)",
+  "company": "알리코제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "독시라민숙신산염 25밀리그램",
+  "ingredients_en": "Doxylamine Succinate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 수면멀미)",
+  "ingredients": [
+   {
+    "ingredient_code": "M250452",
+    "ingredient_name": "독시라민숙신산염",
+    "amount": 25,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "199101279",
+  "name": "오구멘틴정625밀리그램(아목시실린·클라불란산칼륨(4:1))",
+  "company": "일성아이에스(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "아목시실린ㆍ클라불란산칼륨(4:1) 625밀리그램",
+  "ingredients_en": "Amoxicillin·Clavulanate Potassium (4:1)",
+  "pick_reason": "영양제와 부딪히는 약: 페니실린계 항생제(아목시실린·클라불란산)",
+  "ingredients": [
+   {
+    "ingredient_code": "M096290",
+    "ingredient_name": "아목시실린ㆍ클라불란산칼륨(4:1)",
+    "amount": 625,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "199102014",
+  "name": "기넥신에프정40밀리그램(은행엽건조엑스)",
+  "company": "에스케이케미칼(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "은행엽건조엑스 40.0밀리그램",
+  "ingredients_en": "Ginkgo Biloba Leaf Dried Extract",
+  "pick_reason": "영양제와 부딪히는 약: 혈액순환개선제(은행엽건조엑스)",
+  "ingredients": [
+   {
+    "ingredient_code": "M088948",
+    "ingredient_name": "은행엽건조엑스",
+    "amount": 40,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "ginkgo"
+   }
+  ]
+ },
+ {
+  "item_seq": "199201045",
+  "name": "퍼킨정25-100밀리그램(카르비도파,레보도파)",
+  "company": "명인제약(주)",
+  "category": "전문의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "카르비도파수화물 27.0밀리그램 | 레보도파 100.0밀리그램",
+  "ingredients_en": "Carbidopa Hydrate/Levodopa",
+  "pick_reason": "영양제와 부딪히는 약: 파킨슨병약(레보도파)",
+  "ingredients": [
+   {
+    "ingredient_code": "M256275",
+    "ingredient_name": "카르비도파수화물",
+    "amount": 27,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040122",
+    "ingredient_name": "레보도파",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "199300288",
+  "name": "본키연질캡슐(칼시트리올)",
+  "company": "(주)유유제약",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "칼시트리올 0.25마이크로그램",
+  "ingredients_en": "Calcitriol",
+  "pick_reason": "영양제와 부딪히는 약: 활성형 비타민D(칼시트리올)",
+  "ingredients": [
+   {
+    "ingredient_code": "M082905",
+    "ingredient_name": "칼시트리올",
+    "amount": 0.25,
+    "amount_raw": null,
+    "unit": "마이크로그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "199400883",
+  "name": "겔포스엠현탁액",
+  "company": "(주)보령",
+  "category": "일반의약품",
+  "ingredient_count": 12,
+  "ingredients_text": "인산알루미늄겔 61.9그램 | 수산화마그네슘 2.0그램 | 시메티콘 0.2그램",
+  "ingredients_en": "Aluminium Phosphate Gel/Aluminium Phosphate Gel/Aluminium Phosphate Gel/Aluminium Phosphate Gel/Magnesium Hydroxide/Magnesium Hydroxide/Magnesium Hydroxide/Magnesium Hydroxide/Simethicone/Simethicone/Simethicone/Simethicone",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 소화위장)",
+  "ingredients": [
+   {
+    "ingredient_code": "M051477",
+    "ingredient_name": "인산알루미늄겔",
+    "amount": 61.9,
+    "amount_raw": null,
+    "unit": "그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040306",
+    "ingredient_name": "수산화마그네슘",
+    "amount": 2,
+    "amount_raw": null,
+    "unit": "그램",
+    "source": "식약처 주성분",
+    "substance_id": "magnesium"
+   },
+   {
+    "ingredient_code": "M223083",
+    "ingredient_name": "시메티콘",
+    "amount": 0.2,
+    "amount_raw": null,
+    "unit": "그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "199602982",
+  "name": "소론도정(프레드니솔론)",
+  "company": "(주)유한양행",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "프레드니솔론 5밀리그램",
+  "ingredients_en": "Prednisolone",
+  "pick_reason": "영양제와 부딪히는 약: 스테로이드(프레드니솔론)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040717",
+    "ingredient_name": "프레드니솔론",
+    "amount": 5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "199800677",
+  "name": "옴니세프캡슐100밀리그램(세프디니르)",
+  "company": "제일약품(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "세프디니르 100밀리그램",
+  "ingredients_en": "Cefdinir",
+  "pick_reason": "영양제와 부딪히는 약: 세팔로스포린계 항생제(세프디니르)",
+  "ingredients": [
+   {
+    "ingredient_code": "M088312",
+    "ingredient_name": "세프디니르",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "199800924",
+  "name": "토스롱액",
+  "company": "동성제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 10,
+  "ingredients_text": "디멘히드리네이트 | 스코폴라민브롬화수소산염수화물 | 니코틴산아미드 | 카페인무수물 | 피리독신염산염",
+  "ingredients_en": "Anhydrous Caffeine/Anhydrous Caffeine/Dimenhydrinate/Dimenhydrinate/Nicotinamide/Nicotinamide/Pyridoxine Hydrochloride/Pyridoxine Hydrochloride/Scopolamine Hydrobromide Hydrate/Scopolamine Hydrobromide Hydrate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 수면멀미)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040096",
+    "ingredient_name": "디멘히드리네이트",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223081",
+    "ingredient_name": "스코폴라민브롬화수소산염수화물",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040064",
+    "ingredient_name": "니코틴산아미드",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b3"
+   },
+   {
+    "ingredient_code": "M223183",
+    "ingredient_name": "카페인무수물",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M204304",
+    "ingredient_name": "피리독신염산염",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b6"
+   }
+  ]
+ },
+ {
+  "item_seq": "199800976",
+  "name": "테올란비서방캡슐200밀리그램(테오필린)",
+  "company": "알보젠코리아(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "테오필린폴리메릭쉘드콤플렉스 274.1밀리그램",
+  "ingredients_en": "Theophylline Polymeric Shelled Complex",
+  "pick_reason": "영양제와 부딪히는 약: 기관지확장제(테오필린)",
+  "ingredients": [
+   {
+    "ingredient_code": "M088689",
+    "ingredient_name": "테오필린폴리메릭쉘드콤플렉스",
+    "amount": 274.1,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "199801016",
+  "name": "알레그라정120밀리그람(펙소페나딘염산염)",
+  "company": "(주)한독",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "펙소페나딘염산염 120밀리그램",
+  "ingredients_en": "Fexofenadine Hydrochloride",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 알레르기)",
+  "ingredients": [
+   {
+    "ingredient_code": "M246634",
+    "ingredient_name": "펙소페나딘염산염",
+    "amount": 120,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "199900926",
+  "name": "훼스탈골드정",
+  "company": "(주)한독",
+  "category": "일반의약품",
+  "ingredient_count": 7,
+  "ingredients_text": "판크레아틴 150밀리그램 | 디아스타제·프로테아제·셀룰라제 10밀리그램 | 프로자임6 10밀리그램 | 리파제 15밀리그램 | 셀룰라제 9밀리그램 | 우르소데옥시콜산 20밀리그램 | 시메티콘 60밀리그램",
+  "ingredients_en": "Cellulase/Diastase·Protease·Cellulase/Lipase/Pancreatin/Prozyme 6/Simethicone/Ursodeoxycholic Acid",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 소화위장)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040678",
+    "ingredient_name": "판크레아틴",
+    "amount": 150,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M267745",
+    "ingredient_name": "디아스타제·프로테아제·셀룰라제",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M084062",
+    "ingredient_name": "프로자임6",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M050379",
+    "ingredient_name": "리파제",
+    "amount": 15,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M100297",
+    "ingredient_name": "셀룰라제",
+    "amount": 9,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223167",
+    "ingredient_name": "우르소데옥시콜산",
+    "amount": 20,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223083",
+    "ingredient_name": "시메티콘",
+    "amount": 60,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "199907311",
+  "name": "란스톤캡슐(란소프라졸과립)",
+  "company": "제일약품(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "란소프라졸과립 370.0밀리그램",
+  "ingredients_en": "Lansoprazole Granules",
+  "pick_reason": "영양제와 부딪히는 약: 위산억제제(PPI)(란소프라졸)",
+  "ingredients": [
+   {
+    "ingredient_code": "M091244",
+    "ingredient_name": "란소프라졸과립",
+    "amount": 370,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200000218",
+  "name": "볼그레액(철아세틸트랜스페린)",
+  "company": "(주)종근당",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "철아세틸트랜스페린 200.0밀리그램",
+  "ingredients_en": "Iron Acetyl Transferrin",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 비타민미네랄)",
+  "ingredients": [
+   {
+    "ingredient_code": "M094365",
+    "ingredient_name": "철아세틸트랜스페린",
+    "amount": 200,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "iron"
+   }
+  ]
+ },
+ {
+  "item_seq": "200008591",
+  "name": "바이엘아스피린정500밀리그람",
+  "company": "바이엘코리아(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "아스피린 500밀리그램",
+  "ingredients_en": "Aspirin",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040355",
+    "ingredient_name": "아스피린",
+    "amount": 500,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200008801",
+  "name": "제니칼캡슐120밀리그램(오르리스타트)",
+  "company": "(주)종근당",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "오르리스타트 120.0밀리그램",
+  "ingredients_en": "Orlistat",
+  "pick_reason": "영양제와 부딪히는 약: 비만치료제(오르리스타트)",
+  "ingredients": [
+   {
+    "ingredient_code": "M092754",
+    "ingredient_name": "오르리스타트",
+    "amount": 120,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200009027",
+  "name": "넥시움정20밀리그램(에스오메프라졸마그네슘)",
+  "company": "한국아스트라제네카(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "에스오메프라졸마그네슘삼수화물 22.3밀리그램",
+  "ingredients_en": "Esomeprazole Magnesium Trihydrate",
+  "pick_reason": "영양제와 부딪히는 약: 위산억제제(PPI)(에스오메프라졸)",
+  "ingredients": [
+   {
+    "ingredient_code": "M092321",
+    "ingredient_name": "에스오메프라졸마그네슘삼수화물",
+    "amount": 22.3,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200009061",
+  "name": "포사맥스70밀리그램정(알렌드론산나트륨수화물)",
+  "company": "한국오가논(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "알렌드론산나트륨수화물 91.37밀리그램",
+  "ingredients_en": "Sodium Alendronate Hydrate",
+  "pick_reason": "영양제와 부딪히는 약: 골다공증약(알렌드론산)",
+  "ingredients": [
+   {
+    "ingredient_code": "M222873",
+    "ingredient_name": "알렌드론산나트륨수화물",
+    "amount": 91.37,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "alendronate"
+   }
+  ]
+ },
+ {
+  "item_seq": "200101738",
+  "name": "훼로바-유서방정(건조황산제일철)",
+  "company": "부광약품(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "건조황산제일철 256.0밀리그램",
+  "ingredients_en": "Dried Ferrous Sulfate",
+  "pick_reason": "시나리오: S7 사진 등록 훼로바-유서방정",
+  "ingredients": [
+   {
+    "ingredient_code": "M040805",
+    "ingredient_name": "건조황산제일철",
+    "amount": 256,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "iron"
+   }
+  ]
+ },
+ {
+  "item_seq": "200108429",
+  "name": "아스피린프로텍트정100밀리그람",
+  "company": "바이엘코리아(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "아스피린 100밀리그램",
+  "ingredients_en": "Aspirin",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040355",
+    "ingredient_name": "아스피린",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200109769",
+  "name": "애드빌정(이부프로펜)",
+  "company": "헤일리온코리아주식회사",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "이부프로펜 200.0밀리그램",
+  "ingredients_en": "Ibuprofen",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M051259",
+    "ingredient_name": "이부프로펜",
+    "amount": 200,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200200486",
+  "name": "트레틴연질캡슐10mg(이소트레티노인)",
+  "company": "코오롱제약(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "이소트레티노인 10밀리그램",
+  "ingredients_en": "Isotretinoin",
+  "pick_reason": "영양제와 부딪히는 약: 여드름약(레티노이드)(이소트레티노인)",
+  "ingredients": [
+   {
+    "ingredient_code": "M088250",
+    "ingredient_name": "이소트레티노인",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200200772",
+  "name": "악토넬정35밀리그람(리세드론산나트륨)",
+  "company": "동아에스티(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "리세드론산나트륨 35.0밀리그램",
+  "ingredients_en": "Risedronate Sodium",
+  "pick_reason": "영양제와 부딪히는 약: 골다공증약(리세드론산)",
+  "ingredients": [
+   {
+    "ingredient_code": "M099562",
+    "ingredient_name": "리세드론산나트륨",
+    "amount": 35,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200210097",
+  "name": "크레스토정10밀리그램(로수바스타틴칼슘)",
+  "company": "한국아스트라제네카(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "로수바스타틴칼슘 10.40밀리그램",
+  "ingredients_en": "Rosuvastatin Calcium",
+  "pick_reason": "영양제와 부딪히는 약: 고지혈증약(로수바스타틴)",
+  "ingredients": [
+   {
+    "ingredient_code": "M095744",
+    "ingredient_name": "로수바스타틴칼슘",
+    "amount": 10.4,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200300406",
+  "name": "닥터베아제정",
+  "company": "(주)대웅제약",
+  "category": "일반의약품",
+  "ingredient_count": 9,
+  "ingredients_text": "디아스타제·프로테아제·셀룰라제 50.00밀리그램 | 판셀라제 30.00밀리그램 | 크리아제-PEG 80.00밀리그램 | 디아스타제·프로테아제100 10.00밀리그램 | 판프로신 20.00밀리그램 | 리파제 30.00밀리그램 | 브로멜라인 10.00밀리그램 | 우르소데옥시콜산 10.00밀리그램 | 시메티콘 70.00밀리그램",
+  "ingredients_en": "Bromelain/Crease·PEG/Diastase·Protease 100/Diastase·Protease·Cellulase/Lipase/Pancellase/Panprosin/Simethicone/Ursodeoxycholic Acid",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 소화위장)",
+  "ingredients": [
+   {
+    "ingredient_code": "M267745",
+    "ingredient_name": "디아스타제·프로테아제·셀룰라제",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M247370",
+    "ingredient_name": "판셀라제",
+    "amount": 30,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M090060",
+    "ingredient_name": "크리아제-PEG",
+    "amount": 80,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M261920",
+    "ingredient_name": "디아스타제·프로테아제100",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M247372",
+    "ingredient_name": "판프로신",
+    "amount": 20,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M050379",
+    "ingredient_name": "리파제",
+    "amount": 30,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M095415",
+    "ingredient_name": "브로멜라인",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223167",
+    "ingredient_name": "우르소데옥시콜산",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223083",
+    "ingredient_name": "시메티콘",
+    "amount": 70,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200300583",
+  "name": "다이톱현탁액(디옥타헤드랄스멕타이트)",
+  "company": "삼아제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "디옥타헤드랄스멕타이트 15그램",
+  "ingredients_en": "Dioctahedral Smectite/Dioctahedral Smectite",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 변비설사)",
+  "ingredients": [
+   {
+    "ingredient_code": "M084602",
+    "ingredient_name": "디옥타헤드랄스멕타이트",
+    "amount": 15,
+    "amount_raw": null,
+    "unit": "그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200300913",
+  "name": "이가탄에프캡슐",
+  "company": "명인제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 4,
+  "ingredients_text": "리소짐염산염 | 제피아스코르브산 | 알파-토코페롤아세테이트 농축분말 | 카르바조크롬",
+  "ingredients_en": "Alpha-Tocopherol Acetate Concentrate Powder/Ascorbic Acid Coated/Carbazochrome/Lysozyme Hydrochloride",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 잇몸)",
+  "ingredients": [
+   {
+    "ingredient_code": "M256212",
+    "ingredient_name": "리소짐염산염",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M236913",
+    "ingredient_name": "제피아스코르브산",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_c"
+   },
+   {
+    "ingredient_code": "M273456",
+    "ingredient_name": "알파-토코페롤아세테이트 농축분말",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_e"
+   },
+   {
+    "ingredient_code": "M051437",
+    "ingredient_name": "카르바조크롬",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200301116",
+  "name": "씬지록신정100마이크로그램(레보티록신나트륨수화물)",
+  "company": "(주)다림바이오텍",
+  "category": "전문의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "레보티록신나트륨수화물 0.1밀리그램",
+  "ingredients_en": "Levothyroxine Sodium Hydrate/Levothyroxine Sodium Hydrate",
+  "pick_reason": "시나리오: S2~S7 레보티록신(갑상선약) 제품 / 영양제와 부딪히는 약: 갑상선약(레보티록신)",
+  "ingredients": [
+   {
+    "ingredient_code": "M222989",
+    "ingredient_name": "레보티록신나트륨수화물",
+    "amount": 0.1,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "levothyroxine"
+   }
+  ]
+ },
+ {
+  "item_seq": "200307816",
+  "name": "테그레톨정200밀리그램(카르바마제핀)",
+  "company": "한국노바티스(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "카르바마제핀 200.0밀리그램",
+  "ingredients_en": "Carbamazepine",
+  "pick_reason": "영양제와 부딪히는 약: 항경련제(카르바마제핀)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040569",
+    "ingredient_name": "카르바마제핀",
+    "amount": 200,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200400463",
+  "name": "이지엔6애니연질캡슐(이부프로펜)",
+  "company": "(주)대웅제약",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "이부프로펜 200.00밀리그램",
+  "ingredients_en": "Ibuprofen",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M051259",
+    "ingredient_name": "이부프로펜",
+    "amount": 200,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200400485",
+  "name": "이지엔6프로연질캡슐(덱시부프로펜)(수출명:DAUFENSoftCapsule,SPEEDFEN)",
+  "company": "(주)대웅제약",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "덱시부프로펜 300.0밀리그램",
+  "ingredients_en": "Dexibuprofen",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M092057",
+    "ingredient_name": "덱시부프로펜",
+    "amount": 300,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200401015",
+  "name": "글루코파지정500밀리그램(메트포르민염산염)",
+  "company": "(주)유유제약",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "메트포르민염산염 500.00밀리그램",
+  "ingredients_en": "Metformin Hydrochloride",
+  "pick_reason": "영양제와 부딪히는 약: 당뇨약(메트포르민)",
+  "ingredients": [
+   {
+    "ingredient_code": "M223014",
+    "ingredient_name": "메트포르민염산염",
+    "amount": 500,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "metformin"
+   }
+  ]
+ },
+ {
+  "item_seq": "200401821",
+  "name": "씬지로이드정0.05밀리그램(레보티록신나트륨수화물)",
+  "company": "부광약품(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "레보티록신나트륨수화물 0.05밀리그램",
+  "ingredients_en": "Levothyroxine Sodium Hydrate",
+  "pick_reason": "시나리오: S2~S7 레보티록신(갑상선약) 제품 / 영양제와 부딪히는 약: 갑상선약(레보티록신)",
+  "ingredients": [
+   {
+    "ingredient_code": "M222989",
+    "ingredient_name": "레보티록신나트륨수화물",
+    "amount": 0.05,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "levothyroxine"
+   }
+  ]
+ },
+ {
+  "item_seq": "200409929",
+  "name": "알닥톤필름코팅정25밀리그람(스피로노락톤)",
+  "company": "한국화이자제약(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "스피로노락톤 25.00밀리그램",
+  "ingredients_en": "Spironolactone",
+  "pick_reason": "영양제와 부딪히는 약: 이뇨제(항알도스테론제)(스피로노락톤)",
+  "ingredients": [
+   {
+    "ingredient_code": "M099796",
+    "ingredient_name": "스피로노락톤",
+    "amount": 25,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200410090",
+  "name": "리피토정10밀리그램(아토르바스타틴칼슘삼수화물)",
+  "company": "비아트리스코리아(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "아토르바스타틴칼슘삼수화물 10.85밀리그램",
+  "ingredients_en": "Atorvastatin Calcium Trihydrate",
+  "pick_reason": "영양제와 부딪히는 약: 고지혈증약(아토르바스타틴)",
+  "ingredients": [
+   {
+    "ingredient_code": "M215219",
+    "ingredient_name": "아토르바스타틴칼슘삼수화물",
+    "amount": 10.85,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200502107",
+  "name": "쿠파린정5밀리그램(와파린나트륨)",
+  "company": "하나제약(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "와파린나트륨 5.0밀리그램",
+  "ingredients_en": "Warfarin Sodium",
+  "pick_reason": "영양제와 부딪히는 약: 항응고제(와파린)",
+  "ingredients": [
+   {
+    "ingredient_code": "M081434",
+    "ingredient_name": "와파린나트륨",
+    "amount": 5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "warfarin"
+   }
+  ]
+ },
+ {
+  "item_seq": "200600109",
+  "name": "크라비트정500밀리그람(레보플록사신)",
+  "company": "제일약품(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "레보플록사신 512.3밀리그램",
+  "ingredients_en": "Levofloxacin",
+  "pick_reason": "영양제와 부딪히는 약: 퀴놀론계 항생제(레보플록사신)",
+  "ingredients": [
+   {
+    "ingredient_code": "M085584",
+    "ingredient_name": "레보플록사신",
+    "amount": 512.3,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "levofloxacin"
+   }
+  ]
+ },
+ {
+  "item_seq": "200600456",
+  "name": "쿠파린정2밀리그램(와파린나트륨)",
+  "company": "하나제약(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "와파린나트륨 2.0밀리그램",
+  "ingredients_en": "Warfarin Sodium",
+  "pick_reason": "영양제와 부딪히는 약: 항응고제(와파린)",
+  "ingredients": [
+   {
+    "ingredient_code": "M081434",
+    "ingredient_name": "와파린나트륨",
+    "amount": 2,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "warfarin"
+   }
+  ]
+ },
+ {
+  "item_seq": "200610627",
+  "name": "사리돈에이정",
+  "company": "바이엘코리아(주)",
+  "category": "일반의약품",
+  "ingredient_count": 3,
+  "ingredients_text": "아세트아미노펜 250밀리그램 | 이소프로필안티피린 150밀리그램 | 카페인무수물 50밀리그램",
+  "ingredients_en": "Acetaminophen/Anhydrous Caffeine/Isopropylantipyrine",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": 250,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040499",
+    "ingredient_name": "이소프로필안티피린",
+    "amount": 150,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223183",
+    "ingredient_name": "카페인무수물",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200610660",
+  "name": "노바스크정5밀리그람(암로디핀베실산염)",
+  "company": "비아트리스코리아(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "암로디핀베실산염 6.944밀리그램",
+  "ingredients_en": "Amlodipine Besylate",
+  "pick_reason": "영양제와 부딪히는 약: 혈압약(암로디핀)",
+  "ingredients": [
+   {
+    "ingredient_code": "M222875",
+    "ingredient_name": "암로디핀베실산염",
+    "amount": 6.944,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "amlodipine"
+   }
+  ]
+ },
+ {
+  "item_seq": "200610765",
+  "name": "지르텍정(세티리진염산염)",
+  "company": "한국유씨비제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "세티리진염산염 10밀리그램",
+  "ingredients_en": "Cetirizine Hydrochloride",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 알레르기)",
+  "ingredients": [
+   {
+    "ingredient_code": "M222857",
+    "ingredient_name": "세티리진염산염",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200700547",
+  "name": "판피린큐액",
+  "company": "동아제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 6,
+  "ingredients_text": "티페피딘시트르산염 10밀리그램 | 구아이페네신 42밀리그램 | dl-메틸에페드린염산염 18밀리그램 | 클로르페니라민말레산염 2.5밀리그램 | 카페인무수물 30밀리그램 | 아세트아미노펜 300밀리그램",
+  "ingredients_en": "Acetaminophen/Anhydrous Caffeine/Chlorpheniramine Maleate/DL-Methylephedrine Hydrochloride/Guaifenesin/Tipepidine Citrate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 감기)",
+  "ingredients": [
+   {
+    "ingredient_code": "M254445",
+    "ingredient_name": "티페피딘시트르산염",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M050058",
+    "ingredient_name": "구아이페네신",
+    "amount": 42,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M204422",
+    "ingredient_name": "dl-메틸에페드린염산염",
+    "amount": 18,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223211",
+    "ingredient_name": "클로르페니라민말레산염",
+    "amount": 2.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223183",
+    "ingredient_name": "카페인무수물",
+    "amount": 30,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": 300,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200700907",
+  "name": "플라빅스정75밀리그램(클로피도그렐황산염)",
+  "company": "(주)한독",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "클로피도그렐황산염 97.875밀리그램",
+  "ingredients_en": "Clopidogrel Bisulfate",
+  "pick_reason": "영양제와 부딪히는 약: 항혈소판제(클로피도그렐)",
+  "ingredients": [
+   {
+    "ingredient_code": "M250541",
+    "ingredient_name": "클로피도그렐황산염",
+    "amount": 97.875,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200701021",
+  "name": "코다론정(아미오다론염산염)",
+  "company": "(주)한독",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "아미오다론염산염 200.0밀리그램",
+  "ingredients_en": "Amiodarone Hydrochloride",
+  "pick_reason": "영양제와 부딪히는 약: 항부정맥제(아미오다론)",
+  "ingredients": [
+   {
+    "ingredient_code": "M264471",
+    "ingredient_name": "아미오다론염산염",
+    "amount": 200,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200703429",
+  "name": "캐롤에프정(이부프로펜아르기닌)",
+  "company": "일동제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "이부프로펜아르기닌 368.9밀리그램",
+  "ingredients_en": "Ibuprofen Arginine",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M209277",
+    "ingredient_name": "이부프로펜아르기닌",
+    "amount": 368.9,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200709544",
+  "name": "임팩타민정",
+  "company": "(주)대웅제약",
+  "category": "일반의약품",
+  "ingredient_count": 8,
+  "ingredients_text": "티아민질산염 10.000밀리그램 | 리보플라빈 46.013밀리그램 | 니코틴산아미드 20.000밀리그램 | 판토텐산칼슘 15.000밀리그램 | 피리독신염산염 25.000밀리그램 | 폴산 0.250밀리그램 | 시아노코발라민1000배산 50.000밀리그램 | 산화아연 31.167밀리그램",
+  "ingredients_en": "Calcium Pantothenate/Cyanocobalamin Powder 0.1%/Folic Acid/Nicotinamide/Pyridoxine Hydrochloride/Riboflavin/Thiamine Nitrate/Zinc Oxide",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 비타민미네랄)",
+  "ingredients": [
+   {
+    "ingredient_code": "M223262",
+    "ingredient_name": "티아민질산염",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b1"
+   },
+   {
+    "ingredient_code": "M040133",
+    "ingredient_name": "리보플라빈",
+    "amount": 46.013,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b2"
+   },
+   {
+    "ingredient_code": "M040064",
+    "ingredient_name": "니코틴산아미드",
+    "amount": 20,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b3"
+   },
+   {
+    "ingredient_code": "M244748",
+    "ingredient_name": "판토텐산칼슘",
+    "amount": 15,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b5"
+   },
+   {
+    "ingredient_code": "M204304",
+    "ingredient_name": "피리독신염산염",
+    "amount": 25,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b6"
+   },
+   {
+    "ingredient_code": "M223289",
+    "ingredient_name": "폴산",
+    "amount": 0.25,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b9"
+   },
+   {
+    "ingredient_code": "M265578",
+    "ingredient_name": "시아노코발라민1000배산",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b12"
+   },
+   {
+    "ingredient_code": "M243785",
+    "ingredient_name": "산화아연",
+    "amount": 31.167,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "zinc"
+   }
+  ]
+ },
+ {
+  "item_seq": "200711426",
+  "name": "포사맥스플러스디정",
+  "company": "한국오가논(주)",
+  "category": "전문의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "알렌드론산나트륨수화물 91.37밀리그램 | 농축콜레칼시페롤 과립 53.33밀리그램",
+  "ingredients_en": "Cholecalciferol Concentrate Granules/Sodium Alendronate Hydrate",
+  "pick_reason": "영양제와 부딪히는 약: 골다공증약(알렌드론산)",
+  "ingredients": [
+   {
+    "ingredient_code": "M222873",
+    "ingredient_name": "알렌드론산나트륨수화물",
+    "amount": 91.37,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "alendronate"
+   },
+   {
+    "ingredient_code": "M256378",
+    "ingredient_name": "농축콜레칼시페롤 과립",
+    "amount": 53.33,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_d"
+   }
+  ]
+ },
+ {
+  "item_seq": "200801645",
+  "name": "개비스콘더블액션현탁액",
+  "company": "(유)옥시레킷벤키저",
+  "category": "일반의약품",
+  "ingredient_count": 3,
+  "ingredients_text": "알긴산나트륨 5.00그램 | 탄산칼슘 3.25그램 | 탄산수소나트륨 2.13그램",
+  "ingredients_en": "Calcium Carbonate/Sodium Alginate/Sodium Bicarbonate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 소화위장)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040385",
+    "ingredient_name": "알긴산나트륨",
+    "amount": 5,
+    "amount_raw": null,
+    "unit": "그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M051564",
+    "ingredient_name": "탄산칼슘",
+    "amount": 3.25,
+    "amount_raw": null,
+    "unit": "그램",
+    "source": "식약처 주성분",
+    "substance_id": "calcium"
+   },
+   {
+    "ingredient_code": "M040631",
+    "ingredient_name": "탄산수소나트륨",
+    "amount": 2.13,
+    "amount_raw": null,
+    "unit": "그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200806191",
+  "name": "씨콜드플러스정",
+  "company": "(주)대웅제약",
+  "category": "일반의약품",
+  "ingredient_count": 19,
+  "ingredients_text": "아스코르브산과립97% 85.88밀리그램 | 구아이페네신 41.6밀리그램 | 리보플라빈3배산 6밀리그램 | 티아민질산염 4.16밀리그램 | 아세트아미노펜 200밀리그램 | 슈도에페드린염산염 15밀리그램 | dl-메틸에페드린염산염 12.5밀리그램 | 덱스트로메토르판브롬화수소산염수화물 8밀리그램 | 클로르페니라민말레산염 1.25밀리그램 | 카페인무수물 18.75밀리그램",
+  "ingredients_en": "Acetaminophen/Acetaminophen/Anhydrous Caffeine/Ascorbic Acid Granules 97%/Ascorbic Acid Granules 97%/Chlorpheniramine Maleate/Chlorpheniramine Maleate/DL-Methylephedrine Hydrochloride/DL-Methylephedrine Hydrochloride/Dextromethorphan Hydrobromide Hydrate/Dextromethorphan Hydrobromide Hydrate/Guaifenesin/Guaifenesin/Pseudoephedrine Hydrochloride/Pseudoephedrine Hydrochloride/Riboflavin Powder 33.3%/Riboflavin Powder 33.3%/Thiamine Nitrate/Thiamine Nitrate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 감기)",
+  "ingredients": [
+   {
+    "ingredient_code": "M234001",
+    "ingredient_name": "아스코르브산과립97%",
+    "amount": 85.88,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_c"
+   },
+   {
+    "ingredient_code": "M050058",
+    "ingredient_name": "구아이페네신",
+    "amount": 41.6,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M100456",
+    "ingredient_name": "리보플라빈3배산",
+    "amount": 6,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b2"
+   },
+   {
+    "ingredient_code": "M223262",
+    "ingredient_name": "티아민질산염",
+    "amount": 4.16,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b1"
+   },
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": 200,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M203364",
+    "ingredient_name": "슈도에페드린염산염",
+    "amount": 15,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M204422",
+    "ingredient_name": "dl-메틸에페드린염산염",
+    "amount": 12.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M222957",
+    "ingredient_name": "덱스트로메토르판브롬화수소산염수화물",
+    "amount": 8,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223211",
+    "ingredient_name": "클로르페니라민말레산염",
+    "amount": 1.25,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223183",
+    "ingredient_name": "카페인무수물",
+    "amount": 18.75,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200807251",
+  "name": "테라플루데이타임건조시럽",
+  "company": "헤일리온코리아주식회사",
+  "category": "일반의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "아세트아미노펜 650밀리그램 | 페닐레프린염산염 10밀리그램",
+  "ingredients_en": "Acetaminophen/Phenylephrine Hydrochloride",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 감기)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": 650,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M222724",
+    "ingredient_name": "페닐레프린염산염",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200807310",
+  "name": "슬리펠정25밀리그램(디펜히드라민염산염)",
+  "company": "한미약품(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "디펜히드라민염산염 25밀리그램",
+  "ingredients_en": "Diphenhydramine Hydrochloride",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 수면멀미)",
+  "ingredients": [
+   {
+    "ingredient_code": "M222973",
+    "ingredient_name": "디펜히드라민염산염",
+    "amount": 25,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200807400",
+  "name": "야즈정",
+  "company": "바이엘코리아(주)",
+  "category": "전문의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "드로스피레논 3.000밀리그램 | 에티닐에스트라디올(EE-베타덱스 포접체로서) 0.020밀리그램",
+  "ingredients_en": "Drospirenone/Ethinyl Estradiol Inclusion Complex",
+  "pick_reason": "영양제와 부딪히는 약: 경구피임약(드로스피레논·에티닐에스트라디올)",
+  "ingredients": [
+   {
+    "ingredient_code": "M211129",
+    "ingredient_name": "드로스피레논",
+    "amount": 3,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M259133",
+    "ingredient_name": "에티닐에스트라디올(EE-베타덱스 포접체로서)",
+    "amount": 0.02,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200807527",
+  "name": "조코정20밀리그램(심바스타틴)",
+  "company": "한국오가논(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "심바스타틴 20.0밀리그램",
+  "ingredients_en": "Simvastatin",
+  "pick_reason": "영양제와 부딪히는 약: 고지혈증약(심바스타틴)",
+  "ingredients": [
+   {
+    "ingredient_code": "M089710",
+    "ingredient_name": "심바스타틴",
+    "amount": 20,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200810700",
+  "name": "펜잘큐정",
+  "company": "(주)종근당",
+  "category": "일반의약품",
+  "ingredient_count": 3,
+  "ingredients_text": "아세트아미노펜 300.00밀리그램 | 카페인무수물 50.00밀리그램 | 에텐자미드 200.00밀리그램",
+  "ingredients_en": "Acetaminophen/Anhydrous Caffeine/Ethenzamide",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": 300,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223183",
+    "ingredient_name": "카페인무수물",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040417",
+    "ingredient_name": "에텐자미드",
+    "amount": 200,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200811608",
+  "name": "코자플러스정",
+  "company": "한국오가논(주)",
+  "category": "전문의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "로사르탄칼륨 50.00밀리그램 | 히드로클로로티아지드 12.50밀리그램",
+  "ingredients_en": "Hydrochlorothiazide/Losartan Potassium",
+  "pick_reason": "영양제와 부딪히는 약: 혈압약(로사르탄)",
+  "ingredients": [
+   {
+    "ingredient_code": "M249673",
+    "ingredient_name": "로사르탄칼륨",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "losartan"
+   },
+   {
+    "ingredient_code": "M223356",
+    "ingredient_name": "히드로클로로티아지드",
+    "amount": 12.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200811814",
+  "name": "코자정(로사르탄칼륨)",
+  "company": "한국오가논(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "로사르탄칼륨 50.0밀리그램",
+  "ingredients_en": "Losartan Potassium",
+  "pick_reason": "영양제와 부딪히는 약: 혈압약(로사르탄)",
+  "ingredients": [
+   {
+    "ingredient_code": "M249673",
+    "ingredient_name": "로사르탄칼륨",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "losartan"
+   }
+  ]
+ },
+ {
+  "item_seq": "200902301",
+  "name": "그날엔정",
+  "company": "경동제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 3,
+  "ingredients_text": "이부프로펜 75.0밀리그램 | 알릴이소프로필아세틸우레아 30.0밀리그램 | 카페인무수물 40.0밀리그램",
+  "ingredients_en": "Allylisopropylacetylurea/Anhydrous Caffeine/Ibuprofen",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M051259",
+    "ingredient_name": "이부프로펜",
+    "amount": 75,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M255360",
+    "ingredient_name": "알릴이소프로필아세틸우레아",
+    "amount": 30,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223183",
+    "ingredient_name": "카페인무수물",
+    "amount": 40,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200905692",
+  "name": "클라리틴정(로라타딘)",
+  "company": "바이엘코리아(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "로라타딘",
+  "ingredients_en": "Loratadine",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 알레르기)",
+  "ingredients": [
+   {
+    "ingredient_code": "M082724",
+    "ingredient_name": "로라타딘",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200906478",
+  "name": "둘코락스에스장용정",
+  "company": "오펠라헬스케어코리아(주)",
+  "category": "일반의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "비사코딜 5.000밀리그램 | 도큐세이트나트륨 16.750밀리그램",
+  "ingredients_en": "Bisacodyl/Docusate Sodium",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 변비설사)",
+  "ingredients": [
+   {
+    "ingredient_code": "M050687",
+    "ingredient_name": "비사코딜",
+    "amount": 5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M081950",
+    "ingredient_name": "도큐세이트나트륨",
+    "amount": 16.75,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "201002060",
+  "name": "레볼레이드정25밀리그램(엘트롬보팍올라민)",
+  "company": "한국노바티스(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "엘트롬보팍올라민 31.9밀리그램",
+  "ingredients_en": "Eltrombopag Olamine",
+  "pick_reason": "영양제와 부딪히는 약: 혈소판감소증약(엘트롬보팍)",
+  "ingredients": [
+   {
+    "ingredient_code": "M249549",
+    "ingredient_name": "엘트롬보팍올라민",
+    "amount": 31.9,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "201206997",
+  "name": "삐콤씨정",
+  "company": "(주)유한양행",
+  "category": "일반의약품",
+  "ingredient_count": 9,
+  "ingredients_text": "티아민질산염 15.0밀리그램 | 리보플라빈 10밀리그램 | 피리독신염산염 5.0밀리그램 | 시아노코발라민100배산 0.5밀리그램 | 아스코르브산과립97% 618.6밀리그램 | 판토텐산칼슘 23.2밀리그램 | 니코틴산아미드 25밀리그램 | 토코페롤아세테이트 2배산 40밀리그램 | 셀레늄함유건조효모 40밀리그램",
+  "ingredients_en": "Ascorbic Acid Granules 97%/Calcium Pantothenate/Cyanocobalamin Powder 1%/Nicotinamide/Pyridoxine Hydrochloride/Riboflavin/Selenium In Dried Yeast/Thiamine Nitrate/Tocopherol Acetate Powder 50%",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 비타민미네랄)",
+  "ingredients": [
+   {
+    "ingredient_code": "M223262",
+    "ingredient_name": "티아민질산염",
+    "amount": 15,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b1"
+   },
+   {
+    "ingredient_code": "M040133",
+    "ingredient_name": "리보플라빈",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b2"
+   },
+   {
+    "ingredient_code": "M204304",
+    "ingredient_name": "피리독신염산염",
+    "amount": 5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b6"
+   },
+   {
+    "ingredient_code": "M256157",
+    "ingredient_name": "시아노코발라민100배산",
+    "amount": 0.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b12"
+   },
+   {
+    "ingredient_code": "M234001",
+    "ingredient_name": "아스코르브산과립97%",
+    "amount": 618.6,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_c"
+   },
+   {
+    "ingredient_code": "M244748",
+    "ingredient_name": "판토텐산칼슘",
+    "amount": 23.2,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b5"
+   },
+   {
+    "ingredient_code": "M040064",
+    "ingredient_name": "니코틴산아미드",
+    "amount": 25,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b3"
+   },
+   {
+    "ingredient_code": "M255819",
+    "ingredient_name": "토코페롤아세테이트 2배산",
+    "amount": 40,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_e"
+   },
+   {
+    "ingredient_code": "M089702",
+    "ingredient_name": "셀레늄함유건조효모",
+    "amount": 40,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "selenium"
+   }
+  ]
+ },
+ {
+  "item_seq": "201300036",
+  "name": "화이투벤큐연질캡슐",
+  "company": "동화약품(주)",
+  "category": "일반의약품",
+  "ingredient_count": 6,
+  "ingredients_text": "아세트아미노펜 180.00밀리그램 | 구아이페네신 20.84밀리그램 | 슈도에페드린염산염 15.00밀리그램 | dl-메틸에페드린염산염 12.50밀리그램 | 덱스트로메토르판브롬화수소산염수화물 8.00밀리그램 | 트리프롤리딘염산염수화물 0.66밀리그램",
+  "ingredients_en": "Acetaminophen/DL-Methylephedrine Hydrochloride/Dextromethorphan Hydrobromide Hydrate/Guaifenesin/Pseudoephedrine Hydrochloride/Triprolidine Hydrochloride Hydrate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 감기)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": 180,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M050058",
+    "ingredient_name": "구아이페네신",
+    "amount": 20.84,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M203364",
+    "ingredient_name": "슈도에페드린염산염",
+    "amount": 15,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M204422",
+    "ingredient_name": "dl-메틸에페드린염산염",
+    "amount": 12.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M222957",
+    "ingredient_name": "덱스트로메토르판브롬화수소산염수화물",
+    "amount": 8,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M250460",
+    "ingredient_name": "트리프롤리딘염산염수화물",
+    "amount": 0.66,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "201307920",
+  "name": "마그비연질캡슐",
+  "company": "(주)유한양행",
+  "category": "일반의약품",
+  "ingredient_count": 4,
+  "ingredients_text": "토코페롤아세테이트 500밀리그램 | 산화마그네슘 250밀리그램 | 티아민질산염 50밀리그램 | 피리독신염산염 50밀리그램",
+  "ingredients_en": "Magnesium Oxide/Pyridoxine Hydrochloride/Thiamine Nitrate/Tocopherol Acetate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 비타민미네랄)",
+  "ingredients": [
+   {
+    "ingredient_code": "M223240",
+    "ingredient_name": "토코페롤아세테이트",
+    "amount": 500,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_e"
+   },
+   {
+    "ingredient_code": "M040262",
+    "ingredient_name": "산화마그네슘",
+    "amount": 250,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "magnesium"
+   },
+   {
+    "ingredient_code": "M223262",
+    "ingredient_name": "티아민질산염",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b1"
+   },
+   {
+    "ingredient_code": "M204304",
+    "ingredient_name": "피리독신염산염",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b6"
+   }
+  ]
+ },
+ {
+  "item_seq": "201405042",
+  "name": "메이킨큐장용정",
+  "company": "명인제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 4,
+  "ingredients_text": "비사코딜 5밀리그램 | 카산트라놀 14밀리그램 | 도큐세이트나트륨 14밀리그램 | 우르소데옥시콜산 6밀리그램",
+  "ingredients_en": "Bisacodyl/Casanthranol/Docusate Sodium/Ursodeoxycholic Acid",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 변비설사)",
+  "ingredients": [
+   {
+    "ingredient_code": "M050687",
+    "ingredient_name": "비사코딜",
+    "amount": 5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M201737",
+    "ingredient_name": "카산트라놀",
+    "amount": 14,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M081950",
+    "ingredient_name": "도큐세이트나트륨",
+    "amount": 14,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223167",
+    "ingredient_name": "우르소데옥시콜산",
+    "amount": 6,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "201503959",
+  "name": "콜대원콜드시럽",
+  "company": "대원제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 6,
+  "ingredients_text": "아세트아미노펜 325밀리그램 | 클로르페니라민말레산염 2.5밀리그램 | 펜톡시베린시트르산염 12밀리그램 | dl-메틸에페드린염산염 18밀리그램 | 구아이페네신 42밀리그램 | 카페인무수물 30밀리그램",
+  "ingredients_en": "Acetaminophen/Anhydrous Caffeine/Chlorpheniramine Maleate/DL-Methylephedrine Hydrochloride/Guaifenesin/Pentoxyverine Citrate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 감기)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": 325,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223211",
+    "ingredient_name": "클로르페니라민말레산염",
+    "amount": 2.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223287",
+    "ingredient_name": "펜톡시베린시트르산염",
+    "amount": 12,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M204422",
+    "ingredient_name": "dl-메틸에페드린염산염",
+    "amount": 18,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M050058",
+    "ingredient_name": "구아이페네신",
+    "amount": 42,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223183",
+    "ingredient_name": "카페인무수물",
+    "amount": 30,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "201508281",
+  "name": "벤포벨정",
+  "company": "(주)종근당",
+  "category": "일반의약품",
+  "ingredient_count": 16,
+  "ingredients_text": "벤포티아민 100.0밀리그램 | 아스코르브산97%과립 52.1밀리그램 | 콜레칼시페롤과립 10.0밀리그램 | 토코페롤아세테이트 2배산 40.0밀리그램 | 우르소데옥시콜산 30.0밀리그램 | γ-오리자놀 5.0밀리그램 | 유비데카레논 2.0밀리그램 | 산화아연 30.0밀리그램 | 리보플라빈 100.0밀리그램 | 니코틴산아미드 10.0밀리그램 | 피리독신염산염 100.0밀리그램 | 판토텐산칼슘 5.0밀리그램 | 비오틴 10.0마이크로그램 | 이노시톨 50.0밀리그램 | 폴산 10.0마이크로그램 | 시아노코발라민1% 100.0밀리그램",
+  "ingredients_en": "Ascorbic Acid Granules 97%/Benfotiamine/Biotin/Calcium Pantothenate/Cholecalciferol Granules/Cyanocobalamin 1%/Folic Acid/Gamma-Oryzanol/Inositol/Nicotinamide/Pyridoxine Hydrochloride/Riboflavin/Tocopherol Acetate Powder 50%/Ubidecarenone/Ursodeoxycholic Acid/Zinc Oxide",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 비타민미네랄)",
+  "ingredients": [
+   {
+    "ingredient_code": "M096428",
+    "ingredient_name": "벤포티아민",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b1"
+   },
+   {
+    "ingredient_code": "M227509",
+    "ingredient_name": "아스코르브산97%과립",
+    "amount": 52.1,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_c"
+   },
+   {
+    "ingredient_code": "M099907",
+    "ingredient_name": "콜레칼시페롤과립",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_d"
+   },
+   {
+    "ingredient_code": "M255819",
+    "ingredient_name": "토코페롤아세테이트 2배산",
+    "amount": 40,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_e"
+   },
+   {
+    "ingredient_code": "M223167",
+    "ingredient_name": "우르소데옥시콜산",
+    "amount": 30,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M208932",
+    "ingredient_name": "γ-오리자놀",
+    "amount": 5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M051233",
+    "ingredient_name": "유비데카레논",
+    "amount": 2,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "coenzyme_q10"
+   },
+   {
+    "ingredient_code": "M243785",
+    "ingredient_name": "산화아연",
+    "amount": 30,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "zinc"
+   },
+   {
+    "ingredient_code": "M040133",
+    "ingredient_name": "리보플라빈",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b2"
+   },
+   {
+    "ingredient_code": "M040064",
+    "ingredient_name": "니코틴산아미드",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b3"
+   },
+   {
+    "ingredient_code": "M204304",
+    "ingredient_name": "피리독신염산염",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b6"
+   },
+   {
+    "ingredient_code": "M244748",
+    "ingredient_name": "판토텐산칼슘",
+    "amount": 5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b5"
+   },
+   {
+    "ingredient_code": "M050704",
+    "ingredient_name": "비오틴",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "마이크로그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b7"
+   },
+   {
+    "ingredient_code": "M040488",
+    "ingredient_name": "이노시톨",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223289",
+    "ingredient_name": "폴산",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "마이크로그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b9"
+   },
+   {
+    "ingredient_code": "M081020",
+    "ingredient_name": "시아노코발라민1%",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b12"
+   }
+  ]
+ },
+ {
+  "item_seq": "201606593",
+  "name": "훼로바맘스케어정",
+  "company": "부광약품(주)",
+  "category": "일반의약품",
+  "ingredient_count": 15,
+  "ingredients_text": "폴산 0.5밀리그램 | 토코페롤아세테이트 2배산 30밀리그램 | 무수인산수소칼슘 336.62밀리그램 | 황산망간 2.31밀리그램 | 황산아연 11.4밀리그램 | 셀레늄함유건조효모 13.89밀리그램 | 폴리사카리드철착염 63.05밀리그램 | 티아민질산염 1.6밀리그램 | 리보플라빈 1.8밀리그램 | 니코틴산아미드 19밀리그램 | 피리독신염산염 2.6밀리그램 | 아스코르브산 100밀리그램 | 비오틴 0.2밀리그램 | 시아노코발라민1000배산 4밀리그램 | 판토텐산칼슘 10밀리그램",
+  "ingredients_en": "Anhydrous Dibasic Calcium Phosphate/Ascorbic Acid/Biotin/Calcium Pantothenate/Cyanocobalamin Powder 0.1%/Folic Acid/Manganese Sulfate/Nicotinamide/Polysaccharide Iron Complex/Pyridoxine Hydrochloride/Riboflavin/Selenium In Dried Yeast/Thiamine Nitrate/Tocopherol Acetate Powder 50%/Zinc Sulfate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 비타민미네랄)",
+  "ingredients": [
+   {
+    "ingredient_code": "M223289",
+    "ingredient_name": "폴산",
+    "amount": 0.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b9"
+   },
+   {
+    "ingredient_code": "M255819",
+    "ingredient_name": "토코페롤아세테이트 2배산",
+    "amount": 30,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_e"
+   },
+   {
+    "ingredient_code": "M091374",
+    "ingredient_name": "무수인산수소칼슘",
+    "amount": 336.62,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "calcium"
+   },
+   {
+    "ingredient_code": "M051962",
+    "ingredient_name": "황산망간",
+    "amount": 2.31,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040802",
+    "ingredient_name": "황산아연",
+    "amount": 11.4,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "zinc"
+   },
+   {
+    "ingredient_code": "M244365",
+    "ingredient_name": "셀레늄함유건조효모",
+    "amount": 13.89,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "selenium"
+   },
+   {
+    "ingredient_code": "M251365",
+    "ingredient_name": "폴리사카리드철착염",
+    "amount": 63.05,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "iron"
+   },
+   {
+    "ingredient_code": "M223262",
+    "ingredient_name": "티아민질산염",
+    "amount": 1.6,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b1"
+   },
+   {
+    "ingredient_code": "M040133",
+    "ingredient_name": "리보플라빈",
+    "amount": 1.8,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b2"
+   },
+   {
+    "ingredient_code": "M040064",
+    "ingredient_name": "니코틴산아미드",
+    "amount": 19,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b3"
+   },
+   {
+    "ingredient_code": "M204304",
+    "ingredient_name": "피리독신염산염",
+    "amount": 2.6,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b6"
+   },
+   {
+    "ingredient_code": "M258994",
+    "ingredient_name": "아스코르브산",
+    "amount": 100,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_c"
+   },
+   {
+    "ingredient_code": "M050704",
+    "ingredient_name": "비오틴",
+    "amount": 0.2,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b7"
+   },
+   {
+    "ingredient_code": "M255994",
+    "ingredient_name": "시아노코발라민1000배산",
+    "amount": 4,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b12"
+   },
+   {
+    "ingredient_code": "M243439",
+    "ingredient_name": "판토텐산칼슘",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b5"
+   }
+  ]
+ },
+ {
+  "item_seq": "201700750",
+  "name": "헤모큐수정",
+  "company": "(주)대웅제약",
+  "category": "일반의약품",
+  "ingredient_count": 5,
+  "ingredients_text": "폴리사카리드철착염 76.09밀리그램 | 폴산 0.5밀리그램 | 피리독신염산염 10.0밀리그램 | 아스코르브산과립97% 103.09밀리그램 | 시아노코발라민100배산 50.0밀리그램",
+  "ingredients_en": "Ascorbic Acid Granules 97%/Cyanocobalamin Powder 1%/Folic Acid/Polysaccharide Iron Complex/Pyridoxine Hydrochloride",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 비타민미네랄)",
+  "ingredients": [
+   {
+    "ingredient_code": "M251365",
+    "ingredient_name": "폴리사카리드철착염",
+    "amount": 76.09,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "iron"
+   },
+   {
+    "ingredient_code": "M223289",
+    "ingredient_name": "폴산",
+    "amount": 0.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b9"
+   },
+   {
+    "ingredient_code": "M204304",
+    "ingredient_name": "피리독신염산염",
+    "amount": 10,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b6"
+   },
+   {
+    "ingredient_code": "M234001",
+    "ingredient_name": "아스코르브산과립97%",
+    "amount": 103.09,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_c"
+   },
+   {
+    "ingredient_code": "M256157",
+    "ingredient_name": "시아노코발라민100배산",
+    "amount": 50,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b12"
+   }
+  ]
+ },
+ {
+  "item_seq": "201803204",
+  "name": "동성정로환에프정",
+  "company": "동성제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 5,
+  "ingredients_text": "구아야콜 25.00밀리그램 | 황백엑스산 40.60밀리그램 | 황련가루 12.50밀리그램 | 감초가루 12.50밀리그램 | 진피건조엑스(5→1)  8.40밀리그램",
+  "ingredients_en": "Citrus Unshiu Peel Dried Extract (5→1)/Coptis Rhizome Powder/Glycyrrhiza Powder/Guaiacol/Phellodendron Bark Extract Powder",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 변비설사)",
+  "ingredients": [
+   {
+    "ingredient_code": "M050057",
+    "ingredient_name": "구아야콜",
+    "amount": 25,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M085093",
+    "ingredient_name": "황백엑스산",
+    "amount": 40.6,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M082987",
+    "ingredient_name": "황련가루",
+    "amount": 12.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M070009",
+    "ingredient_name": "감초가루",
+    "amount": 12.5,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M268718",
+    "ingredient_name": "진피건조엑스(5→1)",
+    "amount": 8.4,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "201905731",
+  "name": "씨프로바이정250밀리그램(시프로플록사신염산염수화물)",
+  "company": "바이엘코리아(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "시프로플록사신염산염수화물 291밀리그램",
+  "ingredients_en": "Ciprofloxacin Hydrochloride Hydrate",
+  "pick_reason": "영양제와 부딪히는 약: 퀴놀론계 항생제(시프로플록사신)",
+  "ingredients": [
+   {
+    "ingredient_code": "M223091",
+    "ingredient_name": "시프로플록사신염산염수화물",
+    "amount": 291,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": "ciprofloxacin"
+   }
+  ]
+ },
+ {
+  "item_seq": "201908533",
+  "name": "탁센엠지연질캡슐",
+  "company": "(주)녹십자",
+  "category": "일반의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "이부프로펜 | 메타규산알루민산마그네슘",
+  "ingredients_en": "Ibuprofen/Magnesium Aluminometasilicate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M051259",
+    "ingredient_name": "이부프로펜",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M050448",
+    "ingredient_name": "메타규산알루민산마그네슘",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "202001517",
+  "name": "칼디원정",
+  "company": "경동제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "탄산칼슘 95%과립 | 농축콜레칼시페롤",
+  "ingredients_en": "Calcium Carbonate Granules 95%/Cholecalciferol Concentrate",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 비타민미네랄)",
+  "ingredients": [
+   {
+    "ingredient_code": "M278707",
+    "ingredient_name": "탄산칼슘 95%과립",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "calcium"
+   },
+   {
+    "ingredient_code": "M086116",
+    "ingredient_name": "농축콜레칼시페롤",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_d"
+   }
+  ]
+ },
+ {
+  "item_seq": "202007317",
+  "name": "알파디연질캡슐(알파칼시돌)",
+  "company": "익수제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "알파칼시돌",
+  "ingredients_en": "Alfacalcidol",
+  "pick_reason": "영양제와 부딪히는 약: 활성형 비타민D(알파칼시돌)",
+  "ingredients": [
+   {
+    "ingredient_code": "M081303",
+    "ingredient_name": "알파칼시돌",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "202008963",
+  "name": "하벤에스액",
+  "company": "고려제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 7,
+  "ingredients_text": "아세트아미노펜 | 구아이페네신 | 슈도에페드린염산염 | DL-메틸에페드린염산염 | 카페인무수물 | 덱스트로메토르판브롬화수소산염수화물 | 클로르페니라민말레산염",
+  "ingredients_en": "Acetaminophen/Anhydrous Caffeine/Chlorpheniramine Maleate/DL-Methylephedrine Hydrochloride/Dextromethorphan Hydrobromide Hydrate/Guaifenesin/Pseudoephedrine Hydrochloride",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 감기)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M050058",
+    "ingredient_name": "구아이페네신",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M203364",
+    "ingredient_name": "슈도에페드린염산염",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M264046",
+    "ingredient_name": "DL-메틸에페드린염산염",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223183",
+    "ingredient_name": "카페인무수물",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M222957",
+    "ingredient_name": "덱스트로메토르판브롬화수소산염수화물",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223211",
+    "ingredient_name": "클로르페니라민말레산염",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "202104023",
+  "name": "속청큐액",
+  "company": "(주)종근당",
+  "category": "일반의약품",
+  "ingredient_count": 9,
+  "ingredients_text": "육계50%에탄올틴크(1→5) | 진피70%에탄올틴크(1→5) | 건강50%에탄올틴크(1→5) | 용담유동엑스(1→1) | 감초엑스 | DL-카르니틴염산염 | L-멘톨 | 후박 | 우르소데옥시콜산",
+  "ingredients_en": "Cinnamon Bark 50% Ethanol Tincture (1→5)/Citrus Unshiu Peel 70% Ethanol Tincture (1→5)/DL-Carnitine Hydrochloride/Gentian Root and Rhizome Extract(1→1)/Ginger 50% Ethanol Tincture(1→5)/Glycyrrhiza Extract/L-Menthol/Magnolia Bark/Ursodeoxycholic Acid",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 소화위장)",
+  "ingredients": [
+   {
+    "ingredient_code": "M280907",
+    "ingredient_name": "육계50%에탄올틴크(1→5)",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M101459",
+    "ingredient_name": "진피70%에탄올틴크(1→5)",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M280910",
+    "ingredient_name": "건강50%에탄올틴크(1→5)",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M280909",
+    "ingredient_name": "용담유동엑스(1→1)",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M083205",
+    "ingredient_name": "감초엑스",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M246203",
+    "ingredient_name": "DL-카르니틴염산염",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M279284",
+    "ingredient_name": "L-멘톨",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040813",
+    "ingredient_name": "후박",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223167",
+    "ingredient_name": "우르소데옥시콜산",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "202106054",
+  "name": "경동파니틴정10밀리그램(파모티딘)",
+  "company": "경동제약(주)",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "파모티딘",
+  "ingredients_en": "Famotidine",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 소화위장)",
+  "ingredients": [
+   {
+    "ingredient_code": "M081653",
+    "ingredient_name": "파모티딘",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "202106092",
+  "name": "타이레놀정500밀리그람(아세트아미노펜)",
+  "company": "켄뷰코리아판매유한회사",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "아세트아미노펜 500밀리그램",
+  "ingredients_en": "Acetaminophen",
+  "pick_reason": "시나리오: P3 아플 때 추가하는 타이레놀",
+  "ingredients": [
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": 500,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "202200407",
+  "name": "타이레놀8시간이알서방정(아세트아미노펜)",
+  "company": "켄뷰코리아판매유한회사",
+  "category": "일반의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "아세트아미노펜 650.00밀리그램 | 아세트아미노펜",
+  "ingredients_en": "Acetaminophen/Acetaminophen",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M040353",
+    "ingredient_name": "아세트아미노펜",
+    "amount": 650,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "202200525",
+  "name": "어린이타이레놀현탁액(아세트아미노펜)",
+  "company": "켄뷰코리아판매유한회사",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "아세트아미노펜(미분화) 3.2그램",
+  "ingredients_en": "Acetaminophen Micronized",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M281939",
+    "ingredient_name": "아세트아미노펜(미분화)",
+    "amount": 3.2,
+    "amount_raw": null,
+    "unit": "그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "202300436",
+  "name": "비맥스제트정",
+  "company": "(주)녹십자",
+  "category": "일반의약품",
+  "ingredient_count": 21,
+  "ingredients_text": "벤포티아민 | 제피아스코르브산 | 타우린 | 크롬함유건조효모 | 이노시톨 | 콜레칼시페롤농축분말 | 콜린타르타르산염 | 산화아연 | 우르소데옥시콜산 | 셀레늄함유건조효모 | 토코페롤아세테이트 2배산 | 비스벤티아민 | 감마-오리자놀 | 산화마그네슘 | 리보플라빈부티레이트 | 니코틴산아미드 | 판토텐산칼슘 | 피리독살포스페이트수화물 | 비오틴 | 폴산 | 메코발라민",
+  "ingredients_en": "Ascorbic Acid Coated/Benfotiamine/Biotin/Bisbentiamine/Calcium Pantothenate/Cholecalciferol Concentrate Powder/Choline Tartrate/Chromium in Dried Yeast/Folic Acid/Gamma-Oryzanol/Inositol/Magnesium Oxide/Mecobalamin/Nicotinamide/Pyridoxal Phosphate Hydrate/Riboflavin Butyrate/Selenium In Dried Yeast/Taurine/Tocopherol Acetate Powder 50%/Ursodeoxycholic Acid/Zinc Oxide",
+  "pick_reason": "시나리오: S2·P1·P3 비맥스제트정",
+  "ingredients": [
+   {
+    "ingredient_code": "M096428",
+    "ingredient_name": "벤포티아민",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b1"
+   },
+   {
+    "ingredient_code": "M236913",
+    "ingredient_name": "제피아스코르브산",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_c"
+   },
+   {
+    "ingredient_code": "M102908",
+    "ingredient_name": "타우린",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M084707",
+    "ingredient_name": "크롬함유건조효모",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040488",
+    "ingredient_name": "이노시톨",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M102050",
+    "ingredient_name": "콜레칼시페롤농축분말",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_d"
+   },
+   {
+    "ingredient_code": "M247683",
+    "ingredient_name": "콜린타르타르산염",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M243785",
+    "ingredient_name": "산화아연",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "zinc"
+   },
+   {
+    "ingredient_code": "M223167",
+    "ingredient_name": "우르소데옥시콜산",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M244365",
+    "ingredient_name": "셀레늄함유건조효모",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "selenium"
+   },
+   {
+    "ingredient_code": "M255819",
+    "ingredient_name": "토코페롤아세테이트 2배산",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_e"
+   },
+   {
+    "ingredient_code": "M083577",
+    "ingredient_name": "비스벤티아민",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b1"
+   },
+   {
+    "ingredient_code": "M202809",
+    "ingredient_name": "감마-오리자놀",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M040262",
+    "ingredient_name": "산화마그네슘",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "magnesium"
+   },
+   {
+    "ingredient_code": "M222995",
+    "ingredient_name": "리보플라빈부티레이트",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b2"
+   },
+   {
+    "ingredient_code": "M040064",
+    "ingredient_name": "니코틴산아미드",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b3"
+   },
+   {
+    "ingredient_code": "M244748",
+    "ingredient_name": "판토텐산칼슘",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b5"
+   },
+   {
+    "ingredient_code": "M248795",
+    "ingredient_name": "피리독살포스페이트수화물",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b6"
+   },
+   {
+    "ingredient_code": "M050704",
+    "ingredient_name": "비오틴",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b7"
+   },
+   {
+    "ingredient_code": "M223289",
+    "ingredient_name": "폴산",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b9"
+   },
+   {
+    "ingredient_code": "M050436",
+    "ingredient_name": "메코발라민",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": "vitamin_b12"
+   }
+  ]
+ },
+ {
+  "item_seq": "202500070",
+  "name": "다이어스탑캡슐(로페라미드염산염)",
+  "company": "(주)씨엠지제약",
+  "category": "일반의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "로페라미드염산염",
+  "ingredients_en": "Loperamide Hydrochloride",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 변비설사)",
+  "ingredients": [
+   {
+    "ingredient_code": "M222992",
+    "ingredient_name": "로페라미드염산염",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "202501849",
+  "name": "맥시부펜노즈연질캡슐",
+  "company": "한미약품(주)",
+  "category": "일반의약품",
+  "ingredient_count": 4,
+  "ingredients_text": "이부프로펜 | 슈도에페드린염산염 | 클로르페니라민말레산염 | 브롬헥신염산염",
+  "ingredients_en": "Bromhexine Hydrochloride/Chlorpheniramine Maleate/Ibuprofen/Pseudoephedrine Hydrochloride",
+  "pick_reason": "자주 쓰는 일반의약품(앱 otc_core.json, 해열진통소염)",
+  "ingredients": [
+   {
+    "ingredient_code": "M051259",
+    "ingredient_name": "이부프로펜",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M203364",
+    "ingredient_name": "슈도에페드린염산염",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223211",
+    "ingredient_name": "클로르페니라민말레산염",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   },
+   {
+    "ingredient_code": "M223062",
+    "ingredient_name": "브롬헥신염산염",
+    "amount": null,
+    "amount_raw": null,
+    "unit": null,
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ }
+]

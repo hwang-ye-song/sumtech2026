@@ -44,6 +44,11 @@ export function WarningCard({ w, detail = true }: { w: Warning; detail?: boolean
         {w.a.name} ↔ {w.b.name}
       </div>
       {w.effect ? <p className="muted">{w.effect}</p> : null}
+      {w.condition ? (
+        <p className="faint" data-testid="finding-condition">
+          해당 조건: {w.condition}
+        </p>
+      ) : null}
       {main ? (
         <blockquote className="quote">
           {main.quote}

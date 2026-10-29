@@ -23,6 +23,12 @@ export function sourceKindLabel(kind: string): string {
       return '식약처 e약은요'
     case 'mfds_approval':
       return '식약처 허가사항'
+    case 'mfds_health_food':
+      return '식약처 건강기능식품'
+    case 'mfds_other':
+      return '식약처'
+    case 'gov':
+      return '해외 정부기관'
     case 'paper':
       return '논문'
     default:
