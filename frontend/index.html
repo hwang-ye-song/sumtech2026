@@ -14,7 +14,7 @@
 :root{
   --bg:#ffffff; --bg-2:#f1eefb; --bg-3:#e7e2f6;
   --line:#ddd7ee; --line-2:#c4bde0;
-  --lav-edge:#b3a6e0; --lav-mid:#ddd5f5; --lav-light:#f4f1fc;
+  --lav-edge:#c8c0da; --lav-mid:#e4dfee; --lav-light:#f5f2f9;
   --ink:#111318; --ink-2:#3f3a4c; --ink-3:#5f5870;
   --brand:#5b2457; --brand-ink:#431a40; --brand-bg:#f1e6ef;
   --black:#111318;
@@ -49,7 +49,7 @@ input,textarea{font:inherit;color:inherit}
 .nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 #app{position:relative;z-index:1}
 #pillfield{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.fpill{position:absolute;top:0;aspect-ratio:calc(var(--cw) / var(--ch));background:url(assets/pills2.jpg) no-repeat;background-size:calc(541 / var(--cw) * 100%) auto;background-position:calc(var(--cx) / (541 - var(--cw)) * 100%) calc(var(--cy) / (1043 - var(--ch)) * 100%);-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);will-change:transform}
+.fpill{position:absolute;top:0;aspect-ratio:calc(var(--cw) / var(--ch));background:url(assets/pills1.jpg) no-repeat;background-size:calc(1152 / var(--cw) * 100%) auto;background-position:calc(var(--cx) / (1152 - var(--cw)) * 100%) calc(var(--cy) / (2048 - var(--ch)) * 100%);-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);filter:saturate(.72) brightness(.94) contrast(.94);will-change:transform}
 .nav .wrap{height:64px;display:flex;align-items:center;gap:16px}
 .logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
 .logo .mark{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line-2);background:linear-gradient(90deg,var(--pill-a) 50%,var(--pill-b) 50%);transform:rotate(-24deg)}
@@ -59,6 +59,11 @@ input,textarea{font:inherit;color:inherit}
 .nav .tabs a[aria-current="page"]{background:var(--bg-3);color:var(--ink)}
 .nav .spacer{flex:1}
 .nav .who{font-size:var(--fs-1);color:var(--ink-3)}
+.nav .ns{display:none}
+.ex-w{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:12px 16px;border-radius:var(--r-1);background:var(--bg-2);font-size:var(--fs-1)}
+.ex-w .why{flex-basis:100%;color:var(--ink-2)}
+.ex-none{padding:12px 16px;border-radius:var(--r-1);background:var(--none-bg);font-size:var(--fs-1);color:var(--ink-2)}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 24px}
 .bottombar{display:none}
 
 /* ───────── 버튼·칩·배지 ───────── */
@@ -201,6 +206,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
 
 /* ───────── 반응형 ───────── */
 @media (max-width:1000px){
+  .nav .who{display:none}
   .hero-grid{grid-template-columns:1fr}
   .panel{justify-self:start;width:100%}
   .grid-4{grid-template-columns:repeat(2,1fr)}
@@ -213,6 +219,14 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
   .section{padding:40px 0}
   .grid-2,.grid-3,.grid-4,.summary,.row-2{grid-template-columns:1fr}
   .nav .tabs,.nav .who{display:none}
+  .nav .tabs-pub{display:flex;margin-left:8px}
+  .nav .tabs-pub a:not(:first-child){display:none}
+  .nav .wrap{gap:8px}
+  .nav .nl{display:none} .nav .ns{display:inline}
+  .nav .btn{padding:0 10px;min-height:40px;font-size:var(--fs-1)}
+  .nav .tabs a{white-space:nowrap;padding:8px}
+  .logo .word{font-size:18px} .logo .mark{width:22px;height:22px}
+  .logo{gap:6px}
   body.app{padding-bottom:72px}
   .bottombar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--bg);border-top:1px solid var(--line);height:64px}
   .bottombar a{flex:1;display:grid;place-items:center;text-decoration:none;color:var(--ink-2);font-size:var(--fs-1);font-weight:700}
@@ -221,6 +235,9 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
   .modal{padding:24px}
   .modal .actions{flex-direction:column-reverse}
   .modal .actions .btn{width:100%}
+}
+@media (max-width:359px){
+  .nav .tabs-pub{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -391,19 +408,19 @@ function ruleById(id){ return RULES.find(r=>r.id===id) || LIMITS.find(l=>l.id===
 
 /* ═══════════════ 스크롤 반응 (히어로 사진 + 양옆 3D 알약) ═══════════════ */
 const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-// 사진(541×1043)에서 알약 하나씩 잘라 낸 값. c = [x, y, w, h]. 알약 둘레 여백을 두고 가장자리를 흐려 배경에 녹인다
+// 사진(1152×2048)에서 알약 하나씩 잘라 낸 값. c = [x, y, w, h]. 알약 둘레 여백을 두고 가장자리를 흐려 배경에 녹인다
 // side: 왼쪽/오른쪽 가장자리, x: 가장자리에서 떨어진 비율(%, 음수면 화면 밖으로 걸침), speed: 스크롤을 얼마나 따라가는가(클수록 가깝다)
 const FIELD = [
-  { c:[0,241,166,345],   side:'L', j:0,   y:60,  speed:.34, rot:.010, base:-8,  k:.95 },
-  { c:[104,68,182,192],  side:'L', j:.15, y:420, speed:.12, rot:.016, base:10,  k:.60 },
-  { c:[89,514,275,200],  side:'L', j:-.1, y:250, speed:.22, rot:-.012,base:-18, k:.85 },
-  { c:[79,698,153,298],  side:'L', j:.1,  y:640, speed:.28, rot:.014, base:6,   k:.80 },
-  { c:[219,308,181,218], side:'L', j:-.15,y:820, speed:.09, rot:-.018,base:14,  k:.55 },
-  { c:[254,0,287,359],   side:'R', j:0,   y:120, speed:.30, rot:-.010,base:12,  k:.95 },
-  { c:[418,284,123,230], side:'R', j:.12, y:500, speed:.14, rot:.020, base:-6,  k:.60 },
-  { c:[322,488,219,286], side:'R', j:-.1, y:300, speed:.36, rot:.008, base:-12, k:.95 },
-  { c:[221,641,249,175], side:'R', j:.1,  y:700, speed:.18, rot:-.016,base:20,  k:.80 },
-  { c:[351,881,190,162], side:'R', j:-.12,y:880, speed:.10, rot:.012, base:0,   k:.60 },
+  { c:[191,836,299,483],  side:'L', j:0,   y:60,  speed:.34, rot:.010, base:-8,  k:.95 },
+  { c:[160,1384,376,391], side:'L', j:.15, y:420, speed:.12, rot:.016, base:10,  k:.70 },
+  { c:[0,1292,311,294],   side:'L', j:-.1, y:250, speed:.22, rot:-.012,base:-18, k:.85 },
+  { c:[252,181,468,371],  side:'L', j:.1,  y:640, speed:.28, rot:.014, base:6,   k:.90 },
+  { c:[350,1655,289,202], side:'L', j:-.15,y:820, speed:.09, rot:-.018,base:14,  k:.60 },
+  { c:[723,595,263,514],  side:'R', j:0,   y:120, speed:.30, rot:-.010,base:12,  k:.85 },
+  { c:[411,457,391,432],  side:'R', j:.12, y:500, speed:.14, rot:.020, base:-6,  k:.75 },
+  { c:[698,1184,412,396], side:'R', j:-.1, y:300, speed:.36, rot:.008, base:-12, k:.95 },
+  { c:[800,0,326,336],    side:'R', j:.1,  y:700, speed:.18, rot:-.016,base:20,  k:.85 },
+  { c:[959,457,193,324],  side:'R', j:-.12,y:880, speed:.10, rot:.012, base:0,   k:.60 },
 ];
 let fieldEls = null;
 function buildField(){
@@ -441,6 +458,8 @@ window.addEventListener('resize', () => { buildField(); queueParallax(); });
 /* ═══════════════ 라우터 ═══════════════ */
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let view = {}; // 화면별 임시 상태
+let afterLogin = null; // 로그인 없이 누른 메뉴가 있으면 로그인 뒤 그리로 보낸다
+const goAfterLogin = () => { const t = afterLogin; afterLogin = null; go(t ? t.replace(/^#/, '') : '/home'); };
 function go(h){ location.hash = h; }
 window.addEventListener('hashchange', render);
 window.addEventListener('DOMContentLoaded', render);
@@ -449,12 +468,12 @@ function render(){
   const [p, arg] = route();
   const authed = !!me();
   const needAuth = ['home','list','analyze','report','detail','recommend'];
-  if(needAuth.includes(p) && !authed){ go('/login'); return; }
+  if(needAuth.includes(p) && !authed){ afterLogin = location.hash; go('/login'); return; }
   if((p === 'login' || p === 'signup') && authed){ go('/home'); return; }
-  if(!['', 'signup','login','home','list','analyze','report','detail','recommend'].includes(p)){ go('/'); return; }
+  if(!['', 'signup','login','home','list','analyze','report','detail','recommend','explore'].includes(p)){ go('/'); return; }
   document.body.classList.toggle('app', authed);
   const app = document.getElementById('app');
-  const pages = { '':Landing, signup:Signup, login:Login, home:Home, list:List, analyze:Analyze, report:Report, detail:Detail, recommend:Recommend };
+  const pages = { '':Landing, signup:Signup, login:Login, home:Home, list:List, analyze:Analyze, report:Report, detail:Detail, recommend:Recommend, explore:Explore };
   app.innerHTML = Nav(p) + pages[p](arg) + (authed ? BottomBar(p) : '');
   window.scrollTo(0,0);
   queueParallax();
@@ -463,11 +482,13 @@ function render(){
 
 /* ═══════════════ 공통 조각 ═══════════════ */
 function Logo(){ return `<a class="logo" href="#/" aria-label="TwoPills 홈"><span class="mark"></span><span class="word">TwoPills</span></a>`; }
+const NAV_ITEMS = [['explore','<span class="nl">약·영양제 알아보기</span><span class="ns">알아보기</span>'],['list','복용 목록'],['analyze','분석하기'],['recommend','영양제 추천']];
 function Nav(p){
   const authed = !!me();
   const tab = (h,label,key)=>`<a href="#/${h}" ${p===key?'aria-current="page"':''} data-testid="tab-${h}">${label}</a>`;
+  const items = (authed ? [['home','홈']] : []).concat(NAV_ITEMS).map(([h,l])=>tab(h,l,h)).join('');
   return `<header class="nav"><div class="wrap">${Logo()}
-    ${authed ? `<nav class="tabs" aria-label="주 메뉴">${tab('home','홈','home')}${tab('list','복용 목록','list')}${tab('analyze','분석하기','analyze')}</nav>` : ''}
+    <nav class="tabs ${authed?'':'tabs-pub'}" aria-label="주 메뉴">${items}</nav>
     <span class="spacer"></span>
     ${authed ? `<span class="who">${esc(me())}</span><button class="btn btn-ghost btn-sm" data-action="logout">로그아웃</button>`
              : `<a class="btn btn-ghost" href="#/login" data-testid="nav-login">로그인</a><a class="btn btn-primary" href="#/signup" data-testid="nav-signup">회원가입</a>`}
@@ -475,7 +496,7 @@ function Nav(p){
 }
 function BottomBar(p){
   const tab = (h,label,key)=>`<a href="#/${h}" ${p===key?'aria-current="page"':''}>${label}</a>`;
-  return `<nav class="bottombar" aria-label="아래 탭">${tab('home','홈','home')}${tab('list','복용 목록','list')}${tab('analyze','분석하기','analyze')}</nav>`;
+  return `<nav class="bottombar" aria-label="아래 탭">${tab('home','홈','home')}${tab('explore','알아보기','explore')}${tab('list','복용 목록','list')}${tab('analyze','분석하기','analyze')}</nav>`;
 }
 function levelBadge(level){
   const cls = level==='over' ? 'badge-over' : 'badge-warn';
@@ -661,6 +682,56 @@ function Home(){
     </div>
     <div style="margin-top:24px"><a class="btn btn-black btn-lg" href="#/recommend" data-testid="home-recommend">영양제 추천받기</a></div>
   </div></main>`;
+}
+
+
+/* ── 약·영양제 알아보기 (로그인 없이) ── */
+function srcLink(id){ const x = SRC[id]; return `<a href="${x.url}" target="_blank" rel="noopener" data-testid="src-link">${esc(x.title)}</a>`; }
+function exploreCard(c){
+  const warns = [];
+  for(const ing of c.ings){
+    for(const r of RULES){
+      if(r.a !== ing && r.b !== ing) continue;
+      const other = r.a === ing ? r.b : r.a;
+      warns.push(`<div class="ex-w" data-testid="ex-warn">${levelBadge(r.level)}<strong>${esc(ingLabel(ing))} ↔ ${esc(ingLabel(other))}</strong>${r.action ? `<span>${esc(r.action)}</span>` : ''}<span class="why">${esc(r.reason)} 출처: ${r.sources.map(srcLink).join(', ')}</span></div>`);
+    }
+    for(const L of LIMITS){
+      if(L.ing !== ing) continue;
+      warns.push(`<div class="ex-w" data-testid="ex-warn">${levelBadge('over')}<strong>${esc(ingName(ing))} 하루 기준량</strong><span>${L.limits.map(l=>`${l.who} ${l.mg.toLocaleString()}${L.unit}`).join(' · ')}</span><span class="why">${esc(L.reason)} 출처: ${L.sources.map(srcLink).join(', ')}</span></div>`);
+    }
+  }
+  const body = warns.length ? warns.join('') : `<div class="ex-none">${T.noRecord}</div>`;
+  const text = [c.name, c.easy, c.raw, c.company, ...c.keys].join(' ').toLowerCase();
+  return `<article class="card stack" data-kind="${c.kind}" data-search="${esc(text)}" data-testid="ex-card">
+    <div class="row" style="justify-content:space-between;flex-wrap:nowrap"><h4>${esc(c.name)}</h4>${kindBadge(c.kind)}</div>
+    <p class="faint" style="margin:0">${esc(c.company)} · ${esc(c.easy)} · ${esc(c.raw)}</p>
+    ${body}
+    <div><a class="btn btn-sm" href="#/list">내 목록에 더하기</a></div>
+  </article>`;
+}
+function Explore(){
+  const kinds = ['전체','약','영양제'];
+  view.exKind = view.exKind || '전체';
+  view.after = applyExplore;
+  return `<main class="page"><div class="wrap">
+    <div class="page-head"><div class="eyebrow">약·영양제 알아보기</div><h2>같이 먹기 전에 <b>먼저 찾아봐요</b></h2>
+      <p class="muted prose">식약처 원문과 논문에 기록된 주의사항만 보여 줘요. 로그인 없이 볼 수 있고, 내 목록에 더하면 같이 먹는 것끼리 자동으로 점검해요.</p></div>
+    <div class="field" style="max-width:520px"><label for="ex-q">제품명·성분·흔히 부르는 이름</label><input class="input" id="ex-q" placeholder="예 칼슘, 갑상선약, 비맥스" value="${esc(view.exQ||'')}" data-testid="ex-input" autocomplete="off"></div>
+    <div class="chip-row" role="group" aria-label="종류">${kinds.map(k=>`<button class="chip" aria-pressed="${view.exKind===k}" data-action="ex-kind" data-kind="${k}" data-testid="ex-kind-${k}">${k}</button>`).join('')}</div>
+    <div class="grid grid-2" id="ex-grid">${CATALOG.map(exploreCard).join('')}</div>
+    <div class="empty" id="ex-empty" hidden data-testid="ex-empty">${T.notFound}</div>
+    <div class="disclaimer" style="margin-top:24px">${T.consult}. 이 화면은 처방이나 진단이 아니에요.</div>
+  </div></main>`;
+}
+function applyExplore(){
+  const q = (view.exQ || '').trim().toLowerCase(), kind = view.exKind || '전체';
+  let shown = 0;
+  document.querySelectorAll('#ex-grid [data-testid=ex-card]').forEach(el => {
+    const okKind = kind === '전체' || (kind === '약' ? el.dataset.kind !== '영양제' : el.dataset.kind === '영양제');
+    const ok = okKind && (!q || el.dataset.search.includes(q));
+    el.hidden = !ok; if(ok) shown++;
+  });
+  const e = document.getElementById('ex-empty'); if(e) e.hidden = shown > 0;
 }
 
 /* ── 복용 목록 ── */
@@ -913,6 +984,7 @@ document.addEventListener('click', ev => {
   if(act==='modal-detail'){ closeModal(); view.pending=null; }
   if(act==='analyze'){ view.running=true; view.runStep=0; render(); const tick=()=>{ view.runStep++; if(view.runStep<=3){ render(); setTimeout(tick,300);} else { view.running=false; go('/report'); } }; setTimeout(tick,300); }
   if(act==='back'){ history.back(); }
+  if(act==='ex-kind'){ view.exKind=a.dataset.kind; document.querySelectorAll('[data-action=ex-kind]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.kind===view.exKind)); applyExplore(); }
   if(act==='chip'){ const s=view.survey; const arr=s[a.dataset.key]; const v=a.dataset.val; const i=arr.indexOf(v); if(i>-1) arr.splice(i,1); else arr.push(v); a.setAttribute('aria-pressed', i===-1); }
 });
 document.addEventListener('submit', ev => {
@@ -926,13 +998,13 @@ document.addEventListener('submit', ev => {
     else if((d.pw||'').length<8) view.signupError='비밀번호는 8자 이상이에요';
     else if(d.pw!==d.pw2) view.signupError='비밀번호가 서로 달라요';
     else if(!d.consent) view.signupError='동의해야 가입할 수 있어요';
-    else { state.users[email]={pw:d.pw}; state.lists[email]=[]; state.session=email; save(); view={}; go('/home'); return; }
+    else { state.users[email]={pw:d.pw}; state.lists[email]=[]; state.session=email; save(); view={}; goAfterLogin(); return; }
     render();
   }
   if(kind==='login'){
     const email=(d.email||'').trim().toLowerCase(); const u=state.users[email];
     if(!u || u.pw!==d.pw){ view.loginError=T.badLogin; view.prefillEmail=d.email; render(); return; }
-    state.session=email; save(); view={}; go('/home');
+    state.session=email; save(); view={}; goAfterLogin();
   }
   if(kind==='search'){
     const q=(d.q||'').trim(); view.q=q; view.selected=null; view.flash='';
@@ -951,6 +1023,7 @@ document.addEventListener('submit', ev => {
     view.recError=''; go('/recommend/result');
   }
 });
+document.addEventListener('input', ev => { if(ev.target.id==='ex-q'){ view.exQ=ev.target.value; applyExplore(); } });
 document.addEventListener('change', ev => {
   const i = ev.target; if(i.dataset.file==='photo' && i.files && i.files[0]) readPhoto(i.files[0].name);
 });
