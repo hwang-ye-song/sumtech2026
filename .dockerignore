@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.github
+.court
+.pglite
+.env
+.env.*
+!.env.example
+e2e
+docs
+*.md
+!data/**/*.md
+의약품_*.csv
+Dockerfile
+docker-compose*.yml

@@ -25,3 +25,20 @@ Thumbs.db
 *.log
 .vercel/
 .court/
+
+# 식약처 전체 품목 CSV(수십 MB, 시드에 쓰지 않음)
+/의약품_*.csv
+
+# 로컬 개발용 내장 DB(PGlite)
+.pglite/
+
+
+# Next.js 생성 파일
+*.tsbuildinfo
+next-env.d.ts
+npm-debug.log*
+
+
+# 파이썬 캐시·로컬 에이전트 설정
+__pycache__/
+.agents/

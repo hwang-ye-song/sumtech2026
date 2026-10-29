@@ -1,0 +1,69 @@
+[
+  {
+    "id": "P1",
+    "display_name": "김영희(가상)",
+    "email": "p1.parent@example.com",
+    "profile": "갑상선약(레보티록신)을 매일 먹는 50~60대 어머니다. 자녀가 사 보낸 칼슘과 약국에서 산 비타민제(비맥스제트정)를 아침 식사 후 약과 한꺼번에 먹고, 성분표는 읽지 않으며 병원에서 영양제 이야기를 꺼내지 않는다. 데모에서는 목록 세 개가 들어 있는 처음 등록 상태에서 '검진하기'를 눌러 레보티록신×칼슘(R3)과 비맥스제트정×칼슘(e약은요 R7) 경고 두 개를 받는다.",
+    "items": [
+      {
+        "type": "substance",
+        "ref": "levothyroxine"
+      },
+      {
+        "type": "substance",
+        "ref": "calcium"
+      },
+      {
+        "type": "drug",
+        "ref": "202300436"
+      }
+    ],
+    "first_check_done": false
+  },
+  {
+    "id": "P2",
+    "display_name": "이지은(가상)",
+    "email": "p2.child@example.com",
+    "profile": "부모님께 인터넷으로 영양제를 사 보내는 30~40대 딸로, 부모님이 무슨 약을 드시는지 정확히 몰랐다. 약 봉투 사진으로 확인한 부모님 갑상선약(레보티록신)과 이미 사 드린 오메가3를 자기 목록에 넣고 첫 검진을 마친 사용 중 상태다. 데모에서는 뼈 건강을 위해 사려던 칼슘을 사기 전에 추가해, 레보티록신×칼슘 흡수 감소 경고(R3)를 검진하기 없이 자동으로 받는다.",
+    "items": [
+      {
+        "type": "substance",
+        "ref": "levothyroxine"
+      },
+      {
+        "type": "substance",
+        "ref": "omega3"
+      }
+    ],
+    "first_check_done": true
+  },
+  {
+    "id": "P3",
+    "display_name": "최민수(가상)",
+    "email": "p3.worker@example.com",
+    "profile": "비타민제·오메가3·칼슘·마그네슘·비타민D를 매일 먹다가 아플 때 약을 같이 먹는 직장인으로, 비타민제 설명서의 칼슘염 문구를 보고도 판단하지 못해 온라인 AI 상담에 물었던 사람이다(E1). 포텐비정 대신 칼슘염 문구가 있는 비맥스제트정으로 등록해 첫 검진에서 비맥스제트정×칼슘 경고(e약은요 R7)를 본 사용 중 상태다. 데모에서는 타이레놀정500밀리그람을 추가해 규칙 없는 조합에 '현재 기준으로 안전해요. 약사에게도 확인하세요'가 뜨는 것과 복용 리포트를 보여 준다.",
+    "items": [
+      {
+        "type": "drug",
+        "ref": "202300436"
+      },
+      {
+        "type": "substance",
+        "ref": "omega3"
+      },
+      {
+        "type": "substance",
+        "ref": "calcium"
+      },
+      {
+        "type": "substance",
+        "ref": "magnesium"
+      },
+      {
+        "type": "substance",
+        "ref": "vitamin_d"
+      }
+    ],
+    "first_check_done": true
+  }
+]

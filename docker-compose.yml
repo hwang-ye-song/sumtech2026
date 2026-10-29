@@ -1,0 +1,45 @@
+# 주최 측 실행과 CI가 같은 방식으로 실행하는 구성이다. 루프톤 키트의 docker-compose.example.yml을 바탕으로 했다.
+# 지킬 것: 서비스 이름 app, ports "3000:3000", db에는 ports·container_name 없음, env_file 없음,
+# RELEASE_ID·SEED_USER_EMAIL·SEED_USER_PASSWORD·AI_GATEWAY_API_KEY 이름 그대로, 시드 계정 값은 직접 적음.
+services:
+  app:
+    build:
+      context: .
+      args:
+        # 주최 측 실행과 CI가 실행하는 commit SHA. /__health의 releaseId로 응답한다.
+        RELEASE_ID: ${RELEASE_ID:-dev}
+    ports:
+      - "3000:3000"
+    environment:
+      RELEASE_ID: ${RELEASE_ID:-dev}
+      DATABASE_URL: postgres://app:app@db:5432/app
+      # E2E용 시드 계정(역할 `데모`): 앱이 기동할 때 만드는 로컬 전용 계정. 첫 검진을 마친 '사용 중' 상태이고 목록에 비맥스제트정이 있다.
+      # 배포 사이트의 실제 계정과 같은 비밀번호를 쓰지 않는다.
+      SEED_USER_EMAIL: demo@example.com
+      SEED_USER_PASSWORD: neulkeukeu-2026
+      # 가상 페르소나 데모 계정(P1~P3, data/seed/personas.json)의 공통 비밀번호. 비우면 페르소나 계정을 만들지 않는다.
+      SEED_PERSONA_PASSWORD: persona-2026
+      # 로그인 쿠키 서명 키(로컬 docker 전용 값). 배포 환경에서는 다른 값을 넣는다.
+      SESSION_SECRET: local-docker-session-secret-change-me
+      # 주최 측 실행이 AI 키를 넣어 AI 기능(사진 인식·비타민 추천)도 실제로 호출된다. 서버는 이 이름으로만 키를 읽는다.
+      # 키가 비어 있어도 앱은 기동한다(AI 기능만 실패 안내를 보여 준다).
+      AI_GATEWAY_API_KEY: ${AI_GATEWAY_API_KEY:-}
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d app"]
+      interval: 3s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:

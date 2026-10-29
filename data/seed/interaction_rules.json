@@ -1,0 +1,704 @@
+[
+  {
+    "id": "202300436-calcium",
+    "a": {
+      "type": "drug",
+      "ref": "202300436"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "avoid",
+    "effect": null,
+    "quote": "인산염, 칼슘염, 경구용 테트라사이클린계 제제, 제산제, 레보도파와 함께 복용하지 마십시오.",
+    "quote_ko": null,
+    "action": "비맥스제트정과 칼슘제(칼슘염)를 함께 복용하지 않는다.",
+    "pharmacist_question": "비맥스제트정을 먹고 있는데 칼슘제를 같이 먹어도 되나요?",
+    "source_id": "R7",
+    "source_title": "비맥스제트정 e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=202300436",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 202300436의 item_name이 '비맥스제트정'과 일치하고, interactions 원문에 quote가 글자 그대로(Python 문자열 비교 True) 들어 있음. (2) 원문이 '함께 복용하지 마십시오'이므로 relation=avoid가 뜻을 넘지 않고 effect 없음·action도 원문 범위 안. a=drug(비맥스제트정), b=substance 'calcium'(공통 id 규칙 일치)으로 약×약 아님. pharmacist_question은 환자 입장의 한 줄 질문. (3…"
+    }
+  },
+  {
+    "id": "levothyroxine-calcium",
+    "a": {
+      "type": "substance",
+      "ref": "levothyroxine"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "separate_timing",
+    "effect": "레보티록신 흡수 감소(단독 복용과 비교해 약 20%–25%)",
+    "quote": "Coadministration of each of the three calcium preparations significantly reduced levothyroxine absorption by about 20%–25% compared with levothyroxine given alone. It is therefore recommended that patients be cautioned to take their levothyroxine well separated from all of these calcium products.",
+    "quote_ko": "세 가지 칼슘 제제 각각을 함께 복용했을 때, 레보티록신을 단독으로 복용했을 때와 비교해 레보티록신 흡수가 약 20%–25% 유의하게 줄었다. 따라서 환자에게 레보티록신을 이들 칼슘 제품 모두와 충분히 띄워 복용하도록 주의시킬 것을 권고한다.",
+    "action": "레보티록신과 칼슘제는 복용 시간을 충분히 띄운다.",
+    "pharmacist_question": "갑상선약(레보티록신)과 칼슘제를 몇 시간 띄워 먹어야 하나요?",
+    "source_id": "R3",
+    "source_title": "Absorption of Levothyroxine When Coadministered with Various Calcium Formulations (Thyroid, 2011)",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3092723/",
+    "source_kind": "paper",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 인용 대조 결과 두 문장 모두 원문에 글자 그대로 있다. 확인 경로: WebFetch로 source_url(https://pmc.ncbi.nlm.nih.gov/articles/PMC3092723/)을 열면 reCAPTCHA 봇 확인 페이지만 나와 본문을 못 읽었고, PubMed(http… / classification: 분류·범위 대조 결과 반박 근거를 찾지 못했다. (1) relation=separate_timing: quote의 \"take their levothyroxine well separated from all of these calcium products\"가 복용 시점을 띄우라는 뜻이므로 분… / url: 출처 확인 통과. (1) WebFetch로 source_url을 열면 PMC 봇 확인 페이지(\"Checking your browser before accessing pmc.ncbi.nlm.nih.gov\")만 나와 본문을 못 받았다(how_verified의 설명과 일치). 그래서 브라우저…"
+    }
+  },
+  {
+    "id": "calcium-iron",
+    "a": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "iron"
+    },
+    "relation": "caution",
+    "effect": "철분 흡수 감소(칼슘 300-600 mg에서 50-60%)",
+    "quote": "We investigated the effect of calcium on iron absorption in 126 human subjects. Calcium also had a direct dose-related inhibiting effect on iron absorption, noted by adding calcium to the rolls after they had been baked instead of to the dough. Iron absorption was reduced by 50-60% at doses of 300-600 mg Ca.",
+    "quote_ko": "우리는 사람 126명을 대상으로 칼슘이 철분 흡수에 미치는 영향을 조사했다. 칼슘은 철분 흡수를 양에 비례해 직접 억제하는 효과도 있었는데, 이는 칼슘을 반죽이 아니라 다 구운 빵에 넣어 확인했다. 칼슘 300-600 mg에서 철분 흡수가 50-60% 줄었다.",
+    "action": "칼슘은 철분 흡수를 줄이므로, 칼슘과 철분제를 함께 먹을 때는 먹는 방법(시간 간격 등)을 약사와 상의한다.",
+    "pharmacist_question": "칼슘과 철분제를 같이 먹으면 철분 흡수가 줄어든다는데, 어떻게 나눠 먹어야 하나요?",
+    "source_id": "R11",
+    "source_title": "Calcium: effect of different amounts on nonheme- and heme-iron absorption in humans (American Journal of Clinical Nutrition, 1991, Hallberg 외)",
+    "source_url": "https://agris.fao.org/search/en/records/65de38d263b8185d9ca7afd3",
+    "source_kind": "paper",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 원래 URL(https://agris.fao.org/search/en/records/65de38d263b8185d9ca7afd3)을 2026-10-29에 WebFetch와 curl로 직접 열어 초록 원문을 받았다. 세 문장 모두 글자 그대로 있다. (1) \"We investigated… / classification: 분류·범위 대조 결과 반박할 점을 찾지 못했다. (1) relation=caution: quote는 칼슘이 철분 흡수를 50-60% 줄였다는 결과만 말하고 '함께 먹지 말 것'·'시간 띄우기'·'상의'를 말하지 않으므로 avoid/separate_timing/consult가 아닌 cau… / url: 2026-10-29 WebFetch로 source_url(AGRIS 기록 65de38d263b8185d9ca7afd3)을 열었고 오류 없이 로드됐다. 페이지의 서지 정보가 source_title과 일치한다: 제목 \"Calcium: effect of different amounts on…"
+    }
+  },
+  {
+    "id": "200801645-iron",
+    "a": {
+      "type": "drug",
+      "ref": "200801645"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "iron"
+    },
+    "relation": "consult",
+    "effect": null,
+    "quote": "테트라사이클린, 디곡신, 플루오로퀴놀론, 철염(Iron salt), 케토코나졸, 신경이완, 티록신, 페니실라민, 베타차단제(아테놀올, 메토프로롤, 프로프라놀롤), 글루코코르티코이드, 클로로퀸, 에스트라무스틴 및 디포스포네이와 함께 복용 시 의사 또는 약사와 상의하십시오.",
+    "quote_ko": null,
+    "action": "개비스콘더블액션현탁액과 철분제를 함께 복용할 때는 의사 또는 약사와 상의한다.",
+    "pharmacist_question": "개비스콘(제산제)을 먹는데 철분제를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "개비스콘더블액션현탁액 e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=200801645",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200801645(item_name '개비스콘더블액션현탁액', 문서상 이름과 동일)의 interactions 원문에 quote가 공백 정규화 없이도 글자 그대로 포함됨(python -I 부분문자열 검사 True). drug_caution_rule.csv id 389(철분, supplement_nutrient, consult, interactions)와도 일치. (2) 원문 '의사 또는 약사와 상의하십시오' → relation consult·action '상의한다'로 뜻을 넘지 않고,…"
+    }
+  },
+  {
+    "id": "198700430-iron",
+    "a": {
+      "type": "drug",
+      "ref": "198700430"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "iron"
+    },
+    "relation": "consult",
+    "effect": null,
+    "quote": "이 약을 복용하기 전에 비스테로이드소염(항염)진통제, 궤양치료제, 디기탈리스 제제, 클로르프로마진, 란소프라졸, 프레드니솔론, 페니실린, 퀴놀론, 철(Fe)염 제제, 살리실산염을 복용하는 환자는 의사 또는 약사와 상의하십시오.",
+    "quote_ko": null,
+    "action": "철분제를 먹고 있으면 알마겔정을 복용하기 전에 의사 또는 약사와 상의한다.",
+    "pharmacist_question": "철분제를 먹고 있는데 알마겔(제산제)을 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "알마겔정(알마게이트) e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=198700430",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 198700430(알마겔정(알마게이트)(수출명:유한가스트라겔정))의 interactions 원문에 quote가 글자 그대로 존재(스크립트 exact substring 일치), drug_caution_rule.csv 412행(철분, supplement_nutrient, consult)과도 동일. (2) 원문 '의사 또는 약사와 상의하십시오'에 relation consult·action이 부합하고 effect 없음, b.ref iron은 공통 성분 id 규칙에 맞는 영양제 성분(약×약 아…"
+    }
+  },
+  {
+    "id": "197400246-calcium",
+    "a": {
+      "type": "drug",
+      "ref": "197400246"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "consult",
+    "effect": "우유 알칼리 증후군(고칼슘혈증, 고질소혈증, 알칼리증 등)",
+    "quote": "다량의 우유, 칼슘제제와 함께 복용 시 우유 알칼리 증후군(고칼슘혈증, 고질소혈증, 알칼리증 등)이 나타날 수 있으므로 의사 또는 약사와 상의하십시오.",
+    "quote_ko": null,
+    "action": "마그밀정과 칼슘제를 함께 복용할 때는 의사 또는 약사와 상의한다.",
+    "pharmacist_question": "변비약 마그밀을 먹는데 칼슘제를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "마그밀정(수산화마그네슘) e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=197400246",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 197400246(마그밀정(수산화마그네슘), drug.csv 328행·drug_caution_rule.csv 422행과 이름 일치)의 interactions 원문에 quote가 공백 정규화 없이도 글자 그대로 포함됨을 python -I로 확인했고, 2026-10-29 WebFetch로 e약은요 페이지(offset 100000 이후 구간)를 열어 '이 약을 사용하는 동안 주의해야 할 약 또는 음식은 무엇입니까?' 항목에서 같은 문장을 확인했다. (2) 원문이 '의사 또는 약사와 상의하십…"
+    }
+  },
+  {
+    "id": "201206997-calcium",
+    "a": {
+      "type": "drug",
+      "ref": "201206997"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "avoid",
+    "effect": null,
+    "quote": "인산염, 칼슘염, 경구용 테트라사이클린계 제제, 제산제, 레보도파와 함께 복용하지 마십시오.",
+    "quote_ko": null,
+    "action": "삐콤씨정과 칼슘제(칼슘염)를 함께 복용하지 않는다.",
+    "pharmacist_question": "삐콤씨를 먹고 있는데 칼슘제를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "삐콤씨정 e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=201206997",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 201206997의 item_name이 '삐콤씨정'과 일치하고, interactions 첫 줄이 quote와 글자 그대로 일치함(python 스크립트로 유니코드 비교, 공백 차이 없음; drug_caution_rule.csv 431행도 같은 quote). (2) 원문이 '칼슘염…과 함께 복용하지 마십시오'이므로 relation=avoid가 원문 뜻 안이고 effect는 비어 있음; a=약(drug), b=영양제 성분 calcium으로 공통 id 규칙에 맞고 약×약이 아님; pharma…"
+    }
+  },
+  {
+    "id": "200709544-calcium",
+    "a": {
+      "type": "drug",
+      "ref": "200709544"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "avoid",
+    "effect": null,
+    "quote": "인산염, 칼슘염, 경구용 테트라사이클린계 제제, 제산제, 레보도파와 함께 복용하지 마십시오.",
+    "quote_ko": null,
+    "action": "임팩타민정과 칼슘제(칼슘염)를 함께 복용하지 않는다.",
+    "pharmacist_question": "임팩타민을 먹고 있는데 칼슘제를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "임팩타민정 e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=200709544",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200709544의 item_name이 '임팩타민정'과 일치하고, interactions 원문에 quote가 글자 그대로 있음(python 정확 일치 True). drug_caution_rule.csv id 442행(칼슘/칼슘염, avoid, interactions)과도 일치. (2) 원문이 '함께 복용하지 마십시오'이므로 avoid 적절, action은 원문 뜻을 넘지 않고 effect는 기재하지 않음. a=일반의약품(비타민B 복합제), b=calcium(영양제 성분, 공통 id 규…"
+    }
+  },
+  {
+    "id": "201508281-calcium",
+    "a": {
+      "type": "drug",
+      "ref": "201508281"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "avoid",
+    "effect": null,
+    "quote": "인산염, 칼슘염, 경구용 테트라사이클린계 제제, 제산제, 레보도파와 함께 복용하지 마십시오.",
+    "quote_ko": null,
+    "action": "벤포벨정과 칼슘제(칼슘염)를 함께 복용하지 않는다.",
+    "pharmacist_question": "벤포벨을 먹고 있는데 칼슘제를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "벤포벨정 e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=201508281",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 201508281(item_name '벤포벨정' 일치)의 interactions 항목에 quote가 글자 그대로 있음을 python 스크립트로 확인(drug_caution_rule.csv 450행과도 동일). (2) 원문 '함께 복용하지 마십시오'→avoid 적절, effect 없음, action은 원문 범위 내, b.ref=calcium은 공통 id 규칙 부합, 약×영양제 조합, pharmacist_question은 환자 한 줄 질문. (3) source_url이 https://ne…"
+    }
+  },
+  {
+    "id": "201307920-calcium",
+    "a": {
+      "type": "drug",
+      "ref": "201307920"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "avoid",
+    "effect": null,
+    "quote": "인산염, 칼슘염, 경구용 테트라사이클린계 제제, 제산제, 레보도파와 함께 복용하지 마십시오.",
+    "quote_ko": null,
+    "action": "마그비연질캡슐과 칼슘제(칼슘염)를 함께 복용하지 않는다.",
+    "pharmacist_question": "마그비를 먹고 있는데 칼슘제를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "마그비연질캡슐 e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=201307920",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 201307920의 item_name이 '마그비연질캡슐'로 일치하고, interactions 첫 문장이 quote와 글자 그대로 일치함(python 문자열 비교 True; drug_caution_rule.csv 규칙 id 468(파일 469행) 칼슘 행과도 동일). (2) 원문 '함께 복용하지 마십시오'→relation avoid·action '함께 복용하지 않는다'가 뜻을 넘지 않고 effect는 없음; drug×nutrient(calcium, 공통 id 규칙 준수) 조합이며 pha…"
+    }
+  },
+  {
+    "id": "201606593-calcium",
+    "a": {
+      "type": "drug",
+      "ref": "201606593"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "avoid",
+    "effect": null,
+    "quote": "인산염, 칼슘염, 경구용 테트라사이클린계 제제, 제산제, 레보도파와 함께 복용하지 마십시오.",
+    "quote_ko": null,
+    "action": "훼로바맘스케어정과 칼슘제(칼슘염)를 함께 복용하지 않는다.",
+    "pharmacist_question": "철분제 훼로바를 먹고 있는데 칼슘제를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "훼로바맘스케어정 e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=201606593",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 201606593 품목명 '훼로바맘스케어정'이 source_title과 같고, interactions 원문 첫 문장에 quote가 글자 그대로 있음(python -I 공백 정규화 대조 일치). (2) 원문이 '함께 복용하지 마십시오'이므로 relation=avoid가 뜻을 넘지 않고, effect 없음, action은 원문 범위 안('칼슘염'→칼슘제). a=일반의약품 철분제, b=calcium(영양제 성분, 공통 id 규칙 일치)이라 약×약 아님. pharmacist_question은…"
+    }
+  },
+  {
+    "id": "201700750-calcium",
+    "a": {
+      "type": "drug",
+      "ref": "201700750"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "avoid",
+    "effect": null,
+    "quote": "이 약을 복용하는 동안 인산염, 칼슘염, 경구용 테트라사이클린계 제제, 제산제, 레보도파를 복용하지 마십시오.",
+    "quote_ko": null,
+    "action": "헤모큐수정을 복용하는 동안 칼슘제(칼슘염)를 복용하지 않는다.",
+    "pharmacist_question": "철분제 헤모큐를 먹고 있는데 칼슘제를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "헤모큐수정 e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=201700750",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 201700750(item_name 헤모큐수정) interactions 항목에 quote가 글자 그대로 있음(python 스크립트로 공백 제거 후 대조 일치; warning·precautions·usage에는 없음). (2) 원문 '복용하지 마십시오' → avoid 적합, action은 원문 뜻 안이며 effect 없음, drug(헤모큐수정)×substance(calcium, 공통 id 규칙 일치)로 약×약 아님, pharmacist_question은 환자 한 줄 질문. (3) sou…"
+    }
+  },
+  {
+    "id": "200000218-calcium",
+    "a": {
+      "type": "drug",
+      "ref": "200000218"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "avoid",
+    "effect": null,
+    "quote": "인산염, 칼슘염, 경구용 테트라사이클린계 항생제, 제산제와 함께 복용하지 마십시오.",
+    "quote_ko": null,
+    "action": "볼그레액과 칼슘제(칼슘염)를 함께 복용하지 않는다.",
+    "pharmacist_question": "철분제 볼그레를 먹고 있는데 칼슘제를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "볼그레액(철아세틸트랜스페린) e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=200000218",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200000218(item_name '볼그레액(철아세틸트랜스페린)' 일치)의 interactions 원문에 quote가 글자 그대로 포함됨을 python으로 확인(exact match True), drug_caution_rule.csv 496행(칼슘/칼슘염, avoid, interactions)과도 일치. (2) 원문 '함께 복용하지 마십시오'는 CONTRACT의 avoid(함께 먹지 말 것) 정의에 부합하고 action은 quote 범위를 넘지 않으며 effect는 적지 않음; a=…"
+    }
+  },
+  {
+    "id": "200000218-iron",
+    "a": {
+      "type": "drug",
+      "ref": "200000218"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "iron"
+    },
+    "relation": "consult",
+    "effect": null,
+    "quote": "이 약을 복용하기 전에 철 함유제제(철분제, MRI용 간장 조영제 등), 항알도스테론제, 트리암테렌, 퀴놀론계, 페니실라민, 네오마이신, 콜레스티라민, 췌장엑스 및 비타민 E, 디포스폰산 염류, 티록신, 세프디니르 제제, 200 mg 이상의 아스코르빈산(비타민 C)을 복용 시 의사 또는 약사와 상의하십시오.",
+    "quote_ko": null,
+    "action": "다른 철분제를 먹고 있으면 볼그레액을 복용하기 전에 의사 또는 약사와 상의한다.",
+    "pharmacist_question": "다른 철분제를 먹고 있는데 볼그레(철분제)를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "볼그레액(철아세틸트랜스페린) e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=200000218",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200000218(item_name '볼그레액(철아세틸트랜스페린)' 일치)의 interactions 항목에 quote가 공백 정규화 후 글자 그대로 존재함을 python -I 스크립트로 확인(drug_caution_rule.csv 499행과도 동일). (2) 원문이 '의사 또는 약사와 상의하십시오'이므로 relation=consult가 뜻을 넘지 않고 effect 없음; a=drug(볼그레액)×b=substance(iron, 공통 id 규칙 준수)로 약×약 아님; action·phar…"
+    }
+  },
+  {
+    "id": "200000218-vitamin_e",
+    "a": {
+      "type": "drug",
+      "ref": "200000218"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "vitamin_e"
+    },
+    "relation": "consult",
+    "effect": null,
+    "quote": "이 약을 복용하기 전에 철 함유제제(철분제, MRI용 간장 조영제 등), 항알도스테론제, 트리암테렌, 퀴놀론계, 페니실라민, 네오마이신, 콜레스티라민, 췌장엑스 및 비타민 E, 디포스폰산 염류, 티록신, 세프디니르 제제, 200 mg 이상의 아스코르빈산(비타민 C)을 복용 시 의사 또는 약사와 상의하십시오.",
+    "quote_ko": null,
+    "action": "비타민E를 먹고 있으면 볼그레액을 복용하기 전에 의사 또는 약사와 상의한다.",
+    "pharmacist_question": "비타민E를 먹고 있는데 볼그레(철분제)를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "볼그레액(철아세틸트랜스페린) e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=200000218",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200000218(볼그레액(철아세틸트랜스페린), 문서상 이름과 동일)의 interactions 원문에 quote가 공백 정규화 후 글자 그대로 포함됨을 python -I로 확인(drug_caution_rule.csv rule_id 507 비타민 E 행과도 일치). (2) 원문 '상의하십시오'에 relation=consult·action '상의한다'로 뜻을 넘지 않고 effect 없음, a=drug(철분제)×b=vitamin_e(영양제, 공통 id 규칙 준수)로 약×약 아님, pharm…"
+    }
+  },
+  {
+    "id": "200000218-vitamin_c",
+    "a": {
+      "type": "drug",
+      "ref": "200000218"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "vitamin_c"
+    },
+    "relation": "consult",
+    "effect": "200 mg 이상의 비타민C(아스코르빈산)를 함께 복용할 때 해당(원문은 결과를 직접 적지 않음)",
+    "quote": "이 약을 복용하기 전에 철 함유제제(철분제, MRI용 간장 조영제 등), 항알도스테론제, 트리암테렌, 퀴놀론계, 페니실라민, 네오마이신, 콜레스티라민, 췌장엑스 및 비타민 E, 디포스폰산 염류, 티록신, 세프디니르 제제, 200 mg 이상의 아스코르빈산(비타민 C)을 복용 시 의사 또는 약사와 상의하십시오.",
+    "quote_ko": null,
+    "action": "비타민C를 200 mg 이상 먹고 있으면 볼그레액을 복용하기 전에 의사 또는 약사와 상의한다.",
+    "pharmacist_question": "비타민C를 하루 200 mg 넘게 먹고 있는데 볼그레(철분제)를 같이 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "볼그레액(철아세틸트랜스페린) e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=200000218",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200000218(볼그레액(철아세틸트랜스페린), 이름 일치)의 interactions 항목에 quote가 글자 그대로 있음을 python -I로 확인(drug_caution_rule.csv id 511행과도 일치). (2) 원문 '의사 또는 약사와 상의하십시오'에 relation=consult·action이 맞고, effect는 결과를 지어내지 않고 '200 mg 이상' 조건만 적음; drug×substance(vitamin_c, 공통 id 규칙 준수)로 약×약 아님; pharmaci…"
+    }
+  },
+  {
+    "id": "202001517-calcium",
+    "a": {
+      "type": "drug",
+      "ref": "202001517"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "avoid",
+    "effect": null,
+    "quote": "인산염, 칼슘염, 경구용 테트라사이클린계 제제, 제산제와 함께 복용하지 마십시오.",
+    "quote_ko": null,
+    "action": "칼디원정과 다른 칼슘제(칼슘염)를 함께 복용하지 않는다.",
+    "pharmacist_question": "칼디원정을 먹고 있는데 칼슘제를 따로 더 먹어도 되나요?",
+    "source_id": "R6",
+    "source_title": "칼디원정 e약은요 (식약처 의약품안전나라)",
+    "source_url": "https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=202001517",
+    "source_kind": "mfds_easy_drug",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 1명(인용·분류·링크) 통과. (1) 인용 대조 통과: python -I로 otc_core.json item_seq 202001517(item_name == '칼디원정' 일치, 주성분 칼슘·비타민D) interactions 항목에 quote가 글자 그대로 포함됨(raw substring True). 2026-10-29 WebFetch로 e약은요 페이지도 열려 같은 문장 확인. (2) 분류 대조 통과: 원문 '함께 복용하지 마십시오'이므로 avoid 적정, effect 없음(원문 밖 결과 미기재), action은 '칼슘염' 범위 내 '다른 칼슘제'로 한정, a=d…"
+    }
+  },
+  {
+    "id": "levothyroxine-iron",
+    "a": {
+      "type": "substance",
+      "ref": "levothyroxine"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "iron"
+    },
+    "relation": "separate_timing",
+    "effect": null,
+    "quote": "if you take calcium carbonate (Tums) or ferrous sulfate (iron supplement), take it at least 4 hours before or 4 hours after you take levothyroxine.",
+    "quote_ko": "탄산칼슘(Tums)이나 황산제일철(철분 보충제)을 복용한다면, 레보티록신 복용 최소 4시간 전 또는 4시간 후에 복용하십시오.",
+    "action": "철분제는 레보티록신 복용 최소 4시간 전 또는 4시간 후에 먹는다.",
+    "pharmacist_question": "갑상선약(레보티록신)과 철분제를 몇 시간 띄워 먹어야 하나요?",
+    "source_id": "N1",
+    "source_title": "Levothyroxine: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2019-02-15)",
+    "source_url": "https://medlineplus.gov/druginfo/meds/a682461.html",
+    "source_kind": "other",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch로 원래 URL(https://medlineplus.gov/druginfo/meds/a682461.html)을 정상적으로 열어 확인함. 'What special precautions should I follow?' 항목의 목록(bullet) 중 한 문장… / classification: 분류·범위 대조 결과 반박할 점을 찾지 못했다. (1) relation=separate_timing: quote가 \"at least 4 hours before or 4 hours after\"로 시간 간격을 명시하므로 적절하다(avoid·consult로 과장하지 않음). (2) actio… / url: source_url(https://medlineplus.gov/druginfo/meds/a682461.html)을 2026-10-29 WebFetch로 열었다(정상 응답). 페이지 제목은 'Levothyroxine: MedlinePlus Drug Information', Last Rev…"
+    }
+  },
+  {
+    "id": "doxycycline-iron",
+    "a": {
+      "type": "substance",
+      "ref": "doxycycline"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "iron"
+    },
+    "relation": "separate_timing",
+    "effect": null,
+    "quote": "If you are taking iron preparations and vitamin products that contain iron, take them 3 hours before or 2 hours after doxycyline.",
+    "quote_ko": "철분 제제나 철분이 든 비타민 제품을 복용한다면, 독시사이클린 복용 3시간 전 또는 2시간 후에 복용하십시오.",
+    "action": "철분제는 독시사이클린 복용 3시간 전 또는 2시간 후에 먹는다.",
+    "pharmacist_question": "독시사이클린(항생제)과 철분제를 몇 시간 띄워 먹어야 하나요?",
+    "source_id": "N2",
+    "source_title": "Doxycycline: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-05-15)",
+    "source_url": "https://medlineplus.gov/druginfo/meds/a682063.html",
+    "source_kind": "other",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch로 원래 URL(https://medlineplus.gov/druginfo/meds/a682063.html)을 정상적으로 열어 확인함. 페이지 제목 \"Doxycycline: MedlinePlus Drug Information\", Last Revised… / classification: 분류·범위 대조 결과 반박할 점을 찾지 못했다. (1) relation=separate_timing: quote가 \"take them 3 hours before or 2 hours after doxycyline\"으로 시간 간격을 명시하므로 맞다(avoid/consult가 아님). (2)… / url: 2026-10-29 WebFetch로 source_url(https://medlineplus.gov/druginfo/meds/a682063.html)을 열었다. 정상적으로 열렸고, 페이지 제목은 \"Doxycycline: MedlinePlus Drug Information\"으로 sourc…"
+    }
+  },
+  {
+    "id": "doxycycline-calcium",
+    "a": {
+      "type": "substance",
+      "ref": "doxycycline"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "separate_timing",
+    "effect": null,
+    "quote": "if you are taking antacids, calcium supplements, and laxatives containing magnesium, take them 1-2 before or after doxycyline.",
+    "quote_ko": "제산제, 칼슘 보충제, 마그네슘이 든 완하제(변비약)를 복용한다면, 독시사이클린 복용 1-2(원문에 시간 단위 없음) 전 또는 후에 복용하십시오.",
+    "action": "칼슘제는 독시사이클린과 복용 시간을 띄운다. 원문은 '1-2 before or after'로 시간 단위가 빠져 있으므로 간격은 약사에게 확인한다.",
+    "pharmacist_question": "독시사이클린(항생제)과 칼슘제를 몇 시간 띄워 먹어야 하나요?",
+    "source_id": "N2",
+    "source_title": "Doxycycline: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-05-15)",
+    "source_url": "https://medlineplus.gov/druginfo/meds/a682063.html",
+    "source_kind": "other",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch로 원래 URL(https://medlineplus.gov/druginfo/meds/a682063.html)을 정상적으로 열어 확인했다. quote 문장 \"if you are taking antacids, calcium supplements, and l… / classification: 분류·범위 대조 결과 반박 근거를 찾지 못했다. (1) relation=separate_timing: 인용문이 \"take them 1-2 before or after doxycyline\"으로 칼슘 보충제를 독시사이클린 전·후로 띄워 먹으라고 직접 말하므로 '시간 띄우기'가 원문 뜻을 넘… / url: 2026-10-29 WebFetch로 source_url(https://medlineplus.gov/druginfo/meds/a682063.html)을 열었다. 페이지 제목은 \"Doxycycline: MedlinePlus Drug Information\"이고, 미국 국립의학도서관(NLM)…"
+    }
+  },
+  {
+    "id": "ciprofloxacin-calcium",
+    "a": {
+      "type": "substance",
+      "ref": "ciprofloxacin"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "separate_timing",
+    "effect": null,
+    "quote": "you should know that if you are taking antacids or multivitamins containing calcium, magnesium hydroxide, aluminum hydroxide, zinc or iron; or certain medications such as didanosine solution; phosphate binders such as sevelamer or lanthanum carbonate; or sucralfate, take them at least 6 hours before or 2 hours after ciprofloxacin.",
+    "quote_ko": "칼슘, 수산화마그네슘, 수산화알루미늄, 아연 또는 철분이 든 제산제나 종합비타민, 디다노신 액제 같은 일부 약, 세벨라머·탄산란타넘 같은 인산염 결합제, 수크랄페이트를 복용한다면, 시프로플록사신 복용 최소 6시간 전 또는 2시간 후에 복용하십시오.",
+    "action": "칼슘이 든 제품은 시프로플록사신 복용 최소 6시간 전 또는 2시간 후에 먹는다.",
+    "pharmacist_question": "시프로플록사신(항생제)과 칼슘제를 몇 시간 띄워 먹어야 하나요?",
+    "source_id": "N3",
+    "source_title": "Ciprofloxacin: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-08-15)",
+    "source_url": "https://medlineplus.gov/druginfo/meds/a688016.html",
+    "source_kind": "other",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 원래 URL(https://medlineplus.gov/druginfo/meds/a688016.html)을 WebFetch와 curl로 직접 열어 확인했다. 페이지 제목은 \"Ciprofloxacin: MedlinePlus Drug Information\", 하단 표기는… / classification: 분류·범위 대조 결과 반박 근거를 찾지 못했다. (1) relation=separate_timing: 인용문이 \"take them at least 6 hours before or 2 hours after ciprofloxacin\"으로 시간 간격을 명시하므로 맞다. avoid/consul… / url: 2026-10-29 WebFetch로 https://medlineplus.gov/druginfo/meds/a688016.html 을 열었다(정상 응답). 페이지 제목은 \"Ciprofloxacin: MedlinePlus Drug Information\", 발행처는 미국 국립의학도서관(NLM…"
+    }
+  },
+  {
+    "id": "ciprofloxacin-zinc",
+    "a": {
+      "type": "substance",
+      "ref": "ciprofloxacin"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "zinc"
+    },
+    "relation": "separate_timing",
+    "effect": null,
+    "quote": "you should know that if you are taking antacids or multivitamins containing calcium, magnesium hydroxide, aluminum hydroxide, zinc or iron; or certain medications such as didanosine solution; phosphate binders such as sevelamer or lanthanum carbonate; or sucralfate, take them at least 6 hours before or 2 hours after ciprofloxacin.",
+    "quote_ko": "칼슘, 수산화마그네슘, 수산화알루미늄, 아연 또는 철분이 든 제산제나 종합비타민, 디다노신 액제 같은 일부 약, 세벨라머·탄산란타넘 같은 인산염 결합제, 수크랄페이트를 복용한다면, 시프로플록사신 복용 최소 6시간 전 또는 2시간 후에 복용하십시오.",
+    "action": "아연이 든 제품은 시프로플록사신 복용 최소 6시간 전 또는 2시간 후에 먹는다.",
+    "pharmacist_question": "시프로플록사신(항생제)과 아연제를 몇 시간 띄워 먹어야 하나요?",
+    "source_id": "N3",
+    "source_title": "Ciprofloxacin: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-08-15)",
+    "source_url": "https://medlineplus.gov/druginfo/meds/a688016.html",
+    "source_kind": "other",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch 및 curl로 원래 URL(https://medlineplus.gov/druginfo/meds/a688016.html)을 직접 열어 확인함. 페이지 제목 \"Ciprofloxacin: MedlinePlus Drug Information\", 하단 \"Las… / classification: 분류·범위 관점에서 반박할 점을 찾지 못했다. (1) relation=separate_timing: 원문이 \"take them at least 6 hours before or 2 hours after ciprofloxacin\"으로 구체적인 시간 간격을 말하므로 맞다. avoid/cons… / url: 출처 확인 통과. 2026-10-29 WebFetch와 curl로 https://medlineplus.gov/druginfo/meds/a688016.html 을 열었고 HTTP 200으로 리다이렉트 없이 열린다. 페이지 <title>은 \"Ciprofloxacin: MedlinePlus…"
+    }
+  },
+  {
+    "id": "ciprofloxacin-iron",
+    "a": {
+      "type": "substance",
+      "ref": "ciprofloxacin"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "iron"
+    },
+    "relation": "separate_timing",
+    "effect": null,
+    "quote": "you should know that if you are taking antacids or multivitamins containing calcium, magnesium hydroxide, aluminum hydroxide, zinc or iron; or certain medications such as didanosine solution; phosphate binders such as sevelamer or lanthanum carbonate; or sucralfate, take them at least 6 hours before or 2 hours after ciprofloxacin.",
+    "quote_ko": "칼슘, 수산화마그네슘, 수산화알루미늄, 아연 또는 철분이 든 제산제나 종합비타민, 디다노신 액제 같은 일부 약, 세벨라머·탄산란타넘 같은 인산염 결합제, 수크랄페이트를 복용한다면, 시프로플록사신 복용 최소 6시간 전 또는 2시간 후에 복용하십시오.",
+    "action": "철분이 든 제품은 시프로플록사신 복용 최소 6시간 전 또는 2시간 후에 먹는다.",
+    "pharmacist_question": "시프로플록사신(항생제)과 철분제를 몇 시간 띄워 먹어야 하나요?",
+    "source_id": "N3",
+    "source_title": "Ciprofloxacin: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-08-15)",
+    "source_url": "https://medlineplus.gov/druginfo/meds/a688016.html",
+    "source_kind": "other",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 source_url(https://medlineplus.gov/druginfo/meds/a688016.html)을 WebFetch와 curl로 직접 열어 대조함. quote 문장은 본문 \"What special precautions should I follow?\" 절… / classification: 분류·범위 대조 결과 반박 근거를 찾지 못했다. (1) relation=separate_timing: 원문이 \"take them at least 6 hours before or 2 hours after ciprofloxacin\"으로 시간 간격을 직접 말하므로 맞다. avoid/consu… / url: 2026-10-29 WebFetch로 source_url(https://medlineplus.gov/druginfo/meds/a688016.html)을 정상적으로 열었다(오류 없음). 페이지 제목은 \"Ciprofloxacin: MedlinePlus Drug Information\", 발행…"
+    }
+  },
+  {
+    "id": "levofloxacin-iron",
+    "a": {
+      "type": "substance",
+      "ref": "levofloxacin"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "iron"
+    },
+    "relation": "separate_timing",
+    "effect": null,
+    "quote": "you should know if you are taking antacids, vitamins, or mineral supplements containing aluminum hydroxide, magnesium hydroxide, iron or zinc, or certain medications such as didanosine solution or sucralfate, take them at least 2 hours before or after levofloxacin.",
+    "quote_ko": "수산화알루미늄, 수산화마그네슘, 철분 또는 아연이 든 제산제·비타민·미네랄 보충제나 디다노신 액제·수크랄페이트 같은 일부 약을 복용한다면, 레보플록사신 복용 최소 2시간 전 또는 후에 복용하십시오.",
+    "action": "철분이 든 제품은 레보플록사신 복용 최소 2시간 전 또는 후에 먹는다.",
+    "pharmacist_question": "레보플록사신(항생제)과 철분제를 몇 시간 띄워 먹어야 하나요?",
+    "source_id": "N4",
+    "source_title": "Levofloxacin: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-08-15)",
+    "source_url": "https://medlineplus.gov/druginfo/meds/a697040.html",
+    "source_kind": "other",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch 및 curl로 원래 URL(https://medlineplus.gov/druginfo/meds/a697040.html)을 직접 열어 확인함. 페이지 제목 \"Levofloxacin: MedlinePlus Drug Information\", 하단 \"Last… / classification: 분류·범위 관점에서 반박할 점을 찾지 못했다. (1) relation=separate_timing: 인용문이 \"take them at least 2 hours before or after levofloxacin\"이라고 시간 간격을 직접 말하므로 맞다. (2) action \"철분이 든 제… / url: 출처 확인 통과. 2026-10-29 WebFetch 및 curl(HTTP 200)로 https://medlineplus.gov/druginfo/meds/a697040.html 을 실제로 열었다. 페이지 <title>은 \"Levofloxacin: MedlinePlus Drug Infor…"
+    }
+  },
+  {
+    "id": "levofloxacin-zinc",
+    "a": {
+      "type": "substance",
+      "ref": "levofloxacin"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "zinc"
+    },
+    "relation": "separate_timing",
+    "effect": null,
+    "quote": "you should know if you are taking antacids, vitamins, or mineral supplements containing aluminum hydroxide, magnesium hydroxide, iron or zinc, or certain medications such as didanosine solution or sucralfate, take them at least 2 hours before or after levofloxacin.",
+    "quote_ko": "수산화알루미늄, 수산화마그네슘, 철분 또는 아연이 든 제산제·비타민·미네랄 보충제나 디다노신 액제·수크랄페이트 같은 일부 약을 복용한다면, 레보플록사신 복용 최소 2시간 전 또는 후에 복용하십시오.",
+    "action": "아연이 든 제품은 레보플록사신 복용 최소 2시간 전 또는 후에 먹는다.",
+    "pharmacist_question": "레보플록사신(항생제)과 아연제를 몇 시간 띄워 먹어야 하나요?",
+    "source_id": "N4",
+    "source_title": "Levofloxacin: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-08-15)",
+    "source_url": "https://medlineplus.gov/druginfo/meds/a697040.html",
+    "source_kind": "other",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch 및 curl로 원래 URL(https://medlineplus.gov/druginfo/meds/a697040.html)을 직접 열어 확인함. quote 문장 \"you should know if you are taking antacids, vitamin… / classification: 분류·범위 대조 관점에서 반박할 점을 찾지 못했다. (1) relation=separate_timing: quote에 \"take them at least 2 hours before or after levofloxacin\"이라는 시간 간격이 글자 그대로 있으므로 적절하다. avoid/co… / url: 2026-10-29 WebFetch 및 curl(HTTP 200)로 https://medlineplus.gov/druginfo/meds/a697040.html 을 열어 확인함. 페이지 <title>은 \"Levofloxacin: MedlinePlus Drug Information\"으로 s…"
+    }
+  },
+  {
+    "id": "alendronate-calcium",
+    "a": {
+      "type": "substance",
+      "ref": "alendronate"
+    },
+    "b": {
+      "type": "substance",
+      "ref": "calcium"
+    },
+    "relation": "separate_timing",
+    "effect": null,
+    "quote": "the following nonprescription or herbal products may interact with alendronate: aspirin and other nonsteroidal anti-inflammatory drugs (NSAIDs such as ibuprofen or naproxen), mineral oils, calcium supplements, or antacids (e.g. - calcium carbonate, milk of magnesia, famotidine, ranitidine, omperazole, esomeprazole, lansoprazole). if you are taking any other medications including supplements, vitamins, or antacids by mouth, take them at least 30 minutes after you take alendronate.",
+    "quote_ko": "다음 일반의약품이나 생약 제품은 알렌드론산과 상호작용할 수 있습니다: 아스피린과 그 밖의 비스테로이드소염진통제(이부프로펜, 나프록센 등), 미네랄 오일, 칼슘 보충제, 제산제(예: 탄산칼슘, 수산화마그네슘 현탁액, 파모티딘, 라니티딘, 오메프라졸, 에스오메프라졸, 란소프라졸). 보충제·비타민·제산제를 포함해 다른 약을 입으로 복용한다면, 알렌드론산을 복용하고 최소 30분이 지난 뒤에 복용하십시오.",
+    "action": "칼슘제는 알렌드론산을 복용하고 최소 30분이 지난 뒤에 먹는다.",
+    "pharmacist_question": "골다공증약(알렌드론산)과 칼슘제는 얼마나 띄워 먹어야 하나요?",
+    "source_id": "N5",
+    "source_title": "Alendronate: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-05-15)",
+    "source_url": "https://medlineplus.gov/druginfo/meds/a601011.html",
+    "source_kind": "other",
+    "verification": {
+      "quote_in_source": true,
+      "url_opens": true,
+      "checked_on": "2026-10-29",
+      "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 원래 URL(https://medlineplus.gov/druginfo/meds/a601011.html)을 WebFetch와 curl로 열어 확인함. 'What special precautions should I follow?' 항목 안에서 quote의 두 문장이 글… / classification: 분류·범위 대조 결과 반박 근거를 찾지 못했다. (1) relation=separate_timing: 인용문이 \"take them at least 30 minutes after you take alendronate\"로 시간 간격(최소 30분)을 글자 그대로 말하므로 적합하다. 원문은 '… / url: 2026-10-29 WebFetch로 source_url(https://medlineplus.gov/druginfo/meds/a601011.html)을 정상적으로 열었다. 페이지 제목은 \"Alendronate: MedlinePlus Drug Information\"이며 미국 국립의학도서관…"
+    }
+  }
+]
