@@ -118,8 +118,8 @@ export default async function ReportPage() {
           <Link className="btn btn-black btn-lg" href="/recommend" data-testid="report-recommend">
             영양제 추천받기
           </Link>
-          <Link className="btn btn-lg" href="/list">
-            복용 목록
+          <Link className="btn btn-lg" href="/check">
+            목록으로
           </Link>
         </div>
       </div>

@@ -123,7 +123,7 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
                     </p>
                   ) : null}
                   <div>
-                    <Link className="btn btn-sm" href={user ? `/list?q=${encodeURIComponent(e.name)}` : '/login'}>
+                    <Link className="btn btn-sm" href={user ? `/check?q=${encodeURIComponent(e.name)}` : '/login'}>
                       내 목록에 더하기
                     </Link>
                   </div>

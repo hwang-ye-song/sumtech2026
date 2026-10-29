@@ -2,7 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { expect, test } from "@playwright/test"
 import { E2E_USER_EMAIL, E2E_USER_PASSWORD } from "../env"
-import { listRows, logInFromHome, openListFromHome, register } from "../helpers"
+import { listRows, logInFromHome, openCheckFromHome, register } from "../helpers"
 
 // docs/scenarios.yaml 머리말: 올릴 사진은 e2e/fixtures에 커밋한다.
 const BLURRY = path.join(__dirname, "..", "fixtures", "blurry-pill.jpg")
@@ -12,8 +12,8 @@ test("S7 성분표를 읽기 어려운 50~60대 부모님이 약 상자를 사�
   expect(fs.existsSync(BLURRY) && fs.existsSync(BOX), "e2e/fixtures/blurry-pill.jpg·ferobau-box.jpg 사진이 필요해요").toBe(true)
   await logInFromHome(page, E2E_USER_EMAIL, E2E_USER_PASSWORD)
 
-  // 1~2. '복용 목록' → '사진으로 등록'
-  await openListFromHome(page)
+  // 1~2. '검진하기' → '사진으로 등록'
+  await openCheckFromHome(page)
   await page.getByRole("link", { name: "사진으로 등록" }).click()
 
   // expected: 보내기 전에 동의 안내
@@ -49,7 +49,7 @@ test("S7 성분표를 읽기 어려운 50~60대 부모님이 약 상자를 사�
 
   // 10. '취소' → 목록에 레보티록신과 칼슘만 있다
   await dialog.getByRole("button", { name: "취소" }).click()
-  await page.getByRole("navigation", { name: "주 메뉴" }).getByRole("link", { name: "복용 목록" }).click()
+  await page.getByRole("navigation", { name: "주 메뉴" }).getByRole("link", { name: "검진하기" }).click()
   await expect(listRows(page)).toHaveCount(2)
   await expect(listRows(page).filter({ hasText: "레보티록신" })).toBeVisible()
   await expect(listRows(page).filter({ hasText: "칼슘" })).toBeVisible()

@@ -38,6 +38,17 @@ function Landing() {
               <Word t="TwoPills" d={0.9} em />
             </span>
           </h1>
+          {/* 메인 기능 두 가지. 로그인 전이면 각 화면이 로그인으로 보낸 뒤 다시 돌아온다. */}
+          <div className="cta2 animate-fade-up delay-600">
+            <div className="btns">
+              <Link className="btn btn-primary btn-lg" href="/check" data-testid="hero-check">
+                검진하기
+              </Link>
+              <Link className="btn btn-lg" href="/recommend" data-testid="hero-recommend">
+                영양제 추천
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

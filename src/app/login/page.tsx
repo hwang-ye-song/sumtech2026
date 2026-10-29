@@ -9,7 +9,7 @@ import { listPersonas } from '@/lib/personas'
 
 export const metadata = { title: '로그인' }
 
-const MENU_NAME: Record<string, string> = { '/list': '복용 목록', '/check': '검진하기', '/check/report': '복용 리포트', '/recommend': '영양제 추천' }
+const MENU_NAME: Record<string, string> = { '/check': '검진하기', '/check/report': '복용 리포트', '/recommend': '영양제 추천' }
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const params = await searchParams

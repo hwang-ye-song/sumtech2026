@@ -63,17 +63,17 @@ export async function registerItem(_prev: RegisterState, formData: FormData): Pr
 
   const ok = await addUserItem(user.id, item, dose)
   if (!ok) return { error: '그 항목을 찾지 못했어요. 다시 검색해 주세요.', values }
-  revalidatePath('/list')
+  revalidatePath('/check')
   const status = !inUse ? 'new' : force ? 'warned' : 'clear'
-  redirect(`/list?added=${encodeURIComponent(itemKey(item))}&status=${status}`)
+  redirect(`/check?added=${encodeURIComponent(itemKey(item))}&status=${status}`)
 }
 
 export async function removeItemAction(formData: FormData): Promise<void> {
   const user = await requireUser()
   const id = Number(formData.get('id'))
   if (Number.isInteger(id)) await removeUserItem(user.id, id)
-  revalidatePath('/list')
-  redirect('/list?deleted=1')
+  revalidatePath('/check')
+  redirect('/check?deleted=1')
 }
 
 /** '검진 시작': 첫 검진이면 '사용 중' 상태로 바꾸고 검진 리포트로 간다. */

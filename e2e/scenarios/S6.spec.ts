@@ -11,19 +11,38 @@ test("S6 30~40대 자녀가 부모님 검진 리포트에서 비타민 추천을
   // 3. 리포트 맨 아래의 '영양제 추천받기'
   await page.getByRole("main").getByRole("link", { name: "영양제 추천받기" }).click()
 
-  // 4~6. '피로' · '1알' → '추천 보기' (AI 응답을 기다린다)
-  await page.getByRole("checkbox", { name: "피로" }).check()
-  await page.getByRole("radio", { name: "1알" }).check()
+  // 설문은 '현재 겪는 증상'과 '개선하고 싶은 점' 두 가지뿐이다(성별·나이·키·몸무게는 묻지 않는다)
+  await expect(page.getByRole("group", { name: "현재 겪는 증상" })).toBeVisible()
+  await expect(page.getByRole("group", { name: "성별" })).toHaveCount(0)
+  await expect(page.getByRole("slider")).toHaveCount(0)
+
+  // 4. '현재 겪는 증상'에서 '쉽게 피곤함'
+  await page.getByRole("group", { name: "현재 겪는 증상" }).getByRole("button", { name: "쉽게 피곤함" }).click()
+
+  // 5. '개선하고 싶은 점'은 최대 2개: 2개를 고르면 나머지는 누를 수 없다. '면역력'을 풀고 '피로 회복'만 남긴다
+  const goals = page.getByRole("group", { name: "개선하고 싶은 점" })
+  await goals.getByRole("button", { name: "피로 회복" }).click()
+  await goals.getByRole("button", { name: "면역력" }).click()
+  await expect(goals.getByRole("button", { name: "눈 건강" })).toBeDisabled()
+  await goals.getByRole("button", { name: "면역력" }).click()
+  await expect(goals.getByRole("button", { name: "눈 건강" })).toBeEnabled()
+
+  // 6. '추천 보기' (AI 응답을 기다린다)
   await page.getByRole("button", { name: "추천 보기" }).click()
 
-  // expected: 추천 1개(하루 1알), 추천 이유와 효과 문장의 출처 링크
+  // expected: 추천 비타민 최대 3개, 각각 추천 이유와 효과 문장의 출처 링크
   const ok = page.getByTestId("rec-ok")
   await expect(ok).toBeVisible({ timeout: 60_000 })
-  await expect(ok.getByRole("heading", { name: "추천 (하루 1알)" })).toBeVisible()
+  // 결과는 맨 위부터 보인다(설문 아래에서 스크롤해 올라가지 않아도 된다)
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
   const recs = ok.getByTestId("recommendation")
-  await expect(recs).toHaveCount(1)
-  await expect(recs.first()).toContainText("왜 골랐나요:")
-  await expect(recs.first().getByRole("link", { name: "출처 보기" })).toBeVisible()
+  const n = await recs.count()
+  expect(n).toBeGreaterThan(0)
+  expect(n).toBeLessThanOrEqual(3)
+  for (const r of await recs.all()) {
+    await expect(r).toContainText("왜 골랐나요:")
+    await expect(r.getByRole("link", { name: "출처 보기" })).toBeVisible()
+  }
 
   // '추천' 칸에는 레보티록신·칼슘과 부딪히는 철분이 없다. 나오면 '주의' 칸에 경고와 출처 링크로 보인다
   await expect(ok).not.toContainText("철분")

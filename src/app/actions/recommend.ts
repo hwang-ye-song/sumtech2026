@@ -8,7 +8,7 @@ import { listUserItems } from '@/lib/items'
 import { warningsForCandidates, type Warning } from '@/lib/check'
 import { substancesInProducts } from '@/lib/catalog'
 import { aiConfigured, pickRecommendations, DEFAULT_TEXT_MODEL, type RecommendSurvey } from '@/lib/ai'
-import { GOAL_WORDS, GOALS, MAX_PICKS, RANGES, SEXES, SYMPTOMS } from '@/lib/survey'
+import { GOAL_WORDS, GOALS, MAX_GOALS, MAX_PICKS, SYMPTOMS } from '@/lib/survey'
 
 export interface RecommendedItem {
   id: string
@@ -43,27 +43,16 @@ interface CandidateRow {
   function_source_url: string
 }
 
-function inRange(formData: FormData, key: keyof typeof RANGES): number | null {
-  const n = Number(formData.get(key))
-  const r = RANGES[key]
-  return Number.isInteger(n) && n >= r.min && n <= r.max ? n : null
-}
-
 export async function requestRecommendation(_prev: RecommendState, formData: FormData): Promise<RecommendState> {
   await ensureReady()
   const user = await getCurrentUser()
   if (!user) redirect('/login')
 
-  const age = inRange(formData, 'age')
-  const heightCm = inRange(formData, 'heightCm')
-  const weightKg = inRange(formData, 'weightKg')
-  const sex = String(formData.get('sex') ?? '')
   const symptoms = formData.getAll('symptom').map(String).filter((s) => (SYMPTOMS as readonly string[]).includes(s))
   const goals = formData.getAll('goal').map(String).filter((g) => GOALS.includes(g))
-  if (age === null || heightCm === null || weightKg === null) return { error: '나이·키·몸무게를 바에서 골라 주세요.' }
-  if (!(SEXES as readonly string[]).includes(sex)) return { error: '성별을 골라 주세요.' }
   if (goals.length === 0) return { error: '개선하고 싶은 점을 하나 이상 골라 주세요.' }
-  const survey: RecommendSurvey = { age, sex, heightCm, weightKg, symptoms, goals }
+  if (goals.length > MAX_GOALS) return { error: `개선하고 싶은 점은 ${MAX_GOALS}개까지 고를 수 있어요.` }
+  const survey: RecommendSurvey = { symptoms, goals }
   const pills = MAX_PICKS
 
   const db = await getDb()
@@ -125,7 +114,7 @@ export async function requestRecommendation(_prev: RecommendState, formData: For
       : []
   })
 
-  // 나이·성별·키·몸무게는 추천을 고를 때만 쓰고 저장하지 않는다.
+  // 고른 증상·개선하고 싶은 점과 결과만 남긴다.
   await db.query(`INSERT INTO recommendation (user_id, survey, result, model) VALUES ($1, $2::jsonb, $3::jsonb, $4)`, [
     user.id,
     JSON.stringify({ symptoms, goals }),

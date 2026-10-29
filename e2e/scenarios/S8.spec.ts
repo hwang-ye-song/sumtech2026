@@ -1,12 +1,12 @@
 import { expect, test } from "@playwright/test"
-import { listRows, openListFromHome, register, searchAndPick, signUpFromHome } from "../helpers"
+import { listRows, openCheckFromHome, register, searchAndPick, signUpFromHome } from "../helpers"
 
 test("S8 뼈에 좋다는 칼슘을 많이 드시는 50~60대 부모님이 하루 기준량을 넘었는지 확인한다", async ({ page }) => {
   // 1~3. 첫 화면 '회원가입' → 이메일·비밀번호·확인 → '가입하기' (목록을 바꾸는 흐름이라 새 계정)
   await signUpFromHome(page, "s8")
 
-  // 4~9. '복용 목록' → '검색으로 등록' → '칼슘' 검색 → '칼슘' → 하루 2개, 한 알 1500mg → '등록'
-  await openListFromHome(page)
+  // 4~9. '검진하기' → '칼슘' 검색 → '칼슘' → 하루 2개, 한 알 1500mg → '등록'
+  await openCheckFromHome(page)
   await searchAndPick(page, "칼슘", "칼슘")
   await register(page, 2, 1500)
 

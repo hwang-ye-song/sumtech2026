@@ -1,55 +1,30 @@
 'use client'
 
 import Link from 'next/link'
-import { useActionState, useState } from 'react'
+import { useActionState, useEffect, useState } from 'react'
 import { requestRecommendation, type RecommendState } from '@/app/actions/recommend'
 import { RECOMMEND_DISCLAIMER } from '@/lib/labels'
-import { GOALS, RANGES, SEXES, SYMPTOMS } from '@/lib/survey'
+import { GOALS, MAX_GOALS, SYMPTOMS } from '@/lib/survey'
 import { LevelBadge, SourceLine } from '@/components/WarningCard'
 
-type RangeKey = keyof typeof RANGES
-
-/** 숫자 항목: 끌어서 고르는 바. 고른 값은 제목 오른쪽에 숫자로 보인다. */
-function RangeField({ name, label, value, onChange }: { name: RangeKey; label: string; value: number; onChange: (v: number) => void }) {
-  const r = RANGES[name]
-  const pct = ((value - r.min) / (r.max - r.min)) * 100
+/** 여러 개를 누르는 알약 버튼 묶음. 고른 값은 숨은 칸으로 함께 보낸다. max가 있으면 그만큼 고른 뒤 나머지는 누를 수 없다. */
+function PillGroup({ title, name, options, picked, onToggle, testId, max }: { title: string; name: string; options: readonly string[]; picked: string[]; onToggle: (o: string) => void; testId: string; max?: number }) {
+  const full = max !== undefined && picked.length >= max
   return (
     <section className="survey-sec">
-      <h4 className="range-head" id={`rec-${name}-label`}>
-        {label}
-        <span className="range-value num" aria-live="polite">
-          {value}
-        </span>
+      <h4>
+        {title}
+        {max !== undefined ? <span className="faint survey-max"> 최대 {max}개</span> : null}
       </h4>
-      <input
-        className="range"
-        type="range"
-        name={name}
-        min={r.min}
-        max={r.max}
-        step={1}
-        value={value}
-        style={{ '--pct': `${pct}%` } as React.CSSProperties}
-        aria-labelledby={`rec-${name}-label`}
-        aria-valuetext={`${value}${r.unit}`}
-        onChange={(e) => onChange(Number(e.target.value))}
-        data-testid={`rec-${name}`}
-      />
-    </section>
-  )
-}
-
-/** 여러 개(또는 하나)를 누르는 알약 버튼 묶음. 고른 값은 숨은 칸으로 함께 보낸다. */
-function PillGroup({ title, name, options, picked, onToggle, testId }: { title: string; name: string; options: readonly string[]; picked: string[]; onToggle: (o: string) => void; testId: string }) {
-  return (
-    <section className="survey-sec">
-      <h4>{title}</h4>
       <div className="pills" role="group" aria-label={title} data-testid={testId}>
-        {options.map((o) => (
-          <button key={o} type="button" className="pill" aria-pressed={picked.includes(o)} onClick={() => onToggle(o)}>
-            {o}
-          </button>
-        ))}
+        {options.map((o) => {
+          const on = picked.includes(o)
+          return (
+            <button key={o} type="button" className="pill" aria-pressed={on} disabled={full && !on} onClick={() => onToggle(o)}>
+              {o}
+            </button>
+          )
+        })}
       </div>
       {picked.map((o) => (
         <input key={o} type="hidden" name={name} value={o} />
@@ -62,17 +37,12 @@ const toggle = (list: string[], o: string) => (list.includes(o) ? list.filter((x
 
 export function RecommendForm() {
   const [state, formAction, pending] = useActionState<RecommendState, FormData>(requestRecommendation, {})
-  const [sex, setSex] = useState('')
-  const [nums, setNums] = useState<Record<RangeKey, number>>({ age: RANGES.age.initial, heightCm: RANGES.heightCm.initial, weightKg: RANGES.weightKg.initial })
   const [symptoms, setSymptoms] = useState<string[]>([])
   const [goals, setGoals] = useState<string[]>([])
   // '다시 고르기'를 누르면 직전 결과를 숨기고 설문을 다시 보여 준다.
   const [backFrom, setBackFrom] = useState<RecommendState | null>(null)
   const hasResult = backFrom !== state && Boolean(state.result || (state.cautions && state.cautions.length > 0))
-  const setNum = (k: RangeKey) => (v: number) => setNums((p) => ({ ...p, [k]: v }))
   const clearAll = () => {
-    setSex('')
-    setNums({ age: RANGES.age.initial, heightCm: RANGES.heightCm.initial, weightKg: RANGES.weightKg.initial })
     setSymptoms([])
     setGoals([])
   }
@@ -93,24 +63,10 @@ export function RecommendForm() {
         </p>
       </div>
       <form action={formAction} className="card survey">
-        <section className="survey-sec">
-          <h4>성별</h4>
-          <div className="opt-cards" role="group" aria-label="성별" data-testid="rec-sex">
-            {SEXES.map((s) => (
-              <button key={s} type="button" className="opt-card" aria-pressed={sex === s} onClick={() => setSex(s)}>
-                {s}
-              </button>
-            ))}
-          </div>
-          {sex ? <input type="hidden" name="sex" value={sex} /> : null}
-        </section>
-        <RangeField name="age" label="나이" value={nums.age} onChange={setNum('age')} />
-        <RangeField name="heightCm" label="키" value={nums.heightCm} onChange={setNum('heightCm')} />
-        <RangeField name="weightKg" label="몸무게" value={nums.weightKg} onChange={setNum('weightKg')} />
         <PillGroup title="현재 겪는 증상" name="symptom" options={SYMPTOMS} picked={symptoms} onToggle={(o) => setSymptoms((p) => toggle(p, o))} testId="symptoms" />
-        <PillGroup title="개선하고 싶은 점" name="goal" options={GOALS} picked={goals} onToggle={(o) => setGoals((p) => toggle(p, o))} testId="goals" />
+        <PillGroup title="개선하고 싶은 점" name="goal" options={GOALS} picked={goals} onToggle={(o) => setGoals((p) => toggle(p, o))} testId="goals" max={MAX_GOALS} />
 
-        <p className="faint survey-note">나이·성별·키·몸무게는 추천을 고를 때만 쓰고 저장하지 않아요. 진단이나 처방이 아니에요.</p>
+        <p className="faint survey-note">고른 내용에 맞는 성분을 골라 드려요. 진단이나 처방이 아니에요.</p>
         {state.error ? (
           <p className="error" role="alert">
             {state.error}
@@ -131,12 +87,23 @@ export function RecommendForm() {
 
 /** 추천 결과 화면: 설문 대신 이 화면만 보여 준다. */
 function Result({ state, onBack }: { state: RecommendState; onBack: () => void }) {
+  // 설문 맨 아래 '추천 보기'에서 넘어오므로, 결과는 맨 위부터 보이게 한다.
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [state])
+
   return (
     <section aria-live="polite" className="stack">
       <div className="eyebrow">추천 결과</div>
       <h3>
         내 약과 부딪히지 않는 <b>성분</b>
       </h3>
+
+      {state.error ? (
+        <div className="empty" role="status" data-testid="rec-none">
+          {state.error}
+        </div>
+      ) : null}
 
       {state.result ? (
         <section className="stack" data-testid="rec-ok">

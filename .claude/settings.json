@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/e2e-guard.mjs\"",
+            "statusMessage": "화면 변경에 맞춘 테스트 수정 여부 확인 중..."
+          }
+        ]
+      }
+    ]
+  }
+}
