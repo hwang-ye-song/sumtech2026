@@ -14,6 +14,22 @@ SUMTECH 2026 루프톤 팀 늘크크의 서비스 저장소예요.
 - 시드 데이터 규격과 출처(성분·조합 규칙·페르소나): `data/seed/CONTRACT.md`, `data/seed/README.md`
 - 진행 기록: `progress.md`
 
+## DB 구조
+
+앱이 처음 뜰 때 표를 만들고 저장소의 시드 파일을 넣어요(`src/lib/schema.ts`, `src/lib/seed.ts`). 그래서 docker(빈 Postgres)와 배포(Supabase)에 같은 데이터가 들어가요. **Supabase SQL Editor에서 SQL을 따로 실행하지 않아요.**
+
+| 표 | 내용 | 시드 파일 |
+|---|---|---|
+| `drug`, `drug_ingredient` | 약 제품 105개(팀원 축약본 104개 + 니코레트)와 주성분·함량, e약은요 원문 | `data/catalog/drugs.json`, `data/drugs/otc_core.json` |
+| `health_food`, `health_food_ingredient` | 건강기능식품 100개와 원재료, 식약처 기능성 내용 | `data/catalog/health_foods.json` |
+| `substance` | 성분 34개(칼슘·철분·레보티록신…) | `data/seed/substances.json` |
+| `product_substance` | 제품 → 성분 연결 458개. 제품을 등록하면 이 성분으로 조합을 점검해요 | `data/catalog/product_substances.json` |
+| `interaction_rule` | 원문 근거가 있는 조합 규칙 26개 + 팀원 조합 모음 121개(근거 329개) | `data/seed/interaction_rules.json`, `data/catalog/nutrient_interactions.json` |
+| `rule_member` | 조합 모음 규칙의 양쪽에 걸리는 제품·성분 | `data/catalog/nutrient_interactions.json` |
+| `app_user`, `user_item`, `recommendation` | 회원·복용 목록·추천 기록(앱이 만듦) | — |
+
+같은 두 항목에 규칙이 여럿 걸리면 가장 무거운 경고 하나로 합치고 출처를 모아 보여 줘요. 팀원 SQL(`database/01_new_drug.sql`, `02_new_health_food.sql`, `03_new_nutrient_interaction.sql`)이 바뀌면 `node scripts/import_team_db.mjs`로 `data/catalog/`를 다시 만들어요. 원재료 → 성분 연결 결과는 `data/catalog/mapping_report.txt`에서 확인해요. `database/twopills_app.sql`은 이전 구조라 쓰지 않아요.
+
 ## 구성
 
 - Next.js 16(App Router, TypeScript, Tailwind) + PostgreSQL. 로그인은 이메일·비밀번호(bcrypt)와 서명 쿠키(JWT).

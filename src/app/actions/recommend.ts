@@ -6,7 +6,7 @@ import { ensureReady } from '@/lib/ready'
 import { getDb } from '@/lib/db'
 import { listUserItems } from '@/lib/items'
 import { warningsForCandidates, type Warning } from '@/lib/check'
-import { nutrientsInDrugs } from '@/lib/catalog'
+import { substancesInProducts } from '@/lib/catalog'
 import { aiConfigured, pickRecommendations, DEFAULT_TEXT_MODEL, type RecommendSurvey } from '@/lib/ai'
 
 export interface RecommendedItem {
@@ -41,7 +41,6 @@ interface CandidateRow {
   function_claim: string
   function_source_title: string | null
   function_source_url: string
-  nutrient_keys: string[]
 }
 
 // 설문 항목마다 식약처 기능성 내용에서 찾을 말. '주의' 칸에 넣을 성분을 고르는 데만 쓴다(추천은 AI가 고른다).
@@ -69,17 +68,18 @@ export async function requestRecommendation(_prev: RecommendState, formData: For
 
   const db = await getDb()
   const items = await listUserItems(user.id)
+  // 이미 먹는 성분: 성분으로 넣은 것 + 넣은 제품(약·건강기능식품)에 든 성분
   const have = new Set(items.filter((i) => i.type === 'substance').map((i) => i.ref))
-  const inDrugs = await nutrientsInDrugs(items.filter((i) => i.type === 'drug').map((i) => i.ref))
+  for (const ids of (await substancesInProducts(items)).values()) for (const id of ids) have.add(id)
 
   const rows = await db.query<CandidateRow>(
-    `SELECT id, name, is_vitamin, function_claim, function_source_title, function_source_url, nutrient_keys
+    `SELECT id, name, is_vitamin, function_claim, function_source_title, function_source_url
        FROM substance
       WHERE recommendable = true AND function_claim IS NOT NULL AND function_source_url IS NOT NULL
       ORDER BY name`,
   )
-  // 이미 먹는 것(목록에 있거나 먹는 약에 든 성분)은 후보에서 뺀다.
-  const fresh = rows.filter((r) => !have.has(r.id) && !(r.nutrient_keys ?? []).some((k) => inDrugs.has(k)))
+  // 이미 먹는 것은 후보에서 뺀다.
+  const fresh = rows.filter((r) => !have.has(r.id))
   const conflicts = await warningsForCandidates(items, fresh.map((r) => r.id))
 
   // 추천 후보: 지금 먹는 것과 부딪친다는 기록이 없는 비타민

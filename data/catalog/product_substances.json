@@ -1,0 +1,2750 @@
+[
+ {
+  "product_type": "drug",
+  "product_ref": "197000037",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "197000037",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "197000037",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "197000037",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "197000037",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "197000037",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "197400246",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "197400278",
+  "substance_id": "levothyroxine",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "198300718",
+  "substance_id": "doxycycline",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "198500321",
+  "substance_id": "metformin",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "199102014",
+  "substance_id": "ginkgo",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "199400883",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "199800924",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "199800924",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200000218",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200009061",
+  "substance_id": "alendronate",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200101738",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200300913",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200300913",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200301116",
+  "substance_id": "levothyroxine",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200401015",
+  "substance_id": "metformin",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200401821",
+  "substance_id": "levothyroxine",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200502107",
+  "substance_id": "warfarin",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200600109",
+  "substance_id": "levofloxacin",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200600456",
+  "substance_id": "warfarin",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200610660",
+  "substance_id": "amlodipine",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200709544",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200709544",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200709544",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200709544",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200709544",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200709544",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200709544",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200709544",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200711426",
+  "substance_id": "alendronate",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200711426",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200801645",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200806191",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200806191",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200806191",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200811608",
+  "substance_id": "losartan",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "200811814",
+  "substance_id": "losartan",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201206997",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201206997",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201206997",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201206997",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201206997",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201206997",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201206997",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201206997",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201206997",
+  "substance_id": "selenium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201307920",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201307920",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201307920",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201307920",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "coenzyme_q10",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "vitamin_b7",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201508281",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "selenium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "vitamin_b7",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201606593",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201700750",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201700750",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201700750",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201700750",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201700750",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "201905731",
+  "substance_id": "ciprofloxacin",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202001517",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202001517",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "selenium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "vitamin_b7",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "drug",
+  "product_ref": "202300436",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831624",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831624",
+  "substance_id": "omega3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831706",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831706",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831706",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831745",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831745",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831745",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831745",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831745",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831745",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831745",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831745",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831819",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831819",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831819",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831819",
+  "substance_id": "ginkgo",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400150831819",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040015083451",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040015083451",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040015083451",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040015083451",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040015083451",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040015110711",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040015110711",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040015110841",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040015110841",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040015110841",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170061087",
+  "substance_id": "probiotics",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170061115",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170061218",
+  "substance_id": "omega3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170061917",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170061917",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170061917",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170061917",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170061917",
+  "substance_id": "lutein",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170061930",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170061930",
+  "substance_id": "lutein",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017014592",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017015371",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017015371",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017015371",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017015371",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017015371",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017015371",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017017952",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017017967",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017017967",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017017967",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017017967",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017017967",
+  "substance_id": "vitamin_b7",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017017988",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017017988",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017017988",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017017988",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017017988",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170211118",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170211118",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170211118",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170211118",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170211530",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170211530",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170211530",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170211530",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170212011",
+  "substance_id": "selenium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170212011",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170212011",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170212011",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400170212011",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017062206",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001706252",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001706252",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001706252",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001706252",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001706252",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001706252",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001706252",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001706252",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017068122",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017068156",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017068156",
+  "substance_id": "lutein",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017068156",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017068156",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017106227",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040017106227",
+  "substance_id": "calcium",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001710680",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001710680",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001710680",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001710680",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001710680",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2004001710680",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200021907",
+  "substance_id": "omega3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200021907",
+  "substance_id": "lutein",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200022100",
+  "substance_id": "omega3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200022100",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200023346",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200023346",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200023346",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200023346",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200023346",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200023346",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200023346",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200024021",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200024021",
+  "substance_id": "coenzyme_q10",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200024021",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200024021",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200061434",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200061434",
+  "substance_id": "lutein",
+  "basis": "category"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200061523",
+  "substance_id": "iron",
+  "basis": "category"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200061932",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200062119",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200062119",
+  "substance_id": "vitamin_k",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200071688",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200071688",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200072546",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200072546",
+  "substance_id": "vitamin_b12",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200072546",
+  "substance_id": "vitamin_b6",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200072546",
+  "substance_id": "iron",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073258",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073258",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073258",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073258",
+  "substance_id": "vitamin_b7",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073258",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073258",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073258",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073258",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073369",
+  "substance_id": "milk_thistle",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073402",
+  "substance_id": "omega3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073434",
+  "substance_id": "vitamin_k",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200073434",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200083146",
+  "substance_id": "vitamin_k",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200083146",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200083146",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200083146",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200083146",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200141940",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200141940",
+  "substance_id": "vitamin_k",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142058",
+  "substance_id": "omega3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142058",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142058",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142059",
+  "substance_id": "lutein",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142059",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142059",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142059",
+  "substance_id": "selenium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142059",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142059",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142059",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_b7",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_k",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142064",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142069",
+  "substance_id": "milk_thistle",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142074",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142079",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142080",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142094",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142094",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142094",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142094",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142094",
+  "substance_id": "vitamin_b7",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142094",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142094",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142094",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200142096",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040020016703",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040020016706",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040020016706",
+  "substance_id": "omega3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201499",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201499",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201512",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_k",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "selenium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_b7",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201548",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201626",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201626",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201626",
+  "substance_id": "selenium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201626",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200400200201626",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040020046441",
+  "substance_id": "coenzyme_q10",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20040020046441",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200600200032607",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200600200032607",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200600200032607",
+  "substance_id": "selenium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200600200081386",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200600200081386",
+  "substance_id": "coenzyme_q10",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200600200081417",
+  "substance_id": "omega3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200600200081417",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200600200081417",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170351816",
+  "substance_id": "milk_thistle",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170351937",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170351937",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352026",
+  "substance_id": "coenzyme_q10",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352315",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352315",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352315",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352315",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352409",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352409",
+  "substance_id": "vitamin_b7",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352409",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352816",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352816",
+  "substance_id": "omega3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352916",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170352916",
+  "substance_id": "ginkgo",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353127",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "milk_thistle",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_k",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "vitamin_b7",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "calcium",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353234",
+  "substance_id": "selenium",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_k",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "vitamin_b7",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "calcium",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "200700170353276",
+  "substance_id": "selenium",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20110017019179",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002128",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002128",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002128",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002128",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002128",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002128",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002128",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002128",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002128",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002128",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002128",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002152",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002152",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002152",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002152",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002152",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120017002152",
+  "substance_id": "milk_thistle",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2012001700218",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2012001700239",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2012001700239",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2012001700239",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2012001700239",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120019007110",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20120019007612",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20130020024465",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20130020024465",
+  "substance_id": "lutein",
+  "basis": "category"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20140020012199",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20140020012199",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20140020012199",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20140020012199",
+  "substance_id": "vitamin_k",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20150002152134",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20150002152134",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "201600060054",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "201600060054",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "201600060054",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "201600060054",
+  "substance_id": "vitamin_c",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_a",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_b7",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_b5",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_b12",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "selenium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_b9",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_b3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_k",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193226",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193358",
+  "substance_id": "selenium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193358",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193358",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193358",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193358",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193358",
+  "substance_id": "milk_thistle",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193358",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193494",
+  "substance_id": "vitamin_b2",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193494",
+  "substance_id": "vitamin_b6",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193494",
+  "substance_id": "vitamin_b1",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193494",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20172880193494",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20180012174542",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20180012174542",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20190004553117",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20190004553117",
+  "substance_id": "omega3",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20190009483931",
+  "substance_id": "vitamin_c",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2020001620243",
+  "substance_id": "probiotics",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2020001620243",
+  "substance_id": "vitamin_c",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2020001620243",
+  "substance_id": "vitamin_b12",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2020001620243",
+  "substance_id": "vitamin_b9",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "2020001620243",
+  "substance_id": "iron",
+  "basis": "functionality"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "202100108172",
+  "substance_id": "vitamin_c",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20220011370119",
+  "substance_id": "selenium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20220011370119",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20220011370119",
+  "substance_id": "ginkgo",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20220011370119",
+  "substance_id": "iron",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20220011370338",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20220011370338",
+  "substance_id": "vitamin_e",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20220011370338",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20240028080296",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20240028080296",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20240028080296",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20240028080296",
+  "substance_id": "zinc",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20240028080342",
+  "substance_id": "calcium",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20240028080342",
+  "substance_id": "vitamin_d",
+  "basis": "ingredient"
+ },
+ {
+  "product_type": "health_food",
+  "product_ref": "20240028080342",
+  "substance_id": "magnesium",
+  "basis": "ingredient"
+ }
+]

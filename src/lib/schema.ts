@@ -1,35 +1,95 @@
 // 앱이 처음 뜰 때 만드는 테이블. PostgreSQL과 PGlite에서 모두 도는 문법만 쓴다.
-// 기준 데이터(drug·drug_ingredient·substance·interaction_rule)는 data/ 시드 파일에서 넣고 앱은 읽기만 한다.
+// 기준 데이터는 저장소의 시드 파일에서 넣고 앱은 읽기만 한다(src/lib/seed.ts).
+//   - drug·drug_ingredient·health_food·health_food_ingredient: 팀원이 만든 제품 축약본(database/01_new_drug.sql·02_new_health_food.sql,
+//     scripts/import_team_db.mjs로 data/catalog/*.json에 옮김). drug에는 e약은요 원문 항목(data/drugs/otc_core.json)을 덧붙인다.
+//   - substance: 판정·추천에 쓰는 성분(data/seed/substances.json)
+//   - product_substance: 제품 → 성분 연결. 제품을 목록에 넣으면 여기 이어진 성분으로 조합을 점검한다.
+//   - interaction_rule: 원문 근거가 있는 조합 규칙(data/seed/interaction_rules.json)
 // 사용자 데이터(app_user·user_item·recommendation)는 앱이 만든다.
+
+/** 기준 데이터 표 구조를 바꾸면 올린다. 값이 다르면 기준 데이터 표를 지우고 새로 만든다(사용자 데이터는 남긴다). */
+export const SCHEMA_VERSION = '3-team-interactions'
+
+/** 구조가 바뀌었을 때 지우는 기준 데이터 표(의존 순서대로) */
+export const REFERENCE_TABLES = [
+  'rule_member',
+  'product_substance',
+  'interaction_rule',
+  'health_food_ingredient',
+  'health_food',
+  'drug_ingredient',
+  'drug',
+  'substance',
+]
 
 export const SCHEMA_SQL = `
 CREATE TABLE IF NOT EXISTS drug (
-  item_seq      TEXT PRIMARY KEY,
-  item_name     TEXT NOT NULL,
-  company       TEXT,
-  category      TEXT,
-  efficacy      TEXT,
-  usage         TEXT,
-  warning       TEXT,
-  precautions   TEXT,
-  interactions  TEXT,
-  side_effects  TEXT,
-  storage       TEXT,
-  source        TEXT,
-  source_url    TEXT NOT NULL
+  item_seq          TEXT PRIMARY KEY,   -- 품목기준코드
+  name              TEXT NOT NULL,      -- 제품명
+  company           TEXT,
+  category          TEXT,               -- 전문의약품 / 일반의약품
+  ingredient_count  INTEGER,
+  ingredients_text  TEXT,               -- 성분 (화면 표시용)
+  ingredients_en    TEXT,
+  pick_reason       TEXT,               -- 축약본에 넣은 이유
+  efficacy          TEXT,               -- 이하 e약은요 원문(자주 쓰는 일반의약품만)
+  usage             TEXT,
+  warning           TEXT,
+  precautions       TEXT,
+  interactions      TEXT,
+  side_effects      TEXT,
+  storage           TEXT,
+  easy_source_url   TEXT,               -- e약은요 원문 주소
+  source_url        TEXT NOT NULL       -- 식약처 의약품 허가정보 주소
 );
 
 CREATE TABLE IF NOT EXISTS drug_ingredient (
-  item_seq    TEXT NOT NULL REFERENCES drug(item_seq) ON DELETE CASCADE,
-  ingredient  TEXT NOT NULL,
-  nutrient    TEXT,
-  PRIMARY KEY (item_seq, ingredient)
+  id               SERIAL PRIMARY KEY,
+  item_seq         TEXT NOT NULL REFERENCES drug(item_seq) ON DELETE CASCADE,
+  ingredient_code  TEXT,
+  ingredient_name  TEXT NOT NULL,
+  amount           NUMERIC,
+  amount_raw       TEXT,
+  unit             TEXT,
+  source           TEXT,
+  substance_id     TEXT                 -- 이어진 성분(없으면 NULL)
 );
-CREATE INDEX IF NOT EXISTS idx_drug_ingredient_nutrient ON drug_ingredient (nutrient);
+CREATE INDEX IF NOT EXISTS idx_drug_ingredient_item ON drug_ingredient (item_seq);
+
+CREATE TABLE IF NOT EXISTS health_food (
+  report_no           TEXT PRIMARY KEY,  -- 신고번호
+  list_no             INTEGER,
+  name                TEXT NOT NULL,
+  list_name           TEXT,
+  company             TEXT,
+  list_functionality  TEXT,
+  registered_at       DATE,
+  shelf_life          TEXT,
+  appearance          TEXT,
+  intake_method       TEXT,
+  packaging           TEXT,
+  functionality       TEXT,              -- 식약처 기능성 내용
+  storage             TEXT,
+  precautions         TEXT,
+  ingredient_count    INTEGER,
+  pick_category       TEXT,              -- 축약본 범주(칼슘·철분 …)
+  pick_reason         TEXT
+);
+
+CREATE TABLE IF NOT EXISTS health_food_ingredient (
+  id               SERIAL PRIMARY KEY,
+  report_no        TEXT NOT NULL REFERENCES health_food(report_no) ON DELETE CASCADE,
+  ingredient_type  TEXT NOT NULL,        -- functional / other / capsule
+  seq              INTEGER NOT NULL,
+  ingredient_name  TEXT NOT NULL,
+  substance_id     TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_health_food_ingredient_report ON health_food_ingredient (report_no);
 
 CREATE TABLE IF NOT EXISTS substance (
   id                     TEXT PRIMARY KEY,
   name                   TEXT NOT NULL,
+  display_name           TEXT,
   aliases                JSONB NOT NULL DEFAULT '[]'::jsonb,
   kind                   TEXT NOT NULL,
   is_vitamin             BOOLEAN NOT NULL DEFAULT false,
@@ -37,11 +97,18 @@ CREATE TABLE IF NOT EXISTS substance (
   function_claim         TEXT,
   function_source_title  TEXT,
   function_source_url    TEXT,
-  nutrient_keys          JSONB NOT NULL DEFAULT '[]'::jsonb,
-  summary                TEXT
+  summary                TEXT,
+  upper_limit            JSONB
 );
-ALTER TABLE substance ADD COLUMN IF NOT EXISTS display_name TEXT;
-ALTER TABLE substance ADD COLUMN IF NOT EXISTS upper_limit JSONB;
+
+CREATE TABLE IF NOT EXISTS product_substance (
+  product_type  TEXT NOT NULL,           -- drug / health_food
+  product_ref   TEXT NOT NULL,           -- drug.item_seq / health_food.report_no
+  substance_id  TEXT NOT NULL REFERENCES substance(id) ON DELETE CASCADE,
+  basis         TEXT NOT NULL,           -- ingredient / functionality / category
+  PRIMARY KEY (product_type, product_ref, substance_id)
+);
+CREATE INDEX IF NOT EXISTS idx_product_substance_sub ON product_substance (substance_id);
 
 CREATE TABLE IF NOT EXISTS interaction_rule (
   id                   TEXT PRIMARY KEY,
@@ -58,13 +125,29 @@ CREATE TABLE IF NOT EXISTS interaction_rule (
   source_id            TEXT NOT NULL,
   source_title         TEXT NOT NULL,
   source_url           TEXT NOT NULL,
-  source_kind          TEXT NOT NULL
+  source_kind          TEXT NOT NULL,
+  source_note          TEXT,
+  more_sources         JSONB NOT NULL DEFAULT '[]'::jsonb,
+  checked_on           TEXT,
+  -- 팀원 조합 모음(data/catalog/nutrient_interactions.json)에서 온 규칙: a_type·b_type이 'group'이고 양쪽 멤버는 rule_member에 있다.
+  a_label              TEXT,             -- 문제 성분 이름(예: 마그네슘)
+  b_label              TEXT,             -- 상대 이름(예: 시프로플록사신)
+  severity             TEXT,             -- major / moderate / minor
+  condition            TEXT              -- 문제가 되는 용량·형태 조건(있을 때만)
 );
-ALTER TABLE interaction_rule ADD COLUMN IF NOT EXISTS source_note TEXT;
-ALTER TABLE interaction_rule ADD COLUMN IF NOT EXISTS more_sources JSONB NOT NULL DEFAULT '[]'::jsonb;
-ALTER TABLE interaction_rule ADD COLUMN IF NOT EXISTS checked_on TEXT;
 CREATE INDEX IF NOT EXISTS idx_rule_a ON interaction_rule (a_type, a_ref);
 CREATE INDEX IF NOT EXISTS idx_rule_b ON interaction_rule (b_type, b_ref);
+
+-- 'group' 규칙의 양쪽에 걸리는 것(약 제품·건강기능식품·성분)
+CREATE TABLE IF NOT EXISTS rule_member (
+  rule_id    TEXT NOT NULL REFERENCES interaction_rule(id) ON DELETE CASCADE,
+  side       TEXT NOT NULL,              -- a / b
+  item_type  TEXT NOT NULL,              -- drug / health_food / substance
+  item_ref   TEXT NOT NULL,
+  basis      TEXT,
+  PRIMARY KEY (rule_id, side, item_type, item_ref)
+);
+CREATE INDEX IF NOT EXISTS idx_rule_member_item ON rule_member (item_type, item_ref);
 
 CREATE TABLE IF NOT EXISTS app_user (
   id                SERIAL PRIMARY KEY,
@@ -76,6 +159,7 @@ CREATE TABLE IF NOT EXISTS app_user (
   created_at        TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- item_type: drug(약 제품) / health_food(건강기능식품 제품) / substance(성분으로 등록)
 CREATE TABLE IF NOT EXISTS user_item (
   id         SERIAL PRIMARY KEY,
   user_id    INTEGER NOT NULL REFERENCES app_user(id) ON DELETE CASCADE,
@@ -107,8 +191,12 @@ CREATE TABLE IF NOT EXISTS seed_meta (
 -- 정책을 두지 않으므로 anon·authenticated는 아무 행도 못 읽는다. 앱은 테이블 주인 계정으로 붙어 영향이 없다.
 ALTER TABLE drug ENABLE ROW LEVEL SECURITY;
 ALTER TABLE drug_ingredient ENABLE ROW LEVEL SECURITY;
+ALTER TABLE health_food ENABLE ROW LEVEL SECURITY;
+ALTER TABLE health_food_ingredient ENABLE ROW LEVEL SECURITY;
 ALTER TABLE substance ENABLE ROW LEVEL SECURITY;
+ALTER TABLE product_substance ENABLE ROW LEVEL SECURITY;
 ALTER TABLE interaction_rule ENABLE ROW LEVEL SECURITY;
+ALTER TABLE rule_member ENABLE ROW LEVEL SECURITY;
 ALTER TABLE app_user ENABLE ROW LEVEL SECURITY;
 ALTER TABLE user_item ENABLE ROW LEVEL SECURITY;
 ALTER TABLE recommendation ENABLE ROW LEVEL SECURITY;

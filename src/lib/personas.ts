@@ -7,9 +7,10 @@ import path from 'node:path'
 import { randomBytes } from 'node:crypto'
 import { getDb } from './db'
 import { hashPassword } from './password'
+import { itemExists, type ItemType } from './catalog'
 
 export interface PersonaItem {
-  type: 'drug' | 'substance'
+  type: ItemType
   ref: string
   daily_count?: number
   unit_amount?: number | null
@@ -75,11 +76,7 @@ async function applySeed(userId: number, p: Persona): Promise<void> {
   ])
   await db.query('DELETE FROM user_item WHERE user_id = $1', [userId])
   for (const it of p.items) {
-    const found =
-      it.type === 'drug'
-        ? await db.query('SELECT 1 FROM drug WHERE item_seq = $1', [it.ref])
-        : await db.query('SELECT 1 FROM substance WHERE id = $1', [it.ref])
-    if (found.length === 0) {
+    if (!(await itemExists(it))) {
       console.warn(`[personas] ${p.id}의 항목 ${it.type}:${it.ref}을(를) 찾지 못해 건너뜁니다.`)
       continue
     }

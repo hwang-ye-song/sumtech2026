@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import { ensureReady } from '@/lib/ready'
-import { getDb } from '@/lib/db'
 import { getCurrentUser } from '@/lib/session'
-import { isSupplement, kindLabel, searchCatalog, substancesInDrugs, type CatalogHit } from '@/lib/catalog'
+import { isSupplement, itemKey, listCatalog, searchCatalog, substancesInProducts, type CatalogHit } from '@/lib/catalog'
 import { listAllRules, type Warning } from '@/lib/check'
 import { CONSULT_NOTE, NO_RECORD_MESSAGE } from '@/lib/labels'
 import { KindBadge } from '@/components/RegisterPanel'
@@ -19,34 +18,16 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
   const params = await searchParams
   const q = (typeof params.q === 'string' ? params.q : '').trim().slice(0, 50)
   const kind = KINDS.find((k) => k === params.kind) ?? '전체'
-  const db = await getDb()
 
   const [rules, user] = await Promise.all([listAllRules(), getCurrentUser()])
-  let entries: CatalogHit[]
-  if (q.length >= 2) {
-    entries = await searchCatalog(q, 40)
-  } else {
-    // 검색어가 없으면 성분 전체와, 규칙에 걸리는 일반의약품만 보여 준다.
-    const subs = await db.query<{ id: string; name: string; kind: string }>('SELECT id, name, kind FROM substance ORDER BY kind DESC, name')
-    const drugs = await db.query<{ item_seq: string; item_name: string; category: string | null; company: string | null }>(
-      'SELECT item_seq, item_name, category, company FROM drug ORDER BY item_name',
-    )
-    entries = [
-      ...subs.map((s) => ({ type: 'substance' as const, ref: s.id, name: s.name, sub: kindLabel(s.kind) })),
-      ...drugs.map((d) => ({
-        type: 'drug' as const,
-        ref: d.item_seq,
-        name: d.item_name,
-        sub: ['일반의약품', d.category, d.company].filter(Boolean).join(' · '),
-      })),
-    ]
-  }
+  // 검색어가 없으면 성분 전체와, 규칙에 걸리는 제품만 보여 준다(아래 filter).
+  const entries: CatalogHit[] = q.length >= 2 ? await searchCatalog(q, 40) : await listCatalog()
 
-  // 약 품목은 그 약에 든 영양 성분으로도 성분 규칙에 걸린다(판정과 같은 방식).
-  const inDrugs = await substancesInDrugs(entries.filter((e) => e.type === 'drug').map((e) => e.ref))
+  // 제품은 그 제품에 든 성분으로도 성분 규칙에 걸린다(판정과 같은 방식).
+  const inProducts = await substancesInProducts(entries)
   const related = (e: CatalogHit): Warning[] => {
-    const keys = new Set([`${e.type}:${e.ref}`, ...(inDrugs.get(e.ref) ?? []).map((id) => `substance:${id}`)])
-    return rules.filter((r) => keys.has(`${r.a.type}:${r.a.ref}`) || keys.has(`${r.b.type}:${r.b.ref}`))
+    const keys = new Set([itemKey(e), ...(inProducts.get(itemKey(e)) ?? []).map((id) => `substance:${id}`)])
+    return rules.filter((r) => r.members.a.some((k) => keys.has(k)) || r.members.b.some((k) => keys.has(k)))
   }
   const cards = entries
     .map((e) => ({ e, ws: related(e) }))

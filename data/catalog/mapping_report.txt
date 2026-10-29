@@ -1,0 +1,243 @@
+제품-성분 연결 458개
+
+[약] 다이크로짇정(히드로클로로티아지드): -
+[약] 유한짓정100mg(이소니아지드)(군납명:이소니아지드정케이.피100밀리그람): -
+[약] 디고신정(디곡신): -
+[약] 라식스정(푸로세미드): -
+[약] 판콜에이내복액: -
+[약] 아로나민골드정: vitamin_b1,vitamin_b2,vitamin_b6,vitamin_b12,vitamin_c,vitamin_e
+[약] 자이로릭정(알로푸리놀): -
+[약] 부광페니토인캡슐100밀리그램: -
+[약] 마그밀정(수산화마그네슘): magnesium
+[약] 씬지로이드정0.1밀리그램(레보티록신나트륨수화물): levothyroxine
+[약] 부루펜정200밀리그램(이부프로펜): -
+[약] 유한메토트렉세이트정: -
+[약] 게보린정(수출명:돌로린정): -
+[약] 우루사정100밀리그램(우르소데옥시콜산): -
+[약] 모노신정(독시사이클린하이클레이트수화물): doxycycline
+[약] 아락실과립: -
+[약] 다이아벡스정500밀리그램(메트포르민염산염): metformin
+[약] 미노씬캡슐50mg(미노사이클린염산염): -
+[약] 베아제정: -
+[약] 알마겔정(알마게이트)(수출명:유한가스트라겔정): -
+[약] 콜킨정(콜키신): -
+[약] 까스활명수큐액: -
+[약] 아론정(독시라민숙신산염): -
+[약] 오구멘틴정625밀리그램(아목시실린·클라불란산칼륨(4:1)): -
+[약] 기넥신에프정40밀리그램(은행엽건조엑스): ginkgo
+[약] 퍼킨정25-100밀리그램(카르비도파,레보도파): -
+[약] 본키연질캡슐(칼시트리올): -
+[약] 겔포스엠현탁액: magnesium
+[약] 소론도정(프레드니솔론): -
+[약] 옴니세프캡슐100밀리그램(세프디니르): -
+[약] 토스롱액: vitamin_b3,vitamin_b6
+[약] 테올란비서방캡슐200밀리그램(테오필린): -
+[약] 알레그라정120밀리그람(펙소페나딘염산염): -
+[약] 훼스탈골드정: -
+[약] 란스톤캡슐(란소프라졸과립): -
+[약] 볼그레액(철아세틸트랜스페린): iron
+[약] 바이엘아스피린정500밀리그람: -
+[약] 제니칼캡슐120밀리그램(오르리스타트): -
+[약] 넥시움정20밀리그램(에스오메프라졸마그네슘): -
+[약] 포사맥스70밀리그램정(알렌드론산나트륨수화물): alendronate
+[약] 훼로바-유서방정(건조황산제일철): iron
+[약] 아스피린프로텍트정100밀리그람: -
+[약] 애드빌정(이부프로펜): -
+[약] 트레틴연질캡슐10mg(이소트레티노인): -
+[약] 악토넬정35밀리그람(리세드론산나트륨): -
+[약] 크레스토정10밀리그램(로수바스타틴칼슘): -
+[약] 닥터베아제정: -
+[약] 다이톱현탁액(디옥타헤드랄스멕타이트): -
+[약] 이가탄에프캡슐: vitamin_c,vitamin_e
+[약] 씬지록신정100마이크로그램(레보티록신나트륨수화물): levothyroxine
+[약] 테그레톨정200밀리그램(카르바마제핀): -
+[약] 이지엔6애니연질캡슐(이부프로펜): -
+[약] 이지엔6프로연질캡슐(덱시부프로펜)(수출명:DAUFENSoftCapsule,SPEEDFEN): -
+[약] 글루코파지정500밀리그램(메트포르민염산염): metformin
+[약] 씬지로이드정0.05밀리그램(레보티록신나트륨수화물): levothyroxine
+[약] 알닥톤필름코팅정25밀리그람(스피로노락톤): -
+[약] 리피토정10밀리그램(아토르바스타틴칼슘삼수화물): -
+[약] 쿠파린정5밀리그램(와파린나트륨): warfarin
+[약] 크라비트정500밀리그람(레보플록사신): levofloxacin
+[약] 쿠파린정2밀리그램(와파린나트륨): warfarin
+[약] 사리돈에이정: -
+[약] 노바스크정5밀리그람(암로디핀베실산염): amlodipine
+[약] 지르텍정(세티리진염산염): -
+[약] 판피린큐액: -
+[약] 플라빅스정75밀리그램(클로피도그렐황산염): -
+[약] 코다론정(아미오다론염산염): -
+[약] 캐롤에프정(이부프로펜아르기닌): -
+[약] 임팩타민정: vitamin_b1,vitamin_b2,vitamin_b3,vitamin_b5,vitamin_b6,vitamin_b9,vitamin_b12,zinc
+[약] 포사맥스플러스디정: alendronate,vitamin_d
+[약] 개비스콘더블액션현탁액: calcium
+[약] 씨콜드플러스정: vitamin_c,vitamin_b2,vitamin_b1
+[약] 테라플루데이타임건조시럽: -
+[약] 슬리펠정25밀리그램(디펜히드라민염산염): -
+[약] 야즈정: -
+[약] 조코정20밀리그램(심바스타틴): -
+[약] 펜잘큐정: -
+[약] 코자플러스정: losartan
+[약] 코자정(로사르탄칼륨): losartan
+[약] 그날엔정: -
+[약] 클라리틴정(로라타딘): -
+[약] 둘코락스에스장용정: -
+[약] 레볼레이드정25밀리그램(엘트롬보팍올라민): -
+[약] 삐콤씨정: vitamin_b1,vitamin_b2,vitamin_b6,vitamin_b12,vitamin_c,vitamin_b5,vitamin_b3,vitamin_e,selenium
+[약] 화이투벤큐연질캡슐: -
+[약] 마그비연질캡슐: vitamin_e,magnesium,vitamin_b1,vitamin_b6
+[약] 메이킨큐장용정: -
+[약] 콜대원콜드시럽: -
+[약] 벤포벨정: vitamin_b1,vitamin_c,vitamin_d,vitamin_e,coenzyme_q10,zinc,vitamin_b2,vitamin_b3,vitamin_b6,vitamin_b5,vitamin_b7,vitamin_b9,vitamin_b12
+[약] 훼로바맘스케어정: vitamin_b9,vitamin_e,calcium,zinc,selenium,iron,vitamin_b1,vitamin_b2,vitamin_b3,vitamin_b6,vitamin_c,vitamin_b7,vitamin_b12,vitamin_b5
+[약] 헤모큐수정: iron,vitamin_b9,vitamin_b6,vitamin_c,vitamin_b12
+[약] 동성정로환에프정: -
+[약] 씨프로바이정250밀리그램(시프로플록사신염산염수화물): ciprofloxacin
+[약] 탁센엠지연질캡슐: -
+[약] 칼디원정: calcium,vitamin_d
+[약] 알파디연질캡슐(알파칼시돌): -
+[약] 하벤에스액: -
+[약] 속청큐액: -
+[약] 경동파니틴정10밀리그램(파모티딘): -
+[약] 타이레놀정500밀리그람(아세트아미노펜): -
+[약] 타이레놀8시간이알서방정(아세트아미노펜): -
+[약] 어린이타이레놀현탁액(아세트아미노펜): -
+[약] 비맥스제트정: vitamin_b1,vitamin_c,vitamin_d,zinc,selenium,vitamin_e,magnesium,vitamin_b2,vitamin_b3,vitamin_b5,vitamin_b6,vitamin_b7,vitamin_b9,vitamin_b12
+[약] 다이어스탑캡슐(로페라미드염산염): -
+[약] 맥시부펜노즈연질캡슐: -
+[건기식:오메가3] 일양약품 rTG 오메가3: vitamin_e,omega3
+[건기식:비타민C] 한미양행 비타민CDE 트리플UP: vitamin_d,vitamin_e,vitamin_c
+[건기식:비타민B] 한미양행 비오 비타민B 컴플렉스: zinc,vitamin_b1,vitamin_b5,vitamin_b9,vitamin_b3,vitamin_b2,vitamin_b6,vitamin_b12
+[건기식:은행잎] 광동 혈행&기억력 징코: vitamin_b1,vitamin_b2,vitamin_b6,ginkgo,zinc
+[건기식:멀티비타민] 한미멀티비타민: vitamin_b1,vitamin_c,vitamin_e,vitamin_a,vitamin_d
+[건기식:홍삼] 광동 홍삼진스틱: -
+[건기식:유산균] 일동 생유산균: zinc,probiotics
+[건기식:철분] 함소아 철분가득: vitamin_c,probiotics,iron
+[건기식:홍삼] 유한데일리홍삼: -
+[건기식:유산균] 광동 궁리본 유산균: probiotics*
+[건기식:비타민D] 일동 비타민D3 5000IU: vitamin_d
+[건기식:오메가3] 고려은단 식물성 오메가3: omega3
+[건기식:루테인] 일동 루테인케어: vitamin_c,vitamin_a,vitamin_e,zinc,lutein*
+[건기식:루테인] 동국 루테인지아잔틴: vitamin_a,lutein*
+[건기식:유산균] 종근당(鍾根堂)바이오 발효홍삼유산균: probiotics
+[건기식:홍삼] 일동후디스 純(순)홍삼 으뜸아이: -
+[건기식:비타민C] 광동 리프레C 비타민C: zinc,vitamin_b2,vitamin_b9,vitamin_b1,vitamin_c,vitamin_b12
+[건기식:유산균] 듀오락 골드: probiotics
+[건기식:비타민B] 듀오락 비타민B복합 프로바이오틱스: vitamin_b2,vitamin_b1,probiotics,vitamin_b6,vitamin_b7
+[건기식:철분] 듀오락 맘스 철분&엽산 플러스: zinc,iron,vitamin_b12,vitamin_c,vitamin_b9
+[건기식:칼슘] 일양 칼슘 마그네슘 앤 비타민D 아연: magnesium,zinc,vitamin_d,calcium
+[건기식:철분] 유한m 철분엽산: vitamin_c,vitamin_b9,vitamin_b12,iron
+[건기식:마그네슘] 유한 마그네슘: selenium,vitamin_b1,vitamin_b2,magnesium,vitamin_b6
+[건기식:철분] 일양철분35mg정: iron
+[건기식:멀티비타민] 종근당건강멀티비타민포맨: vitamin_a,vitamin_b1,vitamin_b6,vitamin_b9,vitamin_e,vitamin_b3,vitamin_c,vitamin_b2
+[건기식:비타민C] 일양비타민C1000: vitamin_c
+[건기식:루테인] 일양루테인플러스: vitamin_a,lutein,zinc,vitamin_e
+[건기식:홍삼] 일양6년근발효홍삼정: -
+[건기식:칼슘] 일동해조칼슘골드: vitamin_d,calcium*
+[건기식:멀티비타민] 대웅 액티브 멀티비타민&미네랄 포맨: vitamin_b1,vitamin_c,vitamin_e,vitamin_b6,vitamin_b2,zinc
+[건기식:오메가3] 안국오메가루테인: omega3,lutein
+[건기식:오메가3] 유한 폴리오메가: omega3,vitamin_e
+[건기식:마그네슘] 일동 액상마그네슘: vitamin_b3,vitamin_b1,zinc,vitamin_d,vitamin_b2,vitamin_b6,magnesium
+[건기식:코엔자임Q10] 유한 나토 코큐텐: vitamin_c,coenzyme_q10,zinc,probiotics
+[건기식:루테인] 유한 루테인지아잔틴: vitamin_e,lutein*
+[건기식:철분] 뉴오리진 철분&엽산: iron*
+[건기식:칼슘] 뉴오리진 어골칼슘&비타민D: calcium
+[건기식:칼슘] 유한K2칼슘: calcium,vitamin_k
+[건기식:비타민D] 종근당 비타민D2000IU: zinc,vitamin_d
+[건기식:철분] 닥터린 철분 플러스: probiotics,vitamin_b12*,vitamin_b6*,iron*
+[건기식:비타민B] 여에스더 비타민B 컴플렉스: vitamin_b9,vitamin_b3,vitamin_b5,vitamin_b7,vitamin_b2,vitamin_b1,vitamin_b6,vitamin_b12
+[건기식:밀크씨슬] 동국 밀크씨슬: milk_thistle
+[건기식:오메가3] 동국 초임계 알티지 오메가3: omega3
+[건기식:비타민K] 여에스더 비타민K2 플러스 D3: vitamin_k,vitamin_d
+[건기식:칼슘] 여에스더 칼슘 마그네슘D: vitamin_k,magnesium,vitamin_d,zinc,calcium
+[건기식:비타민K] 광동명품비타민K2프리미엄: vitamin_d,vitamin_k
+[건기식:오메가3] 광동rTG오메가3: omega3,vitamin_e,vitamin_d
+[건기식:루테인] 광동 루테인: lutein,vitamin_d,vitamin_c,selenium,zinc,vitamin_a,vitamin_e
+[건기식:멀티비타민] 광동 멀티비타민: vitamin_c,vitamin_b5,vitamin_b7,vitamin_b6,vitamin_b1,vitamin_d,vitamin_b12,vitamin_b9,vitamin_k,vitamin_b2,vitamin_a,zinc,vitamin_b3,vitamin_e
+[건기식:밀크씨슬] 광동 밀크씨슬: milk_thistle
+[건기식:칼슘] 광동 칼슘: calcium
+[건기식:비타민D] 광동 비타민D: vitamin_d
+[건기식:마그네슘] 광동 마그네슘: magnesium
+[건기식:비타민B] 광동 비타민B: vitamin_b3,vitamin_b2,vitamin_b6,vitamin_b1,vitamin_b7,vitamin_b12,vitamin_b5,vitamin_b9
+[건기식:철분] 광동 철분: iron
+[건기식:홍삼] 종근당건강 홍삼정K: -
+[건기식:유산균] 락토핏 플러스 프로바이오틱스: probiotics
+[건기식:오메가3] 프로메가 알티지 오메가3 듀얼S: vitamin_e,omega3
+[건기식:유산균] 동국 유산균: probiotics,zinc
+[건기식:비타민C] 동국 비타민C 1000: vitamin_c
+[건기식:멀티비타민] 동국 멀티비타민 미네랄: vitamin_e,zinc,vitamin_a,magnesium,vitamin_k,vitamin_b3,selenium,vitamin_b2,vitamin_d,vitamin_b5,vitamin_c,vitamin_b12,vitamin_b7,vitamin_b6,vitamin_b1,vitamin_b9,iron
+[건기식:칼슘] 동국 프로칼슘 치아건강: calcium,zinc,selenium,vitamin_d,vitamin_c
+[건기식:홍삼] 정관장 홍삼정: -
+[건기식:코엔자임Q10] 광동 코큐텐플러스: coenzyme_q10,vitamin_e
+[건기식:유산균] 센트룸 프로바이오 면역케어: zinc,probiotics,selenium
+[건기식:코엔자임Q10] 고려은단 코엔자임Q10: vitamin_e,coenzyme_q10
+[건기식:오메가3] 일동 알티지오메가3 프리미엄: omega3,vitamin_d,vitamin_e
+[건기식:밀크씨슬] 솔가 밀크씨슬 130: milk_thistle
+[건기식:비타민D] 솔가 면역 비타민D3 2000 위드 아연 (IMMUNE VITAMIN D3 2000IU WITH ZINC): zinc,vitamin_d
+[건기식:코엔자임Q10] 솔가 코큐텐 100MG: coenzyme_q10
+[건기식:마그네슘] 솔가 마그네슘 위드 트리플 B (Magnesium with Triple B): vitamin_b6,magnesium,vitamin_b1,vitamin_b12
+[건기식:비타민B] 레모나 비오틴+비타민B군 구미: vitamin_b1,vitamin_b7,vitamin_b6
+[건기식:오메가3] 솔가 rTG 알티지 오메가-3 900: vitamin_e,omega3
+[건기식:은행잎] 일동 브레인 피에스 징코: vitamin_e,ginkgo
+[건기식:유산균] 솔가 100억 프로바이오틱스: probiotics
+[건기식:멀티비타민] 센트룸 데일리 뉴트리션 팩 30 남성 프로 Centrum Daily Nutrition Pack 30 Men Pro: zinc,vitamin_e,milk_thistle,vitamin_b9,vitamin_b1,vitamin_c,magnesium,vitamin_b5,vitamin_b6,vitamin_b2,vitamin_b3,iron,vitamin_b12,vitamin_d,vitamin_a,vitamin_k,vitamin_b7*,calcium*,selenium*
+[건기식:멀티비타민] 센트룸 데일리 뉴트리션 팩 30 여성 프로 Centrum Daily Nutrition Pack 30 Women Pro: iron,vitamin_b3,vitamin_b9,vitamin_b1,vitamin_b5,magnesium,vitamin_c,zinc,vitamin_b2,vitamin_b6,vitamin_e,vitamin_k,vitamin_b12,vitamin_d,vitamin_a,vitamin_b7*,calcium*,selenium*
+[건기식:비타민C] 일동 하이퍼 비타민C 3000: vitamin_c
+[건기식:멀티비타민] 일양 멀티비타민: vitamin_b3,vitamin_d,zinc,vitamin_e,vitamin_b6,vitamin_b2,vitamin_b5,vitamin_c,vitamin_b1,vitamin_b12,vitamin_a
+[건기식:밀크씨슬] 일양 간건강 밀크씨슬: vitamin_b3,vitamin_b2,vitamin_b1,vitamin_b6,zinc,milk_thistle
+[건기식:비타민C] 종근당 비타민C 1000mg: vitamin_c
+[건기식:마그네슘] 종근당파워칼슘앤마그네슘: magnesium,calcium,vitamin_d,vitamin_e
+[건기식:유산균] 일양살아있는프로바이오틱스장용캡슐: probiotics
+[건기식:비타민D] 일양 MSM+비타민D: vitamin_d
+[건기식:루테인] 고려은단 루테인 지아잔틴 아스타잔틴: vitamin_a,lutein*
+[건기식:비타민K] 유한m 칼슘 마그네슘 비타민 D 비타민 K2: calcium,magnesium,vitamin_d,vitamin_k
+[건기식:칼슘] 정관장 아이칼슘: magnesium,calcium
+[건기식:멀티비타민] 고려은단멀티비타민: vitamin_b1,vitamin_b2,vitamin_b6,vitamin_c*
+[건기식:멀티비타민] 유한양행 종합비타민: vitamin_a,vitamin_b1,vitamin_b7,vitamin_b5,vitamin_c,vitamin_b12,vitamin_d,selenium,zinc,vitamin_b9,vitamin_e,vitamin_b3,vitamin_k,vitamin_b6,vitamin_b2
+[건기식:밀크씨슬] 유한 밀크씨슬: selenium,vitamin_b1,vitamin_b2,vitamin_b6,vitamin_e,milk_thistle,zinc
+[건기식:마그네슘] 동국 액상 마그네슘 트리플샷: vitamin_b2,vitamin_b6,vitamin_b1,magnesium,zinc
+[건기식:유산균] 유한 생 유산균: probiotics,zinc
+[건기식:오메가3] 한미 알티지 오메가3: vitamin_e,omega3
+[건기식:비타민C] 유한 리포좀 비타민 C: vitamin_c*
+[건기식:철분] 여에스더 락토 철분: probiotics,vitamin_c*,vitamin_b12*,vitamin_b9*,iron*
+[건기식:비타민C] 고려은단비타민C1000: vitamin_c
+[건기식:은행잎] 유한m 징코미네랄플러스: selenium,zinc,ginkgo,iron
+[건기식:비타민D] 유한m비타민D2000IU: vitamin_d,vitamin_e,zinc
+[건기식:칼슘] 센트룸 칼슘+D 미니: magnesium,calcium,vitamin_d,zinc
+[건기식:칼슘] 종근당건강칼슘마그네슘: calcium,vitamin_d,magnesium
+
+* = 원재료 칸이 아니라 기능성 내용 제목이나 범주로 이은 것
+
+[연결 안 된 기능성 원재료]
+황산망간(13)
+건조효모(9)
+혼합제제(8)
+스테아린산마그네슘(7)
+글루콘산동(5)
+덱스트린(4)
+몰리브덴(4)
+헤마토코쿠스추출물(3)
+크롬(3)
+해조혼합분말(3)
+황산동(3)
+홍삼(2)
+이산화규소(2)
+아라비아검(2)
+홍삼농축액(2)
+요오드칼륨(2)
+발효홍삼농축액분말(1)
+변성전분(1)
+옥수수전분(1)
+6년근발효홍삼농축액(1)
+해조분말(1)
+레몬추출물(1)
+커리플랜트잎(1)
+구아바잎추출분말(1)
+양송이버섯분말(1)
+프로폴리스추출물(1)
+포스파티딜세린(1)
+L-테아닌(1)
+녹차추출물분말(1)
+설탕(1)
+글리세린지방산에스테르(1)
+엠에스엠(1)
+인디안구스베리추출물분말(1)
