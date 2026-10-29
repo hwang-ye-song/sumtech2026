@@ -5,10 +5,9 @@ Agent가 서비스 저장소 루트의 `progress.md`로 복사해 이어 쓴다(
 ## 현재 상태
 
 - 실제 서비스 저장소 폴더: D:\Desktop\SUMTECH_project\sumtech2026
-- 현재 단계 / 다음 행동: 3·5·6단계 진행 중(2026-10-29 밤). Next.js 앱(화면 S1~S7)·시드 데이터·Dockerfile·compose·CI·E2E spec까지 만듦. 모두 commit·push 전 → AI 키 설정·비맥스제트정 상자 사진(e2e/fixtures/bemax-z.jpg) 추가 → S6·S7 E2E 확인 → docker로 빈 DB 확인 → 학생이 정하면 commit·push → 첫 배포
-- 학생에게 확인할 내용: 저장소를 private로 바꿀지 / 팀원 직접 경험이 있는지 / 비맥스제트정 상자 사진을 직접 찍어 줄 수 있는지 / AI_GATEWAY_API_KEY를 .env.local에 넣을지 / docs/personas.md의 [가정] A1~A18 / commit·push 시점
-- 시드 데이터(data/seed/): 성분 34개(추천 후보 24개, 식약처 고시 PDF와 글자 대조), 조합 규칙 26개(검증 에이전트 통과분만, 탈락 4개는 data/seed/README.md), 가상 페르소나 P1~P3(docs/personas.md, 검토 지적 8개 반영). 시드 워크플로가 작업 한도로 마지막 작성 단계에서 멈춰, 저장된 수집·검증 결과로 다시 작성함
-- 검사 결과(2026-10-29): tsc·eslint·next build 통과. 빈 DB 로컬 서버에서 E2E S1~S5 desktop·mobile 10개 통과. S6은 AI 키 없음으로 실패, S7은 사진 fixture 없음으로 실패. 페르소나 P1(경고 2개)·P2(칼슘 추가 시 R3 경고)·P3(타이레놀 추가 시 '현재 기준으로 안전해요') 브라우저로 확인
+- 현재 단계 / 다음 행동: 2단계 마무리(기획서 보강 중) → 남은 근거 채우기 → push → 3단계(최소 화면·docker·배포)
+- 앱 진행(2026-10-29 밤): Next.js 앱 첫 버전(화면·시드 data/seed·docker·CI·E2E S1~S7)을 main에 합쳐 push. 앱과 e2e spec은 이전 scenarios.yaml(commit c45076c의 docs/scenarios.yaml, 개인 기준·`데모` 계정·desktop+mobile) 기준이라, 팀의 지금 scenarios.yaml(S1~S8·`복용자` 계정·desktop)에 화면과 spec을 맞추는 일이 남음. 검사: tsc·eslint·next build 통과, 빈 DB 로컬에서 E2E S1~S5 통과(S6 AI 키 없음, S7 사진 fixture 없음). 시연 배포는 Vercel + 배포용 Postgres(무료 등급, DATABASE_URL)로, 시연 계정은 SEED_PERSONA_PASSWORD(로컬과 다른 값)로 따로 만든다
+- 학생에게 확인할 내용: 영양제 효과 DB(출처 포함) / 서비스 이름 / 통찰 칸 줄이기 여부 / 사진 흐름용 사진 2장(흐린 알약, 훼로바-유서방정 상자) / AI 키 발급(자료→API 키) / 멘토·약사에게 리포트 유용성 확인 / 필라이즈 직접 비교 / 저장소 private 전환 여부
 
 ## 1. GitHub 준비
 
@@ -28,24 +27,23 @@ Agent가 서비스 저장소 루트의 `progress.md`로 복사해 이어 쓴다(
 
 - [x] 종이 기록 수령(학생이 채팅에 옮겨 적거나 사진 첨부) (스캔 PDF 2쪽)
 - [x] problem.example.yaml을 참고해 docs/problem.yaml 작성 (①~④ 칸은 학생이 고쳐 말한 내용으로 교체)
-- [x] 원문 의도와 불명확한 내용 확인, 없는 근거는 빈칸 유지 (재작성 때 학생 답으로 정리. experiences의 feeling은 근거가 없어 null 유지)
-- [x] 2-A 문제 다지기: 캔버스 칸을 질문으로 다짐 (문제정의 재작성: "영양제는 다 좋다고 믿어서 약이나 다른 영양제와 겹쳐 해가 될 수 있다는 걸 모른다", 고객은 50~60대 부모님 + 30~40대 자녀)
-- [ ] 팀원 경험을 언제·어떤 장면·어떻게 대응했는지까지 experiences에 기록 (지금 E1~E4는 모두 닥터나우 공개 질문. 팀원 직접 경험은 아직 없음)
-- [x] 외부 자료는 열리는 URL을 sources에 그대로 적고 원문이 주장을 직접 뒷받침하는지 확인, 출처 없는 수치 없음 (R1~R15)
-- [x] 문제가 '우리 기능이 없어서'가 아니라 실제 상황·행동으로 서술됐는지 확인
-- [x] 2-B 해법 찾기: solution_paths 7개(선택 2: 원문 근거 약×영양제 점검·가족 목록·리포트 / 영양제끼리 조합, 제외 1: 약×약, 보류 4: 영양제 회사 후원·판매 연결 / 사진 등록 / 복용 시간 안내 / 개인 건강 정보), alternatives의 why_ours 작성
-- [x] 2-C features F1~F6 입력·결과·완료 조건 작성 (F6 참여 코드 가족 그룹 추가)
-- [ ] YAML 문법 검사, 등록된 레포의 기본 브랜치에 docs/problem.yaml push (재작성본 commit·push 전)
-- [x] PRD(docs/PRD-약영양제-병용점검.md)·README를 새 problem.yaml에 맞춤 (고객·기능 번호·출처 번호 R1~R15·범위, commit 전)
+- [ ] 원문 의도와 불명확한 내용 확인, 없는 근거는 빈칸 유지
+- [ ] 2-A 문제 다지기: 캔버스 칸을 질문으로 다짐(Agent가 해법·후보·예시 답을 먼저 내지 않음, 학생 답이 없는 칸은 "학생 답 대기")
+- [ ] 팀원 경험을 언제·어떤 장면·어떻게 대응했는지까지 experiences에 기록
+- [ ] 외부 자료는 열리는 URL을 sources에 그대로 적고 원문이 주장을 직접 뒷받침하는지 확인, 출처 없는 수치 없음
+- [ ] 문제가 '우리 기능이 없어서'가 아니라 실제 상황·행동으로 서술됐는지 확인
+- [ ] 2-B 해법 찾기(solution_paths 완료, why_ours는 학생 답 대기): 학생이 낸 해법과 결정을 solution_paths에, 기존 대안 대신 이 해법이어야 하는 이유를 학생 말로 why_ours에 작성
+- [ ] 2-C features에 학생이 고른 해법의 기능별 입력·결과·완료 조건 작성
+- [ ] YAML 문법 검사, 등록된 레포의 기본 브랜치에 docs/problem.yaml push
 - [x] 학생이 개인 로그인으로 우리 팀 → 문제 정의를 열어 캔버스 표시 확인 (2026-10-29 학생 확인: 잘 보임)(Agent는 화면을 열 수 없음, 약 1분 캐시)
 - [ ] 핵심 사용자 흐름·기능별 동작 규칙·완료 조건·제외 범위를 팀과 확인
-- [ ] 로그인 필요 여부와 역할 이름(흐름 account·docker 시드 계정 역할 이름으로 씀) 결정 (로그인 필요: F1. 역할 이름 후보 `자녀`·`부모`, 미확정)
-- [ ] 첫 화면에서 알려 줄 것(로그인하지 않은 사람이 `/`에서 볼 서비스 이름·하는 일)을 학생과 정함
-- [ ] 주 사용 플랫폼(desktop·mobile·both)과 실제 사용 장면에 근거한 platformReason 작성
+- [x] 로그인 필요 여부와 역할 이름 결정: 로그인 있음, 역할 "복용자"
+- [x] 첫 화면에서 알려 줄 것: 서비스 이름(미정, 대기) + "약과 영양제를 함께 먹는 사람의 해로운 복용 조합을 출처가 붙은 조합 DB로 점검하고 경고하는 서비스" + 로그인·회원가입. 로그인 후 홈은 복용 목록 / 분석하기 두 칸
+- [x] 주 사용 플랫폼 mobile, 이유: 약·영양제를 사진으로 찍어 등록하므로
 - [ ] 사용자 핵심 흐름 3~8개를 scenarios.example.yaml 참고해 docs/scenarios.yaml에 작성(steps는 화면의 메뉴·버튼 이름으로 한 줄에 한 동작, 로그인 흐름은 account 지정), YAML 파서로 형식 확인 후 기본 브랜치 push
-- [ ] 서비스의 AI 호출 필요 여부 확인
+- [x] 서비스의 AI 호출 필요 여부: 사진 인식(약 후보 제시)에만 AI 사용. 조합·과다 복용 판정은 조합 DB로만
 - [ ] README 등 기존 문서에 확인된 구현 설계 기록, 기본 브랜치 push
-- 문제정의·구현 설계 링크 / commit SHA / 확인할 빈칸: docs/problem.yaml, docs/PRD-약영양제-병용점검.md / 마지막 push b8143f8(재작성 전 버전), 재작성본은 commit·push 전 / 확인할 빈칸: 팀원 직접 경험 없음(E1~E4는 공개 질문), docs/scenarios.yaml 미작성, 로그인 역할 이름(`자녀`·`부모` 후보) 미확정, 주 사용 플랫폼 미정, 시드에 넣을 조합 목록 미정, 서비스 AI 호출 여부 미정
+- 문제정의·구현 설계 링크 / commit SHA / 확인할 빈칸: docs/problem.yaml / 2026-10-29 종이 2번(5 Whys)·4번(통찰) 반영 / 종이 3번(해법 경로) solution_paths 반영 / 학생 답 대기: statement, impact.measurable, alternatives의 why_ours, E1의 when·workaround·feeling·quote·source, 근본 문제 "약+영양제 조합을 모름"을 canvas.root_problem에 반영할지, 통찰 근거·Why 2의 20~25% 수치의 논문 URL(sources)
 
 ## 3. 최소 화면 docker 실행·CI·첫 배포
 
