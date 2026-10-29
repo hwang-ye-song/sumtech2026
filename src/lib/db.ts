@@ -25,7 +25,11 @@ async function createDb(): Promise<Db> {
   }
   if (url) {
     const { Pool } = await import('pg')
-    const pool = new Pool({ connectionString: url, max: 10 })
+    // Supabase처럼 자체 인증서(CA)로 SSL을 받는 DB는 그 CA(PEM)를 DATABASE_SSL_CA에 넣으면 인증서를 검증하며 붙는다.
+    // (Supabase: Project Settings → Database → SSL Configuration → Download certificate.) 주소의 sslmode는 이 설정과 겹치므로 뺀다.
+    const ca = process.env.DATABASE_SSL_CA?.replace(/\\n/g, '\n')
+    const connectionString = ca ? url.replace(/([?&])sslmode=[^&]*&?/, '$1').replace(/[?&]$/, '') : url
+    const pool = new Pool({ connectionString, max: process.env.VERCEL ? 3 : 10, ...(ca ? { ssl: { ca, rejectUnauthorized: true } } : {}) })
     return {
       kind: 'pg',
       async query<T extends Row>(sql: string, params: unknown[] = []) {

@@ -102,4 +102,15 @@ CREATE TABLE IF NOT EXISTS seed_meta (
   key    TEXT PRIMARY KEY,
   value  TEXT NOT NULL
 );
+
+-- Supabase처럼 테이블을 웹 API(anon 키)로 바로 열어 주는 곳에서 회원 정보·목록이 새지 않게 행 단위 접근을 막는다.
+-- 정책을 두지 않으므로 anon·authenticated는 아무 행도 못 읽는다. 앱은 테이블 주인 계정으로 붙어 영향이 없다.
+ALTER TABLE drug ENABLE ROW LEVEL SECURITY;
+ALTER TABLE drug_ingredient ENABLE ROW LEVEL SECURITY;
+ALTER TABLE substance ENABLE ROW LEVEL SECURITY;
+ALTER TABLE interaction_rule ENABLE ROW LEVEL SECURITY;
+ALTER TABLE app_user ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_item ENABLE ROW LEVEL SECURITY;
+ALTER TABLE recommendation ENABLE ROW LEVEL SECURITY;
+ALTER TABLE seed_meta ENABLE ROW LEVEL SECURITY;
 `
