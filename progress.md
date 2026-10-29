@@ -5,8 +5,8 @@ Agent가 서비스 저장소 루트의 `progress.md`로 복사해 이어 쓴다(
 ## 현재 상태
 
 - 실제 서비스 저장소 폴더: D:\Desktop\SUMTECH_project\sumtech2026
-- 현재 단계 / 다음 행동: 2단계. 종이 기록을 docs/problem.yaml로 옮겨 push함 → 학생이 대시보드 문제 정의 화면 확인 → 2-A 문제 다지기
-- 학생에게 확인할 내용: 저장소를 private로 바꿀지 / 손글씨 판독 확인 2곳(근본 문제의 "약 섭취여부 상이", 영향의 "까먹어서") / 대시보드 문제 정의 화면 표시
+- 현재 단계 / 다음 행동: 2단계. problem.yaml 2차 수정·scenarios.yaml 초안을 로컬에만 반영(학생 지시로 push 보류, 2026-10-29) → 학생 확인 후 push
+- 학생에게 확인할 내용: 서비스 이름(미정) / Why 보강(친구에게 같이 먹은 시간·이유·병원에 알렸는지 확인) / 저장소 private 전환 여부
 
 ## 1. GitHub 준비
 
@@ -36,11 +36,11 @@ Agent가 서비스 저장소 루트의 `progress.md`로 복사해 이어 쓴다(
 - [ ] YAML 문법 검사, 등록된 레포의 기본 브랜치에 docs/problem.yaml push
 - [x] 학생이 개인 로그인으로 우리 팀 → 문제 정의를 열어 캔버스 표시 확인 (2026-10-29 학생 확인: 잘 보임)(Agent는 화면을 열 수 없음, 약 1분 캐시)
 - [ ] 핵심 사용자 흐름·기능별 동작 규칙·완료 조건·제외 범위를 팀과 확인
-- [ ] 로그인 필요 여부와 역할 이름(흐름 account·docker 시드 계정 역할 이름으로 씀) 결정
-- [ ] 첫 화면에서 알려 줄 것(로그인하지 않은 사람이 `/`에서 볼 서비스 이름·하는 일)을 학생과 정함
-- [ ] 주 사용 플랫폼(desktop·mobile·both)과 실제 사용 장면에 근거한 platformReason 작성
+- [x] 로그인 필요 여부와 역할 이름 결정: 로그인 있음, 역할 "복용자"
+- [x] 첫 화면에서 알려 줄 것: 서비스 이름(미정, 대기) + "약과 영양제를 함께 먹는 사람의 해로운 복용 조합을 출처가 붙은 조합 DB로 점검하고 경고하는 서비스" + 로그인·회원가입. 로그인 후 홈은 복용 목록 / 분석하기 두 칸
+- [x] 주 사용 플랫폼 mobile, 이유: 약·영양제를 사진으로 찍어 등록하므로
 - [ ] 사용자 핵심 흐름 3~8개를 scenarios.example.yaml 참고해 docs/scenarios.yaml에 작성(steps는 화면의 메뉴·버튼 이름으로 한 줄에 한 동작, 로그인 흐름은 account 지정), YAML 파서로 형식 확인 후 기본 브랜치 push
-- [ ] 서비스의 AI 호출 필요 여부 확인
+- [x] 서비스의 AI 호출 필요 여부: 사진 인식(약 후보 제시)에만 AI 사용. 조합·과다 복용 판정은 조합 DB로만
 - [ ] README 등 기존 문서에 확인된 구현 설계 기록, 기본 브랜치 push
 - 문제정의·구현 설계 링크 / commit SHA / 확인할 빈칸: docs/problem.yaml / 2026-10-29 종이 2번(5 Whys)·4번(통찰) 반영 / 종이 3번(해법 경로) solution_paths 반영 / 학생 답 대기: statement, impact.measurable, alternatives의 why_ours, E1의 when·workaround·feeling·quote·source, 근본 문제 "약+영양제 조합을 모름"을 canvas.root_problem에 반영할지, 통찰 근거·Why 2의 20~25% 수치의 논문 URL(sources)
 
