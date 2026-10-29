@@ -46,7 +46,7 @@ input,textarea{font:inherit;color:inherit}
 .logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
 .logo .word{font-family:var(--font-head);font-weight:700;font-style:italic;font-size:22px;letter-spacing:-.02em}
 .nav .tabs{display:flex;gap:4px;margin-left:16px}
-.nav .tabs a{padding:8px 14px;border-radius:var(--r-pill);text-decoration:none;color:var(--ink-2);font-weight:700}
+.nav .tabs a{position:relative;padding:8px 14px;border-radius:var(--r-pill);text-decoration:none;color:var(--ink-2);font-weight:700}
 .nav .tabs a[aria-current="page"]{background:var(--bg-3);color:var(--ink)}
 .nav .spacer{flex:1}
 .nav .who{font-size:var(--fs-1);color:var(--ink-3)}
@@ -73,6 +73,31 @@ input,textarea{font:inherit;color:inherit}
 .btn-sm{min-height:36px;padding:0 14px;font-size:var(--fs-1)}
 .btn-lg{min-height:56px;padding:0 28px;font-size:var(--fs-3)}
 .btn-block{width:100%}
+
+/* 상단 내비 항목·로그인/회원가입 버튼 호버: 알약 한 알이 톡 튀어 오르는 반응 */
+.nav .tabs a::before,
+[data-testid="nav-login"]::before,
+[data-testid="nav-signup"]::before{
+  content:"";
+  position:absolute;
+  top:50%;left:5px;
+  width:11px;height:5.5px;
+  margin-top:-2.75px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--pill-a) 50%,var(--pill-b) 50%);
+  box-shadow:0 0 0 1px rgba(255,255,255,.5);
+  transform:rotate(-24deg) scale(.25);
+  opacity:0;
+  transition:transform var(--dur-2) var(--ease),opacity var(--dur-2) var(--ease);
+  pointer-events:none;
+}
+[data-testid="nav-login"],[data-testid="nav-signup"]{position:relative}
+.nav .tabs a:hover::before,.nav .tabs a:focus-visible::before,
+[data-testid="nav-login"]:hover::before,[data-testid="nav-login"]:focus-visible::before,
+[data-testid="nav-signup"]:hover::before,[data-testid="nav-signup"]:focus-visible::before{
+  opacity:1;
+  transform:rotate(-24deg) scale(1);
+}
 .btn[disabled]{opacity:.5;cursor:not-allowed}
 .chip{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:var(--r-pill);border:1px solid var(--line-2);background:var(--bg);cursor:pointer;font-size:var(--fs-2)}
 a.chip{text-decoration:none;color:var(--ink-2)}
