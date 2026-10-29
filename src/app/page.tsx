@@ -38,16 +38,6 @@ function Landing() {
               <Word t="TwoPills" d={0.9} em />
             </span>
           </h1>
-          <div className="cta2 animate-fade-up delay-600">
-            <div className="btns">
-              <Link className="btn btn-primary btn-lg" href="/signup" data-testid="hero-signup">
-                회원가입
-              </Link>
-              <Link className="btn btn-lg" href="/login">
-                로그인
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
 
