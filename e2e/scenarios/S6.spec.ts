@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test"
 import { E2E_USER_EMAIL, E2E_USER_PASSWORD } from "../env"
 import { logInFromHome, startCheckFromHome } from "../helpers"
 
-test("S6 30~40대 자녀가 부모님 검진 리포트에서 비타민 추천을 받고, 부모님 약과 부딪히는 성분은 추천이 아닌 경고로 본다", async ({ page }) => {
+test("S6 50~60대 부모님이 검진 결과에서 비타민 추천을 받고, 드시는 약과 부딪히는 성분은 추천이 아닌 경고로 본다", async ({ page }) => {
   await logInFromHome(page, E2E_USER_EMAIL, E2E_USER_PASSWORD)
 
   // 1. 홈에서 '검진하기' (바로 점검하고 리포트로 간다)

@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test"
 import { listRows, register, searchAndPick } from "../helpers"
 
-test("S1 유튜브 추천 영양제를 먹는 20~30대가 서비스 소개를 보고 회원가입한다", async ({ page }) => {
+test("S1 갑상선약을 드시는 50~60대 부모님이 서비스 소개를 보고 가입해 레보티록신을 등록한다", async ({ page }) => {
   // 1. 첫 화면에서 서비스 소개와 '처방이나 진단을 하지 않아요' 안내를 확인한다
   await page.goto("/")
   const main = page.getByRole("main")

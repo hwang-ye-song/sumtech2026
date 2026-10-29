@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test"
 import { E2E_USER_EMAIL, E2E_USER_PASSWORD } from "../env"
 import { listRows, logInFromHome, openListFromHome, register, searchAndPick } from "../helpers"
 
-test("S2 칼슘을 먹는 20~30대가 피로회복용 비타민제(비맥스제트정)를 더하려다 식약처 원문 경고를 받는다", async ({ page }) => {
+test("S2 칼슘을 드시는 50~60대 부모님이 피로회복용 비타민제(비맥스제트정)를 더하려다 식약처 원문 경고를 받는다", async ({ page }) => {
   // 시드 계정 `복용자`: 레보티록신·칼슘, 첫 검진을 마친 '사용 중' 상태
   await logInFromHome(page, E2E_USER_EMAIL, E2E_USER_PASSWORD)
 
