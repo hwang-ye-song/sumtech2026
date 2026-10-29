@@ -529,12 +529,54 @@ export async function ensureSchemaAndSeed(): Promise<void> {
 
   // 이미 준비된 DB면 여기서 끝낸다(왕복 2번). 서버가 새로 뜰 때마다 원격 DB와 수십 번 주고받지 않으려는 것이다.
   await db.exec('CREATE TABLE IF NOT EXISTS seed_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)')
-  const meta = new Map((await db.query<{ key: string; value: string }>('SELECT key, value FROM seed_meta')).map((r) => [r.key, r.value]))
-  if (meta.get('schema_version') === SCHEMA_VERSION && meta.get('catalog_hash') === catalog.hash && meta.get('users_hash') === usersHash) {
-    console.log(`[seed] 이미 준비된 DB라 건너뜁니다 (${Date.now() - started}ms, ${db.kind})`)
-    return
+  const isPrepared = async () => {
+    const meta = new Map((await db.query<{ key: string; value: string }>('SELECT key, value FROM seed_meta')).map((r) => [r.key, r.value]))
+    return meta.get('schema_version') === SCHEMA_VERSION && meta.get('catalog_hash') === catalog.hash && meta.get('users_hash') === usersHash
   }
+  // Vercel처럼 서버가 여러 개 동시에 뜨면, 한 서버만 시드를 넣고 나머지는 끝날 때까지 기다린다.
+  // (여럿이 동시에 지우고 넣으면 서로 빈 표를 보고 실패한다.)
+  for (let waited = 0; ; waited += SEED_LOCK_POLL_MS) {
+    if (await isPrepared()) {
+      console.log(`[seed] 이미 준비된 DB라 건너뜁니다 (${Date.now() - started}ms, ${db.kind})`)
+      return
+    }
+    if (await acquireSeedLock(db)) break
+    if (waited >= SEED_LOCK_WAIT_MS) throw new Error('다른 서버가 시드를 넣고 있어 기다리다 시간이 지났어요. 잠시 뒤 다시 시도해 주세요.')
+    await new Promise((resolve) => setTimeout(resolve, SEED_LOCK_POLL_MS))
+  }
+  try {
+    await seedNow(db, catalog, personas, { demoEmail, demoPassword, personaPassword, usersHash })
+  } finally {
+    await db.query(`DELETE FROM seed_meta WHERE key = 'seed_lock'`)
+  }
+  console.log(`[seed] 완료 (${Date.now() - started}ms, ${db.kind})`)
+}
 
+const SEED_LOCK_POLL_MS = 1000
+const SEED_LOCK_WAIT_MS = 110_000
+/** 이보다 오래된 잠금은 시드 중에 꺼진 서버의 것이라 보고 가져온다. */
+const SEED_LOCK_STALE_MS = 120_000
+
+/** 시드 잠금(seed_meta의 'seed_lock' = 잡은 시각). 아무도 안 잡았거나 오래된 잠금이면 가져온다. */
+async function acquireSeedLock(db: Db): Promise<boolean> {
+  const now = Date.now()
+  const rows = await db.query<{ key: string }>(
+    `INSERT INTO seed_meta (key, value) VALUES ('seed_lock', $1)
+     ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value WHERE seed_meta.value::bigint < $2
+     RETURNING key`,
+    [String(now), now - SEED_LOCK_STALE_MS],
+  )
+  return rows.length > 0
+}
+
+/** 스키마·기준 데이터·시드 계정을 실제로 넣는다(잠금을 잡은 서버만 부른다). */
+async function seedNow(
+  db: Db,
+  catalog: Catalog,
+  personas: PersonaSeed[],
+  env: { demoEmail?: string; demoPassword?: string; personaPassword?: string; usersHash: string },
+): Promise<void> {
+  const { demoEmail, demoPassword, personaPassword, usersHash } = env
   await migrateReferenceTables(db)
   await db.exec(SCHEMA_SQL)
   await setMeta(db, 'schema_version', SCHEMA_VERSION)
@@ -568,5 +610,4 @@ export async function ensureSchemaAndSeed(): Promise<void> {
   }
 
   await setMeta(db, 'users_hash', usersHash)
-  console.log(`[seed] 완료 (${Date.now() - started}ms, ${db.kind})`)
 }
