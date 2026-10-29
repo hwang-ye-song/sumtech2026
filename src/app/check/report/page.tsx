@@ -5,7 +5,7 @@ import { ensureReady } from '@/lib/ready'
 import { doseText, listUserItems } from '@/lib/items'
 import { isSupplement } from '@/lib/catalog'
 import { checkIntake, checkItems, type IntakeWarning, type RuleSource } from '@/lib/check'
-import { CONSULT_NOTE, DATA_CHECKED_ON } from '@/lib/labels'
+import { CONSULT_NOTE, DATA_CHECKED_ON, josa } from '@/lib/labels'
 import { KindBadge } from '@/components/RegisterPanel'
 import { LevelBadge, SourceLine, WarningCard } from '@/components/WarningCard'
 import { NoRecordCard } from '@/components/NoRecordCard'
@@ -69,7 +69,7 @@ export default async function ReportPage() {
           ))}
         </section>
 
-        <section className="card" style={{ marginTop: 24 }} data-testid="report-list">
+        <section className="card stack" style={{ marginTop: 24 }} data-testid="report-list">
           <h4>복용 중인 약·영양제</h4>
           <p className="muted">
             한 줄 요약: <strong data-testid="report-oneline">{oneLine || '없음'}</strong>
@@ -151,7 +151,7 @@ function IntakeCard({ x }: { x: IntakeWarning }) {
       <div className="q">
         <strong>약사에게 물어보세요</strong>
         <br />
-        하루 {x.name}을(를) 얼마나 줄이면 되나요? 음식으로 먹는 양까지 더하면 어떻게 되나요?
+        하루 {x.name}{josa(x.name, '을/를')} 얼마나 줄이면 되나요? 음식으로 먹는 양까지 더하면 어떻게 되나요?
       </div>
     </article>
   )

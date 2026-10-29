@@ -35,3 +35,23 @@ export function sourceKindLabel(kind: string): string {
       return '공식 자료'
   }
 }
+
+const JOSA: Record<string, [string, string]> = { '을/를': ['을', '를'], '이/가': ['이', '가'], '은/는': ['은', '는'], '와/과': ['과', '와'] }
+// 숫자로 끝나는 이름(예: …500)은 읽는 소리의 받침으로 고른다: 0 영, 1 일, 3 삼, 6 육, 7 칠, 8 팔은 받침이 있다.
+const DIGIT_HAS_BATCHIM: Record<string, boolean> = { '0': true, '1': true, '2': false, '3': true, '4': false, '5': false, '6': true, '7': true, '8': true, '9': false }
+
+/**
+ * 단어 뒤에 붙일 조사를 고른다. '을(를)'처럼 둘 다 적지 않게 한다.
+ * 끝의 괄호 설명(예: 타이레놀정500밀리그람(아세트아미노펜))과 따옴표는 빼고 마지막 글자로 판단한다.
+ */
+export function josa(word: string, pair: keyof typeof JOSA): string {
+  const [withBatchim, without] = JOSA[pair]
+  const core = word.replace(/\s*\([^)]*\)\s*$/, '').replace(/['"’‘”“\s]+$/, '')
+  const last = core.charAt(core.length - 1)
+  const code = last.charCodeAt(0)
+  let hasBatchim: boolean
+  if (code >= 0xac00 && code <= 0xd7a3) hasBatchim = (code - 0xac00) % 28 !== 0
+  else if (last in DIGIT_HAS_BATCHIM) hasBatchim = DIGIT_HAS_BATCHIM[last]
+  else hasBatchim = false
+  return hasBatchim ? withBatchim : without
+}

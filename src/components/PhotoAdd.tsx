@@ -123,7 +123,7 @@ export function PhotoAdd({ aiReady }: { aiReady: boolean }) {
           <br />
           <strong>사진 올리기</strong>
           <br />
-          <span className="faint">아이콘을 눌러 갤러리에서 고르세요. 처방전·약 봉투·약 상자·영양제 상표 (JPG·PNG, 8MB 이하)</span>
+          <span className="faint">여기를 눌러 사진을 고르세요. 처방전·약 봉투·약 상자·영양제 상표 (JPG·PNG, 8MB 이하)</span>
           <input
             ref={fileRef}
             type="file"

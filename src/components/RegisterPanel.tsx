@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useActionState, useState } from 'react'
 import { registerItem, type RegisterState } from '@/app/actions/items'
 import { WarningCard } from '@/components/WarningCard'
+import { useDismiss } from '@/components/useDismiss'
 import { CONSULT_NOTE, RELATION_LABEL } from '@/lib/labels'
 
 export interface Pick {
@@ -46,6 +47,8 @@ export function RegisterPanel({
   const [closedAttempt, setClosedAttempt] = useState<number | undefined>(undefined)
   const dialogOpen = Boolean(state.warnings && state.warnings.length > 0 && state.attempt !== closedAttempt)
   const top = state.warnings?.[0]
+  // Esc·바깥 누르기는 '취소'와 같다.
+  const overlayRef = useDismiss<HTMLDivElement>(dialogOpen, () => setClosedAttempt(state.attempt))
   const values = state.values ?? initial ?? { count: '', amount: '' }
   // 서버가 답할 때마다 칸을 새로 그려 기본값(values)을 다시 넣는다.
   const round = state.attempt ?? (state.error ? state.error.length : 0)
@@ -120,7 +123,7 @@ export function RegisterPanel({
       </form>
 
       {dialogOpen && state.warnings && top ? (
-        <div className="overlay" data-overlay>
+        <div className="overlay" data-overlay ref={overlayRef}>
           <div className="modal" role="dialog" aria-modal="true" aria-labelledby="warning-dialog-title" data-testid="modal">
             <div className="faint">등록하기 전에 확인하세요</div>
             <h3 id="warning-dialog-title">{RELATION_LABEL[top.relation]}</h3>

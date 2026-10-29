@@ -72,7 +72,7 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
             식약처 원문과 논문에 기록된 주의사항만 보여 줘요. 로그인 없이 볼 수 있고, 내 목록에 더하면 같이 먹는 것끼리 자동으로 점검해요.
           </p>
         </div>
-        <form action="/explore" method="get" role="search" className="field" style={{ maxWidth: 520, margin: '0 auto 16px' }}>
+        <form action="/explore" method="get" role="search" className="field" style={{ maxWidth: 520 }}>
           <label htmlFor="ex-q">제품명·성분·흔히 부르는 이름</label>
           <div className="row" style={{ flexWrap: 'nowrap' }}>
             <input className="input" id="ex-q" name="q" type="search" placeholder="예 칼슘, 씬지로이드, 비맥스" defaultValue={q} autoComplete="off" data-testid="ex-input" />

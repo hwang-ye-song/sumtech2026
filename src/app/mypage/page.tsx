@@ -32,7 +32,10 @@ export default async function MyPage() {
         {persona ? (
           <div className="card card-soft" style={{ marginBottom: 16 }} data-testid="persona-note">
             <div className="row" style={{ justifyContent: 'space-between' }}>
-              <strong>시연 계정 {persona.id} · 가상 인물 · 바꾸려면 로그아웃 후 다시 고르기</strong>
+              <div>
+                <strong>시연 계정 {persona.id} · 가상 인물</strong>
+                <div className="hint">바꾸려면 로그아웃 후 다시 고르기</div>
+              </div>
               <form action={resetMyPersona}>
                 <SubmitButton className="btn btn-sm" pendingLabel="되돌리는 중…">
                   처음 상태로 되돌리기
@@ -61,7 +64,7 @@ export default async function MyPage() {
           <Link className="card card-link" href="/check" data-testid="home-analyze">
             <div className="eyebrow">리포트</div>
             <h3>검진하기</h3>
-            <p className="muted" style={{ marginTop: 8 }}>
+            <p className="muted" style={{ margin: '8px 0 0' }}>
               {inUse ? '내가 먹는 약·영양제 점검 리포트' : '다 넣은 뒤 한 번 검진하면, 그 뒤로는 더할 때마다 자동으로 점검해요'}
             </p>
           </Link>

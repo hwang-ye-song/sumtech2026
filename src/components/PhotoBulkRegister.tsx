@@ -5,6 +5,7 @@ import type { CatalogHit } from '@/lib/catalog'
 import { registerMany, type BulkRegisterState } from '@/app/actions/items'
 import { KindBadge } from '@/components/RegisterPanel'
 import { WarningCard } from '@/components/WarningCard'
+import { useDismiss } from '@/components/useDismiss'
 import { CONSULT_NOTE, RELATION_LABEL } from '@/lib/labels'
 
 /**
@@ -18,6 +19,8 @@ export function PhotoBulkRegister({ hits }: { hits: CatalogHit[] }) {
   const [counts, setCounts] = useState<Record<string, string>>({})
   const dialogOpen = Boolean(state.warnings && state.warnings.length > 0 && state.attempt !== closedAttempt)
   const top = state.warnings?.[0]
+  // Esc·바깥 누르기는 '취소'와 같다.
+  const overlayRef = useDismiss<HTMLDivElement>(dialogOpen, () => setClosedAttempt(state.attempt))
   const keyOf = (h: CatalogHit) => `${h.type}:${h.ref}`
   const toggle = (k: string) =>
     setChecked((prev) => {
@@ -85,7 +88,7 @@ export function PhotoBulkRegister({ hits }: { hits: CatalogHit[] }) {
       </form>
 
       {dialogOpen && state.warnings && top ? (
-        <div className="overlay" data-overlay>
+        <div className="overlay" data-overlay ref={overlayRef}>
           <div className="modal" role="dialog" aria-modal="true" aria-labelledby="bulk-warning-title" data-testid="modal">
             <div className="faint">등록하기 전에 확인하세요</div>
             <h3 id="bulk-warning-title">{RELATION_LABEL[top.relation]}</h3>

@@ -43,7 +43,7 @@ export function AuthForm({ action, submitLabel, mode, next }: Props) {
             <label htmlFor="su-pw2">비밀번호 확인</label>
             <input className="input" id="su-pw2" name="password_confirm" type="password" required minLength={8} autoComplete="new-password" data-testid="signup-pw2" />
           </div>
-          <p className="hint" data-testid="signup-consent">
+          <p className="hint" data-testid="signup-consent" style={{ margin: '0 0 16px' }}>
             가입하면 복용 중인 약·영양제(건강 정보)를 내 계정에 저장해 점검하는 데 써요. 목록은 내 계정에서만 보여요.
           </p>
         </>

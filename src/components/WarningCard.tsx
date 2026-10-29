@@ -4,10 +4,19 @@ import { RELATION_LABEL, sourceKindLabel, type Relation } from '@/lib/labels'
 
 const ICON: Record<Relation | 'over', string> = { avoid: '!', separate_timing: '◷', consult: '?', caution: '!', over: '≠' }
 
+// 위험 정도를 색으로 나눈다: 함께 먹지 마세요(빨강) > 시간 띄우기·상의(주황) > 주의(회색). 과다 섭취는 노랑.
+const BADGE: Record<Relation | 'over', string> = {
+  avoid: 'badge-danger',
+  separate_timing: 'badge-warn',
+  consult: 'badge-warn',
+  caution: 'badge-none',
+  over: 'badge-over',
+}
+
 /** 단계 배지: '함께 먹지 마세요' / '시간을 띄워 드세요' / '하루 기준량을 넘어요' … */
 export function LevelBadge({ level }: { level: Relation | 'over' }) {
   return (
-    <span className={`badge ${level === 'over' ? 'badge-over' : level === 'caution' ? 'badge-none' : 'badge-warn'}`}>
+    <span className={`badge ${BADGE[level]}`}>
       <span className="ico" aria-hidden="true">
         {ICON[level]}
       </span>
@@ -34,11 +43,10 @@ export function SourceLine({ s }: { s: Pick<RuleSource, 'source_kind' | 'source_
 export function WarningCard({ w, detail = true }: { w: Warning; detail?: boolean }) {
   const main = w.sources[0]
   return (
-    <article className="finding finding-warn" data-testid="warning-card" data-rule={w.ruleId} aria-label={`${w.a.name} ↔ ${w.b.name}`}>
+    <article className={`finding ${w.relation === 'avoid' ? 'finding-danger' : 'finding-warn'}`} data-testid="warning-card" data-rule={w.ruleId} aria-label={`${w.a.name} ↔ ${w.b.name}`}>
       <div className="head">
         <LevelBadge level={w.relation} />
       </div>
-      <div className="lvl">{RELATION_LABEL[w.relation]}</div>
       <div className="act">{w.action}</div>
       <div className="pair" data-testid="finding-pair">
         {w.a.name} ↔ {w.b.name}

@@ -42,10 +42,10 @@ export async function Header() {
           </>
         ) : (
           <>
-            <Link className="btn btn-ghost" href="/login" data-testid="nav-login">
+            <Link className="btn btn-ghost btn-sm" href="/login" data-testid="nav-login">
               로그인
             </Link>
-            <Link className="btn btn-ghost" href="/signup" data-testid="nav-signup">
+            <Link className="btn btn-ghost btn-sm" href="/signup" data-testid="nav-signup">
               회원가입
             </Link>
           </>

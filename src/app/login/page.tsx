@@ -32,12 +32,9 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
 
       {personas.length > 0 ? (
         <section className="wrap" style={{ maxWidth: 880, marginTop: 40 }} aria-labelledby="persona-title" data-testid="personas">
-          <div className="eyebrow">시연 계정</div>
-          <h3 id="persona-title">
-            가상 페르소나로 <b>바로 들어가기</b>
-          </h3>
+          <h3 id="persona-title">가입 없이 둘러보기</h3>
           <p className="muted" style={{ marginTop: 8 }}>
-            모두 지어낸 인물이에요. 누를 때마다 그 페르소나의 처음 상태(복용 목록·첫 검진 여부)가 담긴 새 시연 계정으로 들어가요. 여러 사람이 같은 페르소나를 동시에 써도 서로 섞이지 않고, 시연 계정은 하루 뒤 지워져요.
+            예시 인물의 목록으로 바로 들어가요. 모두 지어낸 인물이고, 둘러본 기록은 하루 뒤 지워져요.
           </p>
           <div className="persona-grid" style={{ marginTop: 16 }}>
             {personas.map((p) => (
@@ -56,7 +53,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
                   <input type="hidden" name="persona" value={p.id} />
                   {next ? <input type="hidden" name="next" value={next} /> : null}
                   <SubmitButton className="btn btn-sm btn-block" pendingLabel="들어가는 중…">
-                    {p.id} 계정으로 시작
+                    이 목록으로 시작
                   </SubmitButton>
                 </form>
               </article>

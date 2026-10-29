@@ -9,6 +9,7 @@ import { warningsForCandidates, type Warning } from '@/lib/check'
 import { substancesInProducts } from '@/lib/catalog'
 import { aiConfigured, pickRecommendations, DEFAULT_TEXT_MODEL, type RecommendSurvey } from '@/lib/ai'
 import { GOAL_WORDS, GOALS, MAX_GOALS, MAX_PICKS, SYMPTOMS } from '@/lib/survey'
+import { josa } from '@/lib/labels'
 
 export interface RecommendedItem {
   id: string
@@ -102,7 +103,7 @@ export async function requestRecommendation(_prev: RecommendState, formData: For
   for (const c of candidates) {
     if (picks.length >= pills) break
     if (chosen.has(c.id) || !words.some((w) => c.function_claim.includes(w))) continue
-    picks.push({ id: c.id, why: `고르신 '${goals.join(', ')}'와(과) 식약처 기능성 내용이 맞아요.` })
+    picks.push({ id: c.id, why: `고르신 '${goals.join(', ')}'${josa(goals[goals.length - 1] ?? '', '와/과')} 식약처 기능성 내용이 맞아요.` })
     chosen.add(c.id)
   }
 

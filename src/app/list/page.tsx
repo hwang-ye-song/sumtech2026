@@ -11,6 +11,8 @@ import { KindBadge, RegisterPanel } from '@/components/RegisterPanel'
 import { GetButton } from '@/components/GetButton'
 import { PhotoAdd } from '@/components/PhotoAdd'
 import { Toast } from '@/components/Toast'
+import { josa } from '@/lib/labels'
+import { DismissTo } from '@/components/DismissTo'
 
 export const metadata = { title: '복용 목록' }
 
@@ -76,7 +78,7 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
             <h3 id="reg-search" style={{ marginBottom: 12 }}>
               검색 등록
             </h3>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <>
                   <form action="/list" method="get" role="search">
                     <div className="field">
@@ -145,15 +147,15 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
 
           <section className="stack" aria-label="내 목록">
             {deleted ? <Toast message="등록된 약·영양제가 목록에서 삭제되었습니다." /> : null}
-            {addedItem && status === 'clear' ? <NoRecordCard lead={`'${addedLabel}'을(를) 목록에 넣었어요.`} /> : null}
+            {addedItem && status === 'clear' ? <NoRecordCard lead={`'${addedLabel}'${josa(addedLabel, '을/를')} 목록에 넣었어요.`} /> : null}
             {addedItem && status === 'warned' ? (
               <div className="notice notice-warn" role="status">
-                &lsquo;{addedLabel}&rsquo;을(를) 경고를 확인하고 넣었어요. 복용을 바꾸기 전에 약사·의사와 상담하세요
+                &lsquo;{addedLabel}&rsquo;{josa(addedLabel, '을/를')} 경고를 확인하고 넣었어요. 복용을 바꾸기 전에 약사·의사와 상담하세요
               </div>
             ) : null}
             {addedItem && status === 'new' ? (
               <div className="notice" role="status">
-                &lsquo;{addedLabel}&rsquo;을(를) 넣었어요. 지금 먹는 것을 다 넣었으면 &lsquo;검진하기&rsquo;에서 한 번에 확인하세요.
+                &lsquo;{addedLabel}&rsquo;{josa(addedLabel, '을/를')} 넣었어요. 지금 먹는 것을 다 넣었으면 &lsquo;검진하기&rsquo;에서 한 번에 확인하세요.
               </div>
             ) : null}
 
@@ -164,11 +166,11 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
             ) : (
               <>
                 <div className="card">
-                  <h4>약</h4>
+                  <h4 style={{ marginBottom: 12 }}>약</h4>
                   <ItemTable items={drugs} label="약" />
                 </div>
                 <div className="card">
-                  <h4>영양제</h4>
+                  <h4 style={{ marginBottom: 12 }}>영양제</h4>
                   <ItemTable items={sups} label="영양제" />
                 </div>
               </>
@@ -186,10 +188,12 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
       </div>
       {confirmItem ? (
         <div className="overlay">
+          {/* Esc·바깥 누르기는 '취소'와 같다. 초점은 지우지 않는 '취소'에 먼저 둔다. */}
+          <DismissTo href="/list" />
           <div className="modal" role="dialog" aria-modal="true" aria-labelledby="delete-title" data-testid="modal">
             <h3 id="delete-title">삭제할까요?</h3>
             <p className="muted">
-              <strong>{confirmItem.name}</strong>을(를) 목록에서 지워요. 검진 리포트에서도 사라져요.
+              <strong>{confirmItem.name}</strong>{josa(confirmItem.name, '을/를')} 목록에서 지워요. 검진 리포트에서도 사라져요.
             </p>
             <div className="actions">
               <GetButton action="/list" params={{}} className="btn">
@@ -197,7 +201,7 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
               </GetButton>
               <form action={removeItemAction} style={{ display: 'contents' }}>
                 <input type="hidden" name="id" value={confirmItem.id} />
-                <button type="submit" className="btn btn-black" data-testid="confirm-delete" autoFocus>
+                <button type="submit" className="btn btn-black" data-testid="confirm-delete">
                   삭제
                 </button>
               </form>

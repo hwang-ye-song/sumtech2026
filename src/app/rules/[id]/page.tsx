@@ -32,7 +32,7 @@ export default async function RulePage({ params }: { params: Promise<{ id: strin
         <div className="card stack">
           <div>
             <div className="faint">해야 할 행동</div>
-            <div className="act" style={{ fontSize: 'var(--fs-4)', fontWeight: 700, color: 'var(--warn)', lineHeight: 1.25 }}>
+            <div className="act" style={{ fontSize: 'var(--fs-4)', fontWeight: 700, color: w.relation === 'avoid' ? 'var(--danger)' : 'var(--warn)', lineHeight: 1.25, wordBreak: 'keep-all' }}>
               {w.action}
             </div>
           </div>
