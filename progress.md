@@ -25,7 +25,7 @@ Agent가 서비스 저장소 루트의 `progress.md`로 복사해 이어 쓴다(
 ## 2. 문제정의 기록 → 문제 다지기 → 해법 찾기 → 기능 명세
 
 - [x] 종이 기록 수령(학생이 채팅에 옮겨 적거나 사진 첨부) (스캔 PDF 2쪽)
-- [x] problem.example.yaml을 참고해 docs/problem.yaml 작성 (판독 확인 2곳 남음)
+- [x] problem.example.yaml을 참고해 docs/problem.yaml 작성 (①~④ 칸은 학생이 고쳐 말한 내용으로 교체)
 - [ ] 원문 의도와 불명확한 내용 확인, 없는 근거는 빈칸 유지
 - [ ] 2-A 문제 다지기: 캔버스 칸을 질문으로 다짐(Agent가 해법·후보·예시 답을 먼저 내지 않음, 학생 답이 없는 칸은 "학생 답 대기")
 - [ ] 팀원 경험을 언제·어떤 장면·어떻게 대응했는지까지 experiences에 기록
@@ -42,7 +42,7 @@ Agent가 서비스 저장소 루트의 `progress.md`로 복사해 이어 쓴다(
 - [ ] 사용자 핵심 흐름 3~8개를 scenarios.example.yaml 참고해 docs/scenarios.yaml에 작성(steps는 화면의 메뉴·버튼 이름으로 한 줄에 한 동작, 로그인 흐름은 account 지정), YAML 파서로 형식 확인 후 기본 브랜치 push
 - [ ] 서비스의 AI 호출 필요 여부 확인
 - [ ] README 등 기존 문서에 확인된 구현 설계 기록, 기본 브랜치 push
-- 문제정의·구현 설계 링크 / commit SHA / 확인할 빈칸:
+- 문제정의·구현 설계 링크 / commit SHA / 확인할 빈칸: docs/problem.yaml (4e6ca1d) / 학생 답 대기: statement, five_whys, solution_paths, insight, impact.measurable, E1의 when·workaround·feeling·quote·source(직접 경험인지 들은 내용인지)
 
 ## 3. 최소 화면 docker 실행·CI·첫 배포
 
