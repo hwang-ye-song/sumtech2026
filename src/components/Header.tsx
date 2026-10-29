@@ -6,7 +6,6 @@ import { BottomBar, NavTabs } from '@/components/NavTabs'
 export function Logo() {
   return (
     <Link className="logo" href="/" aria-label="TwoPills 홈">
-      <span className="mark" />
       <span className="word">TwoPills</span>
     </Link>
   )
@@ -24,7 +23,18 @@ export async function Header() {
           <span className="spacer" />
           {user ? (
             <>
-              <span className="who">{user.display_name ?? user.email}</span>
+              <Link
+                href="/list"
+                className="nav-account"
+                aria-label={`마이 페이지 (${user.display_name ?? user.email})`}
+                title={user.display_name ?? user.email}
+                data-testid="nav-account"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
+              </Link>
               <form action={logOut}>
                 <button type="submit" className="btn btn-ghost btn-sm">
                   로그아웃

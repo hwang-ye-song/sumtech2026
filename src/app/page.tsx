@@ -6,6 +6,7 @@ import { personaByEmail } from '@/lib/personas'
 import { resetMyPersona } from '@/app/actions/auth'
 import { Logo } from '@/components/Header'
 import { SubmitButton } from '@/components/SubmitButton'
+import { PromiseCarousel } from '@/components/PromiseCarousel'
 import { CONSULT_NOTE } from '@/lib/labels'
 
 const LANDING_DISCLAIMER = '이 서비스는 처방이나 진단을 하지 않아요. 복용을 바꾸기 전에 약사·의사와 상담하세요'
@@ -20,51 +21,67 @@ export default async function HomePage() {
   return user ? <UserHome userId={user.id} email={user.email} name={user.display_name ?? user.email.split('@')[0]} inUse={user.first_checked_at !== null} /> : <Landing />
 }
 
+/** 헤드라인 단어 하나. 아래에서 올라오며 나타난다(wordReveal). dim은 흐리게, em은 굵게. */
+function Word({ t, d, dim, em }: { t: string; d: number; dim?: boolean; em?: boolean }) {
+  return (
+    <span className={`word${dim ? ' dim' : ''}${em ? ' em' : ''}`}>
+      <span style={{ animationDelay: `${d}s` }}>{t}</span>
+    </span>
+  )
+}
+
 /** 로그인하지 않은 사람이 보는 첫 화면(프로토타입 랜딩) */
 function Landing() {
   return (
     <main>
-      <section className="hero">
-        <div className="wrap hero-grid">
-          <div>
-            <div className="eyebrow">약 × 영양제 복용 점검</div>
-            <h1>
-              약과 영양제를
-              <br />
-              함께 먹을 때
-              <br />
-              <b>해로운 조합을 출처와 함께 알려 줘요</b>
-            </h1>
-            <p className="lead">
+      <section className="hero2" aria-label="소개">
+        <div className="wrap body">
+          <div className="eyebrow animate-fade-in delay-200">약 × 영양제 복용 점검</div>
+          <h1>
+            <span className="line">
+              <Word t="약과" d={0.3} />
+              <Word t="영양제를" d={0.4} />
+              <Word t="함께" d={0.5} dim />
+              <Word t="먹을" d={0.6} dim />
+              <Word t="때" d={0.7} dim />
+            </span>
+            <span className="line">
+              <Word t="해로운" d={0.8} em />
+              <Word t="조합을" d={0.9} em />
+            </span>
+            <span className="line">
+              <Word t="출처와" d={1.0} />
+              <Word t="함께" d={1.1} />
+              <Word t="알려" d={1.2} />
+              <Word t="줘요" d={1.3} />
+            </span>
+          </h1>
+          <div className="cta2 animate-fade-up delay-600">
+            <p className="lead2">
               약은 병원에서, 영양제는 인터넷에서 따로 들어와요. 그 둘을 함께 봐 주는 사람은 없어요. TwoPills는 목록에 더하는 순간, 식약처 원문과 논문으로 먼저 알려
               드려요.
             </p>
-            <div className="cta">
-              <Link className="btn btn-primary btn-lg" href="/signup" data-testid="hero-signup">
-                회원가입
-              </Link>
-              <Link className="btn btn-lg" href="/login">
-                로그인
-              </Link>
-            </div>
-            <p className="faint" data-testid="landing-disclaimer">
-              {LANDING_DISCLAIMER}
-            </p>
           </div>
-          <div className="panel preview" aria-label="경고 화면 미리보기">
-            <div className="cap">갑상선약을 먹는 분이 칼슘을 더하는 순간, 이렇게 떠요</div>
-            <span className="badge badge-warn">
-              <span className="ico" aria-hidden="true">
-                ◷
-              </span>
-              시간을 띄워 드세요
-            </span>
-            <div className="act">레보티록신과 최소 4시간 띄워 드세요</div>
-            <p style={{ fontWeight: 700, marginBottom: 8 }}>레보티록신(갑상선약) ↔ 칼슘</p>
-            <blockquote className="quote">
-              If you take calcium carbonate or ferrous sulfate, take it at least 4 hours before or 4 hours after you take levothyroxine.
-            </blockquote>
-            <p className="faint" style={{ margin: '12px 0 0' }}>
+        </div>
+
+        <div className="panels">
+          <div className="pnl pnl-1 animate-fade-up delay-900">
+            <h3>
+              먹고 있는 약과 영양제를 <b>한자리에</b> 모아 보세요
+            </h3>
+            <Link href="/explore">약·영양제 알아보기</Link>
+            <span className="deco pill-crop soft" style={{ '--cx': 252, '--cy': 181, '--cw': 468, '--ch': 371 } as React.CSSProperties} aria-hidden="true" />
+          </div>
+          <div className="pnl pnl-2 animate-fade-up delay-1000">
+            <PromiseCarousel />
+          </div>
+          <div className="pnl pnl-3 animate-fade-up delay-1100" aria-label="경고 화면 미리보기">
+            <div>
+              <p className="cap">갑상선약을 먹는 분이 칼슘을 더하는 순간, 이렇게 떠요</p>
+              <p className="big">레보티록신과 최소 4시간 띄워 드세요</p>
+              <p className="pair">레보티록신(갑상선약) ↔ 칼슘 · 시간을 띄워 드세요</p>
+            </div>
+            <p className="src2">
               출처:{' '}
               <a href={SRC_URL.R12} target="_blank" rel="noopener noreferrer">
                 Levothyroxine (MedlinePlus)
@@ -280,7 +297,7 @@ function Landing() {
               먹고 있는 약과 영양제를 <b>한자리에</b> 모아 보세요
             </h3>
             <Link className="btn btn-primary btn-lg" href="/signup">
-              회원가입
+              지금 시작하기
             </Link>
           </div>
         </div>

@@ -26,7 +26,8 @@ function isCurrent(pathname: string, match: string[]): boolean {
 
 export function NavTabs({ authed }: { authed: boolean }) {
   const pathname = usePathname()
-  const items = authed ? [{ href: '/', label: '홈', match: [] as string[] }, ...ITEMS] : ITEMS
+  // 로그인해도 '홈' 탭은 두지 않는다. 내 계정으로는 헤더 오른쪽의 마이 페이지 아이콘으로 간다.
+  const items = ITEMS
   return (
     <nav className={`tabs ${authed ? '' : 'tabs-pub'}`} aria-label="주 메뉴">
       {items.map((t) => {
