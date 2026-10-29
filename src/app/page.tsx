@@ -36,7 +36,6 @@ function Landing() {
     <main>
       <section className="hero2" aria-label="소개">
         <div className="wrap body">
-          <div className="eyebrow animate-fade-in delay-200">약 × 영양제 복용 점검</div>
           <h1>
             <span className="line">
               <Word t="약과" d={0.3} />
@@ -58,7 +57,8 @@ function Landing() {
           </h1>
           <div className="cta2 animate-fade-up delay-600">
             <p className="lead2">
-              약은 병원에서, 영양제는 인터넷에서 따로 들어와요. 그 둘을 함께 봐 주는 사람은 없어요. TwoPills는 목록에 더하는 순간, 식약처 원문과 논문으로 먼저 알려
+              약은 병원에서, 영양제는 인터넷에서 따로 들어와요.
+              TwoPills는 목록에 더하는 순간, 식약처 원문과 논문으로 먼저 알려
               드려요.
             </p>
           </div>
