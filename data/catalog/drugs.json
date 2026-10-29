@@ -795,6 +795,27 @@
   ]
  },
  {
+  "item_seq": "197900575",
+  "name": "슈다페드정(슈도에페드린염산염)",
+  "company": "삼일제약(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "슈도에페드린염산염 60밀리그램",
+  "ingredients_en": "Pseudoephedrine Hydrochloride",
+  "pick_reason": "직접 추가: 코막힘약(슈도에페드린) 슈다페드정",
+  "ingredients": [
+   {
+    "ingredient_code": "M203364",
+    "ingredient_name": "슈도에페드린염산염",
+    "amount": 60,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
   "item_seq": "198000054",
   "name": "리포덱스정300밀리그람(리팜피신)",
   "company": "(주)종근당",
@@ -2548,6 +2569,27 @@
     "ingredient_code": "M222859",
     "ingredient_name": "세파클러수화물",
     "amount": 250,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "199600267",
+  "name": "가나칸정50밀리그램(이토프리드염산염)",
+  "company": "제이더블유중외제약(주)",
+  "category": "전문의약품",
+  "ingredient_count": 1,
+  "ingredients_text": "이토프리드염산염 50밀리그램",
+  "ingredients_en": "Itopride Hydrochloride",
+  "pick_reason": "직접 추가: 위장운동촉진제(이토프리드) 가나칸정",
+  "ingredients": [
+   {
+    "ingredient_code": "M229415",
+    "ingredient_name": "이토프리드염산염",
+    "amount": 50,
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
@@ -4420,6 +4462,27 @@
     "ingredient_code": "M089710",
     "ingredient_name": "심바스타틴",
     "amount": 20,
+    "amount_raw": null,
+    "unit": "밀리그램",
+    "source": "식약처 주성분",
+    "substance_id": null
+   }
+  ]
+ },
+ {
+  "item_seq": "200200447",
+  "name": "뮤코트라정(레바미피드)(수출명:Repampia, MUCORENFOR)",
+  "company": "(주)대웅제약",
+  "category": "전문의약품",
+  "ingredient_count": 2,
+  "ingredients_text": "레바미피드 100밀리그램 | 레바미피드",
+  "ingredients_en": "Rebamipide/Rebamipide",
+  "pick_reason": "직접 추가: 위점막보호제(레바미피드) 뮤코트라정",
+  "ingredients": [
+   {
+    "ingredient_code": "M083925",
+    "ingredient_name": "레바미피드",
+    "amount": 100,
     "amount_raw": null,
     "unit": "밀리그램",
     "source": "식약처 주성분",
