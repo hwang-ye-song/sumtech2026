@@ -203,7 +203,7 @@ P1 설명 / E1(R9)·E4(R15) / R1·R5·R7·R11 / T14 / S3·S4·S5·S6·S7 / F2·F
 | S1 | `s1@example.com` | 비어 있음 | 안 함 |
 | S2 | `s2@example.com` | 레보티록신, 칼슘 | 마침 |
 | S3 | `s3@example.com` | 레보티록신, 칼슘 | 마침 |
-| S4 | `s4@example.com` | 레보티록신, 칼슘 | 마침 |
+| S4 | `s4@example.com` | 레보티록신, 칼슘(S4 흐름 자체는 로그인하지 않고 알아보기에서 한다) | 마침 |
 | S5 | `s5@example.com` | 레보티록신, 칼슘 | 마침 |
 | S6 | `s6@example.com` | 레보티록신, 칼슘 | 마침 |
 | S7 | `s7@example.com` | 레보티록신, 칼슘 | 마침 |
