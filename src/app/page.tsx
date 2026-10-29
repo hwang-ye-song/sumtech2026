@@ -261,7 +261,7 @@ function Landing() {
         <div className="wrap">
           <div>
             <Logo />
-            <p style={{ marginTop: 8 }}>SUMTECH 2026 루프톤 · 팀 늘크크</p>
+            <p style={{ marginTop: 8 }}>SUMTECH 2026 루프톤 · 팀 늙크크</p>
           </div>
           <div className="prose">
             <p>{LANDING_DISCLAIMER}</p>
