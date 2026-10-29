@@ -39,7 +39,10 @@ export default async function ReportPage() {
           <h2 data-testid="report-title">
             주의할 항목 <b className="num">{total}</b>개
           </h2>
-          <p className="faint">{user.display_name ?? user.email} · 약사·의사에게 보여 주세요</p>
+          {/* 남에게 보여 주는 화면이라 이메일은 찍지 않는다. 이름이 있을 때만 누구 기록인지 적는다. */}
+          <p className="faint">
+            {user.display_name ? `${user.display_name}님의 복용 기록이에요. ` : ''}약국·병원에서 이 화면을 보여 주세요.
+          </p>
         </div>
         <div className="summary">
           <div className={`card ${total ? 'warn' : ''}`}>
