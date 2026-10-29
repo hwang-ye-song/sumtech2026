@@ -1,37 +1,33 @@
 import { expect, test } from "@playwright/test"
-import { addBySearch, signUpFromHome } from "../helpers"
+import { E2E_USER_EMAIL, E2E_USER_PASSWORD } from "../env"
+import { logInFromHome, startCheckFromHome } from "../helpers"
 
-test("S5 검진을 마친 사람이 약사에게 보여 줄 복용 리포트를 연다", async ({ page }) => {
-  // 1~2. 회원가입
-  await signUpFromHome(page, "s5")
+test("S5 30~40대 자녀가 부모님 목록을 검진해, 약사에게 보여 드릴 리포트와 근거를 확인한다", async ({ page }) => {
+  await logInFromHome(page, E2E_USER_EMAIL, E2E_USER_PASSWORD)
 
-  // 3~5. '약·영양제 추가' → '비맥스' → '비맥스제트정'의 '추가'
-  await addBySearch(page, "비맥스", "비맥스제트정")
+  // 1~2. 홈에서 '검진하기' → '검진 시작'
+  await startCheckFromHome(page)
 
-  // 6~8. '약·영양제 추가' → '칼슘' → '칼슘'의 '추가'
-  await addBySearch(page, "칼슘", "칼슘")
+  // expected: 맨 위 "주의할 항목 1개", 레보티록신 ↔ 칼슘 경고(할 일·질문·상담 안내), 아래에 레보티록신 1정과 칼슘 1000mg
+  await expect(page.getByTestId("report-title")).toHaveText("주의할 항목 1개")
+  const card = page.getByTestId("warning-card").filter({ hasText: "레보티록신" }).filter({ hasText: "칼슘" })
+  await expect(card).toContainText("레보티록신과 최소 4시간 띄워 드세요")
+  await expect(card).toContainText("약사에게 물어보세요")
+  await expect(page.getByTestId("report-disclaimer")).toContainText("복용을 바꾸기 전에 약사·의사와 상담하세요")
+  const table = page.getByRole("table", { name: "복용 중인 약·영양제" })
+  await expect(table.getByRole("row").filter({ hasText: "레보티록신" })).toContainText("1정")
+  await expect(table.getByRole("row").filter({ hasText: "칼슘" })).toContainText("1000mg")
 
-  // 9. 내 목록에서 '검진하기'
-  await page.getByRole("button", { name: "검진하기" }).click()
-  await expect(page.getByRole("heading", { name: "검진 결과" })).toBeVisible()
+  // 3. '레보티록신 ↔ 칼슘' 항목의 '자세히'
+  await card.getByRole("link", { name: "자세히" }).click()
 
-  // 10. 검진 결과에서 '복용 리포트'
-  await page.getByRole("link", { name: "복용 리포트" }).click()
-  await expect(page.getByRole("heading", { name: "복용 리포트" })).toBeVisible()
-
-  // expected: 맨 위에 비맥스제트정과 칼슘 조합, 식약처 출처 링크, 약사에게 물을 질문 / 아래에 비맥스제트정과 칼슘
-  const firstCard = page.getByTestId("warning-card").first()
-  await expect(firstCard).toContainText("비맥스제트정")
-  await expect(firstCard).toContainText("칼슘")
-  await expect(firstCard.getByRole("link", { name: "식약처 e약은요 원문 보기" })).toBeVisible()
-  await expect(firstCard).toContainText("약사에게 물어보세요")
-
-  const taking = page.getByRole("list", { name: "복용 중인 약·영양제" })
-  await expect(taking.getByRole("listitem").filter({ hasText: "비맥스제트정" })).toBeVisible()
-  await expect(taking.getByRole("listitem").filter({ hasText: "칼슘" })).toBeVisible()
-
-  // 조합 카드가 복용 목록보다 위에 있다
-  const cardBox = await firstCard.boundingBox()
-  const listBox = await taking.boundingBox()
-  expect(cardBox && listBox && cardBox.y < listBox.y).toBe(true)
+  // expected: 논문·공식 자료 두 출처, DB 확인 날짜, '출처 보기' 링크 주소
+  await expect(page.getByTestId("detail-title")).toContainText("레보티록신")
+  const sources = page.getByTestId("rule-source")
+  const paper = sources.filter({ hasText: "Absorption of Levothyroxine When Coadministered with Various Calcium Formulations" })
+  await expect(paper).toContainText("논문")
+  await expect(paper.getByRole("link", { name: "출처 보기" })).toHaveAttribute("href", "https://pmc.ncbi.nlm.nih.gov/articles/PMC3092723/")
+  const medline = sources.filter({ hasText: "Levothyroxine (MedlinePlus)" })
+  await expect(medline.getByRole("link", { name: "출처 보기" })).toHaveAttribute("href", "https://medlineplus.gov/druginfo/meds/a682461.html")
+  await expect(page.getByTestId("detail-checked")).toContainText(/DB 확인 날짜 \d{4}-\d{2}-\d{2}/)
 })

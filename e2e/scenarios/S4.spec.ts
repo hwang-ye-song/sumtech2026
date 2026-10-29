@@ -1,21 +1,46 @@
-import { expect, test } from "@playwright/test"
-import { addBySearch, signUpFromHome } from "../helpers"
+import { expect, test, type Locator } from "@playwright/test"
+import { E2E_USER_EMAIL, E2E_USER_PASSWORD } from "../env"
+import { listRows, logInFromHome, openListFromHome, register, searchAndPick } from "../helpers"
 
-test("S4 기록 없는 조합을 검진하면 안전하다고 단정하지 않고 약사 확인을 권한다", async ({ page }) => {
-  // 1~2. 회원가입
-  await signUpFromHome(page, "s4")
+/** 철분을 더할 때 뜨는 경고 창: 맨 위 '시간을 띄워 드세요', 레보티록신 ↔ 철분, 칼슘 ↔ 철분 */
+async function expectIronWarning(dialog: Locator): Promise<void> {
+  await expect(dialog.getByRole("heading", { level: 3 })).toHaveText("시간을 띄워 드세요")
+  const levo = dialog.getByTestId("warning-card").filter({ hasText: "레보티록신(갑상선약) ↔ 철분" })
+  await expect(levo).toContainText("레보티록신과 최소 4시간 띄워 드세요")
+  await expect(levo).toContainText("Levothyroxine (MedlinePlus)")
+  const calcium = dialog.getByTestId("warning-card").filter({ hasText: "칼슘 ↔ 철분" })
+  await expect(calcium).toBeVisible()
+  await expect(calcium.getByRole("link", { name: "출처 보기" }).first()).toBeVisible()
+  await expect(dialog).toContainText("복용을 바꾸기 전에 약사·의사와 상담하세요")
+  for (const name of ["자세히", "그래도 추가", "취소"]) {
+    await expect(dialog.getByRole(name === "자세히" ? "link" : "button", { name })).toBeVisible()
+  }
+}
 
-  // 3~5. '약·영양제 추가' → '타이레놀' → '타이레놀정500밀리그람(아세트아미노펜)'의 '추가'
-  await addBySearch(page, "타이레놀", "타이레놀정500밀리그람(아세트아미노펜)")
+test("S4 부모님 갑상선약과 칼슘을 목록에 넣어 둔 30~40대 자녀가, 사 드리려던 철분을 더해 보고 경고를 받는다", async ({ page }) => {
+  await logInFromHome(page, E2E_USER_EMAIL, E2E_USER_PASSWORD)
 
-  // 6~8. '약·영양제 추가' → '오메가3' → '오메가3'의 '추가'
-  await addBySearch(page, "오메가3", "오메가3")
+  // 1~6. '복용 목록' → '검색으로 등록' → '철분' 검색 → '철분' → 하루 1개 → '등록'
+  await openListFromHome(page)
+  await searchAndPick(page, "철분", "철분")
+  await register(page, 1)
+  const dialog = page.getByRole("dialog")
+  await expectIronWarning(dialog)
 
-  // 9. 내 목록에서 '검진하기'
-  await page.getByRole("button", { name: "검진하기" }).click()
-  await expect(page.getByRole("heading", { name: "검진 결과" })).toBeVisible()
+  // 7. '취소'
+  await dialog.getByRole("button", { name: "취소" }).click()
+  await expect(dialog).toBeHidden()
 
-  // expected: "확인한 자료에서는 보고된 문제가 없어요. 걱정되면 약사에게 확인하세요"가 보이고, 경고 카드는 보이지 않는다
-  await expect(page.getByText("확인한 자료에서는 보고된 문제가 없어요. 걱정되면 약사에게 확인하세요")).toBeVisible()
-  await expect(page.getByTestId("warning-card")).toHaveCount(0)
+  // 8~9. '등록'을 다시 누르면 같은 경고 → '취소'
+  await page.getByRole("button", { name: "등록", exact: true }).click()
+  await expectIronWarning(dialog)
+  await dialog.getByRole("button", { name: "취소" }).click()
+  await expect(dialog).toBeHidden()
+
+  // 10. 메뉴의 '복용 목록' → 철분은 없고 레보티록신과 칼슘만 있다
+  await page.getByRole("navigation", { name: "주 메뉴" }).getByRole("link", { name: "복용 목록" }).click()
+  await expect(listRows(page)).toHaveCount(2)
+  await expect(listRows(page).filter({ hasText: "레보티록신" })).toBeVisible()
+  await expect(listRows(page).filter({ hasText: "칼슘" })).toBeVisible()
+  await expect(listRows(page).filter({ hasText: "철분" })).toHaveCount(0)
 })

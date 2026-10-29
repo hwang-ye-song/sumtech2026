@@ -1,23 +1,56 @@
+import fs from "node:fs"
 import path from "node:path"
 import { expect, test } from "@playwright/test"
-import { signUpFromHome } from "../helpers"
+import { E2E_USER_EMAIL, E2E_USER_PASSWORD } from "../env"
+import { listRows, logInFromHome, openListFromHome, register } from "../helpers"
 
-test("S7 사진으로 약 상자를 찍어 올리면 그 약이 내 목록에 추가된다", async ({ page }) => {
-  // 1~2. 회원가입
-  await signUpFromHome(page, "s7")
+// docs/scenarios.yaml 머리말: 올릴 사진은 e2e/fixtures에 커밋한다.
+const BLURRY = path.join(__dirname, "..", "fixtures", "blurry-pill.jpg")
+const BOX = path.join(__dirname, "..", "fixtures", "ferobau-box.jpg")
 
-  // 3. 내 목록에서 '사진으로 추가'
-  await page.getByRole("link", { name: "사진으로 추가" }).click()
-  await expect(page.getByRole("heading", { name: "사진으로 추가" })).toBeVisible()
+test("S7 성분표를 읽기 어려운 50~60대 부모님이 약 상자를 사진으로 찍어 등록하려다, 흐린 사진은 다시 찍고 경고를 받는다", async ({ page }) => {
+  expect(fs.existsSync(BLURRY) && fs.existsSync(BOX), "e2e/fixtures/blurry-pill.jpg·ferobau-box.jpg 사진이 필요해요").toBe(true)
+  await logInFromHome(page, E2E_USER_EMAIL, E2E_USER_PASSWORD)
 
-  // 4. 비맥스제트정 상자 사진을 올린다 (고르면 바로 인식을 시작한다. 실제 AI 응답을 기다린다)
-  await page.getByLabel("사진 올리기").setInputFiles(path.join(__dirname, "../fixtures/bemax-z.jpg"))
-  await expect(page.getByRole("heading", { name: "인식 결과" })).toBeVisible({ timeout: 60_000 })
+  // 1~2. '복용 목록' → '사진으로 등록'
+  await openListFromHome(page)
+  await page.getByRole("link", { name: "사진으로 등록" }).click()
 
-  // 5. 인식 결과에서 '비맥스제트정'의 '추가'
-  await page.getByRole("list", { name: "인식 결과" }).getByRole("button", { name: "비맥스제트정 추가", exact: true }).click()
+  // expected: 보내기 전에 동의 안내
+  await expect(page.getByTestId("photo-consent")).toContainText("읽은 뒤 사진은 바로 지우고 저장하지 않아요")
 
-  // expected: 내 목록에 비맥스제트정이 추가되어 보인다
-  await expect(page.getByRole("heading", { name: "내 목록" })).toBeVisible()
-  await expect(page.getByRole("listitem").filter({ hasText: "비맥스제트정" })).toBeVisible()
+  // 3. '동의하고 찍기' → 촬영 안내 네 줄
+  await page.getByRole("button", { name: "동의하고 찍기" }).click()
+  const tips = page.getByTestId("photo-tips")
+  for (const tip of ["플래시를 켜 주세요", "처방전이 보이게 찍어 주세요", "상표명이 보이게 찍어 주세요", "흐리지 않게 찍어 주세요"]) {
+    await expect(tips).toContainText(tip)
+  }
+
+  // 4. 흐린 알약 사진 → "사진이 흐려서 읽지 못했어요. 다시 찍어 주세요" (AI 응답을 기다린다)
+  await page.getByLabel("사진 올리기").setInputFiles(BLURRY)
+  await expect(page.getByText("사진이 흐려서 읽지 못했어요. 다시 찍어 주세요")).toBeVisible({ timeout: 60_000 })
+
+  // 5~6. '다시 찍기' → 훼로바-유서방정 상자 사진
+  await page.getByRole("button", { name: "다시 찍기" }).click()
+  await page.getByLabel("사진 올리기").setInputFiles(BOX)
+
+  // 7~9. 후보 '훼로바-유서방정' → 하루 1개 → '등록'
+  const candidates = page.getByRole("list", { name: "후보 목록" })
+  await expect(candidates).toBeVisible({ timeout: 60_000 })
+  await expect(candidates).toContainText("건조황산제일철")
+  await candidates.getByRole("button", { name: /훼로바-유서방정/ }).click()
+  await register(page, 1)
+
+  // expected: "시간을 띄워 드세요"와 "레보티록신(갑상선약) ↔ 철분" 경고가 출처와 함께
+  const dialog = page.getByRole("dialog")
+  await expect(dialog.getByRole("heading", { level: 3 })).toHaveText("시간을 띄워 드세요")
+  const card = dialog.getByTestId("warning-card").filter({ hasText: "레보티록신(갑상선약) ↔ 철분" })
+  await expect(card.getByRole("link", { name: "출처 보기" }).first()).toBeVisible()
+
+  // 10. '취소' → 목록에 레보티록신과 칼슘만 있다
+  await dialog.getByRole("button", { name: "취소" }).click()
+  await page.getByRole("navigation", { name: "주 메뉴" }).getByRole("link", { name: "복용 목록" }).click()
+  await expect(listRows(page)).toHaveCount(2)
+  await expect(listRows(page).filter({ hasText: "레보티록신" })).toBeVisible()
+  await expect(listRows(page).filter({ hasText: "칼슘" })).toBeVisible()
 })

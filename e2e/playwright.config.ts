@@ -27,9 +27,5 @@ export default defineConfig({
   // docs/scenarios.yaml의 platform에 맞는 것만 남긴다(both면 둘 다). 주최 측 실행도 같은 화면 크기로 돈다.
   projects: [
     { name: "desktop", use: { viewport: { width: 1440, height: 900 } } },
-    {
-      name: "mobile",
-      use: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true },
-    },
   ],
 })
