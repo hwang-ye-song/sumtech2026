@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { Logo } from '@/components/Header'
-import { PromiseCarousel } from '@/components/PromiseCarousel'
 
 const LANDING_DISCLAIMER = '이 서비스는 처방이나 진단을 하지 않아요. 복용을 바꾸기 전에 약사·의사와 상담하세요'
 const SRC_URL = {
@@ -29,61 +28,17 @@ function Landing() {
     <main>
       <section className="hero2" aria-label="소개">
         <div className="wrap body">
-          <h1>
+          <h1 className="hero-main">
             <span className="line">
               <Word t="약과" d={0.3} />
-              <Word t="영양제를" d={0.4} />
-              <Word t="함께" d={0.5} dim />
-              <Word t="먹을" d={0.6} dim />
-              <Word t="때" d={0.7} dim />
-            </span>
-            <span className="line">
-              <Word t="해로운" d={0.8} em />
-              <Word t="조합을" d={0.9} em />
-            </span>
-            <span className="line">
-              <Word t="출처와" d={1.0} />
-              <Word t="함께" d={1.1} />
-              <Word t="알려" d={1.2} />
-              <Word t="줘요" d={1.3} />
+              <Word t="영양제," d={0.4} />
+              <Word t="같이" d={0.5} />
+              <Word t="먹기" d={0.6} />
+              <Word t="전에" d={0.7} />
+              <Word t="TwoPills" d={0.9} em />
             </span>
           </h1>
           <div className="cta2 animate-fade-up delay-600">
-            <p className="lead2">
-              약은 병원에서, 영양제는 인터넷에서 따로 들어와요.
-              TwoPills는 목록에 더하는 순간, 식약처 원문과 논문으로 먼저 알려
-              드려요.
-            </p>
-          </div>
-        </div>
-
-        <div className="panels">
-          <div className="pnl pnl-1 animate-fade-up delay-900">
-            <h3>
-              먹고 있는 약과 영양제를 <b>한자리에</b> 모아 보세요
-            </h3>
-            <Link href="/explore">약·영양제 알아보기</Link>
-            <span className="deco pill-crop soft" style={{ '--cx': 252, '--cy': 181, '--cw': 468, '--ch': 371 } as React.CSSProperties} aria-hidden="true" />
-          </div>
-          <div className="pnl pnl-2 animate-fade-up delay-1000">
-            <PromiseCarousel />
-          </div>
-          <div className="pnl pnl-3 animate-fade-up delay-1100" aria-label="경고 화면 미리보기">
-            <div>
-              <p className="cap">갑상선약을 먹는 분이 칼슘을 더하는 순간, 이렇게 떠요</p>
-              <p className="big">레보티록신과 최소 4시간 띄워 드세요</p>
-              <p className="pair">레보티록신(갑상선약) ↔ 칼슘 · 시간을 띄워 드세요</p>
-            </div>
-            <p className="src2">
-              출처:{' '}
-              <a href={SRC_URL.R12} target="_blank" rel="noopener noreferrer">
-                Levothyroxine (MedlinePlus)
-              </a>{' '}
-              ·{' '}
-              <a href={SRC_URL.R3} target="_blank" rel="noopener noreferrer">
-                PMC 논문
-              </a>
-            </p>
           </div>
         </div>
       </section>
@@ -108,9 +63,6 @@ function Landing() {
               <p className="muted">AI에게 물으면 &ldquo;띄워 먹으면 문제없을 것 같다&rdquo;는 애매한 답이 와요. 근거가 없으니 믿어도 되는지 알 수 없어요.</p>
             </div>
           </div>
-          <p className="problem" style={{ marginTop: 24 }}>
-            &ldquo;같이 먹지 마세요&rdquo;는 약 설명서 안에만 적혀 있어요. TwoPills는 그 문장을 <strong>내 복용 목록</strong>에 연결해요.
-          </p>
         </div>
       </section>
 
