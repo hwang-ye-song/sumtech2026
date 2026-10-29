@@ -47,20 +47,20 @@ function Landing() {
         <div className="wrap">
           <div className="eyebrow">왜 필요한가요</div>
           <h2>
-            영양제는 <b>괜찮겠지</b> 하고 먹다가 약과 부딪혀요
+            건강하려고 먹은 영양제가 <b>약효를 막고</b> 있어요
           </h2>
           <div className="grid grid-3" style={{ marginTop: 24 }}>
             <div className="card">
-              <h4>따로따로 들어와요</h4>
-              <p className="muted">약은 병원에서, 영양제는 자녀가 인터넷에서 사 보내거나 마트·직구·유튜브 추천으로 사요. 둘을 같이 놓고 봐 주는 사람이 없어요.</p>
+              <h4>약과 영양제는 따로 관리돼요</h4>
+              <p className="muted">약은 병원 처방으로, 영양제는 온라인·마트·지인 추천으로 들어와요. 둘을 한 화면에 놓고 보는 곳이 없어요.</p>
             </div>
             <div className="card">
-              <h4>아무도 묻지 않아요</h4>
-              <p className="muted">병원과 약국은 약만 묻고 영양제는 묻지 않아요. 가족도 &ldquo;머 괜찮지 않을까?&rdquo; 하고 넘겨요.</p>
+              <h4>상담에서 영양제는 빠지기 쉬워요</h4>
+              <p className="muted">진료와 조제는 처방약 중심이에요. 영양제는 묻지 않으면 말하지 않고, 말하지 않으면 확인받지 못해요.</p>
             </div>
             <div className="card">
-              <h4>물어도 찜찜해요</h4>
-              <p className="muted">AI에게 물으면 &ldquo;띄워 먹으면 문제없을 것 같다&rdquo;는 애매한 답이 와요. 근거가 없으니 믿어도 되는지 알 수 없어요.</p>
+              <h4>AI 답변만으로는 믿기 어려워요</h4>
+              <p className="muted">&ldquo;시간 띄우면 괜찮을 것 같아요&rdquo; 같은 모호한 답은 근거를 확인할 수 없어요. 우리는 공공 데이터와 출처가 있는 규칙으로만 판단해요.</p>
             </div>
           </div>
         </div>
@@ -117,23 +117,23 @@ function Landing() {
         <div className="wrap">
           <div className="eyebrow">이럴 때 열어 보세요</div>
           <h2>
-            먹는 사람도, <b>챙겨 드리는 사람도</b>
+            사기 전에, 먹기 전에 <b>한 번 확인하세요</b>
           </h2>
           <div className="grid grid-3 who" style={{ marginTop: 24 }}>
             <div className="card">
               <div className="tag">20~30대</div>
               <h4>영양제를 고르거나 살 때</h4>
-              <p className="muted">유튜브 추천으로 산 비타민을 먹다가 감기약을 먹게 됐다면, 같이 먹어도 되는지 먼저 확인하고 내 약과 부딪히지 않는 영양제를 추천받아요.</p>
+              <p className="muted">유튜브 추천으로 산 비타민을 먹다가 감기약을 먹게 됐다면, 같이 먹어도 되는지 먼저 확인해요. 겹치는 성분과 시간 간격까지 한눈에 볼 수 있어요.</p>
             </div>
             <div className="card">
               <div className="tag">부모님께 사 드리는 자녀</div>
               <h4>사 드리기 전에</h4>
-              <p className="muted">부모님 약과 사 드릴 영양제를 내 목록에 넣어 미리 점검하고, 리포트를 부모님이나 약사에게 보여 드려요.</p>
+              <p className="muted">부모님이 드시는 약과 사 드릴 영양제를 내 목록에 넣어 미리 점검해요. 결과는 한 장으로 정리해서 부모님이나 약사에게 보여 드릴 수 있어요.</p>
             </div>
             <div className="card">
               <div className="tag">약을 매일 드시는 부모님</div>
               <h4>읽기 어려운 성분표 대신 사진으로</h4>
-              <p className="muted">약 상자나 봉투를 찍으면 후보를 찾아 줘요. 갑상선약처럼 흔히 부르는 이름으로 찾아도 돼요.</p>
+              <p className="muted">약 봉투나 영양제 통을 찍으면 성분을 알아서 읽어 줘요. 글씨가 작거나 이름이 어려워도 괜찮아요. &ldquo;갑상선약&rdquo;처럼 평소 부르는 이름으로 찾을 수도 있어요.</p>
             </div>
           </div>
         </div>

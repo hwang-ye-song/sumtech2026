@@ -71,6 +71,10 @@ input,textarea{font:inherit;color:inherit}
 .ex-row-ok{font-size:var(--fs-1);color:var(--ink-3)}
 .ex-row-body{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px}
 .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 24px}
+.pager{display:flex;justify-content:center;align-items:center;gap:4px;flex-wrap:wrap;margin-top:24px}
+.pager-btn{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px;padding:0 10px;border-radius:var(--r-1);color:var(--ink-2);text-decoration:none;font-size:var(--fs-2)}
+.pager-btn:hover{background:var(--bg-2)}
+.pager-btn[aria-current="page"]{background:var(--black);color:#fff;font-weight:700}
 
 /* ───────── 버튼·칩·배지 ───────── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:var(--r-pill);border:1px solid var(--line-2);background:var(--bg);cursor:pointer;font-weight:700;text-decoration:none;white-space:nowrap;transition:background var(--dur-2) var(--ease),transform var(--dur-1) var(--ease),filter var(--dur-2) var(--ease),border-color var(--dur-2) var(--ease),box-shadow var(--dur-2) var(--ease)}
@@ -183,6 +187,9 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
 
 /* ───────── 복용 목록 ───────── */
 .list-layout{display:grid;grid-template-columns:400px 1fr;gap:24px;align-items:start}
+.reg-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.reg-grid>.card{display:flex;flex-direction:column}
+.reg-grid>.card>.stack,.reg-grid>.card>form{flex:1}
 .result{display:flex;gap:12px;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--line);border-radius:var(--r-1);cursor:pointer;background:var(--bg);text-align:left;width:100%}
 .result:hover{background:var(--bg-2)}
 .result .n{font-weight:700} .result .s{font-size:var(--fs-1);color:var(--ink-3)}
@@ -223,7 +230,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
   .hero-grid{grid-template-columns:1fr}
   .panel{justify-self:start;width:100%}
   .grid-4{grid-template-columns:repeat(2,1fr)}
-  .list-layout{grid-template-columns:1fr}
+  .list-layout,.reg-grid{grid-template-columns:1fr}
 }
 @media (max-width:760px){
   :root{--fs-2:17px;--fs-6:40px;--fs-5:28px}
@@ -304,7 +311,34 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
 /* ───────── Next.js 화면용 보탬 ───────── */
 .chip:has(input:checked){background:var(--brand-bg);border-color:var(--brand);color:var(--brand-ink)}
 .chip input{width:18px;height:18px;margin:0;accent-color:var(--brand)}
-.drop input[type=file]{display:block;margin:12px auto 0;max-width:100%}
+/* 영양제 추천 설문: 필터 패널 형식(섹션 제목 · 바+숫자 칸 · 선택 카드 · 알약 버튼 · 아래 버튼 줄) */
+.survey{padding:8px 28px 0}
+.survey-sec{padding:24px 0;border-top:1px solid var(--line)}
+.survey-sec:first-child{border-top:0}
+.survey-sec h4{margin:0 0 16px}
+.range{-webkit-appearance:none;appearance:none;display:block;width:100%;height:4px;margin:12px 0 8px;border-radius:999px;background:linear-gradient(to right,var(--ink) 0 var(--pct),var(--line-2) var(--pct) 100%);cursor:pointer}
+.range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:var(--ink);border:4px solid var(--bg);box-shadow:0 0 0 1px var(--line-2);cursor:grab}
+.range::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--ink);border:4px solid var(--bg);box-shadow:0 0 0 1px var(--line-2);cursor:grab}
+.range:active::-webkit-slider-thumb{cursor:grabbing}
+.range-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.range-value{font-size:var(--fs-3);color:var(--ink)}
+.opt-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt-card{padding:20px;border:1px solid var(--line-2);border-radius:var(--r-1);background:var(--bg);text-align:center;font-weight:700;cursor:pointer;transition:border-color var(--dur-2) var(--ease)}
+.opt-card:hover{border-color:var(--ink-3)}
+.opt-card[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{min-height:38px;padding:0 18px;border:0;border-radius:var(--r-pill);background:var(--bg-3);color:var(--ink-2);font-size:var(--fs-1);cursor:pointer;transition:background var(--dur-2) var(--ease),color var(--dur-2) var(--ease)}
+.pill:hover{background:var(--line-2);color:var(--ink)}
+.pill[aria-pressed="true"]{background:var(--ink);color:var(--bg);font-weight:700}
+.survey-note{margin:0;padding-top:4px}
+.survey .error{margin:8px 0 0}
+.survey-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;padding:16px 0 20px;border-top:1px solid var(--line)}
+@media (max-width:760px){.survey{padding:4px 16px 0}}
+.drop{cursor:pointer;display:block}
+.drop:hover{background:var(--bg-3,var(--bg-2));border-color:var(--ink,var(--line-2))}
+.drop[aria-disabled=true]{cursor:not-allowed;opacity:.5}
+.drop .drop-icon{color:var(--muted,#888);margin-bottom:8px}
+.drop input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 .finding-none .lvl,.finding-none .act{color:var(--ink)}
 .persona-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .persona{display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--line);border-radius:var(--r-1);background:var(--bg)}

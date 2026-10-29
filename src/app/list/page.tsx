@@ -18,7 +18,7 @@ type Params = Record<string, string | string[] | undefined>
 const one = (v: string | string[] | undefined) => (typeof v === 'string' ? v : '')
 
 /**
- * 복용 목록: 왼쪽 등록 패널(검색 | 사진), 오른쪽 약·영양제 표. 등록·삭제 결과도 여기서 보여 준다.
+ * 복용 목록: 왼쪽 등록 패널(검색 / 사진 두 구역), 오른쪽 약·영양제 표. 등록·삭제 결과도 여기서 보여 준다.
  * 검색 결과 고르기(?pick=)와 삭제 확인 창(?confirm=)은 주소로 그린다. 화면 스크립트가 준비되기 전에 눌러도 동작한다.
  */
 export default async function ListPage({ searchParams }: { searchParams: Promise<Params> }) {
@@ -27,15 +27,14 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
   if (!user) redirect('/login?next=/list')
 
   const params = await searchParams
-  const mode = one(params.mode) === 'photo' ? 'photo' : 'search'
   const q = one(params.q).trim().slice(0, 50)
   const added = parseItemKey(one(params.added))
   const status = one(params.status)
   const deleted = params.deleted === '1'
-  const pickRef = mode === 'search' ? parseItemKey(one(params.pick)) : null
+  const pickRef = parseItemKey(one(params.pick))
   const confirmId = Number(one(params.confirm))
 
-  const [items, hits] = await Promise.all([listUserItems(user.id), mode === 'search' && q.length >= 2 ? searchCatalog(q) : Promise.resolve([])])
+  const [items, hits] = await Promise.all([listUserItems(user.id), q.length >= 2 ? searchCatalog(q) : Promise.resolve([])])
   const inUse = user.first_checked_at !== null
   const addedItem = added ? items.find((i) => itemKey(i) === itemKey(added)) : undefined
   const drugs = items.filter((i) => !isSupplement(i))
@@ -56,29 +55,21 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
     <main className="page">
       <div className="wrap">
         <div className="page-head">
-          <div className="eyebrow">복용 목록</div>
           <h2>
             먹고 있는 약과 영양제를 <b>한자리에</b>
           </h2>
         </div>
-        <div className="list-layout">
-          <section className="card" aria-label="등록">
-            <nav className="seg" aria-label="등록 방법">
-              <Link href="/list" aria-current={mode === 'search' ? 'page' : undefined} data-testid="mode-search">
-                검색으로 등록
-              </Link>
-              <Link href="/list?mode=photo" aria-current={mode === 'photo' ? 'page' : undefined} data-testid="mode-photo">
-                사진으로 등록
-              </Link>
-            </nav>
-            <div style={{ marginTop: 16 }}>
-              {mode === 'photo' ? (
-                <PhotoAdd aiReady={aiConfigured()} agreed={params.agree === '1'} />
-              ) : (
+        <div className="stack">
+          <div className="reg-grid">
+          <section className="card" aria-labelledby="reg-search" data-testid="section-search">
+            <h3 id="reg-search" style={{ marginBottom: 12 }}>
+              검색 등록
+            </h3>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <>
                   <form action="/list" method="get" role="search">
                     <div className="field">
-                      <label htmlFor="q">제품명·성분·흔히 부르는 이름</label>
+                      <label htmlFor="q">제품명·성분</label>
                       <div className="row" style={{ flexWrap: 'nowrap' }}>
                         <input
                           className="input"
@@ -130,9 +121,16 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
                     </ul>
                   ) : null}
                 </>
-              )}
             </div>
           </section>
+
+          <section className="card" aria-labelledby="reg-photo" data-testid="section-photo">
+            <h3 id="reg-photo" style={{ marginBottom: 12 }}>
+              사진 등록
+            </h3>
+            <PhotoAdd aiReady={aiConfigured()} />
+          </section>
+          </div>
 
           <section className="stack" aria-label="내 목록">
             {deleted ? <Toast message="등록된 약·영양제가 목록에서 삭제되었습니다." /> : null}
@@ -167,7 +165,7 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
             <p className="faint">
               {inUse ? '사용 중: 새로 등록할 때마다 자동으로 점검해요.' : "다 넣은 뒤 '검진하기'에서 한 번 점검하면, 그 뒤로는 등록할 때마다 자동으로 점검해요."}
             </p>
-            <div>
+            <div style={{ textAlign: 'center' }}>
               <Link className="btn btn-primary btn-lg" href="/check" data-testid="list-analyze">
                 검진하기
               </Link>

@@ -18,7 +18,6 @@ export default async function CheckPage() {
     <main className="page">
       <div className="wrap prose">
         <div className="page-head">
-          <div className="eyebrow">검진하기</div>
           <h2>
             목록 전체를 <b>DB로만</b> 점검해요
           </h2>

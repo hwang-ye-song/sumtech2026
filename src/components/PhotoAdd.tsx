@@ -4,16 +4,14 @@ import { useActionState, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { recognizePhoto, type PhotoState } from '@/app/actions/photo'
 import { SearchRegister } from '@/components/SearchRegister'
-import { GetButton } from '@/components/GetButton'
 
-const TIPS = ['플래시를 켜 주세요', '처방전이 보이게 찍어 주세요', '상표명이 보이게 찍어 주세요', '흐리지 않게 찍어 주세요']
 const CONSENT = '사진을 AI로 보내 글자를 읽어요. 읽은 뒤 사진은 바로 지우고 저장하지 않아요'
 
 /**
- * 사진 등록: 동의 → 촬영 안내 → 사진 올리기 → (흐리면 다시 찍기) → 후보 고르기 → 하루 개수 → 등록
- * 동의는 주소(?agree=1)로 받는다. 화면 스크립트가 준비되기 전에 눌러도 동작한다.
+ * 사진 등록: 사진 올리기 → (흐리면 다시 찍기) → 후보 고르기 → 하루 개수 → 등록
+ * 사진을 고르면 바로 읽기 시작한다(동의 문구는 올리기 칸 아래에 항상 보인다).
  */
-export function PhotoAdd({ aiReady, agreed }: { aiReady: boolean; agreed: boolean }) {
+export function PhotoAdd({ aiReady }: { aiReady: boolean }) {
   const [state, formAction, pending] = useActionState<PhotoState, FormData>(recognizePhoto, {})
   const [retakeOf, setRetakeOf] = useState<PhotoState | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -24,30 +22,6 @@ export function PhotoAdd({ aiReady, agreed }: { aiReady: boolean; agreed: boolea
   }, [])
   // '다시 찍기'를 누르면 직전 결과를 숨기고 올리기 칸을 다시 보여 준다.
   const shown = retakeOf === state ? {} : state
-
-  if (!aiReady) {
-    return (
-      <div className="notice notice-warn" role="alert">
-        지금은 사진 인식을 쓸 수 없어요(AI 키가 설정되지 않음). <Link href="/list">검색으로 등록</Link>해 주세요.
-      </div>
-    )
-  }
-
-  if (!agreed) {
-    return (
-      <div className="stack" data-testid="photo-consent">
-        <p>{CONSENT}</p>
-        <div className="row">
-          <GetButton action="/list" params={{ mode: 'photo', agree: '1' }} className="btn btn-primary" data-testid="photo-agree">
-            동의하고 찍기
-          </GetButton>
-          <Link className="btn" href="/list">
-            검색으로 등록
-          </Link>
-        </div>
-      </div>
-    )
-  }
 
   if (pending) {
     return (
@@ -78,9 +52,6 @@ export function PhotoAdd({ aiReady, agreed }: { aiReady: boolean; agreed: boolea
           <button type="button" className="btn btn-sm" onClick={() => setRetakeOf(state)}>
             다시 찍기
           </button>
-          <Link className="btn btn-sm" href="/list">
-            검색으로 등록
-          </Link>
         </div>
       </div>
     )
@@ -88,14 +59,6 @@ export function PhotoAdd({ aiReady, agreed }: { aiReady: boolean; agreed: boolea
 
   return (
     <div className="stack">
-      <div className="card card-soft">
-        <strong>촬영 안내</strong>
-        <ul className="tips" data-testid="photo-tips">
-          {TIPS.map((t) => (
-            <li key={t}>{t}</li>
-          ))}
-        </ul>
-      </div>
       {shown.blurry ? (
         <div className="stack">
           <div className="notice notice-warn" role="alert" data-testid="photo-error">
@@ -114,21 +77,30 @@ export function PhotoAdd({ aiReady, agreed }: { aiReady: boolean; agreed: boolea
         </div>
       ) : null}
       <form ref={formRef} action={formAction} hidden={Boolean(shown.blurry)}>
-        <label className="drop">
+        <label className="drop" aria-disabled={!aiReady}>
+          <svg className="drop-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="3" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <path d="m21 15-5-5L5 21" />
+          </svg>
+          <br />
           <strong>사진 올리기</strong>
           <br />
-          <span className="faint">처방전·약 봉투·약 상자·영양제 상표 (JPG·PNG, 8MB 이하)</span>
+          <span className="faint">아이콘을 눌러 갤러리에서 고르세요. 처방전·약 봉투·약 상자·영양제 상표 (JPG·PNG, 8MB 이하)</span>
           <input
             ref={fileRef}
             type="file"
             name="photo"
             accept="image/*"
-            capture="environment"
+            disabled={!aiReady}
             aria-label="사진 올리기"
             data-testid="photo-file"
             onChange={() => formRef.current?.requestSubmit()}
           />
         </label>
+        <p className="faint" style={{ marginTop: 8 }}>
+          {CONSENT}
+        </p>
       </form>
     </div>
   )

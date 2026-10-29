@@ -82,10 +82,12 @@ export interface RecommendCandidate {
 }
 
 export interface RecommendSurvey {
+  age: number
+  sex: string
+  heightCm: number
+  weightKg: number
+  symptoms: string[]
   goals: string[]
-  other: string
-  pills: string
-  note: string
 }
 
 const pickSchema = z.object({
@@ -113,12 +115,12 @@ export async function pickRecommendations(
     abortSignal: AbortSignal.timeout(TIMEOUT_MS),
     maxRetries: 1,
     prompt: `너는 영양제 종류를 고르는 도우미다. 아래 후보 목록 안에서만 최대 ${maxPicks}개를 고른다. 후보 목록은 사용자가 지금 먹는 약·영양제와 겹치거나 부딪친다는 기록이 없는 것만 남긴 것이다.
-고르는 기준: 사용자의 '좋아지고 싶은 부분'과 각 후보의 식약처 기능성 내용이 맞는 것. 후보에 없는 것, 제품 이름, 구매 정보, 질병 치료·예방 표현은 쓰지 않는다. 맞는 후보가 없으면 빈 목록으로 답한다.
+고르는 기준: 사용자의 '개선하고 싶은 점'과 '현재 겪는 증상'에 각 후보의 식약처 기능성 내용이 맞는 것. 나이·성별·키·몸무게는 우선순위를 정하는 참고로만 쓴다. 후보에 없는 것, 제품 이름, 구매 정보, 질병 진단·치료·예방 표현은 쓰지 않는다. 맞는 후보가 없으면 빈 목록으로 답한다.
 
 [사용자 설문]
-좋아지고 싶은 부분: ${survey.goals.join(', ') || '(선택 없음)'}${survey.other ? ` / 기타: ${survey.other}` : ''}
-하루에 먹을 수 있는 알 수: ${survey.pills || '(선택 없음)'}
-더 알려 주고 싶은 점: ${survey.note || '(없음)'}
+나이: ${survey.age}세 / 성별: ${survey.sex} / 키: ${survey.heightCm}cm / 몸무게: ${survey.weightKg}kg
+현재 겪는 증상: ${survey.symptoms.join(', ') || '(선택 없음)'}
+개선하고 싶은 점: ${survey.goals.join(', ') || '(선택 없음)'}
 
 [후보 목록]
 ${candidateText}`,

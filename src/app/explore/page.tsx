@@ -11,6 +11,8 @@ export const metadata = { title: '약·영양제 알아보기' }
 
 type Params = Record<string, string | string[] | undefined>
 const KINDS = ['전체', '약', '영양제'] as const
+const PAGE_SIZE = 10
+const PAGE_GROUP = 10
 
 /** 로그인 없이 보는 화면: 성분·약마다 DB에 기록된 조합 주의사항과 출처 */
 export default async function ExplorePage({ searchParams }: { searchParams: Promise<Params> }) {
@@ -34,13 +36,20 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
     .filter(({ e, ws }) => (q.length >= 2 || e.type === 'substance' || ws.length > 0) && (kind === '전체' || (kind === '영양제') === isSupplement(e)))
     .sort((a, b) => Number(b.ws.length > 0) - Number(a.ws.length > 0))
 
-  const href = (k: string) => `/explore?${new URLSearchParams({ ...(q ? { q } : {}), ...(k !== '전체' ? { kind: k } : {}) })}`
+  // 게시판처럼 한 쪽에 PAGE_SIZE개, 쪽 번호는 PAGE_GROUP개씩 묶어 보여 준다.
+  const pageCount = Math.max(1, Math.ceil(cards.length / PAGE_SIZE))
+  const page = Math.min(pageCount, Math.max(1, Number.parseInt(typeof params.page === 'string' ? params.page : '', 10) || 1))
+  const shown = cards.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+  const groupStart = Math.floor((page - 1) / PAGE_GROUP) * PAGE_GROUP + 1
+  const groupEnd = Math.min(pageCount, groupStart + PAGE_GROUP - 1)
+
+  const href = (k: string, p = 1) =>
+    `/explore?${new URLSearchParams({ ...(q ? { q } : {}), ...(k !== '전체' ? { kind: k } : {}), ...(p > 1 ? { page: String(p) } : {}) })}`
 
   return (
     <main className="page">
       <div className="wrap">
         <div className="page-head">
-          <div className="eyebrow">약·영양제 알아보기</div>
           <h2>
             같이 먹기 전에 <b>먼저 찾아봐요</b>
           </h2>
@@ -73,7 +82,10 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
           </div>
         ) : (
           <div className="ex-list">
-            {cards.map(({ e, ws }) => (
+            <p className="faint" style={{ margin: '0 0 4px' }} data-testid="ex-count">
+              총 {cards.length}개 · {page}/{pageCount}쪽
+            </p>
+            {shown.map(({ e, ws }) => (
               <details key={`${e.type}:${e.ref}`} className="ex-row" data-testid="ex-card">
                 <summary className="ex-row-head">
                   <span className="ex-row-name">{e.name}</span>
@@ -113,6 +125,25 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
             ))}
           </div>
         )}
+        {pageCount > 1 ? (
+          <nav className="pager" aria-label="쪽 이동" data-testid="ex-pager">
+            {groupStart > 1 ? (
+              <Link className="pager-btn" href={href(kind, groupStart - 1)} aria-label="이전 묶음">
+                ‹ 이전
+              </Link>
+            ) : null}
+            {Array.from({ length: groupEnd - groupStart + 1 }, (_, i) => groupStart + i).map((p) => (
+              <Link key={p} className="pager-btn" href={href(kind, p)} aria-current={p === page ? 'page' : undefined}>
+                {p}
+              </Link>
+            ))}
+            {groupEnd < pageCount ? (
+              <Link className="pager-btn" href={href(kind, groupEnd + 1)} aria-label="다음 묶음">
+                다음 ›
+              </Link>
+            ) : null}
+          </nav>
+        ) : null}
         <div className="disclaimer" style={{ marginTop: 24 }}>
           {CONSULT_NOTE}. 이 화면은 처방이나 진단이 아니에요.
         </div>
