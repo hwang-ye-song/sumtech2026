@@ -5,22 +5,22 @@ Agent가 서비스 저장소 루트의 `progress.md`로 복사해 이어 쓴다(
 ## 현재 상태
 
 - 실제 서비스 저장소 폴더: D:\Desktop\SUMTECH_project\sumtech2026
-- 현재 단계 / 다음 행동: 1단계. 학생은 loopthon-bot 설치 완료라고 했으나 접근 확인 결과 denied → 설치 시 sumtech2026 선택 여부 확인
-- 학생에게 확인할 내용: loopthon-bot Configure 화면에서 sumtech2026 선택 여부, 저장소를 private로 바꿀지
+- 현재 단계 / 다음 행동: 1단계 완료. 학생이 이어 가자고 하면 2단계(종이 문제정의 기록 받기)
+- 학생에게 확인할 내용: 저장소를 private로 바꿀지
 
 ## 1. GitHub 준비
 
 - [x] 기존 저장소·브랜치·remote와 로그인 확인 (gh 미로그인 상태 확인)
 - [x] 학생과 저장소 이름 합의 (답을 받기 전에는 생성하지 않음)
 - [x] 팀의 private 레포 생성 또는 기존 레포 확인 (기존 레포 사용. 현재 public·빈 저장소 → private 전환 여부 학생 확인 필요)
-- [ ] loopthon-bot 앱을 팀 레포에 설치 (https://github.com/apps/loopthon-bot/installations/new, 팀 레포만 선택)
+- [x] loopthon-bot 앱을 팀 레포에 설치 (https://github.com/apps/loopthon-bot/installations/new, 팀 레포만 선택)
 - [x] 팀 코드로 대시보드 API 로그인(`data.teamId`), 레포 URL을 HTTP로 저장(`data.team.repoUrl`) 확인. 팀 코드로는 화면에 들어갈 수 없음
 - [x] 사이트에 등록한 레포를 실제 작업 폴더로 clone, remote·기본 브랜치 확인
 - [x] .gitignore / .env.example / README 준비(`.env`·`node_modules/`·`.next/`·`dist/`·`build/` 제외, 큰 데이터 파일 커밋 안 함. 파일이 너무 많으면 저장소를 읽지 못함)
 - [x] 준비 파일 commit/push 확인 (603da30)
-- [ ] 앱 설치 후 읽기 권한 확인 (5분 자동 재확인, 즉시 확인은 같은 레포 URL 다시 저장)
+- [x] 앱 설치 후 읽기 권한 확인 (5분 자동 재확인, 즉시 확인은 같은 레포 URL 다시 저장)
 - 저장소 URL / 기본 브랜치 / commit SHA: https://github.com/hwang-ye-song/sumtech2026 / main / 603da306fd3f8125c52126e14d74c770752ceda1
-- 사이트 등록 결과 / loopthon-bot 설치·접근 상태: teamId 2, repoUrl 저장 ok / check=denied (설치했다는 답 뒤 재확인 2회도 denied)
+- 사이트 등록 결과 / loopthon-bot 설치·접근 상태: teamId 2, repoUrl 저장 ok / check=ok, repoAccessOk=true
 
 ## 2. 문제정의 기록 → 문제 다지기 → 해법 찾기 → 기능 명세
 
