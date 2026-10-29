@@ -6,7 +6,7 @@ test("S2 칼슘을 먹는 20~30대가 피로회복용 비타민제(비맥스제�
   // 시드 계정 `복용자`: 레보티록신·칼슘, 첫 검진을 마친 '사용 중' 상태
   await logInFromHome(page, E2E_USER_EMAIL, E2E_USER_PASSWORD)
 
-  // 1~6. '복용 목록' → '검색으로 등록' → '비맥스' 검색 → '비맥스제트정' → 하루 1개 → '등록'
+  // 1~6. '복용 목록' → '비맥스' 검색 → '비맥스제트정' → 하루 1개 → '등록'
   await openListFromHome(page)
   await searchAndPick(page, "비맥스", "비맥스제트정")
   await register(page, 1)

@@ -4,7 +4,7 @@ import { getCurrentUser } from '@/lib/session'
 import { ensureReady } from '@/lib/ready'
 import { listUserItems } from '@/lib/items'
 import { startCheckAction } from '@/app/actions/items'
-import { SubmitButton } from '@/components/SubmitButton'
+import { AutoCheck } from '@/components/AutoCheck'
 
 export const metadata = { title: '검진하기' }
 
@@ -39,11 +39,7 @@ export default async function CheckPage() {
             <p className="muted">
               등록된 항목 <span className="num">{items.length}</span>개: {items.map((i) => i.name).join(', ')}
             </p>
-            <form action={startCheckAction}>
-              <SubmitButton className="btn btn-primary btn-lg" pendingLabel="검진 중…" data-testid="analyze-start">
-                검진 시작
-              </SubmitButton>
-            </form>
+            <AutoCheck action={startCheckAction} />
           </>
         )}
       </div>

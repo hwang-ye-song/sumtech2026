@@ -20,7 +20,7 @@ async function expectIronWarning(dialog: Locator): Promise<void> {
 test("S4 부모님 갑상선약과 칼슘을 목록에 넣어 둔 30~40대 자녀가, 사 드리려던 철분을 더해 보고 경고를 받는다", async ({ page }) => {
   await logInFromHome(page, E2E_USER_EMAIL, E2E_USER_PASSWORD)
 
-  // 1~6. '복용 목록' → '검색으로 등록' → '철분' 검색 → '철분' → 하루 1개 → '등록'
+  // 1~6. '복용 목록' → '철분' 검색 → '철분' → 하루 1개 → '등록'
   await openListFromHome(page)
   await searchAndPick(page, "철분", "철분")
   await register(page, 1)

@@ -8,7 +8,7 @@ import { listUserItems } from '@/lib/items'
 import { warningsForCandidates, type Warning } from '@/lib/check'
 import { substancesInProducts } from '@/lib/catalog'
 import { aiConfigured, pickRecommendations, DEFAULT_TEXT_MODEL, type RecommendSurvey } from '@/lib/ai'
-import { GOAL_WORDS, GOALS, MAX_PICKS, RANGES, SEXES, SYMPTOMS } from '@/lib/survey'
+import { GOAL_WORDS, GOALS, MAX_GOALS, MAX_PICKS, RANGES, SEXES, SYMPTOMS } from '@/lib/survey'
 
 export interface RecommendedItem {
   id: string
@@ -63,6 +63,7 @@ export async function requestRecommendation(_prev: RecommendState, formData: For
   if (age === null || heightCm === null || weightKg === null) return { error: '나이·키·몸무게를 바에서 골라 주세요.' }
   if (!(SEXES as readonly string[]).includes(sex)) return { error: '성별을 골라 주세요.' }
   if (goals.length === 0) return { error: '개선하고 싶은 점을 하나 이상 골라 주세요.' }
+  if (goals.length > MAX_GOALS) return { error: `개선하고 싶은 점은 ${MAX_GOALS}개까지 고를 수 있어요.` }
   const survey: RecommendSurvey = { age, sex, heightCm, weightKg, symptoms, goals }
   const pills = MAX_PICKS
 

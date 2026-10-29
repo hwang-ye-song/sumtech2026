@@ -330,6 +330,8 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
 .pill{min-height:38px;padding:0 18px;border:0;border-radius:var(--r-pill);background:var(--bg-3);color:var(--ink-2);font-size:var(--fs-1);cursor:pointer;transition:background var(--dur-2) var(--ease),color var(--dur-2) var(--ease)}
 .pill:hover{background:var(--line-2);color:var(--ink)}
 .pill[aria-pressed="true"]{background:var(--ink);color:var(--bg);font-weight:700}
+.pill:disabled{opacity:.4;cursor:not-allowed}
+.pill:disabled:hover{background:var(--bg-3);color:var(--ink-2)}
 .survey-note{margin:0;padding-top:4px}
 .survey .error{margin:8px 0 0}
 .survey-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;padding:16px 0 20px;border-top:1px solid var(--line)}

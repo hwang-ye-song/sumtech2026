@@ -22,5 +22,7 @@ export const GOAL_WORDS: Record<string, string[]> = {
   항산화: ['항산화', '유해산소'],
 }
 export const GOALS = Object.keys(GOAL_WORDS)
+/** '개선하고 싶은 점'은 이만큼까지만 고른다(추천이 한두 가지 목표에 집중하게). */
+export const MAX_GOALS = 2
 
 export const MAX_PICKS = 3

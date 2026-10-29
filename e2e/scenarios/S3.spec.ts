@@ -5,7 +5,7 @@ import { listRows, logInFromHome, openListFromHome, register, searchAndPick } fr
 test("S3 감기에 걸린 20~30대가 비타민C를 더하면 안전하다고 단정하지 않는 안내를 받고, 잘못 넣은 것은 지운다", async ({ page }) => {
   await logInFromHome(page, E2E_USER_EMAIL, E2E_USER_PASSWORD)
 
-  // 1~6. '복용 목록' → '검색으로 등록' → '비타민C' 검색 → '비타민C' → 하루 1개 → '등록'
+  // 1~6. '복용 목록' → '비타민C' 검색 → '비타민C' → 하루 1개 → '등록'
   await openListFromHome(page)
   await searchAndPick(page, "비타민C", "비타민C")
   await register(page, 1)

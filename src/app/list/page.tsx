@@ -31,6 +31,7 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
   const added = parseItemKey(one(params.added))
   const status = one(params.status)
   const deleted = params.deleted === '1'
+  const welcome = params.welcome === '1'
   const pickRef = parseItemKey(one(params.pick))
   const confirmId = Number(one(params.confirm))
 
@@ -59,6 +60,13 @@ export default async function ListPage({ searchParams }: { searchParams: Promise
             먹고 있는 약과 영양제를 <b>한자리에</b>
           </h2>
         </div>
+        {welcome && items.length === 0 ? (
+          <div className="notice" role="status" data-testid="welcome" style={{ marginBottom: 16 }}>
+            <strong>가입을 환영해요! 지금 먹고 있는 약과 영양제를 먼저 등록해 주세요.</strong>
+            <br />
+            제품 이름이나 성분으로 검색하거나 약 봉투·상자 사진을 올리면 돼요. 다 넣은 뒤 &lsquo;검진하기&rsquo;를 누르면 한 번에 점검해요.
+          </div>
+        ) : null}
         <div className="stack">
           <div className="reg-grid">
           <section className="card" aria-labelledby="reg-search" data-testid="section-search">

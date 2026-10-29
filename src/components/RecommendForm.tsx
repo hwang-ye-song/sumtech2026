@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useActionState, useState } from 'react'
+import { useActionState, useEffect, useState } from 'react'
 import { requestRecommendation, type RecommendState } from '@/app/actions/recommend'
 import { RECOMMEND_DISCLAIMER } from '@/lib/labels'
-import { GOALS, RANGES, SEXES, SYMPTOMS } from '@/lib/survey'
+import { GOALS, MAX_GOALS, RANGES, SEXES, SYMPTOMS } from '@/lib/survey'
 import { LevelBadge, SourceLine } from '@/components/WarningCard'
 
 type RangeKey = keyof typeof RANGES
@@ -40,13 +40,41 @@ function RangeField({ name, label, value, onChange }: { name: RangeKey; label: s
 }
 
 /** 여러 개(또는 하나)를 누르는 알약 버튼 묶음. 고른 값은 숨은 칸으로 함께 보낸다. */
-function PillGroup({ title, name, options, picked, onToggle, testId }: { title: string; name: string; options: readonly string[]; picked: string[]; onToggle: (o: string) => void; testId: string }) {
+function PillGroup({
+  title,
+  name,
+  options,
+  picked,
+  onToggle,
+  testId,
+  max,
+}: {
+  title: string
+  name: string
+  options: readonly string[]
+  picked: string[]
+  onToggle: (o: string) => void
+  testId: string
+  /** 고를 수 있는 최대 개수. 다 고르면 나머지 버튼은 눌리지 않는다. */
+  max?: number
+}) {
+  const full = max !== undefined && picked.length >= max
   return (
     <section className="survey-sec">
-      <h4>{title}</h4>
+      <h4>
+        {title}
+        {max !== undefined ? <span className="faint"> (최대 {max}개)</span> : null}
+      </h4>
       <div className="pills" role="group" aria-label={title} data-testid={testId}>
         {options.map((o) => (
-          <button key={o} type="button" className="pill" aria-pressed={picked.includes(o)} onClick={() => onToggle(o)}>
+          <button
+            key={o}
+            type="button"
+            className="pill"
+            aria-pressed={picked.includes(o)}
+            disabled={full && !picked.includes(o)}
+            onClick={() => onToggle(o)}
+          >
             {o}
           </button>
         ))}
@@ -108,7 +136,15 @@ export function RecommendForm() {
         <RangeField name="heightCm" label="키" value={nums.heightCm} onChange={setNum('heightCm')} />
         <RangeField name="weightKg" label="몸무게" value={nums.weightKg} onChange={setNum('weightKg')} />
         <PillGroup title="현재 겪는 증상" name="symptom" options={SYMPTOMS} picked={symptoms} onToggle={(o) => setSymptoms((p) => toggle(p, o))} testId="symptoms" />
-        <PillGroup title="개선하고 싶은 점" name="goal" options={GOALS} picked={goals} onToggle={(o) => setGoals((p) => toggle(p, o))} testId="goals" />
+        <PillGroup
+          title="개선하고 싶은 점"
+          name="goal"
+          options={GOALS}
+          picked={goals}
+          max={MAX_GOALS}
+          onToggle={(o) => setGoals((p) => (p.includes(o) || p.length < MAX_GOALS ? toggle(p, o) : p))}
+          testId="goals"
+        />
 
         <p className="faint survey-note">나이·성별·키·몸무게는 추천을 고를 때만 쓰고 저장하지 않아요. 진단이나 처방이 아니에요.</p>
         {state.error ? (
@@ -131,6 +167,11 @@ export function RecommendForm() {
 
 /** 추천 결과 화면: 설문 대신 이 화면만 보여 준다. */
 function Result({ state, onBack }: { state: RecommendState; onBack: () => void }) {
+  // 설문 맨 아래 '추천 보기'를 누른 자리에 머물지 않게, 결과가 나오면 화면 맨 위로 올린다.
+  useEffect(() => {
+    // 부드럽게(smooth) 올리면 창이 가려져 있을 때 움직이지 않는 브라우저가 있어 바로 올린다.
+    window.scrollTo({ top: 0 })
+  }, [state])
   return (
     <section aria-live="polite" className="stack">
       <div className="eyebrow">추천 결과</div>
