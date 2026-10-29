@@ -1,0 +1,40 @@
+# 종이 문제정의 캔버스(2026-10-29 작성)를 옮긴 기록입니다.
+# 종이에 없는 칸은 null 또는 []로 남겼습니다.
+
+statement: null # 종이에서 비어 있음
+canvas:
+  context: 매일 영양제나 약을 섭취할 때.
+  customer: 영양제를 많이 챙겨먹는 사람들.
+  root_problem: 정보 부족, 약 섭취여부 상이, 영양제 조합을 모름.
+  impact:
+    feeling: |-
+      복약 시기를 놓친 사람 → 까먹어서 후회하고 다음엔 잘 먹어야지 다짐하고 또 놓침.
+      잘못된 복용을 해온 사람 → 찝찝하고 걱정됨.
+    measurable: null # 종이에서 비어 있음
+  alternatives:
+    - how_used: 유튜브나 SNS에서 찾아본다.
+      shortcoming: 비전문가의 의견으로 잘못된 정보를 믿을 수 있다.
+      why_ours: null
+    - how_used: 약사에게 하나하나 물어본다.
+      shortcoming: 매번 직접 물어보기 귀찮다.
+      why_ours: null
+    - how_used: 생성형 AI에게 물어본다.
+      shortcoming: 부정확한 정보를 사실인 것처럼 말해서 혼돈이 있을 수 있다.
+      why_ours: null
+personas:
+  - id: P1
+    description: |-
+      영양제를 챙겨먹는 사람
+      영양제에 많은 지식이 없는 사람
+    source: 종이 문제정의 캔버스 뒷면
+experiences: []
+sources: []
+five_whys:
+  symptom: null
+  whys: []
+solution_paths: []
+insight:
+  claim: null
+  evidence: null
+  design_decision: null
+features: []
