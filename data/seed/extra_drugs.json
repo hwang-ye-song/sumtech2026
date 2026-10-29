@@ -1,0 +1,16 @@
+[
+  {
+    "item_seq": "200101738",
+    "item_name": "훼로바-유서방정(건조황산제일철)",
+    "company": "부광약품(주)",
+    "category": "철분제",
+    "source": "식약처 의약품 허가정보(팀 database/drug.csv)",
+    "source_url": "https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=200101738",
+    "ingredients": [
+      {
+        "ingredient": "건조황산제일철 256.0밀리그램",
+        "nutrient": "철분"
+      }
+    ]
+  }
+]

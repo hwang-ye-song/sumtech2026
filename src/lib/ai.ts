@@ -40,11 +40,17 @@ export function describeAiError(err: unknown): string {
 }
 
 const photoSchema = z.object({
+  readable: z.boolean().describe('사진이 흐리거나 흔들리거나 너무 어두워서 제품 이름 글자를 읽을 수 없으면 false'),
   names: z.array(z.string().min(1)).max(10).describe('사진에서 읽은 약·영양제 제품 이름이나 성분 이름. 글자를 읽은 그대로.'),
 })
 
-/** 약 상자·약 봉투·영양제 통 사진에서 제품 이름/성분 이름 후보를 읽는다. */
-export async function readNamesFromPhoto(image: Uint8Array, mediaType: string): Promise<string[]> {
+export interface PhotoReading {
+  readable: boolean
+  names: string[]
+}
+
+/** 약 상자·약 봉투·영양제 통 사진에서 제품 이름/성분 이름 후보를 읽는다. 흐린 사진이면 readable=false. */
+export async function readNamesFromPhoto(image: Uint8Array, mediaType: string): Promise<PhotoReading> {
   const model = requireModel(DEFAULT_VISION_MODEL, '사진 인식', '검색으로 추가해 주세요.')
   const { object } = await generateObject({
     model,
@@ -58,14 +64,15 @@ export async function readNamesFromPhoto(image: Uint8Array, mediaType: string): 
           {
             type: 'text',
             text:
-              '이 사진은 약 상자, 약 봉투, 또는 영양제 통이다. 사진에 보이는 제품 이름(예: 비맥스제트정)과 성분 이름(예: 칼슘, 레보티록신)을 읽은 글자 그대로 한국어로 적어라. 보이지 않는 것은 지어내지 말고, 없으면 빈 목록으로 답하라.',
+              '이 사진은 약 상자, 약 봉투, 알약, 또는 영양제 통이다. 사진에 보이는 제품 이름(예: 비맥스제트정)과 성분 이름(예: 칼슘, 레보티록신, 건조황산제일철)을 읽은 글자 그대로 한국어로 적어라. 사진이 흐리거나 흔들려서 글자를 읽을 수 없으면 readable을 false로 하고 names는 빈 목록으로 답하라. 보이지 않는 것은 지어내지 마라.',
           },
           { type: 'image', image, mediaType },
         ],
       },
     ],
   })
-  return object.names.map((n) => n.trim()).filter(Boolean)
+  const names = object.names.map((n) => n.trim()).filter(Boolean)
+  return { readable: object.readable && names.length > 0, names }
 }
 
 export interface RecommendCandidate {

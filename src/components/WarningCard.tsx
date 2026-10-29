@@ -1,49 +1,77 @@
-import type { Warning } from '@/lib/check'
-import { RELATION_LABEL, sourceLinkLabel } from '@/lib/labels'
+import Link from 'next/link'
+import type { RuleSource, Warning } from '@/lib/check'
+import { RELATION_LABEL, sourceKindLabel, type Relation } from '@/lib/labels'
 
-const TONE: Record<Warning['relation'], string> = {
-  avoid: 'border-danger/40 bg-danger-soft',
-  separate_timing: 'border-warn/40 bg-warn-soft',
-  consult: 'border-warn/40 bg-warn-soft',
-  caution: 'border-line bg-card',
-}
+const ICON: Record<Relation | 'over', string> = { avoid: '!', separate_timing: '◷', consult: '?', caution: '!', over: '≠' }
 
-const BADGE: Record<Warning['relation'], string> = {
-  avoid: 'bg-danger text-white',
-  separate_timing: 'bg-warn text-white',
-  consult: 'bg-warn text-white',
-  caution: 'bg-gray-600 text-white',
-}
-
-export function WarningCard({ w, compact = false }: { w: Warning; compact?: boolean }) {
+/** 단계 배지: '함께 먹지 마세요' / '시간을 띄워 드세요' / '하루 기준량을 넘어요' … */
+export function LevelBadge({ level }: { level: Relation | 'over' }) {
   return (
-    <article data-testid="warning-card" className={`rounded-2xl border p-5 ${TONE[w.relation]}`}>
-      <div className="mb-3 flex flex-wrap items-center gap-2">
-        <span className={`rounded-full px-3 py-1 text-sm font-semibold ${BADGE[w.relation]}`}>{RELATION_LABEL[w.relation]}</span>
-        <h3 className="text-lg font-bold">
-          {w.a.name} × {w.b.name}
-        </h3>
-      </div>
-      {w.effect ? <p className="mb-2 font-medium">{w.effect}</p> : null}
-      <blockquote className="mb-3 border-l-4 border-foreground/20 pl-3 text-[0.95rem] leading-relaxed">
-        <p>“{w.quote}”</p>
-        {w.quote_ko ? <p className="mt-1 text-muted">{w.quote_ko}</p> : null}
-      </blockquote>
-      <p className="mb-1">
-        <span className="font-semibold">원문이 말하는 행동:</span> {w.action}
-      </p>
-      <p className={compact ? 'mb-2' : 'mb-3'}>
-        <span className="font-semibold">약사에게 물어보세요:</span> {w.pharmacist_question}
-      </p>
-      <a
-        href={w.source_url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 text-sm font-medium text-brand-strong underline"
-      >
-        {sourceLinkLabel(w)} ↗
+    <span className={`badge ${level === 'over' ? 'badge-over' : level === 'caution' ? 'badge-none' : 'badge-warn'}`}>
+      <span className="ico" aria-hidden="true">
+        {ICON[level]}
+      </span>
+      {level === 'over' ? '하루 기준량을 넘어요' : RELATION_LABEL[level]}
+    </span>
+  )
+}
+
+/** 출처 한 줄: 종류 배지 · 제목 · 조건 · '출처 보기' */
+export function SourceLine({ s }: { s: Pick<RuleSource, 'source_kind' | 'source_title' | 'source_note' | 'source_url'> }) {
+  return (
+    <div className="src">
+      <span className="badge">{sourceKindLabel(s.source_kind)}</span>
+      <span className="t">{s.source_title}</span>
+      {s.source_note ? <span className="faint">{s.source_note}</span> : null}
+      <a href={s.source_url} target="_blank" rel="noopener noreferrer" data-testid="src-link">
+        출처 보기
       </a>
-      {!compact ? <p className="mt-1 text-xs text-muted">{w.source_title}</p> : null}
+    </div>
+  )
+}
+
+/** 경고 한 건: 단계 → 할 일 → 두 성분 → 원문 → 출처 → 약사에게 물을 질문 → '자세히' */
+export function WarningCard({ w, detail = true }: { w: Warning; detail?: boolean }) {
+  const main = w.sources[0]
+  return (
+    <article className="finding finding-warn" data-testid="warning-card" data-rule={w.ruleId} aria-label={`${w.a.name} ↔ ${w.b.name}`}>
+      <div className="head">
+        <LevelBadge level={w.relation} />
+      </div>
+      <div className="lvl">{RELATION_LABEL[w.relation]}</div>
+      <div className="act">{w.action}</div>
+      <div className="pair" data-testid="finding-pair">
+        {w.a.name} ↔ {w.b.name}
+      </div>
+      {w.effect ? <p className="muted">{w.effect}</p> : null}
+      {main ? (
+        <blockquote className="quote">
+          {main.quote}
+          {main.quote_ko ? (
+            <>
+              <br />
+              <span className="faint">{main.quote_ko}</span>
+            </>
+          ) : null}
+        </blockquote>
+      ) : null}
+      <div className="stack" style={{ marginTop: 12 }}>
+        {w.sources.map((s) => (
+          <SourceLine key={s.source_url} s={s} />
+        ))}
+      </div>
+      <div className="q">
+        <strong>약사에게 물어보세요</strong>
+        <br />
+        {w.pharmacist_question}
+      </div>
+      {detail ? (
+        <div style={{ marginTop: 12 }}>
+          <Link className="btn btn-sm" href={`/rules/${encodeURIComponent(w.ruleId)}`} data-testid="finding-detail">
+            자세히
+          </Link>
+        </div>
+      ) : null}
     </article>
   )
 }

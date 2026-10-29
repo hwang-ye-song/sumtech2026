@@ -1,40 +1,49 @@
 import Link from 'next/link'
 import { getCurrentUser } from '@/lib/session'
-import { SERVICE_NAME } from '@/lib/brand'
 import { logOut } from '@/app/actions/auth'
+import { BottomBar, NavTabs } from '@/components/NavTabs'
 
+export function Logo() {
+  return (
+    <Link className="logo" href="/" aria-label="TwoPills 홈">
+      <span className="mark" />
+      <span className="word">TwoPills</span>
+    </Link>
+  )
+}
+
+/** 상단 내비: 로고 · 메뉴 · (로그인 전) 로그인·회원가입 / (로그인 뒤) 이름·로그아웃. 휴대폰에서는 아래 탭이 따로 뜬다. */
 export async function Header() {
   const user = await getCurrentUser()
   return (
-    <header className="border-b border-line bg-card">
-      <div className="mx-auto flex w-full max-w-2xl items-center justify-between gap-3 px-4 py-3">
-        <Link href="/" className="text-lg font-bold text-brand-strong">
-          {SERVICE_NAME}
-        </Link>
-        <nav className="flex items-center gap-2 text-sm">
+    <>
+      <header className="nav">
+        <div className="wrap">
+          <Logo />
+          <NavTabs authed={Boolean(user)} />
+          <span className="spacer" />
           {user ? (
             <>
-              <Link href="/list" className="rounded-lg px-3 py-2 font-medium text-brand-strong hover:bg-brand-soft">
-                내 목록
-              </Link>
+              <span className="who">{user.display_name ?? user.email}</span>
               <form action={logOut}>
-                <button type="submit" className="rounded-lg px-3 py-2 text-muted hover:bg-gray-100">
+                <button type="submit" className="btn btn-ghost btn-sm">
                   로그아웃
                 </button>
               </form>
             </>
           ) : (
             <>
-              <Link href="/login" className="rounded-lg px-3 py-2 font-medium text-brand-strong hover:bg-brand-soft">
+              <Link className="btn btn-ghost" href="/login" data-testid="nav-login">
                 로그인
               </Link>
-              <Link href="/signup" className="rounded-lg bg-brand px-3 py-2 font-medium text-white hover:bg-brand-strong">
+              <Link className="btn btn-primary" href="/signup" data-testid="nav-signup">
                 회원가입
               </Link>
             </>
           )}
-        </nav>
-      </div>
-    </header>
+        </div>
+      </header>
+      {user ? <BottomBar /> : null}
+    </>
   )
 }

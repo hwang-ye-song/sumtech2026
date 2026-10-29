@@ -24,7 +24,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 202300436의 item_name이 '비맥스제트정'과 일치하고, interactions 원문에 quote가 글자 그대로(Python 문자열 비교 True) 들어 있음. (2) 원문이 '함께 복용하지 마십시오'이므로 relation=avoid가 뜻을 넘지 않고 effect 없음·action도 원문 범위 안. a=drug(비맥스제트정), b=substance 'calcium'(공통 id 규칙 일치)으로 약×약 아님. pharmacist_question은 환자 입장의 한 줄 질문. (3…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "levothyroxine-calcium",
@@ -40,8 +42,8 @@
     "effect": "레보티록신 흡수 감소(단독 복용과 비교해 약 20%–25%)",
     "quote": "Coadministration of each of the three calcium preparations significantly reduced levothyroxine absorption by about 20%–25% compared with levothyroxine given alone. It is therefore recommended that patients be cautioned to take their levothyroxine well separated from all of these calcium products.",
     "quote_ko": "세 가지 칼슘 제제 각각을 함께 복용했을 때, 레보티록신을 단독으로 복용했을 때와 비교해 레보티록신 흡수가 약 20%–25% 유의하게 줄었다. 따라서 환자에게 레보티록신을 이들 칼슘 제품 모두와 충분히 띄워 복용하도록 주의시킬 것을 권고한다.",
-    "action": "레보티록신과 칼슘제는 복용 시간을 충분히 띄운다.",
-    "pharmacist_question": "갑상선약(레보티록신)과 칼슘제를 몇 시간 띄워 먹어야 하나요?",
+    "action": "레보티록신과 최소 4시간 띄워 드세요",
+    "pharmacist_question": "갑상선약(레보티록신)과 칼슘제를 4시간 띄워 먹으면 되나요?",
     "source_id": "R3",
     "source_title": "Absorption of Levothyroxine When Coadministered with Various Calcium Formulations (Thyroid, 2011)",
     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3092723/",
@@ -51,7 +53,19 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 인용 대조 결과 두 문장 모두 원문에 글자 그대로 있다. 확인 경로: WebFetch로 source_url(https://pmc.ncbi.nlm.nih.gov/articles/PMC3092723/)을 열면 reCAPTCHA 봇 확인 페이지만 나와 본문을 못 읽었고, PubMed(http… / classification: 분류·범위 대조 결과 반박 근거를 찾지 못했다. (1) relation=separate_timing: quote의 \"take their levothyroxine well separated from all of these calcium products\"가 복용 시점을 띄우라는 뜻이므로 분… / url: 출처 확인 통과. (1) WebFetch로 source_url을 열면 PMC 봇 확인 페이지(\"Checking your browser before accessing pmc.ncbi.nlm.nih.gov\")만 나와 본문을 못 받았다(how_verified의 설명과 일치). 그래서 브라우저…"
-    }
+    },
+    "source_note": "건강한 성인 8명 연구",
+    "more_sources": [
+      {
+        "source_id": "N1",
+        "source_title": "Levothyroxine (MedlinePlus)",
+        "source_url": "https://medlineplus.gov/druginfo/meds/a682461.html",
+        "source_kind": "other",
+        "source_note": null,
+        "quote": "if you take calcium carbonate (Tums) or ferrous sulfate (iron supplement), take it at least 4 hours before or 4 hours after you take levothyroxine.",
+        "quote_ko": "탄산칼슘(Tums)이나 황산제일철(철분 보충제)을 복용한다면, 레보티록신 복용 최소 4시간 전 또는 4시간 후에 복용하십시오."
+      }
+    ]
   },
   {
     "id": "calcium-iron",
@@ -78,7 +92,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 원래 URL(https://agris.fao.org/search/en/records/65de38d263b8185d9ca7afd3)을 2026-10-29에 WebFetch와 curl로 직접 열어 초록 원문을 받았다. 세 문장 모두 글자 그대로 있다. (1) \"We investigated… / classification: 분류·범위 대조 결과 반박할 점을 찾지 못했다. (1) relation=caution: quote는 칼슘이 철분 흡수를 50-60% 줄였다는 결과만 말하고 '함께 먹지 말 것'·'시간 띄우기'·'상의'를 말하지 않으므로 avoid/separate_timing/consult가 아닌 cau… / url: 2026-10-29 WebFetch로 source_url(AGRIS 기록 65de38d263b8185d9ca7afd3)을 열었고 오류 없이 로드됐다. 페이지의 서지 정보가 source_title과 일치한다: 제목 \"Calcium: effect of different amounts on…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "200801645-iron",
@@ -105,7 +121,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200801645(item_name '개비스콘더블액션현탁액', 문서상 이름과 동일)의 interactions 원문에 quote가 공백 정규화 없이도 글자 그대로 포함됨(python -I 부분문자열 검사 True). drug_caution_rule.csv id 389(철분, supplement_nutrient, consult, interactions)와도 일치. (2) 원문 '의사 또는 약사와 상의하십시오' → relation consult·action '상의한다'로 뜻을 넘지 않고,…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "198700430-iron",
@@ -132,7 +150,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 198700430(알마겔정(알마게이트)(수출명:유한가스트라겔정))의 interactions 원문에 quote가 글자 그대로 존재(스크립트 exact substring 일치), drug_caution_rule.csv 412행(철분, supplement_nutrient, consult)과도 동일. (2) 원문 '의사 또는 약사와 상의하십시오'에 relation consult·action이 부합하고 effect 없음, b.ref iron은 공통 성분 id 규칙에 맞는 영양제 성분(약×약 아…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "197400246-calcium",
@@ -159,7 +179,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 197400246(마그밀정(수산화마그네슘), drug.csv 328행·drug_caution_rule.csv 422행과 이름 일치)의 interactions 원문에 quote가 공백 정규화 없이도 글자 그대로 포함됨을 python -I로 확인했고, 2026-10-29 WebFetch로 e약은요 페이지(offset 100000 이후 구간)를 열어 '이 약을 사용하는 동안 주의해야 할 약 또는 음식은 무엇입니까?' 항목에서 같은 문장을 확인했다. (2) 원문이 '의사 또는 약사와 상의하십…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "201206997-calcium",
@@ -186,7 +208,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 201206997의 item_name이 '삐콤씨정'과 일치하고, interactions 첫 줄이 quote와 글자 그대로 일치함(python 스크립트로 유니코드 비교, 공백 차이 없음; drug_caution_rule.csv 431행도 같은 quote). (2) 원문이 '칼슘염…과 함께 복용하지 마십시오'이므로 relation=avoid가 원문 뜻 안이고 effect는 비어 있음; a=약(drug), b=영양제 성분 calcium으로 공통 id 규칙에 맞고 약×약이 아님; pharma…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "200709544-calcium",
@@ -213,7 +237,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200709544의 item_name이 '임팩타민정'과 일치하고, interactions 원문에 quote가 글자 그대로 있음(python 정확 일치 True). drug_caution_rule.csv id 442행(칼슘/칼슘염, avoid, interactions)과도 일치. (2) 원문이 '함께 복용하지 마십시오'이므로 avoid 적절, action은 원문 뜻을 넘지 않고 effect는 기재하지 않음. a=일반의약품(비타민B 복합제), b=calcium(영양제 성분, 공통 id 규…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "201508281-calcium",
@@ -240,7 +266,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 201508281(item_name '벤포벨정' 일치)의 interactions 항목에 quote가 글자 그대로 있음을 python 스크립트로 확인(drug_caution_rule.csv 450행과도 동일). (2) 원문 '함께 복용하지 마십시오'→avoid 적절, effect 없음, action은 원문 범위 내, b.ref=calcium은 공통 id 규칙 부합, 약×영양제 조합, pharmacist_question은 환자 한 줄 질문. (3) source_url이 https://ne…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "201307920-calcium",
@@ -267,7 +295,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 201307920의 item_name이 '마그비연질캡슐'로 일치하고, interactions 첫 문장이 quote와 글자 그대로 일치함(python 문자열 비교 True; drug_caution_rule.csv 규칙 id 468(파일 469행) 칼슘 행과도 동일). (2) 원문 '함께 복용하지 마십시오'→relation avoid·action '함께 복용하지 않는다'가 뜻을 넘지 않고 effect는 없음; drug×nutrient(calcium, 공통 id 규칙 준수) 조합이며 pha…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "201606593-calcium",
@@ -294,7 +324,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 201606593 품목명 '훼로바맘스케어정'이 source_title과 같고, interactions 원문 첫 문장에 quote가 글자 그대로 있음(python -I 공백 정규화 대조 일치). (2) 원문이 '함께 복용하지 마십시오'이므로 relation=avoid가 뜻을 넘지 않고, effect 없음, action은 원문 범위 안('칼슘염'→칼슘제). a=일반의약품 철분제, b=calcium(영양제 성분, 공통 id 규칙 일치)이라 약×약 아님. pharmacist_question은…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "201700750-calcium",
@@ -321,7 +353,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 201700750(item_name 헤모큐수정) interactions 항목에 quote가 글자 그대로 있음(python 스크립트로 공백 제거 후 대조 일치; warning·precautions·usage에는 없음). (2) 원문 '복용하지 마십시오' → avoid 적합, action은 원문 뜻 안이며 effect 없음, drug(헤모큐수정)×substance(calcium, 공통 id 규칙 일치)로 약×약 아님, pharmacist_question은 환자 한 줄 질문. (3) sou…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "200000218-calcium",
@@ -348,7 +382,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200000218(item_name '볼그레액(철아세틸트랜스페린)' 일치)의 interactions 원문에 quote가 글자 그대로 포함됨을 python으로 확인(exact match True), drug_caution_rule.csv 496행(칼슘/칼슘염, avoid, interactions)과도 일치. (2) 원문 '함께 복용하지 마십시오'는 CONTRACT의 avoid(함께 먹지 말 것) 정의에 부합하고 action은 quote 범위를 넘지 않으며 effect는 적지 않음; a=…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "200000218-iron",
@@ -375,7 +411,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200000218(item_name '볼그레액(철아세틸트랜스페린)' 일치)의 interactions 항목에 quote가 공백 정규화 후 글자 그대로 존재함을 python -I 스크립트로 확인(drug_caution_rule.csv 499행과도 동일). (2) 원문이 '의사 또는 약사와 상의하십시오'이므로 relation=consult가 뜻을 넘지 않고 effect 없음; a=drug(볼그레액)×b=substance(iron, 공통 id 규칙 준수)로 약×약 아님; action·phar…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "200000218-vitamin_e",
@@ -402,7 +440,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200000218(볼그레액(철아세틸트랜스페린), 문서상 이름과 동일)의 interactions 원문에 quote가 공백 정규화 후 글자 그대로 포함됨을 python -I로 확인(drug_caution_rule.csv rule_id 507 비타민 E 행과도 일치). (2) 원문 '상의하십시오'에 relation=consult·action '상의한다'로 뜻을 넘지 않고 effect 없음, a=drug(철분제)×b=vitamin_e(영양제, 공통 id 규칙 준수)로 약×약 아님, pharm…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "200000218-vitamin_c",
@@ -429,7 +469,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) otc_core.json item_seq 200000218(볼그레액(철아세틸트랜스페린), 이름 일치)의 interactions 항목에 quote가 글자 그대로 있음을 python -I로 확인(drug_caution_rule.csv id 511행과도 일치). (2) 원문 '의사 또는 약사와 상의하십시오'에 relation=consult·action이 맞고, effect는 결과를 지어내지 않고 '200 mg 이상' 조건만 적음; drug×substance(vitamin_c, 공통 id 규칙 준수)로 약×약 아님; pharmaci…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "202001517-calcium",
@@ -456,7 +498,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 1명(인용·분류·링크) 통과. (1) 인용 대조 통과: python -I로 otc_core.json item_seq 202001517(item_name == '칼디원정' 일치, 주성분 칼슘·비타민D) interactions 항목에 quote가 글자 그대로 포함됨(raw substring True). 2026-10-29 WebFetch로 e약은요 페이지도 열려 같은 문장 확인. (2) 분류 대조 통과: 원문 '함께 복용하지 마십시오'이므로 avoid 적정, effect 없음(원문 밖 결과 미기재), action은 '칼슘염' 범위 내 '다른 칼슘제'로 한정, a=d…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "levothyroxine-iron",
@@ -472,10 +516,10 @@
     "effect": null,
     "quote": "if you take calcium carbonate (Tums) or ferrous sulfate (iron supplement), take it at least 4 hours before or 4 hours after you take levothyroxine.",
     "quote_ko": "탄산칼슘(Tums)이나 황산제일철(철분 보충제)을 복용한다면, 레보티록신 복용 최소 4시간 전 또는 4시간 후에 복용하십시오.",
-    "action": "철분제는 레보티록신 복용 최소 4시간 전 또는 4시간 후에 먹는다.",
+    "action": "레보티록신과 최소 4시간 띄워 드세요",
     "pharmacist_question": "갑상선약(레보티록신)과 철분제를 몇 시간 띄워 먹어야 하나요?",
     "source_id": "N1",
-    "source_title": "Levothyroxine: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2019-02-15)",
+    "source_title": "Levothyroxine (MedlinePlus)",
     "source_url": "https://medlineplus.gov/druginfo/meds/a682461.html",
     "source_kind": "other",
     "verification": {
@@ -483,7 +527,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch로 원래 URL(https://medlineplus.gov/druginfo/meds/a682461.html)을 정상적으로 열어 확인함. 'What special precautions should I follow?' 항목의 목록(bullet) 중 한 문장… / classification: 분류·범위 대조 결과 반박할 점을 찾지 못했다. (1) relation=separate_timing: quote가 \"at least 4 hours before or 4 hours after\"로 시간 간격을 명시하므로 적절하다(avoid·consult로 과장하지 않음). (2) actio… / url: source_url(https://medlineplus.gov/druginfo/meds/a682461.html)을 2026-10-29 WebFetch로 열었다(정상 응답). 페이지 제목은 'Levothyroxine: MedlinePlus Drug Information', Last Rev…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "doxycycline-iron",
@@ -502,7 +548,7 @@
     "action": "철분제는 독시사이클린 복용 3시간 전 또는 2시간 후에 먹는다.",
     "pharmacist_question": "독시사이클린(항생제)과 철분제를 몇 시간 띄워 먹어야 하나요?",
     "source_id": "N2",
-    "source_title": "Doxycycline: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-05-15)",
+    "source_title": "Doxycycline (MedlinePlus)",
     "source_url": "https://medlineplus.gov/druginfo/meds/a682063.html",
     "source_kind": "other",
     "verification": {
@@ -510,7 +556,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch로 원래 URL(https://medlineplus.gov/druginfo/meds/a682063.html)을 정상적으로 열어 확인함. 페이지 제목 \"Doxycycline: MedlinePlus Drug Information\", Last Revised… / classification: 분류·범위 대조 결과 반박할 점을 찾지 못했다. (1) relation=separate_timing: quote가 \"take them 3 hours before or 2 hours after doxycyline\"으로 시간 간격을 명시하므로 맞다(avoid/consult가 아님). (2)… / url: 2026-10-29 WebFetch로 source_url(https://medlineplus.gov/druginfo/meds/a682063.html)을 열었다. 정상적으로 열렸고, 페이지 제목은 \"Doxycycline: MedlinePlus Drug Information\"으로 sourc…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "doxycycline-calcium",
@@ -529,7 +577,7 @@
     "action": "칼슘제는 독시사이클린과 복용 시간을 띄운다. 원문은 '1-2 before or after'로 시간 단위가 빠져 있으므로 간격은 약사에게 확인한다.",
     "pharmacist_question": "독시사이클린(항생제)과 칼슘제를 몇 시간 띄워 먹어야 하나요?",
     "source_id": "N2",
-    "source_title": "Doxycycline: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-05-15)",
+    "source_title": "Doxycycline (MedlinePlus)",
     "source_url": "https://medlineplus.gov/druginfo/meds/a682063.html",
     "source_kind": "other",
     "verification": {
@@ -537,7 +585,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch로 원래 URL(https://medlineplus.gov/druginfo/meds/a682063.html)을 정상적으로 열어 확인했다. quote 문장 \"if you are taking antacids, calcium supplements, and l… / classification: 분류·범위 대조 결과 반박 근거를 찾지 못했다. (1) relation=separate_timing: 인용문이 \"take them 1-2 before or after doxycyline\"으로 칼슘 보충제를 독시사이클린 전·후로 띄워 먹으라고 직접 말하므로 '시간 띄우기'가 원문 뜻을 넘… / url: 2026-10-29 WebFetch로 source_url(https://medlineplus.gov/druginfo/meds/a682063.html)을 열었다. 페이지 제목은 \"Doxycycline: MedlinePlus Drug Information\"이고, 미국 국립의학도서관(NLM)…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "ciprofloxacin-calcium",
@@ -556,7 +606,7 @@
     "action": "칼슘이 든 제품은 시프로플록사신 복용 최소 6시간 전 또는 2시간 후에 먹는다.",
     "pharmacist_question": "시프로플록사신(항생제)과 칼슘제를 몇 시간 띄워 먹어야 하나요?",
     "source_id": "N3",
-    "source_title": "Ciprofloxacin: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-08-15)",
+    "source_title": "Ciprofloxacin (MedlinePlus)",
     "source_url": "https://medlineplus.gov/druginfo/meds/a688016.html",
     "source_kind": "other",
     "verification": {
@@ -564,7 +614,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 원래 URL(https://medlineplus.gov/druginfo/meds/a688016.html)을 WebFetch와 curl로 직접 열어 확인했다. 페이지 제목은 \"Ciprofloxacin: MedlinePlus Drug Information\", 하단 표기는… / classification: 분류·범위 대조 결과 반박 근거를 찾지 못했다. (1) relation=separate_timing: 인용문이 \"take them at least 6 hours before or 2 hours after ciprofloxacin\"으로 시간 간격을 명시하므로 맞다. avoid/consul… / url: 2026-10-29 WebFetch로 https://medlineplus.gov/druginfo/meds/a688016.html 을 열었다(정상 응답). 페이지 제목은 \"Ciprofloxacin: MedlinePlus Drug Information\", 발행처는 미국 국립의학도서관(NLM…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "ciprofloxacin-zinc",
@@ -583,7 +635,7 @@
     "action": "아연이 든 제품은 시프로플록사신 복용 최소 6시간 전 또는 2시간 후에 먹는다.",
     "pharmacist_question": "시프로플록사신(항생제)과 아연제를 몇 시간 띄워 먹어야 하나요?",
     "source_id": "N3",
-    "source_title": "Ciprofloxacin: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-08-15)",
+    "source_title": "Ciprofloxacin (MedlinePlus)",
     "source_url": "https://medlineplus.gov/druginfo/meds/a688016.html",
     "source_kind": "other",
     "verification": {
@@ -591,7 +643,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch 및 curl로 원래 URL(https://medlineplus.gov/druginfo/meds/a688016.html)을 직접 열어 확인함. 페이지 제목 \"Ciprofloxacin: MedlinePlus Drug Information\", 하단 \"Las… / classification: 분류·범위 관점에서 반박할 점을 찾지 못했다. (1) relation=separate_timing: 원문이 \"take them at least 6 hours before or 2 hours after ciprofloxacin\"으로 구체적인 시간 간격을 말하므로 맞다. avoid/cons… / url: 출처 확인 통과. 2026-10-29 WebFetch와 curl로 https://medlineplus.gov/druginfo/meds/a688016.html 을 열었고 HTTP 200으로 리다이렉트 없이 열린다. 페이지 <title>은 \"Ciprofloxacin: MedlinePlus…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "ciprofloxacin-iron",
@@ -610,7 +664,7 @@
     "action": "철분이 든 제품은 시프로플록사신 복용 최소 6시간 전 또는 2시간 후에 먹는다.",
     "pharmacist_question": "시프로플록사신(항생제)과 철분제를 몇 시간 띄워 먹어야 하나요?",
     "source_id": "N3",
-    "source_title": "Ciprofloxacin: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-08-15)",
+    "source_title": "Ciprofloxacin (MedlinePlus)",
     "source_url": "https://medlineplus.gov/druginfo/meds/a688016.html",
     "source_kind": "other",
     "verification": {
@@ -618,7 +672,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 source_url(https://medlineplus.gov/druginfo/meds/a688016.html)을 WebFetch와 curl로 직접 열어 대조함. quote 문장은 본문 \"What special precautions should I follow?\" 절… / classification: 분류·범위 대조 결과 반박 근거를 찾지 못했다. (1) relation=separate_timing: 원문이 \"take them at least 6 hours before or 2 hours after ciprofloxacin\"으로 시간 간격을 직접 말하므로 맞다. avoid/consu… / url: 2026-10-29 WebFetch로 source_url(https://medlineplus.gov/druginfo/meds/a688016.html)을 정상적으로 열었다(오류 없음). 페이지 제목은 \"Ciprofloxacin: MedlinePlus Drug Information\", 발행…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "levofloxacin-iron",
@@ -637,7 +693,7 @@
     "action": "철분이 든 제품은 레보플록사신 복용 최소 2시간 전 또는 후에 먹는다.",
     "pharmacist_question": "레보플록사신(항생제)과 철분제를 몇 시간 띄워 먹어야 하나요?",
     "source_id": "N4",
-    "source_title": "Levofloxacin: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-08-15)",
+    "source_title": "Levofloxacin (MedlinePlus)",
     "source_url": "https://medlineplus.gov/druginfo/meds/a697040.html",
     "source_kind": "other",
     "verification": {
@@ -645,7 +701,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch 및 curl로 원래 URL(https://medlineplus.gov/druginfo/meds/a697040.html)을 직접 열어 확인함. 페이지 제목 \"Levofloxacin: MedlinePlus Drug Information\", 하단 \"Last… / classification: 분류·범위 관점에서 반박할 점을 찾지 못했다. (1) relation=separate_timing: 인용문이 \"take them at least 2 hours before or after levofloxacin\"이라고 시간 간격을 직접 말하므로 맞다. (2) action \"철분이 든 제… / url: 출처 확인 통과. 2026-10-29 WebFetch 및 curl(HTTP 200)로 https://medlineplus.gov/druginfo/meds/a697040.html 을 실제로 열었다. 페이지 <title>은 \"Levofloxacin: MedlinePlus Drug Infor…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "levofloxacin-zinc",
@@ -664,7 +722,7 @@
     "action": "아연이 든 제품은 레보플록사신 복용 최소 2시간 전 또는 후에 먹는다.",
     "pharmacist_question": "레보플록사신(항생제)과 아연제를 몇 시간 띄워 먹어야 하나요?",
     "source_id": "N4",
-    "source_title": "Levofloxacin: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-08-15)",
+    "source_title": "Levofloxacin (MedlinePlus)",
     "source_url": "https://medlineplus.gov/druginfo/meds/a697040.html",
     "source_kind": "other",
     "verification": {
@@ -672,7 +730,9 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 WebFetch 및 curl로 원래 URL(https://medlineplus.gov/druginfo/meds/a697040.html)을 직접 열어 확인함. quote 문장 \"you should know if you are taking antacids, vitamin… / classification: 분류·범위 대조 관점에서 반박할 점을 찾지 못했다. (1) relation=separate_timing: quote에 \"take them at least 2 hours before or after levofloxacin\"이라는 시간 간격이 글자 그대로 있으므로 적절하다. avoid/co… / url: 2026-10-29 WebFetch 및 curl(HTTP 200)로 https://medlineplus.gov/druginfo/meds/a697040.html 을 열어 확인함. 페이지 <title>은 \"Levofloxacin: MedlinePlus Drug Information\"으로 s…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   },
   {
     "id": "alendronate-calcium",
@@ -691,7 +751,7 @@
     "action": "칼슘제는 알렌드론산을 복용하고 최소 30분이 지난 뒤에 먹는다.",
     "pharmacist_question": "골다공증약(알렌드론산)과 칼슘제는 얼마나 띄워 먹어야 하나요?",
     "source_id": "N5",
-    "source_title": "Alendronate: MedlinePlus Drug Information (미국 국립의학도서관 MedlinePlus, Last Revised 2026-05-15)",
+    "source_title": "Alendronate (MedlinePlus)",
     "source_url": "https://medlineplus.gov/druginfo/meds/a601011.html",
     "source_kind": "other",
     "verification": {
@@ -699,6 +759,8 @@
       "url_opens": true,
       "checked_on": "2026-10-29",
       "how": "검증자 3명(인용·분류·링크 각각) 통과. quote: 2026-10-29 원래 URL(https://medlineplus.gov/druginfo/meds/a601011.html)을 WebFetch와 curl로 열어 확인함. 'What special precautions should I follow?' 항목 안에서 quote의 두 문장이 글… / classification: 분류·범위 대조 결과 반박 근거를 찾지 못했다. (1) relation=separate_timing: 인용문이 \"take them at least 30 minutes after you take alendronate\"로 시간 간격(최소 30분)을 글자 그대로 말하므로 적합하다. 원문은 '… / url: 2026-10-29 WebFetch로 source_url(https://medlineplus.gov/druginfo/meds/a601011.html)을 정상적으로 열었다. 페이지 제목은 \"Alendronate: MedlinePlus Drug Information\"이며 미국 국립의학도서관…"
-    }
+    },
+    "source_note": null,
+    "more_sources": []
   }
 ]

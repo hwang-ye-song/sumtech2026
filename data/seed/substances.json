@@ -21,7 +21,9 @@
     "function_source_title": null,
     "function_source_url": null,
     "nutrient_keys": [],
-    "summary": "전문의약품 성분(ATC H03AA01). 의약품_전체목록.csv에서 주성분이 레보티록신나트륨수화물인 품목: 씬지로이드정(부광약품), 씬지록신정(다림바이오텍), 씬지로신정, 엘지로이드정."
+    "summary": "전문의약품 성분(ATC H03AA01). 의약품_전체목록.csv에서 주성분이 레보티록신나트륨수화물인 품목: 씬지로이드정(부광약품), 씬지록신정(다림바이오텍), 씬지로신정, 엘지로이드정.",
+    "display_name": "레보티록신(갑상선약)",
+    "upper_limit": null
   },
   {
     "id": "calcium",
@@ -43,7 +45,25 @@
     "nutrient_keys": [
       "칼슘"
     ],
-    "summary": "식약처 고시 일일섭취량 210 ~ 800 mg."
+    "summary": "식약처 고시 일일섭취량 210 ~ 800 mg.",
+    "display_name": null,
+    "upper_limit": {
+      "unit": "mg",
+      "limits": [
+        {
+          "label": "19~50세",
+          "amount": 2500
+        },
+        {
+          "label": "50세 초과",
+          "amount": 2000
+        }
+      ],
+      "quote": "2,500 mg a day appears to be safe for adults 19 to 50 years old. For adults above 50 years old, 2,000 mg a day is considered safe.",
+      "source_title": "Calcium in diet (MedlinePlus)",
+      "source_url": "https://medlineplus.gov/ency/article/002412.htm",
+      "checked_on": "2026-10-30"
+    }
   },
   {
     "id": "iron",
@@ -67,7 +87,9 @@
     "nutrient_keys": [
       "철분"
     ],
-    "summary": "식약처 고시 일일섭취량 3.6 ~ 15 mg. 섭취 시 주의사항: 특히 6세 이하는 과량섭취하지 않도록 주의."
+    "summary": "식약처 고시 일일섭취량 3.6 ~ 15 mg. 섭취 시 주의사항: 특히 6세 이하는 과량섭취하지 않도록 주의.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "omega3",
@@ -92,7 +114,9 @@
     "function_source_title": "건강기능식품의 기준 및 규격 제3. 개별 기준 및 규격 2. 기능성 원료 2-16 EPA 및 DHA 함유 유지 (식품의약품안전처 고시; 식품안전나라 건강기능식품 원료별 정보 첨부 PDF)",
     "function_source_url": "https://www.foodsafetykorea.go.kr/portal/board/boardDetail.do?menu_no=2660&menu_grp=MENU_NEW01&bbs_no=bbs987&ntctxt_no=1062819",
     "nutrient_keys": [],
-    "summary": "고시 원료명은 'EPA 및 DHA 함유 유지'. 일일섭취량은 EPA와 DHA의 합으로서 0.5 ~ 2 g(중성지질·혈행), 0.9 ~ 2 g(기억력), 0.6 ~ 2.24 g(눈). 섭취 시 주의사항: 의약품(항응고제, 항혈소판제, 혈압강하제 등) 복용 시 전문가와 상담할 것."
+    "summary": "고시 원료명은 'EPA 및 DHA 함유 유지'. 일일섭취량은 EPA와 DHA의 합으로서 0.5 ~ 2 g(중성지질·혈행), 0.9 ~ 2 g(기억력), 0.6 ~ 2.24 g(눈). 섭취 시 주의사항: 의약품(항응고제, 항혈소판제, 혈압강하제 등) 복용 시 전문가와 상담할 것.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_a",
@@ -112,7 +136,9 @@
     "function_source_title": "건강기능식품의 기준 및 규격 제3. 개별 기준 및 규격 1. 영양성분 1-1 비타민 A (식품의약품안전처 고시; 식품안전나라 건강기능식품 원료별 정보 첨부 PDF)",
     "function_source_url": "https://www.foodsafetykorea.go.kr/portal/board/boardDetail.do?menu_no=2660&menu_grp=MENU_NEW01&bbs_no=bbs987&ntctxt_no=1048667",
     "nutrient_keys": [],
-    "summary": "식약처 고시 일일섭취량 210 ~ 1,000 ㎍ RAE(699.93 ~ 3,333 IU)."
+    "summary": "식약처 고시 일일섭취량 210 ~ 1,000 ㎍ RAE(699.93 ~ 3,333 IU).",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_b1",
@@ -134,7 +160,9 @@
     "nutrient_keys": [
       "비타민B1"
     ],
-    "summary": "식약처 고시 일일섭취량 0.36 ~ 100 mg."
+    "summary": "식약처 고시 일일섭취량 0.36 ~ 100 mg.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_b2",
@@ -153,7 +181,9 @@
     "nutrient_keys": [
       "비타민B2"
     ],
-    "summary": "식약처 고시 일일섭취량 0.42 ~ 40 mg."
+    "summary": "식약처 고시 일일섭취량 0.42 ~ 40 mg.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_b3",
@@ -177,7 +207,9 @@
     "nutrient_keys": [
       "비타민B3(나이아신)"
     ],
-    "summary": "식약처 고시 일일섭취량: 니코틴산인 경우 4.5 ~ 23 mg, 니코틴산아미드인 경우 4.5 ~ 670 mg."
+    "summary": "식약처 고시 일일섭취량: 니코틴산인 경우 4.5 ~ 23 mg, 니코틴산아미드인 경우 4.5 ~ 670 mg.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_b5",
@@ -198,7 +230,9 @@
     "nutrient_keys": [
       "비타민B5(판토텐산)"
     ],
-    "summary": "식약처 고시 일일섭취량 1.5 ~ 200 mg."
+    "summary": "식약처 고시 일일섭취량 1.5 ~ 200 mg.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_b6",
@@ -219,7 +253,9 @@
     "nutrient_keys": [
       "비타민B6"
     ],
-    "summary": "식약처 고시 일일섭취량 0.45 ~ 67 mg. 섭취 시 주의사항: 손발 따끔거림, 작열감 또는 저림 등의 이상사례 발생 시 섭취를 중단하고 전문가와 상담할 것."
+    "summary": "식약처 고시 일일섭취량 0.45 ~ 67 mg. 섭취 시 주의사항: 손발 따끔거림, 작열감 또는 저림 등의 이상사례 발생 시 섭취를 중단하고 전문가와 상담할 것.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_b7",
@@ -240,7 +276,9 @@
     "nutrient_keys": [
       "비타민B7(비오틴)"
     ],
-    "summary": "식약처 고시 일일섭취량 9 ~ 900 ㎍."
+    "summary": "식약처 고시 일일섭취량 9 ~ 900 ㎍.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_b9",
@@ -263,7 +301,9 @@
     "nutrient_keys": [
       "비타민B9(엽산)"
     ],
-    "summary": "식약처 고시 일일섭취량 120 ~ 400 ㎍ DFE."
+    "summary": "식약처 고시 일일섭취량 120 ~ 400 ㎍ DFE.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_b12",
@@ -285,7 +325,9 @@
     "nutrient_keys": [
       "비타민B12"
     ],
-    "summary": "식약처 고시 일일섭취량 0.72 ~ 2,000 ㎍."
+    "summary": "식약처 고시 일일섭취량 0.72 ~ 2,000 ㎍.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_c",
@@ -306,7 +348,9 @@
     "nutrient_keys": [
       "비타민C"
     ],
-    "summary": "식약처 고시 일일섭취량 30 ~ 1,000 mg. 섭취 시 주의사항: 과량 섭취하지 않도록 주의할 것, 신장질환이 있는 경우 섭취 전 전문가와 상담할 것."
+    "summary": "식약처 고시 일일섭취량 30 ~ 1,000 mg. 섭취 시 주의사항: 과량 섭취하지 않도록 주의할 것, 신장질환이 있는 경우 섭취 전 전문가와 상담할 것.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_d",
@@ -329,7 +373,9 @@
     "nutrient_keys": [
       "비타민D"
     ],
-    "summary": "식약처 고시 일일섭취량 3 ~ 10 ㎍(120 ~ 400 IU). 섭취 시 주의사항: 고칼슘혈증이 있거나 의약품 복용 시 전문가와 상담할 것."
+    "summary": "식약처 고시 일일섭취량 3 ~ 10 ㎍(120 ~ 400 IU). 섭취 시 주의사항: 고칼슘혈증이 있거나 의약품 복용 시 전문가와 상담할 것.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_e",
@@ -350,7 +396,9 @@
     "nutrient_keys": [
       "비타민E"
     ],
-    "summary": "식약처 고시 일일섭취량 3.3 ~ 400 mg α-TE(4.917 ~ 596 IU)."
+    "summary": "식약처 고시 일일섭취량 3.3 ~ 400 mg α-TE(4.917 ~ 596 IU).",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "vitamin_k",
@@ -371,7 +419,9 @@
     "function_source_title": "건강기능식품의 기준 및 규격 제3. 개별 기준 및 규격 1. 영양성분 1-5 비타민 K (식품의약품안전처 고시; 식품안전나라 건강기능식품 원료별 정보 첨부 PDF)",
     "function_source_url": "https://www.foodsafetykorea.go.kr/portal/board/boardDetail.do?menu_no=2660&menu_grp=MENU_NEW01&bbs_no=bbs987&ntctxt_no=1048677",
     "nutrient_keys": [],
-    "summary": "식약처 고시 일일섭취량 21 ~ 1,000 ㎍. 섭취 시 주의사항: 항응고제 등 복용 시 전문가와 상담할 것."
+    "summary": "식약처 고시 일일섭취량 21 ~ 1,000 ㎍. 섭취 시 주의사항: 항응고제 등 복용 시 전문가와 상담할 것.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "magnesium",
@@ -393,7 +443,9 @@
     "nutrient_keys": [
       "마그네슘"
     ],
-    "summary": "식약처 고시 일일섭취량 94.5 ~ 250 mg."
+    "summary": "식약처 고시 일일섭취량 94.5 ~ 250 mg.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "zinc",
@@ -416,7 +468,9 @@
     "nutrient_keys": [
       "아연"
     ],
-    "summary": "식약처 고시 일일섭취량 2.55 ~ 12 mg."
+    "summary": "식약처 고시 일일섭취량 2.55 ~ 12 mg.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "selenium",
@@ -437,7 +491,9 @@
     "nutrient_keys": [
       "셀레늄"
     ],
-    "summary": "식약처 고시 일일섭취량 16.5 ~ 135 ㎍."
+    "summary": "식약처 고시 일일섭취량 16.5 ~ 135 ㎍.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "potassium",
@@ -456,7 +512,9 @@
     "function_source_title": "건강기능식품의 기준 및 규격 제3. 개별 기준 및 규격 1. 영양성분 1-24 칼륨 (식품의약품안전처 고시; 식품안전나라 건강기능식품 원료별 정보 첨부 PDF)",
     "function_source_url": "https://www.foodsafetykorea.go.kr/portal/board/boardDetail.do?menu_no=2660&menu_grp=MENU_NEW01&bbs_no=bbs987&ntctxt_no=1048705",
     "nutrient_keys": [],
-    "summary": "식약처 고시 일일섭취량 1.05 ~ 3.7 g. 섭취 시 주의사항: 신장질환, 위장관질환 등이 있는 경우 섭취 전 전문가와 상담할 것."
+    "summary": "식약처 고시 일일섭취량 1.05 ~ 3.7 g. 섭취 시 주의사항: 신장질환, 위장관질환 등이 있는 경우 섭취 전 전문가와 상담할 것.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "lutein",
@@ -473,7 +531,9 @@
     "function_source_title": "건강기능식품의 기준 및 규격 제3. 개별 기준 및 규격 2. 기능성 원료 2-26 마리골드꽃추출물 (식품의약품안전처 고시; 식품안전나라 건강기능식품 원료별 정보 첨부 PDF)",
     "function_source_url": "https://www.foodsafetykorea.go.kr/portal/board/boardDetail.do?menu_no=2660&menu_grp=MENU_NEW01&bbs_no=bbs987&ntctxt_no=1049377",
     "nutrient_keys": [],
-    "summary": "고시 원료명은 '마리골드꽃추출물'(기능성분 루테인). 일일섭취량 루테인으로서 10 ~ 20 mg. 섭취 시 주의사항: 흡연자는 섭취 시 전문가와 상담할 것, 과다 섭취 시 일시적으로 피부가 황색으로 변할 수 있음."
+    "summary": "고시 원료명은 '마리골드꽃추출물'(기능성분 루테인). 일일섭취량 루테인으로서 10 ~ 20 mg. 섭취 시 주의사항: 흡연자는 섭취 시 전문가와 상담할 것, 과다 섭취 시 일시적으로 피부가 황색으로 변할 수 있음.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "probiotics",
@@ -495,7 +555,9 @@
     "function_source_title": "건강기능식품의 기준 및 규격 제3. 개별 기준 및 규격 2. 기능성 원료 2-51 프로바이오틱스 (식품의약품안전처 고시; 식품안전나라 건강기능식품 원료별 정보 첨부 PDF)",
     "function_source_url": "https://www.foodsafetykorea.go.kr/portal/board/boardDetail.do?menu_no=2660&menu_grp=MENU_NEW01&bbs_no=bbs987&ntctxt_no=1049402",
     "nutrient_keys": [],
-    "summary": "고시 원료명은 '프로바이오틱스'. 일일섭취량 100,000,000(1억) ~ 10,000,000,000(100억) CFU. 섭취 시 주의사항: 질환이 있거나 의약품 복용 시 전문가와 상담할 것."
+    "summary": "고시 원료명은 '프로바이오틱스'. 일일섭취량 100,000,000(1억) ~ 10,000,000,000(100억) CFU. 섭취 시 주의사항: 질환이 있거나 의약품 복용 시 전문가와 상담할 것.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "coenzyme_q10",
@@ -518,7 +580,9 @@
     "nutrient_keys": [
       "코엔자임Q10"
     ],
-    "summary": "식약처 고시 일일섭취량 코엔자임Q10으로서 90~100 mg. 섭취 시 주의사항: 수유부는 섭취를 피할 것, 항응고제 복용 시 전문가와 상담할 것."
+    "summary": "식약처 고시 일일섭취량 코엔자임Q10으로서 90~100 mg. 섭취 시 주의사항: 수유부는 섭취를 피할 것, 항응고제 복용 시 전문가와 상담할 것.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "milk_thistle",
@@ -540,7 +604,9 @@
     "function_source_title": "건강기능식품의 기준 및 규격 제3. 개별 기준 및 규격 2. 기능성 원료 2-14 밀크씨슬(카르두스 마리아누스) 추출물 (식품의약품안전처 고시; 식품안전나라 건강기능식품 원료별 정보 첨부 PDF)",
     "function_source_url": "https://www.foodsafetykorea.go.kr/portal/board/boardDetail.do?menu_no=2660&menu_grp=MENU_NEW01&bbs_no=bbs987&ntctxt_no=1048727",
     "nutrient_keys": [],
-    "summary": "고시 원료명은 '밀크씨슬(카르두스 마리아누스) 추출물'(기능성분 실리마린). 일일섭취량 실리마린으로서 130 mg. 섭취 시 주의사항: 어린이, 임산부 및 수유부는 섭취를 피할 것."
+    "summary": "고시 원료명은 '밀크씨슬(카르두스 마리아누스) 추출물'(기능성분 실리마린). 일일섭취량 실리마린으로서 130 mg. 섭취 시 주의사항: 어린이, 임산부 및 수유부는 섭취를 피할 것.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "warfarin",
@@ -560,7 +626,9 @@
     "function_source_title": null,
     "function_source_url": null,
     "nutrient_keys": [],
-    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 주성분이 와파린나트륨인 품목: 쿠파린정, 뉴파린정."
+    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 주성분이 와파린나트륨인 품목: 쿠파린정, 뉴파린정.",
+    "display_name": "와파린(항응고제)",
+    "upper_limit": null
   },
   {
     "id": "amlodipine",
@@ -581,7 +649,9 @@
     "function_source_title": null,
     "function_source_url": null,
     "nutrient_keys": [],
-    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 확인한 품목: 노바스크정(암로디핀베실산염), 아모디핀정(암로디핀캄실산염)."
+    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 확인한 품목: 노바스크정(암로디핀베실산염), 아모디핀정(암로디핀캄실산염).",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "losartan",
@@ -601,7 +671,9 @@
     "function_source_title": null,
     "function_source_url": null,
     "nutrient_keys": [],
-    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 주성분이 로사르탄칼륨인 품목: 코자정, 코스카정, 로카탄정."
+    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 주성분이 로사르탄칼륨인 품목: 코자정, 코스카정, 로카탄정.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "doxycycline",
@@ -621,7 +693,9 @@
     "function_source_title": null,
     "function_source_url": null,
     "nutrient_keys": [],
-    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 확인한 품목: 모노신정·덴티스타캡슐(독시사이클린하이클레이트수화물), 바이독시정(독시사이클린수화물)."
+    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 확인한 품목: 모노신정·덴티스타캡슐(독시사이클린하이클레이트수화물), 바이독시정(독시사이클린수화물).",
+    "display_name": "독시사이클린(항생제)",
+    "upper_limit": null
   },
   {
     "id": "ciprofloxacin",
@@ -641,7 +715,9 @@
     "function_source_title": null,
     "function_source_url": null,
     "nutrient_keys": [],
-    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 주성분이 시프로플록사신염산염수화물인 품목: 씨프로바이정, 싸이플록신정, 시프로신정."
+    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 주성분이 시프로플록사신염산염수화물인 품목: 씨프로바이정, 싸이플록신정, 시프로신정.",
+    "display_name": "시프로플록사신(항생제)",
+    "upper_limit": null
   },
   {
     "id": "levofloxacin",
@@ -661,7 +737,9 @@
     "function_source_title": null,
     "function_source_url": null,
     "nutrient_keys": [],
-    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 확인한 품목: 크라비트정(레보플록사신), 레보펙신정·레복사신정(레보플록사신수화물)."
+    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 확인한 품목: 크라비트정(레보플록사신), 레보펙신정·레복사신정(레보플록사신수화물).",
+    "display_name": "레보플록사신(항생제)",
+    "upper_limit": null
   },
   {
     "id": "alendronate",
@@ -683,7 +761,9 @@
     "function_source_title": null,
     "function_source_url": null,
     "nutrient_keys": [],
-    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 확인한 품목: 포사맥스(알렌드론산나트륨수화물), 마빌정(알렌드론산나트륨수화물), 알렌맥스정(알렌드론산나트륨)."
+    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 확인한 품목: 포사맥스(알렌드론산나트륨수화물), 마빌정(알렌드론산나트륨수화물), 알렌맥스정(알렌드론산나트륨).",
+    "display_name": "알렌드론산(골다공증약)",
+    "upper_limit": null
   },
   {
     "id": "ginkgo",
@@ -704,7 +784,9 @@
     "function_source_title": null,
     "function_source_url": null,
     "nutrient_keys": [],
-    "summary": "의약품_전체목록.csv에 '기넥신'·'타나민' 품목이 없어 대표 제품명은 넣지 않았다. 같은 파일에서 은행엽건조엑스는 실로스타졸 등과의 복합제 주성분으로만 확인된다."
+    "summary": "의약품_전체목록.csv에 '기넥신'·'타나민' 품목이 없어 대표 제품명은 넣지 않았다. 같은 파일에서 은행엽건조엑스는 실로스타졸 등과의 복합제 주성분으로만 확인된다.",
+    "display_name": null,
+    "upper_limit": null
   },
   {
     "id": "metformin",
@@ -725,6 +807,8 @@
     "function_source_title": null,
     "function_source_url": null,
     "nutrient_keys": [],
-    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 주성분이 메트포르민염산염인 품목: 글루코파지정, 다이아벡스정, 글루파정."
+    "summary": "전문의약품 성분. 의약품_전체목록.csv에서 주성분이 메트포르민염산염인 품목: 글루코파지정, 다이아벡스정, 글루파정.",
+    "display_name": null,
+    "upper_limit": null
   }
 ]

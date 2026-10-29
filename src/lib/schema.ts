@@ -40,6 +40,8 @@ CREATE TABLE IF NOT EXISTS substance (
   nutrient_keys          JSONB NOT NULL DEFAULT '[]'::jsonb,
   summary                TEXT
 );
+ALTER TABLE substance ADD COLUMN IF NOT EXISTS display_name TEXT;
+ALTER TABLE substance ADD COLUMN IF NOT EXISTS upper_limit JSONB;
 
 CREATE TABLE IF NOT EXISTS interaction_rule (
   id                   TEXT PRIMARY KEY,
@@ -58,6 +60,9 @@ CREATE TABLE IF NOT EXISTS interaction_rule (
   source_url           TEXT NOT NULL,
   source_kind          TEXT NOT NULL
 );
+ALTER TABLE interaction_rule ADD COLUMN IF NOT EXISTS source_note TEXT;
+ALTER TABLE interaction_rule ADD COLUMN IF NOT EXISTS more_sources JSONB NOT NULL DEFAULT '[]'::jsonb;
+ALTER TABLE interaction_rule ADD COLUMN IF NOT EXISTS checked_on TEXT;
 CREATE INDEX IF NOT EXISTS idx_rule_a ON interaction_rule (a_type, a_ref);
 CREATE INDEX IF NOT EXISTS idx_rule_b ON interaction_rule (b_type, b_ref);
 
@@ -66,7 +71,7 @@ CREATE TABLE IF NOT EXISTS app_user (
   email             TEXT NOT NULL UNIQUE,
   password_hash     TEXT NOT NULL,
   display_name      TEXT,
-  role              TEXT NOT NULL DEFAULT '데모',
+  role              TEXT NOT NULL DEFAULT '복용자',
   first_checked_at  TIMESTAMPTZ,
   created_at        TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -79,6 +84,10 @@ CREATE TABLE IF NOT EXISTS user_item (
   added_at   TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE (user_id, item_type, item_ref)
 );
+-- 하루에 먹는 개수(필수)와 한 알 함량(선택, 영양제 과다 섭취 확인용)
+ALTER TABLE user_item ADD COLUMN IF NOT EXISTS daily_count INTEGER NOT NULL DEFAULT 1;
+ALTER TABLE user_item ADD COLUMN IF NOT EXISTS unit_amount NUMERIC;
+ALTER TABLE user_item ADD COLUMN IF NOT EXISTS unit TEXT;
 
 CREATE TABLE IF NOT EXISTS recommendation (
   id          SERIAL PRIMARY KEY,

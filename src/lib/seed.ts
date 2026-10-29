@@ -1,7 +1,7 @@
 // 앱이 처음 뜰 때 스키마를 만들고 data/ 시드 파일을 DB에 넣는다(F5).
 // - 기준 데이터(drug·drug_ingredient·substance·interaction_rule): 파일 내용이 바뀌었을 때만 통째로 다시 넣는다.
-// - 시드 계정: E2E용 `데모` 계정(compose의 SEED_USER_EMAIL·SEED_USER_PASSWORD)과
-//   가상 페르소나 계정(data/seed/personas.json, 비밀번호는 SEED_PERSONA_PASSWORD).
+// - 시드 계정: E2E용 `복용자` 계정(compose의 SEED_USER_EMAIL·SEED_USER_PASSWORD)과
+//   시연 계정(data/seed/personas.json, 비밀번호는 SEED_PERSONA_PASSWORD).
 // 시드 파일이 아직 없으면 그 부분은 건너뛰고 경고만 남긴다(앱은 뜬다).
 import { createHash } from 'node:crypto'
 import fs from 'node:fs/promises'
@@ -11,7 +11,11 @@ import { SCHEMA_SQL } from './schema'
 import { hashPassword } from './password'
 
 const DATA_DIR = path.join(process.cwd(), 'data')
-const DEMO_DRUG_ITEM_SEQ = '202300436' // 비맥스제트정 (흐름 S2)
+// docs/scenarios.yaml 머리말: 복용자 계정 목록에는 레보티록신(하루 1정)과 칼슘(하루 1000mg)이 있고 첫 검진을 마친 상태다.
+const TAKER_ITEMS: RefSeed[] = [
+  { type: 'substance', ref: 'levothyroxine', daily_count: 1 },
+  { type: 'substance', ref: 'calcium', daily_count: 1, unit_amount: 1000, unit: 'mg' },
+]
 
 interface OtcItem {
   item_seq: string
@@ -42,11 +46,16 @@ interface SubstanceSeed {
   function_source_url?: string | null
   nutrient_keys?: string[]
   summary?: string | null
+  display_name?: string | null
+  upper_limit?: unknown
 }
 
 interface RefSeed {
   type: 'drug' | 'substance'
   ref: string
+  daily_count?: number
+  unit_amount?: number
+  unit?: string
 }
 
 interface RuleSeed {
@@ -63,6 +72,9 @@ interface RuleSeed {
   source_title: string
   source_url: string
   source_kind: string
+  source_note?: string | null
+  more_sources?: unknown[]
+  verification?: { checked_on?: string }
 }
 
 interface PersonaSeed {
@@ -135,8 +147,8 @@ async function loadCatalog(db: Db, otc: OtcItem[], substances: SubstanceSeed[], 
 
   for (const s of substances) {
     await db.query(
-      `INSERT INTO substance (id, name, aliases, kind, is_vitamin, recommendable, function_claim, function_source_title, function_source_url, nutrient_keys, summary)
-       VALUES ($1, $2, $3::jsonb, $4, $5, $6, $7, $8, $9, $10::jsonb, $11)`,
+      `INSERT INTO substance (id, name, aliases, kind, is_vitamin, recommendable, function_claim, function_source_title, function_source_url, nutrient_keys, summary, display_name, upper_limit)
+       VALUES ($1, $2, $3::jsonb, $4, $5, $6, $7, $8, $9, $10::jsonb, $11, $12, $13::jsonb)`,
       [
         s.id,
         s.name,
@@ -149,6 +161,8 @@ async function loadCatalog(db: Db, otc: OtcItem[], substances: SubstanceSeed[], 
         s.function_source_url ?? null,
         JSON.stringify(s.nutrient_keys ?? []),
         s.summary ?? null,
+        s.display_name ?? null,
+        s.upper_limit ? JSON.stringify(s.upper_limit) : null,
       ],
     )
   }
@@ -164,8 +178,8 @@ async function loadCatalog(db: Db, otc: OtcItem[], substances: SubstanceSeed[], 
       continue
     }
     await db.query(
-      `INSERT INTO interaction_rule (id, a_type, a_ref, b_type, b_ref, relation, effect, quote, quote_ko, action, pharmacist_question, source_id, source_title, source_url, source_kind)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+      `INSERT INTO interaction_rule (id, a_type, a_ref, b_type, b_ref, relation, effect, quote, quote_ko, action, pharmacist_question, source_id, source_title, source_url, source_kind, source_note, more_sources, checked_on)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17::jsonb, $18)
        ON CONFLICT (id) DO NOTHING`,
       [
         r.id,
@@ -183,6 +197,9 @@ async function loadCatalog(db: Db, otc: OtcItem[], substances: SubstanceSeed[], 
         r.source_title,
         r.source_url,
         r.source_kind,
+        r.source_note ?? null,
+        JSON.stringify(r.more_sources ?? []),
+        r.verification?.checked_on ?? null,
       ],
     )
   }
@@ -191,15 +208,15 @@ async function loadCatalog(db: Db, otc: OtcItem[], substances: SubstanceSeed[], 
 
 async function ensureUser(
   db: Db,
-  input: { email: string; password: string; display_name: string; first_check_done: boolean },
+  input: { email: string; password: string; display_name: string; role: string; first_check_done: boolean },
 ): Promise<number> {
   const existing = await db.query<{ id: number }>('SELECT id FROM app_user WHERE email = $1', [input.email])
   if (existing[0]) return existing[0].id
   const hash = await hashPassword(input.password)
   const rows = await db.query<{ id: number }>(
     `INSERT INTO app_user (email, password_hash, display_name, role, first_checked_at)
-     VALUES ($1, $2, $3, '데모', CASE WHEN $4 THEN now() ELSE NULL END) RETURNING id`,
-    [input.email, hash, input.display_name, input.first_check_done],
+     VALUES ($1, $2, $3, $4, CASE WHEN $5 THEN now() ELSE NULL END) RETURNING id`,
+    [input.email, hash, input.display_name, input.role, input.first_check_done],
   )
   return rows[0].id
 }
@@ -212,8 +229,9 @@ async function ensureItems(db: Db, userId: number, items: RefSeed[], drugIds: Se
       continue
     }
     await db.query(
-      `INSERT INTO user_item (user_id, item_type, item_ref) VALUES ($1, $2, $3) ON CONFLICT (user_id, item_type, item_ref) DO NOTHING`,
-      [userId, it.type, it.ref],
+      `INSERT INTO user_item (user_id, item_type, item_ref, daily_count, unit_amount, unit) VALUES ($1, $2, $3, $4, $5, $6)
+       ON CONFLICT (user_id, item_type, item_ref) DO NOTHING`,
+      [userId, it.type, it.ref, it.daily_count ?? 1, it.unit_amount ?? null, it.unit_amount ? (it.unit ?? 'mg') : null],
     )
   }
 }
@@ -223,7 +241,10 @@ export async function ensureSchemaAndSeed(): Promise<void> {
   const db = await getDb()
   await db.exec(SCHEMA_SQL)
 
-  const otc = (await readJson<OtcItem[]>('drugs/otc_core.json')) ?? { data: [], raw: '' }
+  const core = (await readJson<OtcItem[]>('drugs/otc_core.json')) ?? { data: [], raw: '' }
+  // 58개 목록 밖이지만 흐름에 필요한 일반의약품(예: S7의 훼로바-유서방정)
+  const extra = (await readJson<OtcItem[]>('seed/extra_drugs.json')) ?? { data: [], raw: '' }
+  const otc = { data: [...core.data, ...extra.data], raw: core.raw + extra.raw }
   const subs = (await readJson<SubstanceSeed[]>('seed/substances.json')) ?? { data: [], raw: '' }
   const rules = (await readJson<RuleSeed[]>('seed/interaction_rules.json')) ?? { data: [], raw: '' }
   const personas = (await readJson<PersonaSeed[]>('seed/personas.json')) ?? { data: [], raw: '' }
@@ -242,10 +263,10 @@ export async function ensureSchemaAndSeed(): Promise<void> {
   const demoEmail = process.env.SEED_USER_EMAIL
   const demoPassword = process.env.SEED_USER_PASSWORD
   if (demoEmail && demoPassword) {
-    const id = await ensureUser(db, { email: demoEmail, password: demoPassword, display_name: '데모', first_check_done: true })
-    await ensureItems(db, id, [{ type: 'drug', ref: DEMO_DRUG_ITEM_SEQ }], drugIds, subIds)
+    const id = await ensureUser(db, { email: demoEmail, password: demoPassword, display_name: '복용자', role: '복용자', first_check_done: true })
+    await ensureItems(db, id, TAKER_ITEMS, drugIds, subIds)
   } else {
-    console.warn('[seed] SEED_USER_EMAIL·SEED_USER_PASSWORD가 없어 데모 계정을 만들지 않습니다.')
+    console.warn('[seed] SEED_USER_EMAIL·SEED_USER_PASSWORD가 없어 복용자 계정을 만들지 않습니다.')
   }
 
   const personaPassword = process.env.SEED_PERSONA_PASSWORD
@@ -255,6 +276,7 @@ export async function ensureSchemaAndSeed(): Promise<void> {
         email: p.email,
         password: personaPassword,
         display_name: p.display_name,
+        role: '복용자',
         first_check_done: Boolean(p.first_check_done),
       })
       await ensureItems(db, id, p.items ?? [], drugIds, subIds)

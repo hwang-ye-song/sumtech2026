@@ -38,6 +38,11 @@ export function kindLabel(kind: string): string {
   return kind
 }
 
+/** 목록을 '약'·'영양제' 두 칸으로 나눌 때 쓴다. 영양제 성분만 영양제, 일반의약품·처방약 성분은 약이다. */
+export function isSupplement(item: Pick<CatalogHit, 'type' | 'sub'>): boolean {
+  return item.type === 'substance' && item.sub === kindLabel('nutrient')
+}
+
 export async function searchCatalog(rawQuery: string, limit = 20): Promise<CatalogHit[]> {
   const q = rawQuery.trim().replace(/\s+/g, '')
   if (!q) return []
@@ -77,6 +82,10 @@ export async function searchCatalog(rawQuery: string, limit = 20): Promise<Catal
 export interface NamedItem extends ItemRef {
   name: string
   sub: string
+  /** 경고에 보일 이름. 처방약 성분은 무슨 약인지 붙인다(예: 레보티록신(갑상선약)). */
+  label: string
+  /** 개수 단위: 약은 '정', 영양제는 '알' */
+  countUnit: '정' | '알'
 }
 
 /** 여러 항목의 이름을 한 번에 가져온다. 없는 참조는 이름 대신 참조 값을 보여 준다. */
@@ -85,7 +94,7 @@ export async function nameItems(items: ItemRef[]): Promise<NamedItem[]> {
   const db = await getDb()
   const drugRefs = items.filter((i) => i.type === 'drug').map((i) => i.ref)
   const subRefs = items.filter((i) => i.type === 'substance').map((i) => i.ref)
-  const names = new Map<string, { name: string; sub: string }>()
+  const names = new Map<string, { name: string; sub: string; label: string; countUnit: '정' | '알' }>()
 
   // 참조 값(품목코드·성분 id)에는 쉼표가 없으므로 쉼표로 이어 넘기고 DB에서 배열로 푼다(pg·PGlite 공통).
   if (drugRefs.length) {
@@ -93,18 +102,27 @@ export async function nameItems(items: ItemRef[]): Promise<NamedItem[]> {
       `SELECT item_seq, item_name, category FROM drug WHERE item_seq = ANY(string_to_array($1, ','))`,
       [drugRefs.join(',')],
     )
-    for (const r of rows) names.set(`drug:${r.item_seq}`, { name: r.item_name, sub: ['일반의약품', r.category].filter(Boolean).join(' · ') })
+    for (const r of rows) {
+      names.set(`drug:${r.item_seq}`, { name: r.item_name, sub: ['일반의약품', r.category].filter(Boolean).join(' · '), label: r.item_name, countUnit: '정' })
+    }
   }
   if (subRefs.length) {
-    const rows = await db.query<{ id: string; name: string; kind: string }>(
-      `SELECT id, name, kind FROM substance WHERE id = ANY(string_to_array($1, ','))`,
+    const rows = await db.query<{ id: string; name: string; kind: string; display_name: string | null }>(
+      `SELECT id, name, kind, display_name FROM substance WHERE id = ANY(string_to_array($1, ','))`,
       [subRefs.join(',')],
     )
-    for (const r of rows) names.set(`substance:${r.id}`, { name: r.name, sub: kindLabel(r.kind) })
+    for (const r of rows) {
+      names.set(`substance:${r.id}`, {
+        name: r.name,
+        sub: kindLabel(r.kind),
+        label: r.display_name ?? r.name,
+        countUnit: r.kind === 'rx_ingredient' ? '정' : '알',
+      })
+    }
   }
   return items.map((i) => {
     const n = names.get(itemKey(i))
-    return { ...i, name: n?.name ?? i.ref, sub: n?.sub ?? '' }
+    return { ...i, name: n?.name ?? i.ref, sub: n?.sub ?? '', label: n?.label ?? n?.name ?? i.ref, countUnit: n?.countUnit ?? '알' }
   })
 }
 
@@ -117,4 +135,23 @@ export async function nutrientsInDrugs(drugRefs: string[]): Promise<Set<string>>
     [drugRefs.join(',')],
   )
   return new Set(rows.map((r) => r.nutrient))
+}
+
+/**
+ * 일반의약품에 든 영양 성분을 성분 id로 바꾼다(drug_ingredient.nutrient ↔ substance.nutrient_keys).
+ * 예: 훼로바-유서방정(건조황산제일철) → iron. 성분 규칙(레보티록신×철분 등)을 약 품목에도 적용하는 데 쓴다.
+ */
+export async function substancesInDrugs(drugRefs: string[]): Promise<Map<string, string[]>> {
+  const out = new Map<string, string[]>()
+  if (drugRefs.length === 0) return out
+  const db = await getDb()
+  const rows = await db.query<{ item_seq: string; id: string }>(
+    `SELECT DISTINCT di.item_seq, s.id
+       FROM drug_ingredient di
+       JOIN substance s ON EXISTS (SELECT 1 FROM jsonb_array_elements_text(s.nutrient_keys) AS k WHERE k = di.nutrient)
+      WHERE di.item_seq = ANY(string_to_array($1, ','))`,
+    [drugRefs.join(',')],
+  )
+  for (const r of rows) out.set(r.item_seq, [...(out.get(r.item_seq) ?? []), r.id])
+  return out
 }

@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { Header } from '@/components/Header'
+import { PillField } from '@/components/PillField'
+import { getCurrentUser } from '@/lib/session'
 import { SERVICE_DESCRIPTION, SERVICE_NAME, SERVICE_TAGLINE } from '@/lib/brand'
 
 export const metadata: Metadata = {
@@ -13,12 +15,17 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const user = await getCurrentUser()
   return (
     <html lang="ko">
-      <body className="min-h-dvh">
-        <Header />
-        <main className="mx-auto w-full max-w-2xl px-4 pb-16 pt-6">{children}</main>
+      {/* 로그인하면 휴대폰에서 아래 탭이 생기므로 body에 app을 붙여 아래 여백을 둔다. */}
+      <body className={user ? 'app' : undefined}>
+        <PillField />
+        <div id="app">
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   )

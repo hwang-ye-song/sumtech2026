@@ -9,17 +9,23 @@ export const RELATION_LABEL: Record<Relation, string> = {
   caution: '주의하세요',
 }
 
-export const SAFE_MESSAGE = '확인한 자료에서는 보고된 문제가 없어요. 걱정되면 약사에게 확인하세요'
+/** 규칙이 없는 조합에 쓰는 말. '안전'이라고 단정하지 않는다(docs/scenarios.yaml S3). */
+export const NO_RECORD_MESSAGE = '확인한 자료에서는 보고된 문제가 없어요. 걱정되면 약사에게 확인하세요'
+export const CHECKED_SOURCES = '식약처 e약은요 원문, 논문, MedlinePlus(미국 국립의학도서관)'
+export const DATA_CHECKED_ON = '2026-10-29'
 
-export function sourceLinkLabel(w: { source_kind: string; source_id: string }): string {
-  switch (w.source_kind) {
+export const CONSULT_NOTE = '복용을 바꾸기 전에 약사·의사와 상담하세요'
+export const RECOMMEND_DISCLAIMER = '이 추천은 진단이나 처방이 아니에요. 새로 드시기 전에 약사·의사와 상담하세요'
+
+export function sourceKindLabel(kind: string): string {
+  switch (kind) {
     case 'mfds_easy_drug':
-      return '식약처 e약은요 원문 보기'
+      return '식약처 e약은요'
     case 'mfds_approval':
-      return '식약처 허가사항 원문 보기'
+      return '식약처 허가사항'
     case 'paper':
-      return `논문 원문 보기 (${w.source_id})`
+      return '논문'
     default:
-      return `출처 보기 (${w.source_id})`
+      return '공식 자료'
   }
 }

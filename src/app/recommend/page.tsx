@@ -1,10 +1,10 @@
-import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { getCurrentUser } from '@/lib/session'
 import { ensureReady } from '@/lib/ready'
 import { RecommendForm } from '@/components/RecommendForm'
+import { RECOMMEND_DISCLAIMER } from '@/lib/labels'
 
-export const metadata = { title: '비타민 추천' }
+export const metadata = { title: '영양제 추천' }
 
 export default async function RecommendPage() {
   await ensureReady()
@@ -12,17 +12,23 @@ export default async function RecommendPage() {
   if (!user) redirect('/login')
 
   return (
-    <section className="flex flex-col gap-5">
-      <div>
-        <h1 className="text-2xl font-bold">비타민 추천</h1>
-        <p className="text-sm text-muted">
-          간단한 설문에 답하면, 지금 드시는 약·영양제와 겹치거나 부딪친다는 기록이 없는 비타민·영양 성분 종류를 골라 드려요.
-        </p>
+    <main className="page">
+      <div className="wrap" style={{ maxWidth: 800 }}>
+        <div className="disclaimer" data-testid="rec-disclaimer-top">
+          {RECOMMEND_DISCLAIMER}
+        </div>
+        <div className="page-head" style={{ marginTop: 24 }}>
+          <div className="eyebrow">영양제 추천</div>
+          <h2>
+            무엇을 <b>원하세요?</b>
+          </h2>
+          <p className="muted">
+            지금 드시는 약·영양제와 부딪친다는 기록이 없는 비타민만 골라 드려요. 부딪치는 성분은 추천 대신 &lsquo;주의&rsquo;로 보여 드려요. 추천은 성분 단위이고
+            제품·구매 링크는 없어요.
+          </p>
+        </div>
+        <RecommendForm />
       </div>
-      <RecommendForm />
-      <Link href="/check" className="self-start text-sm font-medium text-brand-strong underline">
-        ← 검진 결과로
-      </Link>
-    </section>
+    </main>
   )
 }

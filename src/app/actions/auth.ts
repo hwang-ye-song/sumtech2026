@@ -5,6 +5,7 @@ import { getDb } from '@/lib/db'
 import { ensureReady } from '@/lib/ready'
 import { hashPassword, verifyPassword } from '@/lib/password'
 import { createSession, destroySession } from '@/lib/session'
+import { resetPersona } from '@/lib/personas'
 
 export interface AuthState {
   error?: string
@@ -17,13 +18,16 @@ function readCredentials(formData: FormData) {
     .trim()
     .toLowerCase()
   const password = String(formData.get('password') ?? '')
-  return { email, password }
+  const passwordConfirm = String(formData.get('password_confirm') ?? '')
+  return { email, password, passwordConfirm }
 }
 
 export async function signUp(_prev: AuthState, formData: FormData): Promise<AuthState> {
-  const { email, password } = readCredentials(formData)
+  const { email, password, passwordConfirm } = readCredentials(formData)
   if (!EMAIL_RE.test(email)) return { error: '이메일 형식을 확인해 주세요.' }
-  if (password.length < 6) return { error: '비밀번호는 6자 이상이어야 해요.' }
+  if (password.length < 8) return { error: '비밀번호는 8자 이상이어야 해요.' }
+  if (password !== passwordConfirm) return { error: '비밀번호 확인이 비밀번호와 달라요.' }
+  if (formData.get('consent') !== 'on') return { error: '동의해야 가입할 수 있어요.' }
 
   await ensureReady()
   const db = await getDb()
@@ -36,7 +40,7 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
     [email, hash],
   )
   await createSession(rows[0].id)
-  redirect('/list')
+  redirect('/')
 }
 
 export async function logIn(_prev: AuthState, formData: FormData): Promise<AuthState> {
@@ -54,7 +58,16 @@ export async function logIn(_prev: AuthState, formData: FormData): Promise<AuthS
     return { error: '이메일 또는 비밀번호가 맞지 않아요.' }
   }
   await createSession(user.id)
-  redirect('/list')
+  redirect('/')
+}
+
+/** 로그인 화면의 '시연 계정' 버튼: 고른 페르소나 계정을 시드 상태로 되돌리고 그 계정으로 들어간다. */
+export async function enterPersona(formData: FormData): Promise<void> {
+  await ensureReady()
+  const userId = await resetPersona(String(formData.get('persona') ?? ''))
+  if (userId === null) redirect('/login')
+  await createSession(userId)
+  redirect('/')
 }
 
 export async function logOut(): Promise<void> {

@@ -1,0 +1,137 @@
+import Link from 'next/link'
+import { ensureReady } from '@/lib/ready'
+import { getDb } from '@/lib/db'
+import { getCurrentUser } from '@/lib/session'
+import { isSupplement, kindLabel, searchCatalog, substancesInDrugs, type CatalogHit } from '@/lib/catalog'
+import { listAllRules, type Warning } from '@/lib/check'
+import { CONSULT_NOTE, NO_RECORD_MESSAGE } from '@/lib/labels'
+import { KindBadge } from '@/components/RegisterPanel'
+import { LevelBadge } from '@/components/WarningCard'
+
+export const metadata = { title: '약·영양제 알아보기' }
+
+type Params = Record<string, string | string[] | undefined>
+const KINDS = ['전체', '약', '영양제'] as const
+
+/** 로그인 없이 보는 화면: 성분·약마다 DB에 기록된 조합 주의사항과 출처 */
+export default async function ExplorePage({ searchParams }: { searchParams: Promise<Params> }) {
+  await ensureReady()
+  const params = await searchParams
+  const q = (typeof params.q === 'string' ? params.q : '').trim().slice(0, 50)
+  const kind = KINDS.find((k) => k === params.kind) ?? '전체'
+  const db = await getDb()
+
+  const [rules, user] = await Promise.all([listAllRules(), getCurrentUser()])
+  let entries: CatalogHit[]
+  if (q.length >= 2) {
+    entries = await searchCatalog(q, 40)
+  } else {
+    // 검색어가 없으면 성분 전체와, 규칙에 걸리는 일반의약품만 보여 준다.
+    const subs = await db.query<{ id: string; name: string; kind: string }>('SELECT id, name, kind FROM substance ORDER BY kind DESC, name')
+    const drugs = await db.query<{ item_seq: string; item_name: string; category: string | null; company: string | null }>(
+      'SELECT item_seq, item_name, category, company FROM drug ORDER BY item_name',
+    )
+    entries = [
+      ...subs.map((s) => ({ type: 'substance' as const, ref: s.id, name: s.name, sub: kindLabel(s.kind) })),
+      ...drugs.map((d) => ({
+        type: 'drug' as const,
+        ref: d.item_seq,
+        name: d.item_name,
+        sub: ['일반의약품', d.category, d.company].filter(Boolean).join(' · '),
+      })),
+    ]
+  }
+
+  // 약 품목은 그 약에 든 영양 성분으로도 성분 규칙에 걸린다(판정과 같은 방식).
+  const inDrugs = await substancesInDrugs(entries.filter((e) => e.type === 'drug').map((e) => e.ref))
+  const related = (e: CatalogHit): Warning[] => {
+    const keys = new Set([`${e.type}:${e.ref}`, ...(inDrugs.get(e.ref) ?? []).map((id) => `substance:${id}`)])
+    return rules.filter((r) => keys.has(`${r.a.type}:${r.a.ref}`) || keys.has(`${r.b.type}:${r.b.ref}`))
+  }
+  const cards = entries
+    .map((e) => ({ e, ws: related(e) }))
+    .filter(({ e, ws }) => (q.length >= 2 || e.type === 'substance' || ws.length > 0) && (kind === '전체' || (kind === '영양제') === isSupplement(e)))
+
+  const href = (k: string) => `/explore?${new URLSearchParams({ ...(q ? { q } : {}), ...(k !== '전체' ? { kind: k } : {}) })}`
+
+  return (
+    <main className="page">
+      <div className="wrap">
+        <div className="page-head">
+          <div className="eyebrow">약·영양제 알아보기</div>
+          <h2>
+            같이 먹기 전에 <b>먼저 찾아봐요</b>
+          </h2>
+          <p className="muted prose">
+            식약처 원문과 논문에 기록된 주의사항만 보여 줘요. 로그인 없이 볼 수 있고, 내 목록에 더하면 같이 먹는 것끼리 자동으로 점검해요.
+          </p>
+        </div>
+        <form action="/explore" method="get" role="search" className="field" style={{ maxWidth: 520 }}>
+          <label htmlFor="ex-q">제품명·성분·흔히 부르는 이름</label>
+          <div className="row" style={{ flexWrap: 'nowrap' }}>
+            <input className="input" id="ex-q" name="q" type="search" placeholder="예 칼슘, 씬지로이드, 비맥스" defaultValue={q} autoComplete="off" data-testid="ex-input" />
+            {kind !== '전체' ? <input type="hidden" name="kind" value={kind} /> : null}
+            <button className="btn btn-black" type="submit">
+              찾기
+            </button>
+          </div>
+          {q && q.length < 2 ? <span className="error">2글자 이상 입력해 주세요</span> : null}
+        </form>
+        <div className="chip-row" role="group" aria-label="종류">
+          {KINDS.map((k) => (
+            <Link key={k} className="chip" href={href(k)} aria-pressed={kind === k} data-testid={`ex-kind-${k}`}>
+              {k}
+            </Link>
+          ))}
+        </div>
+
+        {cards.length === 0 ? (
+          <div className="empty" data-testid="ex-empty">
+            찾는 제품이 없어요. 성분 이름(예 칼슘)으로 검색해 보세요
+          </div>
+        ) : (
+          <div className="grid grid-2">
+            {cards.map(({ e, ws }) => (
+              <article key={`${e.type}:${e.ref}`} className="card stack" data-testid="ex-card">
+                <div className="row" style={{ justifyContent: 'space-between', flexWrap: 'nowrap' }}>
+                  <h4>{e.name}</h4>
+                  <KindBadge sub={e.sub} />
+                </div>
+                <p className="faint" style={{ margin: 0 }}>
+                  {e.sub}
+                </p>
+                {ws.length === 0 ? (
+                  <div className="ex-none">{NO_RECORD_MESSAGE}</div>
+                ) : (
+                  ws.map((w) => (
+                    <div key={w.ruleId} className="ex-w" data-testid="ex-warn">
+                      <LevelBadge level={w.relation} />
+                      <strong>
+                        {w.a.name} ↔ {w.b.name}
+                      </strong>
+                      <span>{w.action}</span>
+                      <span className="why">
+                        {w.effect ? `${w.effect} ` : ''}출처:{' '}
+                        <a href={w.sources[0]?.source_url} target="_blank" rel="noopener noreferrer" data-testid="src-link">
+                          {w.sources[0]?.source_title}
+                        </a>
+                      </span>
+                    </div>
+                  ))
+                )}
+                <div>
+                  <Link className="btn btn-sm" href={user ? `/list?q=${encodeURIComponent(e.name)}` : '/login'}>
+                    내 목록에 더하기
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+        <div className="disclaimer" style={{ marginTop: 24 }}>
+          {CONSULT_NOTE}. 이 화면은 처방이나 진단이 아니에요.
+        </div>
+      </div>
+    </main>
+  )
+}

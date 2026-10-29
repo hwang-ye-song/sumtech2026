@@ -82,11 +82,15 @@
     "items": [
       {
         "type": "substance",
-        "ref": "levothyroxine"
+        "ref": "levothyroxine",
+        "daily_count": 1
       },
       {
         "type": "substance",
-        "ref": "calcium"
+        "ref": "calcium",
+        "daily_count": 1,
+        "unit_amount": 1000,
+        "unit": "mg"
       }
     ],
     "first_check_done": true
@@ -99,11 +103,15 @@
     "items": [
       {
         "type": "substance",
-        "ref": "levothyroxine"
+        "ref": "levothyroxine",
+        "daily_count": 1
       },
       {
         "type": "substance",
-        "ref": "calcium"
+        "ref": "calcium",
+        "daily_count": 1,
+        "unit_amount": 1000,
+        "unit": "mg"
       }
     ],
     "first_check_done": true
@@ -116,11 +124,15 @@
     "items": [
       {
         "type": "substance",
-        "ref": "levothyroxine"
+        "ref": "levothyroxine",
+        "daily_count": 1
       },
       {
         "type": "substance",
-        "ref": "calcium"
+        "ref": "calcium",
+        "daily_count": 1,
+        "unit_amount": 1000,
+        "unit": "mg"
       }
     ],
     "first_check_done": true
@@ -133,11 +145,15 @@
     "items": [
       {
         "type": "substance",
-        "ref": "levothyroxine"
+        "ref": "levothyroxine",
+        "daily_count": 1
       },
       {
         "type": "substance",
-        "ref": "calcium"
+        "ref": "calcium",
+        "daily_count": 1,
+        "unit_amount": 1000,
+        "unit": "mg"
       }
     ],
     "first_check_done": true
@@ -150,11 +166,15 @@
     "items": [
       {
         "type": "substance",
-        "ref": "levothyroxine"
+        "ref": "levothyroxine",
+        "daily_count": 1
       },
       {
         "type": "substance",
-        "ref": "calcium"
+        "ref": "calcium",
+        "daily_count": 1,
+        "unit_amount": 1000,
+        "unit": "mg"
       }
     ],
     "first_check_done": true
@@ -167,11 +187,15 @@
     "items": [
       {
         "type": "substance",
-        "ref": "levothyroxine"
+        "ref": "levothyroxine",
+        "daily_count": 1
       },
       {
         "type": "substance",
-        "ref": "calcium"
+        "ref": "calcium",
+        "daily_count": 1,
+        "unit_amount": 1000,
+        "unit": "mg"
       }
     ],
     "first_check_done": true
