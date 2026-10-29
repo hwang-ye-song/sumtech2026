@@ -14,10 +14,11 @@ test("S1 갑상선약을 드시는 50~60대 부모님이 서비스 소개를 보
   // 2. 첫 화면 위쪽의 '회원가입'
   await page.getByRole("banner").getByRole("link", { name: "회원가입" }).click()
 
-  // 3~6. 이메일 · 8자 이상 비밀번호 · 비밀번호 확인 → '가입하기'
+  // 3~7. 이메일 · 8자 이상 비밀번호 · 비밀번호 확인 · 건강 정보 동의 체크 → '가입하기'
   await page.getByLabel("이메일").fill(`s1-${Date.now()}@example.com`)
   await page.getByLabel("비밀번호", { exact: true }).fill("test-1234")
   await page.getByLabel("비밀번호 확인").fill("test-1234")
+  await page.getByLabel(/건강 정보 수집·이용과 사진 AI 판독에 동의해요/).check()
   await page.getByRole("button", { name: "가입하기" }).click()
 
   // expected: 가입하면 바로 복용 목록 화면에 등록 안내와 검색창

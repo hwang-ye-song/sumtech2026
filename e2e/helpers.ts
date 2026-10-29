@@ -23,6 +23,7 @@ export async function signUpFromHome(page: Page, prefix: string): Promise<string
   await page.getByLabel("이메일").fill(email)
   await page.getByLabel("비밀번호", { exact: true }).fill("test-1234")
   await page.getByLabel("비밀번호 확인").fill("test-1234")
+  await page.getByLabel(/건강 정보 수집·이용과 사진 AI 판독에 동의해요/).check()
   await page.getByRole("button", { name: "가입하기" }).click()
   await expect(page.getByTestId("welcome")).toContainText("지금 먹고 있는 약과 영양제를 먼저 등록해 주세요")
   return email

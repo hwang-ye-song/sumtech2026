@@ -46,7 +46,7 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
 
   const hash = await hashPassword(password)
   const rows = await db.query<{ id: number }>(
-    'INSERT INTO app_user (email, password_hash) VALUES ($1, $2) RETURNING id',
+    'INSERT INTO app_user (email, password_hash, health_consent_at) VALUES ($1, $2, now()) RETURNING id',
     [email, hash],
   )
   await createSession(rows[0].id)

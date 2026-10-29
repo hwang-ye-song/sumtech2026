@@ -43,9 +43,14 @@ export function AuthForm({ action, submitLabel, mode, next }: Props) {
             <label htmlFor="su-pw2">비밀번호 확인</label>
             <input className="input" id="su-pw2" name="password_confirm" type="password" required minLength={8} autoComplete="new-password" data-testid="signup-pw2" />
           </div>
-          <p className="hint" data-testid="signup-consent" style={{ margin: '0 0 16px' }}>
-            가입하면 복용 중인 약·영양제(건강 정보)를 내 계정에 저장해 점검하는 데 써요. 목록은 내 계정에서만 보여요.
-          </p>
+          {/* 건강 정보(복용 목록·약 봉투 사진)는 가입할 때 한 번 분명하게 동의를 받는다. 사진을 올릴 때마다 다시 묻지 않는다. */}
+          <label className="hint" data-testid="signup-consent" style={{ display: 'flex', gap: 8, alignItems: 'flex-start', margin: '0 0 16px' }}>
+            <input type="checkbox" name="health_consent" required style={{ marginTop: 4 }} />
+            <span>
+              건강 정보 수집·이용과 사진 AI 판독에 동의해요(필수). 복용 중인 약·영양제를 내 계정에 저장해 점검하는 데 쓰고, 목록은 내 계정에서만 보여요.
+              사진으로 등록하면 사진을 AI로 보내 글자만 읽고 바로 지워요. 동의는 지금 한 번만 받아요.
+            </span>
+          </label>
         </>
       ) : null}
       {state.error ? (

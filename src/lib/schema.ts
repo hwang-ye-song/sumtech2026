@@ -172,6 +172,8 @@ CREATE TABLE IF NOT EXISTS app_user (
   first_checked_at  TIMESTAMPTZ,
   created_at        TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+-- 가입할 때 받은 건강 정보·사진 AI 판독 동의 시각(시연·시드 계정은 비어 있다)
+ALTER TABLE app_user ADD COLUMN IF NOT EXISTS health_consent_at TIMESTAMPTZ;
 
 -- item_type: drug(약 제품) / health_food(건강기능식품 제품) / substance(성분으로 등록)
 CREATE TABLE IF NOT EXISTS user_item (

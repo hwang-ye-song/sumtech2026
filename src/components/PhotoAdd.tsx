@@ -42,7 +42,7 @@ async function submitShrunk(input: HTMLInputElement, form: HTMLFormElement | nul
   form?.requestSubmit()
 }
 
-const CONSENT = '사진을 AI로 보내 글자를 읽어요. 읽은 뒤 사진은 바로 지우고 저장하지 않아요'
+const CONSENT = '가입할 때 동의한 대로 사진을 AI로 보내 글자를 읽어요. 읽은 뒤 사진은 바로 지우고 저장하지 않아요'
 
 /**
  * 사진 등록: 사진 올리기 → (흐리면 다시 찍기) → 후보 고르기 → 하루 개수 → 등록
