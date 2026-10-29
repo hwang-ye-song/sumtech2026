@@ -8,18 +8,24 @@ import { listPersonas } from '@/lib/personas'
 
 export const metadata = { title: '로그인' }
 
-export default async function LoginPage() {
-  if (await getCurrentUser()) redirect('/')
+const MENU_NAME: Record<string, string> = { '/list': '복용 목록', '/check': '분석하기', '/check/report': '복용 리포트', '/recommend': '영양제 추천' }
+
+export default async function LoginPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const raw = (await searchParams).next
+  const next = typeof raw === 'string' && raw.startsWith('/') && !raw.startsWith('//') ? raw : undefined
+  if (await getCurrentUser()) redirect(next ?? '/')
   const personas = await listPersonas()
+  const menu = next ? (MENU_NAME[next] ?? (next.startsWith('/rules/') ? '근거 보기' : null)) : null
   return (
     <main className="page">
       <div className="wrap" style={{ maxWidth: 488 }}>
         <div className="page-head">
           <h2>로그인</h2>
+          {menu ? <p className="muted">로그인하면 &lsquo;{menu}&rsquo; 화면으로 이어서 가요.</p> : null}
         </div>
-        <AuthForm action={logIn} submitLabel="로그인" mode="login" />
+        <AuthForm action={logIn} submitLabel="로그인" mode="login" next={next} />
         <p className="muted" style={{ marginTop: 16 }}>
-          계정이 없나요? <Link href="/signup">회원가입</Link>
+          계정이 없나요? <Link href={next ? `/signup?next=${encodeURIComponent(next)}` : '/signup'}>회원가입</Link>
         </p>
       </div>
 
@@ -47,6 +53,7 @@ export default async function LoginPage() {
                 </p>
                 <form action={enterPersona}>
                   <input type="hidden" name="persona" value={p.id} />
+                  {next ? <input type="hidden" name="next" value={next} /> : null}
                   <SubmitButton className="btn btn-sm btn-block" pendingLabel="들어가는 중…">
                     {p.id} 계정으로 시작
                   </SubmitButton>

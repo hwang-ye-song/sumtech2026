@@ -73,6 +73,11 @@ export function RecommendForm() {
           {state.result ? (
             <section className="stack" data-testid="rec-ok">
               <h4>추천 (하루 {state.pills}알)</h4>
+              {state.basis === 'rule' ? (
+                <p className="faint" style={{ margin: 0 }}>
+                  지금은 AI를 쓸 수 없어, 고르신 부분과 식약처 기능성 내용이 맞는 성분으로 골랐어요.
+                </p>
+              ) : null}
               {state.result.length === 0 ? (
                 <div className="empty">설문에 맞는 비타민을 찾지 못했어요. 다른 부분을 골라 보세요.</div>
               ) : (

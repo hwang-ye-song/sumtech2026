@@ -20,7 +20,7 @@ const one = (v: string | string[] | undefined) => (typeof v === 'string' ? v : '
 export default async function ListPage({ searchParams }: { searchParams: Promise<Params> }) {
   await ensureReady()
   const user = await getCurrentUser()
-  if (!user) redirect('/login')
+  if (!user) redirect('/login?next=/list')
 
   const params = await searchParams
   const mode = one(params.mode) === 'photo' ? 'photo' : 'search'

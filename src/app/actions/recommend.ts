@@ -7,7 +7,7 @@ import { getDb } from '@/lib/db'
 import { listUserItems } from '@/lib/items'
 import { warningsForCandidates, type Warning } from '@/lib/check'
 import { nutrientsInDrugs } from '@/lib/catalog'
-import { describeAiError, pickRecommendations, DEFAULT_TEXT_MODEL, type RecommendSurvey } from '@/lib/ai'
+import { aiConfigured, pickRecommendations, DEFAULT_TEXT_MODEL, type RecommendSurvey } from '@/lib/ai'
 
 export interface RecommendedItem {
   id: string
@@ -30,6 +30,8 @@ export interface RecommendState {
   result?: RecommendedItem[]
   cautions?: CautionItem[]
   pills?: number
+  /** ai: AI가 후보 안에서 고름 / rule: AI를 못 써서 기능성 문구가 설문과 맞는 후보로 고름 */
+  basis?: 'ai' | 'rule'
 }
 
 interface CandidateRow {
@@ -90,15 +92,20 @@ export async function requestRecommendation(_prev: RecommendState, formData: For
 
   if (candidates.length === 0) return { error: '지금 목록과 부딪치지 않는 추천 후보가 없어요. 약사와 상의해 주세요.', cautions, pills }
 
-  let picks: { id: string; why: string }[]
-  try {
-    picks = await pickRecommendations(
-      survey,
-      candidates.map((c) => ({ id: c.id, name: c.name, function_claim: c.function_claim })),
-      pills,
-    )
-  } catch (err) {
-    return { error: describeAiError(err), cautions, pills }
+  // AI 키가 없거나 호출이 실패하면 추천을 멈추지 않고, 아래 채우기 규칙(기능성 문구가 설문과 맞는 후보)만으로 고른다.
+  let picks: { id: string; why: string }[] = []
+  let basis: 'ai' | 'rule' = 'rule'
+  if (aiConfigured()) {
+    try {
+      picks = await pickRecommendations(
+        survey,
+        candidates.map((c) => ({ id: c.id, name: c.name, function_claim: c.function_claim })),
+        pills,
+      )
+      basis = 'ai'
+    } catch (err) {
+      console.warn('[recommend] AI 호출 실패, 규칙으로 고릅니다:', err instanceof Error ? err.message : err)
+    }
   }
 
   // AI가 알 수보다 적게 고르면, 고른 부분과 기능성 내용이 맞는 후보로 알 수만큼 채운다.
@@ -122,8 +129,8 @@ export async function requestRecommendation(_prev: RecommendState, formData: For
     user.id,
     JSON.stringify(survey),
     JSON.stringify({ result, cautions: cautions.map((c) => c.id) }),
-    DEFAULT_TEXT_MODEL || null,
+    basis === 'ai' ? DEFAULT_TEXT_MODEL || null : 'rule',
   ])
 
-  return { result, cautions, pills }
+  return { result, cautions, pills, basis }
 }

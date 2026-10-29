@@ -13,6 +13,12 @@ export interface AuthState {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+/** 로그인 전에 누른 메뉴(?next=)로 돌려보낸다. 같은 사이트 안의 경로만 받는다. */
+function nextPath(formData: FormData): string {
+  const next = String(formData.get('next') ?? '')
+  return next.startsWith('/') && !next.startsWith('//') && !next.startsWith('/\\') ? next : '/'
+}
+
 function readCredentials(formData: FormData) {
   const email = String(formData.get('email') ?? '')
     .trim()
@@ -32,7 +38,7 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
   await ensureReady()
   const db = await getDb()
   const exists = await db.query('SELECT 1 FROM app_user WHERE email = $1', [email])
-  if (exists.length > 0) return { error: '이미 가입된 이메일이에요. 로그인해 주세요.' }
+  if (exists.length > 0) return { error: '이미 가입한 이메일이에요' }
 
   const hash = await hashPassword(password)
   const rows = await db.query<{ id: number }>(
@@ -40,7 +46,7 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
     [email, hash],
   )
   await createSession(rows[0].id)
-  redirect('/')
+  redirect(nextPath(formData))
 }
 
 export async function logIn(_prev: AuthState, formData: FormData): Promise<AuthState> {
@@ -55,10 +61,10 @@ export async function logIn(_prev: AuthState, formData: FormData): Promise<AuthS
   )
   const user = rows[0]
   if (!user || !(await verifyPassword(password, user.password_hash))) {
-    return { error: '이메일 또는 비밀번호가 맞지 않아요.' }
+    return { error: '이메일 또는 비밀번호가 맞지 않아요' }
   }
   await createSession(user.id)
-  redirect('/')
+  redirect(nextPath(formData))
 }
 
 /** 로그인 화면의 '시연 계정' 버튼: 고른 페르소나 계정을 시드 상태로 되돌리고 그 계정으로 들어간다. */
@@ -67,7 +73,7 @@ export async function enterPersona(formData: FormData): Promise<void> {
   const userId = await resetPersona(String(formData.get('persona') ?? ''))
   if (userId === null) redirect('/login')
   await createSession(userId)
-  redirect('/')
+  redirect(nextPath(formData))
 }
 
 export async function logOut(): Promise<void> {

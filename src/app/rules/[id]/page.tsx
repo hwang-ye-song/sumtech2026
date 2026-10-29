@@ -12,8 +12,8 @@ export const metadata = { title: '근거 보기' }
 export default async function RulePage({ params }: { params: Promise<{ id: string }> }) {
   await ensureReady()
   const user = await getCurrentUser()
-  if (!user) redirect('/login')
   const { id } = await params
+  if (!user) redirect(`/login?next=${encodeURIComponent(`/rules/${id}`)}`)
   const w = await getRule(decodeURIComponent(id))
   if (!w) notFound()
 

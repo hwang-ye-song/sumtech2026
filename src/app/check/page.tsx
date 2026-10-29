@@ -11,7 +11,7 @@ export const metadata = { title: '분석하기' }
 export default async function CheckPage() {
   await ensureReady()
   const user = await getCurrentUser()
-  if (!user) redirect('/login')
+  if (!user) redirect('/login?next=/check')
   const items = await listUserItems(user.id)
 
   return (

@@ -8,14 +8,17 @@ interface Props {
   submitLabel: string
   /** 회원가입이면 8자 이상 비밀번호와 '비밀번호 확인' 칸, 건강 정보 동의 칸을 둔다. */
   mode: 'login' | 'signup'
+  /** 로그인·가입 뒤 갈 주소(로그인 전에 누른 메뉴) */
+  next?: string
 }
 
-export function AuthForm({ action, submitLabel, mode }: Props) {
+export function AuthForm({ action, submitLabel, mode, next }: Props) {
   const [state, formAction, pending] = useActionState(action, {})
   const signup = mode === 'signup'
   const p = signup ? 'su' : 'li'
   return (
     <form action={formAction}>
+      {next ? <input type="hidden" name="next" value={next} /> : null}
       <div className="field">
         <label htmlFor={`${p}-email`}>이메일</label>
         <input className="input" id={`${p}-email`} name="email" type="email" required autoComplete="email" inputMode="email" data-testid={`${mode}-email`} />

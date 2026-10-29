@@ -9,7 +9,7 @@ export const metadata = { title: '영양제 추천' }
 export default async function RecommendPage() {
   await ensureReady()
   const user = await getCurrentUser()
-  if (!user) redirect('/login')
+  if (!user) redirect('/login?next=/recommend')
 
   return (
     <main className="page">

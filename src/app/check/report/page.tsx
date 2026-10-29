@@ -17,7 +17,7 @@ const fmt = (n: number) => n.toLocaleString('ko-KR')
 export default async function ReportPage() {
   await ensureReady()
   const user = await getCurrentUser()
-  if (!user) redirect('/login')
+  if (!user) redirect('/login?next=/check/report')
 
   const items = await listUserItems(user.id)
   const [warnings, intake] = await Promise.all([checkItems(items), checkIntake(items)])

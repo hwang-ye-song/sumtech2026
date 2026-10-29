@@ -368,9 +368,12 @@ async function UserHome({ userId, email, name, inUse }: { userId: number; email:
             </p>
           </Link>
         </div>
-        <div style={{ marginTop: 24 }}>
+        <div className="row" style={{ marginTop: 24 }}>
           <Link className="btn btn-black btn-lg" href="/recommend" data-testid="home-recommend">
             영양제 추천받기
+          </Link>
+          <Link className="btn btn-lg" href="/explore" data-testid="home-explore">
+            약·영양제 알아보기
           </Link>
         </div>
         <div className="disclaimer" style={{ marginTop: 24 }}>
