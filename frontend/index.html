@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TwoPills — 약과 영양제를 한자리에</title>
+<meta name="description" content="약과 영양제를 함께 먹을 때 해로운 조합을 출처와 함께 알려 주는 서비스 프로토타입">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@font-face{font-family:'KofihJongwook';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/KOFIHDrLEEJWTTF-L.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'KofihJongwook';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/KOFIHDrLEEJWTTF-B.woff2') format('woff2');font-weight:700;font-display:swap}
+/* ───────── 토큰 (DESIGN.md) ───────── */
+:root{
+  --bg:#ffffff; --bg-2:#f1eefb; --bg-3:#e7e2f6;
+  --line:#ddd7ee; --line-2:#c4bde0;
+  --lav-edge:#b3a6e0; --lav-mid:#ddd5f5; --lav-light:#f4f1fc;
+  --ink:#111318; --ink-2:#3f3a4c; --ink-3:#5f5870;
+  --brand:#5b2457; --brand-ink:#431a40; --brand-bg:#f1e6ef;
+  --black:#111318;
+  --warn:#a63d2a; --warn-bg:#fbf1ee;
+  --over:#8c6410; --over-bg:#fbf5e6;
+  --none:#6b7280; --none-bg:#f1f2f4;
+  --pill-a:#5b2457; --pill-b:#ffffff; --pill-c:#dfe3ea;
+  --r-1:14px; --r-2:22px; --r-3:28px; --r-pill:9999px;
+  --fs-0:11px; --fs-1:13.5px; --fs-2:15px; --fs-3:18px; --fs-4:28px; --fs-5:40px; --fs-6:66px;
+  --font-head:"KofihJongwook","Malgun Gothic","Apple SD Gothic Neo",sans-serif; --font-body:var(--font-head); --font-num:var(--font-head);
+  --ease:cubic-bezier(.2,.7,.2,1); --dur-1:120ms; --dur-2:200ms; --dur-3:300ms; --dur-4:600ms;
+  --max:1120px; --g:max(0px,calc((100vw - 1120px) / 2));
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lav-light) linear-gradient(90deg,var(--lav-edge) 0,var(--lav-mid) var(--g),var(--lav-light) calc(var(--g) + 96px),var(--lav-light) calc(100% - var(--g) - 96px),var(--lav-mid) calc(100% - var(--g)),var(--lav-edge) 100%) fixed;color:var(--ink);font-family:var(--font-body);font-size:var(--fs-2);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{word-break:keep-all;margin:0;font-family:var(--font-head);font-weight:300;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:var(--fs-6)} h2{font-size:var(--fs-5)} h3{font-size:var(--fs-4)} h4{font-size:var(--fs-3);font-family:var(--font-body);font-weight:700}
+h1 b,h2 b,h3 b{font-weight:700;color:var(--brand)}
+p{margin:0 0 8px}
+a{color:var(--brand-ink);text-decoration-thickness:1px;text-underline-offset:3px}
+button{font:inherit;color:inherit}
+input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.num{font-family:var(--font-num);font-weight:700;font-variant-numeric:tabular-nums}
+.muted{color:var(--ink-2)} .faint{color:var(--ink-3);font-size:var(--fs-1)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.prose{max-width:640px}
+
+/* ───────── 내비 ───────── */
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+#app{position:relative;z-index:1}
+#pillfield{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.fpill{position:absolute;top:0;aspect-ratio:calc(var(--cw) / var(--ch));background:url(assets/pills2.jpg) no-repeat;background-size:calc(541 / var(--cw) * 100%) auto;background-position:calc(var(--cx) / (541 - var(--cw)) * 100%) calc(var(--cy) / (1043 - var(--ch)) * 100%);-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);will-change:transform}
+.nav .wrap{height:64px;display:flex;align-items:center;gap:16px}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.logo .mark{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line-2);background:linear-gradient(90deg,var(--pill-a) 50%,var(--pill-b) 50%);transform:rotate(-24deg)}
+.logo .word{font-family:var(--font-head);font-weight:700;font-style:italic;font-size:22px;letter-spacing:-.02em}
+.nav .tabs{display:flex;gap:4px;margin-left:16px}
+.nav .tabs a{padding:8px 14px;border-radius:var(--r-pill);text-decoration:none;color:var(--ink-2);font-weight:700}
+.nav .tabs a[aria-current="page"]{background:var(--bg-3);color:var(--ink)}
+.nav .spacer{flex:1}
+.nav .who{font-size:var(--fs-1);color:var(--ink-3)}
+.bottombar{display:none}
+
+/* ───────── 버튼·칩·배지 ───────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:var(--r-pill);border:1px solid var(--line-2);background:var(--bg);cursor:pointer;font-weight:700;text-decoration:none;white-space:nowrap;transition:background var(--dur-2) var(--ease),transform var(--dur-1) var(--ease),filter var(--dur-2) var(--ease)}
+.btn:hover{background:var(--bg-2)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-ink)}
+.btn-black{background:var(--black);border-color:var(--black);color:#fff}
+.btn-black:hover{filter:brightness(1.15);background:var(--black)}
+.btn-ghost{border-color:transparent;background:transparent}
+.btn-ghost:hover{background:var(--bg-2)}
+.btn-sm{min-height:36px;padding:0 14px;font-size:var(--fs-1)}
+.btn-lg{min-height:56px;padding:0 28px;font-size:var(--fs-3)}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:var(--r-pill);border:1px solid var(--line-2);background:var(--bg);cursor:pointer;font-size:var(--fs-2)}
+.chip[aria-pressed="true"]{background:var(--brand-bg);border-color:var(--brand);color:var(--brand-ink)}
+.badge{display:inline-flex;align-items:center;gap:6px;min-height:24px;padding:0 10px;border-radius:var(--r-pill);font-size:var(--fs-1);font-weight:700;background:var(--bg-3);color:var(--ink-2)}
+.badge-warn{background:var(--warn-bg);color:var(--warn)}
+.badge-over{background:var(--over-bg);color:var(--over)}
+.badge-none{background:var(--none-bg);color:var(--none)}
+.badge-cobalt{background:var(--brand-bg);color:var(--brand-ink)}
+.ico{width:16px;height:16px;border-radius:50%;border:2px solid currentColor;display:inline-grid;place-items:center;font-size:10px;line-height:1;font-weight:700;flex:none}
+.seg{display:inline-flex;padding:4px;border-radius:var(--r-pill);background:var(--bg-3)}
+.seg button{min-height:40px;padding:0 18px;border:0;border-radius:var(--r-pill);background:transparent;cursor:pointer;font-weight:700;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--bg);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+
+/* ───────── 폼 ───────── */
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{font-weight:700}
+.input{min-height:48px;padding:0 16px;border-radius:var(--r-1);border:1px solid var(--line-2);background:var(--bg-2);width:100%}
+textarea.input{min-height:96px;padding:12px 16px;resize:vertical}
+.input:focus{border-color:var(--brand);background:var(--bg)}
+.hint{font-size:var(--fs-1);color:var(--ink-3)}
+.error{font-size:var(--fs-1);color:var(--warn);font-weight:700}
+.check{display:flex;gap:10px;align-items:flex-start}
+.check input{width:20px;height:20px;margin:3px 0 0;accent-color:var(--brand)}
+.row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* ───────── 카드·레이아웃 ───────── */
+.card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-2);padding:24px}
+.card-soft{background:var(--bg-2);border-color:transparent}
+.card-link{display:block;text-decoration:none;color:inherit;transition:transform var(--dur-2) var(--ease),box-shadow var(--dur-2) var(--ease)}
+.card-link:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(17,19,24,.08)}
+.grid{display:grid;gap:16px}
+.grid-2{grid-template-columns:repeat(2,1fr)} .grid-3{grid-template-columns:repeat(3,1fr)} .grid-4{grid-template-columns:repeat(4,1fr)}
+.section{padding:64px 0}
+.section + .section{border-top:1px solid var(--line)}
+.eyebrow{font-size:var(--fs-1);font-weight:700;letter-spacing:.06em;color:var(--brand-ink);text-transform:uppercase;margin-bottom:16px}
+.page{padding:40px 0 96px}
+.page-head{margin-bottom:24px}
+.page-head h2{font-size:var(--fs-5)}
+.stack>*+*{margin-top:16px}
+.empty{padding:40px 24px;text-align:center;color:var(--ink-2);border:1px dashed var(--line-2);border-radius:var(--r-2)}
+.notice{padding:16px 24px;border-radius:var(--r-1);background:var(--brand-bg);color:var(--brand-ink)}
+.notice-none{background:var(--none-bg);color:var(--ink)}
+.notice-warn{background:var(--warn-bg);color:var(--warn)}
+.disclaimer{padding:16px 24px;border-radius:var(--r-1);background:var(--bg-2);color:var(--ink-2);font-size:var(--fs-1)}
+blockquote.quote{margin:0;padding:12px 16px;border-left:3px solid var(--line-2);background:var(--bg-2);border-radius:0 var(--r-1) var(--r-1) 0;font-size:var(--fs-2)}
+.src{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font-size:var(--fs-1)}
+.src .t{font-weight:700}
+hr.sep{border:0;border-top:1px solid var(--line);margin:16px 0}
+
+/* ───────── 표 ───────── */
+table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
+.tbl th{font-weight:700;color:var(--ink-3);font-size:var(--fs-1);text-align:left;padding:8px 12px;background:var(--bg-3)}
+.tbl th:first-child{border-radius:var(--r-1) 0 0 var(--r-1)} .tbl th:last-child{border-radius:0 var(--r-1) var(--r-1) 0}
+.tbl td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .name{font-weight:700}
+
+/* ───────── 히어로 ───────── */
+.hero{padding:64px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{margin:8px 0 16px}
+.hero .lead{font-size:var(--fs-3);color:var(--ink-2);max-width:560px}
+.hero .cta{display:flex;gap:12px;margin:24px 0 16px;flex-wrap:wrap}
+.panel{width:440px;max-width:100%;justify-self:end;padding:24px;border-radius:var(--r-3);background:rgba(255,255,255,.82);border:1px solid var(--line);box-shadow:0 12px 40px rgba(80,60,160,.12)}
+.panel .cap{font-size:var(--fs-1);color:var(--ink-3);margin-bottom:12px}
+.panel .chips{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.panel .chip{cursor:default;background:var(--bg);box-shadow:0 2px 8px rgba(17,19,24,.06);font-size:var(--fs-1)}
+.hero h1{font-size:56px}
+.preview .act{word-break:keep-all;font-size:var(--fs-4);font-weight:700;color:var(--warn);margin:12px 0;line-height:1.25}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:var(--fs-2)}
+.cmp th,.cmp td{padding:16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp thead th{font-size:var(--fs-1);color:var(--ink-3)}
+.cmp tbody th{width:22%;font-weight:700}
+.cmp .us{background:var(--brand-bg);color:var(--brand-ink);font-weight:700}
+.cmp thead .us{border-radius:var(--r-1) var(--r-1) 0 0}
+.cmp tbody tr:last-child .us{border-radius:0 0 var(--r-1) var(--r-1)}
+.cmp tbody tr:last-child th,.cmp tbody tr:last-child td{border-bottom:0}
+.cmp-wrap{overflow-x:auto;background:rgba(255,255,255,.8);border-radius:var(--r-2);border:1px solid var(--line);padding:8px}
+.cmp{min-width:720px}
+.problem{font-size:var(--fs-3);color:var(--ink-2)}
+.who .tag{font-size:var(--fs-1);font-weight:700;color:var(--brand-ink);margin-bottom:8px}
+.step .num{font-size:var(--fs-4);color:var(--brand-ink)}
+.band{background:var(--black);color:#fff;border-radius:var(--r-3);padding:48px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.band h3{color:#fff}
+.band h3 b{color:#fff}
+.footer{padding:40px 0 64px;border-top:1px solid var(--line);font-size:var(--fs-1);color:var(--ink-3)}
+.footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ───────── 복용 목록 ───────── */
+.list-layout{display:grid;grid-template-columns:400px 1fr;gap:24px;align-items:start}
+.result{display:flex;gap:12px;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--line);border-radius:var(--r-1);cursor:pointer;background:var(--bg);text-align:left;width:100%}
+.result:hover{background:var(--bg-2)}
+.result .n{font-weight:700} .result .s{font-size:var(--fs-1);color:var(--ink-3)}
+.results{display:flex;flex-direction:column;gap:8px;max-height:420px;overflow:auto}
+.tips{margin:0;padding-left:20px}
+.tips li{margin:4px 0}
+.drop{border:2px dashed var(--line-2);border-radius:var(--r-2);padding:24px;text-align:center;background:var(--bg-2)}
+.drop input{display:none}
+
+/* ───────── 경고 창·토스트 ───────── */
+.overlay{position:fixed;inset:0;background:rgba(17,19,24,.45);display:grid;place-items:center;padding:16px;z-index:50;animation:fade var(--dur-2) var(--ease)}
+.modal{background:var(--bg);border-radius:var(--r-3);width:min(640px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:32px;animation:rise var(--dur-3) var(--ease)}
+.modal h3{margin:8px 0 16px}
+.finding{padding:20px;border-radius:var(--r-2);border:1px solid var(--line)}
+.finding+.finding{margin-top:16px}
+.finding .head{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.finding .lvl{font-size:var(--fs-3);font-weight:700}
+.finding .act{font-family:var(--font-head);font-size:var(--fs-4);font-weight:700;margin:4px 0 12px}
+.finding-warn .lvl,.finding-warn .act{color:var(--warn)}
+.finding-over .lvl,.finding-over .act{color:var(--over)}
+.finding .pair{font-weight:700;margin-bottom:8px}
+.finding .q{margin-top:12px;padding:12px 16px;border-radius:var(--r-1);background:var(--bg-2)}
+.modal .actions{display:flex;gap:12px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--black);color:#fff;padding:12px 20px;border-radius:var(--r-pill);z-index:60;animation:rise var(--dur-2) var(--ease);max-width:calc(100% - 32px)}
+@keyframes fade{from{opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+.progress{display:flex;flex-direction:column;gap:12px;margin:24px 0}
+.progress .p{display:flex;gap:12px;align-items:center;color:var(--ink-3)}
+.progress .p .dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--line-2)}
+.progress .p.done{color:var(--ink)} .progress .p.done .dot{background:var(--brand);border-color:var(--brand)}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.summary .card .num{font-size:var(--fs-5);line-height:1.1}
+.summary .warn .num{color:var(--warn)}
+
+/* ───────── 반응형 ───────── */
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:1fr}
+  .panel{justify-self:start;width:100%}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .list-layout{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  :root{--fs-2:16px;--fs-6:40px;--fs-5:28px}
+  .hero h1{font-size:36px}
+  .wrap{padding:0 16px}
+  .section{padding:40px 0}
+  .grid-2,.grid-3,.grid-4,.summary,.row-2{grid-template-columns:1fr}
+  .nav .tabs,.nav .who{display:none}
+  body.app{padding-bottom:72px}
+  .bottombar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--bg);border-top:1px solid var(--line);height:64px}
+  .bottombar a{flex:1;display:grid;place-items:center;text-decoration:none;color:var(--ink-2);font-size:var(--fs-1);font-weight:700}
+  .bottombar a[aria-current="page"]{color:var(--brand-ink)}
+  .band{padding:32px 24px}
+  .modal{padding:24px}
+  .modal .actions{flex-direction:column-reverse}
+  .modal .actions .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div id="pillfield" aria-hidden="true"></div>
+<div id="app"></div>
+<div id="layer"></div>
+
+<script>
+/* ═══════════════ DB (목업·출처 있는 것만) ═══════════════ */
+const DB_CHECKED = '2026-10-29';
+const SRC = {
+  R3:  { id:'R3', title:'Absorption of Levothyroxine When Coadministered with Various Calcium Formulations', kind:'논문', cond:'건강한 성인 8명 연구', url:'https://pmc.ncbi.nlm.nih.gov/articles/PMC3092723/' },
+  R7:  { id:'R7', title:'비맥스제트정 e약은요', kind:'공식 자료', cond:'식약처 공식 사이트', url:'https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=202300436' },
+  R10: { id:'R10', title:'Calcium: effect of different amounts on nonheme- and heme-iron absorption in humans', kind:'논문', cond:'126명 연구, 한 끼 식사', url:'https://agris.fao.org/search/en/records/65de38d263b8185d9ca7afd3' },
+  R12: { id:'R12', title:'Levothyroxine (MedlinePlus)', kind:'공식 자료', cond:'미국 국립의학도서관', url:'https://medlineplus.gov/druginfo/meds/a682461.html' },
+  R13: { id:'R13', title:'Calcium in diet (MedlinePlus)', kind:'공식 자료', cond:'미국 국립의학도서관', url:'https://medlineplus.gov/ency/article/002412.htm' },
+  R22: { id:'R22', title:'식약처 e약은요 — 일반의약품 36개 조사', kind:'공식 자료', cond:'팀 조사 2026-10-29', url:'https://nedrug.mfds.go.kr/searchEasyDrug/easyDetail?itemSeq=202300436' },
+  // 성분 효과 출처(MedlinePlus Medical Encyclopedia). URL은 팀이 열어 확인한 뒤 확정한다.
+  MB12:{ id:'MB12', title:'Vitamin B12 (MedlinePlus)', kind:'공식 자료', cond:'미국 국립의학도서관', url:'https://medlineplus.gov/ency/article/002403.htm' },
+  MMG: { id:'MMG', title:'Magnesium in diet (MedlinePlus)', kind:'공식 자료', cond:'미국 국립의학도서관', url:'https://medlineplus.gov/ency/article/002423.htm' },
+  MFE: { id:'MFE', title:'Iron in diet (MedlinePlus)', kind:'공식 자료', cond:'미국 국립의학도서관', url:'https://medlineplus.gov/ency/article/002422.htm' },
+  MVD: { id:'MVD', title:'Vitamin D (MedlinePlus)', kind:'공식 자료', cond:'미국 국립의학도서관', url:'https://medlineplus.gov/ency/article/002405.htm' },
+  MVC: { id:'MVC', title:'Vitamin C (MedlinePlus)', kind:'공식 자료', cond:'미국 국립의학도서관', url:'https://medlineplus.gov/ency/article/002404.htm' },
+};
+// 판정용 성분(정규화 뒤 이름)과 쉬운 이름
+const ING = {
+  '레보티록신':{ easy:'갑상선약' }, '칼슘(보충용)':{ short:'칼슘' }, '철분':{}, '비타민C':{}, '비타민B군':{}, '마그네슘':{}, '오메가3':{}, '비타민D':{}, '유산균':{}, '밀크씨슬':{}, '루테인':{},
+  '비맥스제트정':{},
+};
+const ingName = k => (ING[k] && ING[k].short) || k;
+const ingLabel = k => ING[k] && ING[k].easy ? `${ingName(k)}(${ING[k].easy})` : ingName(k);
+// 품목 카탈로그. kind: 일반약 / 처방약 / 영양제. ings: 판정용 성분(정규화 표를 이미 거친 값). pair: 제품 단위 규칙용 키
+const CATALOG = [
+  { id:'synthroid', name:'씬지로이드정 0.1mg', company:'부광약품', kind:'처방약', easy:'갑상선약·레보티록신', raw:'레보티록신나트륨수화물 0.1mg', ings:['레보티록신'], keys:['씬지로이드','레보티록신','갑상선약','갑상선'] },
+  { id:'bmax', name:'비맥스제트정', company:'GC녹십자', kind:'일반약', easy:'피로회복 비타민B군', raw:'티아민질산염·리보플라빈·판토텐산칼슘 외', ings:['비타민B군','비맥스제트정'], keys:['비맥스','비타민B','비타민b'] },
+  { id:'ferobau', name:'훼로바-유서방정', company:'부광약품', kind:'일반약', easy:'철분제', raw:'건조황산제일철 256mg', ings:['철분'], keys:['훼로바','철분제','철분'] },
+  { id:'aronamin', name:'아로나민씨플러스정', company:'일동제약', kind:'일반약', easy:'비타민제', raw:'푸르설티아민·아스코르브산 외', ings:['비타민B군','비타민C'], keys:['아로나민','비타민'] },
+  { id:'calcium', name:'칼슘', company:'영양제 성분', kind:'영양제', easy:'탄산칼슘·시트르산칼슘 등', raw:'칼슘(보충용)', ings:['칼슘(보충용)'], keys:['칼슘','calcium'] },
+  { id:'iron', name:'철분', company:'영양제 성분', kind:'영양제', easy:'황산제일철·푸마르산철 등', raw:'철분', ings:['철분'], keys:['철분','철','iron'] },
+  { id:'vitc', name:'비타민C', company:'영양제 성분', kind:'영양제', easy:'아스코르브산', raw:'비타민C', ings:['비타민C'], keys:['비타민C','비타민c','비타민씨','아스코르브산'] },
+  { id:'vitb', name:'비타민B군', company:'영양제 성분', kind:'영양제', easy:'B1·B2·B6·B12 등', raw:'비타민B군', ings:['비타민B군'], keys:['비타민B','비타민b','B군'] },
+  { id:'mg', name:'마그네슘', company:'영양제 성분', kind:'영양제', easy:'산화마그네슘·구연산마그네슘 등', raw:'마그네슘', ings:['마그네슘'], keys:['마그네슘','magnesium'] },
+  { id:'omega', name:'오메가3', company:'영양제 성분', kind:'영양제', easy:'EPA·DHA', raw:'오메가3', ings:['오메가3'], keys:['오메가','omega'] },
+  { id:'vitd', name:'비타민D', company:'영양제 성분', kind:'영양제', easy:'콜레칼시페롤', raw:'비타민D', ings:['비타민D'], keys:['비타민D','비타민d','비타민디'] },
+  { id:'probio', name:'유산균', company:'영양제 성분', kind:'영양제', easy:'프로바이오틱스', raw:'유산균', ings:['유산균'], keys:['유산균','프로바이오'] },
+  { id:'milk', name:'밀크씨슬', company:'영양제 성분', kind:'영양제', easy:'실리마린', raw:'밀크씨슬', ings:['밀크씨슬'], keys:['밀크','실리마린'] },
+  { id:'lutein', name:'루테인', company:'영양제 성분', kind:'영양제', easy:'눈 영양제', raw:'루테인', ings:['루테인'], keys:['루테인'] },
+];
+// 조합 규칙. level: stop(함께 먹지 마세요) / gap(시간을 띄워 드세요)
+const RULES = [
+  { id:'bmax-ca', a:'비맥스제트정', b:'칼슘(보충용)', level:'stop', action:null,
+    quote:'인산염, 칼슘염, 경구용 테트라사이클린계 제제, 제산제, 레보도파와 함께 복용하지 마십시오.',
+    reason:'비맥스제트정의 e약은요 "이 약을 사용하는 동안 주의해야 할 약 또는 음식" 항목에 칼슘염과 함께 복용하지 말라고 적혀 있어요.',
+    ask:'비맥스제트정과 칼슘을 같이 먹고 있는데, 어떻게 나눠 먹어야 하나요?', sources:['R7'] },
+  { id:'levo-ca', a:'레보티록신', b:'칼슘(보충용)', level:'gap', action:'레보티록신과 최소 4시간 띄워 드세요',
+    quote:'If you take calcium carbonate or ferrous sulfate (iron supplement), take it at least 4 hours before or 4 hours after you take levothyroxine.',
+    reason:'건강한 성인 8명 연구에서 칼슘제를 레보티록신과 함께 먹으면 흡수가 약 20~25% 줄었고, MedlinePlus는 최소 4시간 띄우라고 안내해요.',
+    ask:'갑상선약과 칼슘을 몇 시간 띄워서 먹으면 되나요? 아침 공복 약이면 칼슘은 언제가 좋나요?', sources:['R3','R12'] },
+  { id:'levo-fe', a:'레보티록신', b:'철분', level:'gap', action:'레보티록신과 최소 4시간 띄워 드세요',
+    quote:'If you take calcium carbonate or ferrous sulfate (iron supplement), take it at least 4 hours before or 4 hours after you take levothyroxine.',
+    reason:'MedlinePlus는 황산제일철(철분 보충제)을 레보티록신보다 최소 4시간 전이나 뒤에 먹으라고 안내해요.',
+    ask:'갑상선약을 먹는 부모님께 철분제를 드려도 되나요? 몇 시간 띄워야 하나요?', sources:['R12'] },
+  { id:'ca-fe', a:'칼슘(보충용)', b:'철분', level:'gap', action:'같은 시간에 먹지 말고 나눠 드세요',
+    quote:'Calcium 300~600mg 과 함께 먹으면 철분 흡수가 약 50~60% 줄었다 (126명 연구).',
+    reason:'칼슘은 양에 비례해 철분 흡수를 막아요. 300~600mg에서 흡수가 절반 가까이 줄었어요.',
+    ask:'칼슘과 철분을 같이 먹고 있는데, 시간을 어떻게 나누면 되나요?', sources:['R10'] },
+];
+// 하루 기준량. 나이는 받지 않으므로 낮은 기준으로 판정하고 둘 다 보여 준다
+const LIMITS = [
+  { id:'ca-limit', ing:'칼슘(보충용)', unit:'mg', limits:[{who:'19~50세', mg:2500},{who:'50세 초과', mg:2000}], judge:2000,
+    quote:'For adults 19 to 50 years, the upper limit is 2,500 mg a day; for adults over 50, 2,000 mg a day (food and supplements combined).',
+    reason:'음식과 보충제를 합한 칼슘을 오랫동안 많이 먹으면 일부 사람에게 신장결석 위험이 커져요.',
+    ask:'하루 칼슘을 얼마나 줄이면 되나요? 음식으로 먹는 칼슘까지 더하면 어떻게 되나요?', sources:['R13'] },
+];
+// 성분 효과(추천용). 효과 문장이 없는 성분은 추천하지 않는다
+const EFFECTS = {
+  '비타민B군':{ goals:['피로 회복'], symptoms:['쉽게 피곤해요'], effect:'비타민B12는 적혈구를 만들고 신경이 제대로 일하는 데 필요해요.', src:'MB12' },
+  '마그네슘':{ goals:['피로 회복','수면'], symptoms:['쉽게 피곤해요','잠을 잘 못 자요'], effect:'마그네슘은 근육과 신경의 기능, 에너지 생성에 필요해요.', src:'MMG' },
+  '철분':{ goals:['피로 회복'], symptoms:['쉽게 피곤해요'], effect:'철분은 적혈구의 헤모글로빈을 만드는 데 필요하고, 부족하면 쉽게 피곤해질 수 있어요.', src:'MFE' },
+  '비타민D':{ goals:['뼈 건강','면역'], symptoms:['뼈·관절이 걱정돼요'], effect:'비타민D는 몸이 칼슘을 흡수하는 것을 돕고 뼈 건강에 필요해요.', src:'MVD' },
+  '칼슘(보충용)':{ goals:['뼈 건강'], symptoms:['뼈·관절이 걱정돼요'], effect:'칼슘은 뼈와 치아를 만들고 유지하는 데 필요해요.', src:'R13' },
+  '비타민C':{ goals:['면역'], symptoms:['감기에 자주 걸려요'], effect:'비타민C는 몸의 조직을 만들고 고치는 데 필요하고, 철분 흡수를 도와요.', src:'MVC' },
+};
+const GOALS = ['피로 회복','뼈 건강','눈 건강','수면','면역'];
+const SYMPTOMS = ['쉽게 피곤해요','잠을 잘 못 자요','눈이 뻑뻑해요','감기에 자주 걸려요','뼈·관절이 걱정돼요'];
+
+/* ═══════════════ 고정 문구 (docs/problem.yaml·scenarios.yaml 그대로) ═══════════════ */
+const T = {
+  tagline:'약과 영양제를 함께 먹을 때 해로운 조합을 출처와 함께 알려 줘요',
+  landingDisclaimer:'이 서비스는 처방이나 진단을 하지 않아요. 복용을 바꾸기 전에 약사·의사와 상담하세요',
+  consult:'복용을 바꾸기 전에 약사·의사와 상담하세요',
+  emptyHome:'먹고 있는 약이나 영양제를 추가해 보세요',
+  noRecord:'확인한 자료에서는 보고된 문제가 없어요. 걱정되면 약사에게 확인하세요',
+  deleted:'등록된 약·영양제가 목록에서 삭제되었습니다.',
+  notFound:'찾는 제품이 없어요. 성분 이름(예 칼슘)으로 검색해 보세요',
+  minChars:'2글자 이상 입력해 주세요',
+  already:'이미 내 목록에 있어요',
+  mgHint:'함량을 넣으면 하루 기준량도 확인해 드려요',
+  photoConsent:'사진을 AI로 보내 글자를 읽어요. 읽은 뒤 사진은 바로 지우고 저장하지 않아요',
+  photoTips:['플래시를 켜 주세요','처방전이 보이게 찍어 주세요','상표명이 보이게 찍어 주세요','흐리지 않게 찍어 주세요'],
+  blurry:'사진이 흐려서 읽지 못했어요. 다시 찍어 주세요',
+  photoNotFound:'사진에서 찾지 못했어요. 이름으로 검색해 보세요',
+  recDisclaimer:'이 추천은 진단이나 처방이 아니에요. 새로 드시기 전에 약사·의사와 상담하세요',
+  dupEmail:'이미 가입한 이메일이에요',
+  badLogin:'이메일 또는 비밀번호가 맞지 않아요',
+  levels:{ stop:'함께 먹지 마세요', gap:'시간을 띄워 드세요', over:'하루 기준량을 넘어요' },
+};
+const LEVEL_ORDER = { stop:0, gap:1, over:2 };
+const SEED = { email:'user@twopills.app', pw:'twopills1234' };
+
+/* ═══════════════ 저장소 ═══════════════ */
+const KEY = 'twopills.v1';
+let state = load();
+function load(){
+  try{ const s = JSON.parse(localStorage.getItem(KEY)); if(s && s.users) return s; }catch(e){}
+  const s = { users:{}, session:null, lists:{} };
+  s.users[SEED.email] = { pw:SEED.pw };
+  s.lists[SEED.email] = [
+    { id:'seed-1', catalogId:'synthroid', count:1, mg:null },
+    { id:'seed-2', catalogId:'calcium', count:1, mg:1000 },
+  ];
+  return s;
+}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+const me = () => state.session;
+const myList = () => (me() ? (state.lists[me()] = state.lists[me()] || []) : []);
+const item = id => CATALOG.find(c => c.id === id);
+const uid = () => Math.random().toString(36).slice(2, 9);
+
+/* ═══════════════ 판정 (DB로만, 랜덤·AI 없음) ═══════════════ */
+function entryIngs(e){ return item(e.catalogId).ings; }
+function dailyMg(e){ return e.mg ? e.count * e.mg : null; }
+function pairKey(a,b){ return [a,b].sort().join('|'); }
+function findRule(a,b){ return RULES.find(r => pairKey(r.a,r.b) === pairKey(a,b)); }
+function displayEntry(e){ const c = item(e.catalogId); return { name:c.name, easy:c.easy, kind:c.kind, dose: e.mg ? `${e.count}알 × ${e.mg}mg = 하루 ${e.count*e.mg}mg` : `하루 ${e.count}${c.kind==='영양제'?'알':'정'}` }; }
+// 새 항목(또는 목록 전체)을 점검해 소견 목록을 돌려준다
+function judge(entries, newEntry){
+  const findings = []; const seen = new Set(); let checkedPairs = 0;
+  const targets = newEntry ? [newEntry] : entries;
+  for(const t of targets){
+    for(const o of entries){
+      if(o === t || o.id === t.id) continue;
+      for(const a of entryIngs(t)) for(const b of entryIngs(o)){
+        if(a === b) continue; checkedPairs++;
+        const r = findRule(a,b); if(!r) continue;
+        const k = r.id; if(seen.has(k)) continue; seen.add(k);
+        // 표시 순서는 규칙에 적힌 순서(약 ↔ 영양제)로 고정한다
+        findings.push({ type:'pair', rule:r, level:r.level, left:r.a, right:r.b });
+      }
+    }
+  }
+  // 하루 합계
+  const all = newEntry ? [...entries.filter(e=>e.id!==newEntry.id), newEntry] : entries;
+  for(const L of LIMITS){
+    const parts = all.filter(e => entryIngs(e).includes(L.ing) && dailyMg(e));
+    const total = parts.reduce((s,e)=>s+dailyMg(e),0);
+    if(total > L.judge) findings.push({ type:'limit', rule:L, level:'over', total, parts });
+  }
+  findings.sort((x,y)=>LEVEL_ORDER[x.level]-LEVEL_ORDER[y.level]);
+  return { findings, checkedPairs };
+}
+function ruleById(id){ return RULES.find(r=>r.id===id) || LIMITS.find(l=>l.id===id); }
+
+
+/* ═══════════════ 스크롤 반응 (히어로 사진 + 양옆 3D 알약) ═══════════════ */
+const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+// 사진(541×1043)에서 알약 하나씩 잘라 낸 값. c = [x, y, w, h]. 알약 둘레 여백을 두고 가장자리를 흐려 배경에 녹인다
+// side: 왼쪽/오른쪽 가장자리, x: 가장자리에서 떨어진 비율(%, 음수면 화면 밖으로 걸침), speed: 스크롤을 얼마나 따라가는가(클수록 가깝다)
+const FIELD = [
+  { c:[0,241,166,345],   side:'L', j:0,   y:60,  speed:.34, rot:.010, base:-8,  k:.95 },
+  { c:[104,68,182,192],  side:'L', j:.15, y:420, speed:.12, rot:.016, base:10,  k:.60 },
+  { c:[89,514,275,200],  side:'L', j:-.1, y:250, speed:.22, rot:-.012,base:-18, k:.85 },
+  { c:[79,698,153,298],  side:'L', j:.1,  y:640, speed:.28, rot:.014, base:6,   k:.80 },
+  { c:[219,308,181,218], side:'L', j:-.15,y:820, speed:.09, rot:-.018,base:14,  k:.55 },
+  { c:[254,0,287,359],   side:'R', j:0,   y:120, speed:.30, rot:-.010,base:12,  k:.95 },
+  { c:[418,284,123,230], side:'R', j:.12, y:500, speed:.14, rot:.020, base:-6,  k:.60 },
+  { c:[322,488,219,286], side:'R', j:-.1, y:300, speed:.36, rot:.008, base:-12, k:.95 },
+  { c:[221,641,249,175], side:'R', j:.1,  y:700, speed:.18, rot:-.016,base:20,  k:.80 },
+  { c:[351,881,190,162], side:'R', j:-.12,y:880, speed:.10, rot:.012, base:0,   k:.60 },
+];
+let fieldEls = null;
+function buildField(){
+  const host = document.getElementById('pillfield'); if(!host) return;
+  host.innerHTML = '';
+  // 글이 있는 가운데(최대 1120px)는 비우고, 양옆 여백 안에만 알약을 둔다. 여백이 좁으면(휴대폰·작은 창) 알약을 숨긴다
+  const gutter = Math.max(0, (window.innerWidth - 1120) / 2);
+  host.style.display = gutter < 56 ? 'none' : '';
+  if(gutter < 56){ fieldEls = []; return; }
+  fieldEls = FIELD.map(f => {
+    const w = Math.round(Math.min(f.c[2] * 1.1, gutter * f.k));
+    const off = Math.max(0, (gutter - w) / 2 + gutter * f.j * .5); // 여백 한가운데에서 조금 흔들어 놓는다
+    const el = document.createElement('div'); el.className = 'fpill';
+    el.style.cssText = `--cx:${f.c[0]};--cy:${f.c[1]};--cw:${f.c[2]};--ch:${f.c[3]};width:${w}px;${f.side==='L'?'left':'right'}:${Math.round(off)}px`;
+    host.appendChild(el); return { el, f };
+  });
+}
+let parallaxQueued = false;
+function parallax(){
+  parallaxQueued = false;
+  const vh = window.innerHeight, sy = window.scrollY;
+  if(!fieldEls) buildField();
+  fieldEls.forEach(({el,f}) => {
+    const h = el.offsetHeight, loop = vh + h*2;
+    // 알약마다 다른 속도로 위로 흘러가다 화면 밖으로 나가면 반대쪽에서 다시 들어온다. 스크롤을 올리면 거꾸로 간다
+    const y = (((f.y*vh/900 - (reduceMotion?0:sy)*f.speed) % loop) + loop) % loop - h;
+    const r = f.base + (reduceMotion?0:sy*f.rot);
+    el.style.transform = `translate3d(0,${y.toFixed(1)}px,0) rotate(${r.toFixed(2)}deg)`;
+  });
+}
+function queueParallax(){ if(!parallaxQueued){ parallaxQueued = true; requestAnimationFrame(parallax); } }
+window.addEventListener('scroll', queueParallax, { passive:true });
+window.addEventListener('resize', () => { buildField(); queueParallax(); });
+
+/* ═══════════════ 라우터 ═══════════════ */
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let view = {}; // 화면별 임시 상태
+function go(h){ location.hash = h; }
+window.addEventListener('hashchange', render);
+window.addEventListener('DOMContentLoaded', render);
+function route(){ const h = location.hash.replace(/^#\/?/, ''); return h.split('/'); }
+function render(){
+  const [p, arg] = route();
+  const authed = !!me();
+  const needAuth = ['home','list','analyze','report','detail','recommend'];
+  if(needAuth.includes(p) && !authed){ go('/login'); return; }
+  if((p === 'login' || p === 'signup') && authed){ go('/home'); return; }
+  if(!['', 'signup','login','home','list','analyze','report','detail','recommend'].includes(p)){ go('/'); return; }
+  document.body.classList.toggle('app', authed);
+  const app = document.getElementById('app');
+  const pages = { '':Landing, signup:Signup, login:Login, home:Home, list:List, analyze:Analyze, report:Report, detail:Detail, recommend:Recommend };
+  app.innerHTML = Nav(p) + pages[p](arg) + (authed ? BottomBar(p) : '');
+  window.scrollTo(0,0);
+  queueParallax();
+  if(typeof view.after === 'function'){ const f = view.after; view.after = null; f(); }
+}
+
+/* ═══════════════ 공통 조각 ═══════════════ */
+function Logo(){ return `<a class="logo" href="#/" aria-label="TwoPills 홈"><span class="mark"></span><span class="word">TwoPills</span></a>`; }
+function Nav(p){
+  const authed = !!me();
+  const tab = (h,label,key)=>`<a href="#/${h}" ${p===key?'aria-current="page"':''} data-testid="tab-${h}">${label}</a>`;
+  return `<header class="nav"><div class="wrap">${Logo()}
+    ${authed ? `<nav class="tabs" aria-label="주 메뉴">${tab('home','홈','home')}${tab('list','복용 목록','list')}${tab('analyze','분석하기','analyze')}</nav>` : ''}
+    <span class="spacer"></span>
+    ${authed ? `<span class="who">${esc(me())}</span><button class="btn btn-ghost btn-sm" data-action="logout">로그아웃</button>`
+             : `<a class="btn btn-ghost" href="#/login" data-testid="nav-login">로그인</a><a class="btn btn-primary" href="#/signup" data-testid="nav-signup">회원가입</a>`}
+  </div></header>`;
+}
+function BottomBar(p){
+  const tab = (h,label,key)=>`<a href="#/${h}" ${p===key?'aria-current="page"':''}>${label}</a>`;
+  return `<nav class="bottombar" aria-label="아래 탭">${tab('home','홈','home')}${tab('list','복용 목록','list')}${tab('analyze','분석하기','analyze')}</nav>`;
+}
+function levelBadge(level){
+  const cls = level==='over' ? 'badge-over' : 'badge-warn';
+  const ico = level==='stop' ? '!' : level==='gap' ? '◷' : '≠';
+  return `<span class="badge ${cls}"><span class="ico" aria-hidden="true">${ico}</span>${T.levels[level]}</span>`;
+}
+function kindBadge(k){ return `<span class="badge ${k==='영양제'?'badge-cobalt':''}">${k}</span>`; }
+function srcLine(id){ const s = SRC[id]; return `<div class="src"><span class="badge">${s.kind}</span><span class="t">${esc(s.title)}</span><span class="faint">${esc(s.cond)}</span><a href="${s.url}" target="_blank" rel="noopener" data-testid="src-link">출처 보기</a></div>`; }
+function pairLabel(f){ return `${ingLabel(f.left)} ↔ ${ingLabel(f.right)}`; }
+function Finding(f, opts={}){
+  const cls = f.level==='over' ? 'finding-over' : 'finding-warn';
+  if(f.type==='pair'){
+    const r = f.rule;
+    return `<article class="finding ${cls}" data-testid="finding" data-rule="${r.id}">
+      <div class="head">${levelBadge(f.level)}</div>
+      <div class="lvl">${T.levels[f.level]}</div>
+      ${r.action ? `<div class="act">${esc(r.action)}</div>` : ''}
+      <div class="pair" data-testid="finding-pair">${esc(pairLabel(f))}</div>
+      <p class="muted">${esc(r.reason)}</p>
+      <blockquote class="quote">${esc(r.quote)}</blockquote>
+      <div class="stack" style="margin-top:12px">${r.sources.map(srcLine).join('')}</div>
+      <div class="q"><strong>약사에게 물어보세요</strong><br>${esc(r.ask)}</div>
+      ${opts.detail!==false ? `<div style="margin-top:12px"><a class="btn btn-sm" href="#/detail/${r.id}" data-testid="finding-detail">자세히</a></div>` : ''}
+    </article>`;
+  }
+  const L = f.rule;
+  const mine = f.parts.map(e=>{ const c=item(e.catalogId); return `${c.name} ${e.count}알 × ${e.mg}mg`; }).join(', ');
+  return `<article class="finding ${cls}" data-testid="finding" data-rule="${L.id}">
+    <div class="head">${levelBadge('over')}</div>
+    <div class="lvl">${T.levels.over}</div>
+    <div class="act">내 하루 ${ingName(L.ing)} <span class="num">${f.total.toLocaleString()}</span>${L.unit}</div>
+    <div class="pair">${esc(mine)}</div>
+    <p class="muted">출처의 하루 기준량: ${L.limits.map(l=>`${l.who} ${l.mg.toLocaleString()}${L.unit}`).join(', ')}. 나이는 받지 않으므로 낮은 기준으로 판정했어요.</p>
+    <p class="muted">${esc(L.reason)}</p>
+    <blockquote class="quote">${esc(L.quote)}</blockquote>
+    <div class="stack" style="margin-top:12px">${L.sources.map(srcLine).join('')}</div>
+    <div class="q"><strong>약사에게 물어보세요</strong><br>${esc(L.ask)}</div>
+    ${opts.detail!==false ? `<div style="margin-top:12px"><a class="btn btn-sm" href="#/detail/${L.id}" data-testid="finding-detail">자세히</a></div>` : ''}
+  </article>`;
+}
+function NoRecordCard(checkedPairs){
+  return `<div class="notice notice-none" data-testid="no-record">
+    <strong>${T.noRecord}</strong>
+    <p class="faint" style="margin:8px 0 0">확인한 자료: 식약처 e약은요 · 식약처 건강기능식품 섭취 주의사항 고시 · MedlinePlus · 논문(PMC) / 확인한 성분 짝 ${checkedPairs}개 / DB 확인 날짜 ${DB_CHECKED}</p>
+    <p class="faint" style="margin:4px 0 0">약사에게 물어보세요: 지금 먹는 약·영양제 목록을 보여 드리고 같이 먹어도 되는지 확인하세요.</p>
+  </div>`;
+}
+
+/* ═══════════════ 화면 ═══════════════ */
+function Landing(){
+  return `
+  <section class="hero"><div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">약 × 영양제 복용 점검</div>
+      <h1>약과 영양제를<br>함께 먹을 때<br><b>해로운 조합을 출처와 함께 알려 줘요</b></h1>
+      <p class="lead">약은 병원에서, 영양제는 인터넷에서 따로 들어와요. 그 둘을 함께 봐 주는 사람은 없어요. TwoPills는 목록에 더하는 순간, 식약처 원문과 논문으로 먼저 알려 드려요.</p>
+      <div class="cta"><a class="btn btn-primary btn-lg" href="#/signup" data-testid="hero-signup">회원가입</a><a class="btn btn-lg" href="#/login">로그인</a></div>
+      <p class="faint" data-testid="landing-disclaimer">${T.landingDisclaimer}</p>
+    </div>
+    <div class="panel preview" aria-label="경고 화면 미리보기">
+      <div class="cap">갑상선약을 먹는 분이 칼슘을 더하는 순간, 이렇게 떠요</div>
+      <span class="badge badge-warn"><span class="ico" aria-hidden="true">◷</span>시간을 띄워 드세요</span>
+      <div class="act">레보티록신과 최소 4시간 띄워 드세요</div>
+      <p style="font-weight:700;margin-bottom:8px">레보티록신(갑상선약) ↔ 칼슘</p>
+      <blockquote class="quote">If you take calcium carbonate or ferrous sulfate, take it at least 4 hours before or 4 hours after you take levothyroxine.</blockquote>
+      <p class="faint" style="margin:12px 0 0">출처: <a href="${SRC.R12.url}" target="_blank" rel="noopener">Levothyroxine (MedlinePlus)</a> · <a href="${SRC.R3.url}" target="_blank" rel="noopener">PMC 논문</a></p>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="eyebrow">왜 필요한가요</div>
+    <h2>영양제는 <b>괜찮겠지</b> 하고 먹다가 약과 부딪혀요</h2>
+    <div class="grid grid-3" style="margin-top:24px">
+      <div class="card"><h4>따로따로 들어와요</h4><p class="muted">약은 병원에서, 영양제는 자녀가 인터넷에서 사 보내거나 마트·직구·유튜브 추천으로 사요. 둘을 같이 놓고 봐 주는 사람이 없어요.</p></div>
+      <div class="card"><h4>아무도 묻지 않아요</h4><p class="muted">병원과 약국은 약만 묻고 영양제는 묻지 않아요. 가족도 "머 괜찮지 않을까?" 하고 넘겨요.</p></div>
+      <div class="card"><h4>물어도 찜찜해요</h4><p class="muted">AI에게 물으면 "띄워 먹으면 문제없을 것 같다"는 애매한 답이 와요. 근거가 없으니 믿어도 되는지 알 수 없어요.</p></div>
+    </div>
+    <p class="problem" style="margin-top:24px">"같이 먹지 마세요"는 약 설명서 안에만 적혀 있어요. TwoPills는 그 문장을 <strong>내 복용 목록</strong>에 연결해요.</p>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="eyebrow">TwoPills가 다른 점</div>
+    <h2>묻지 않아도 알려 주고, <b>근거를 보여 줘요</b></h2>
+    <div class="cmp-wrap" style="margin-top:24px"><table class="cmp">
+      <thead><tr><th></th><th>유튜브·블로그·SNS</th><th>생성형 AI에게 묻기</th><th class="us">TwoPills</th></tr></thead>
+      <tbody>
+        <tr><th>내 약과 같이 보나요</th><td>영상은 내 약을 몰라요</td><td>먹는 걸 매번 직접 적어야 해요</td><td class="us">한 번 등록하면 더할 때마다 자동으로 점검해요</td></tr>
+        <tr><th>근거가 보이나요</th><td>비전문가 말이라 틀릴 수 있어요</td><td>설명서 문구를 확인하지 못한 채 답하기도 해요</td><td class="us">원문 문장과 출처 링크를 그대로 보여 줘요</td></tr>
+        <tr><th>같은 질문에 같은 답인가요</th><td>사람마다 달라요</td><td>물을 때마다 달라질 수 있어요</td><td class="us">같은 조합에는 항상 같은 답이 나와요</td></tr>
+        <tr><th>그다음엔 무엇을 하나요</th><td>광고가 많아 고를 수 없어요</td><td>"문제없을 것 같다"에서 끝나요</td><td class="us">해야 할 행동, 약사에게 물을 질문, 리포트까지 줘요</td></tr>
+      </tbody></table></div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="eyebrow">이럴 때 열어 보세요</div>
+    <h2>먹는 사람도, <b>챙겨 드리는 사람도</b></h2>
+    <div class="grid grid-3 who" style="margin-top:24px">
+      <div class="card"><div class="tag">20~30대</div><h4>영양제를 고르거나 살 때</h4><p class="muted">유튜브 추천으로 산 비타민을 먹다가 감기약을 먹게 됐다면, 같이 먹어도 되는지 먼저 확인하고 내 약과 부딪히지 않는 영양제를 추천받아요.</p></div>
+      <div class="card"><div class="tag">부모님께 사 드리는 자녀</div><h4>사 드리기 전에</h4><p class="muted">부모님 약과 사 드릴 영양제를 내 목록에 넣어 미리 점검하고, 리포트를 부모님이나 약사에게 보여 드려요.</p></div>
+      <div class="card"><div class="tag">약을 매일 드시는 부모님</div><h4>읽기 어려운 성분표 대신 사진으로</h4><p class="muted">약 상자나 봉투를 찍으면 후보를 찾아 줘요. 갑상선약처럼 흔히 부르는 이름으로 찾아도 돼요.</p></div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="eyebrow">사용 방법</div>
+    <h2>네 단계면 <b>끝나요</b></h2>
+    <div class="grid grid-4" style="margin-top:24px">
+      <div class="card step"><div class="num">1</div><h4>검색이나 사진으로 등록한다</h4><p class="muted">약 봉투에 적힌 이름, 흔히 부르는 이름(갑상선약), 영양제 성분으로 찾아요.</p></div>
+      <div class="card step"><div class="num">2</div><h4>더할 때 점검한다</h4><p class="muted">새 항목의 성분 × 내 목록 모든 성분의 짝을 DB에서 찾아요.</p></div>
+      <div class="card step"><div class="num">3</div><h4>경고와 출처를 확인한다</h4><p class="muted">원문 문장, 해야 할 행동, 약사에게 물을 질문까지 같이 보여 줘요.</p></div>
+      <div class="card step"><div class="num">4</div><h4>내 약과 부딪히지 않는 영양제를 추천받는다</h4><p class="muted">설문으로 원하는 효과를 받고 DB 안에서만 골라요.</p></div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="eyebrow">근거</div>
+    <h2>지어내지 않아요. <b>원문을 그대로</b> 보여 줘요</h2>
+    <div class="grid grid-3" style="margin-top:24px">
+      <div class="card"><span class="badge">공식 자료</span><h4 style="margin:12px 0 8px">식약처 e약은요</h4><blockquote class="quote">인산염, 칼슘염, 경구용 테트라사이클린계 제제, 제산제, 레보도파와 함께 복용하지 마십시오.</blockquote><p class="faint" style="margin-top:8px"><a href="${SRC.R7.url}" target="_blank" rel="noopener">비맥스제트정 e약은요</a></p></div>
+      <div class="card"><span class="badge">공식 자료</span><h4 style="margin:12px 0 8px">MedlinePlus</h4><blockquote class="quote">탄산칼슘이나 황산제일철을 먹는다면 레보티록신보다 최소 4시간 전이나 뒤에 드세요.</blockquote><p class="faint" style="margin-top:8px"><a href="${SRC.R12.url}" target="_blank" rel="noopener">Levothyroxine (MedlinePlus)</a></p></div>
+      <div class="card"><span class="badge">논문</span><h4 style="margin:12px 0 8px">PMC 논문 · 건강한 성인 8명 연구</h4><blockquote class="quote">칼슘제와 함께 먹으면 레보티록신 흡수가 약 20~25% 줄었어요.</blockquote><p class="faint" style="margin-top:8px"><a href="${SRC.R3.url}" target="_blank" rel="noopener">Thyroid, 2011</a></p></div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="eyebrow">약속</div>
+    <div class="grid grid-2">
+      <div class="card card-soft"><h4>출처 없는 조합은 DB에 들어가지 못해요</h4><p class="muted">원문을 열어 문장을 옮기고 다른 팀원이 대조한 것만 넣어요.</p></div>
+      <div class="card card-soft"><h4>AI는 판정하지 않아요</h4><p class="muted">조합 판정에 AI 생성이 없어요. AI는 사진 글자 읽기와 추천 후보 고르기에만 써요.</p></div>
+      <div class="card card-soft"><h4>처방·진단·복용 중단 지시를 하지 않아요</h4><p class="muted">경고해도 막지 않아요. '그래도 추가'와 '취소'는 사용자가 골라요.</p></div>
+      <div class="card card-soft"><h4>사진은 읽은 뒤 바로 지워요</h4><p class="muted">보내기 전에 동의를 받고, 서버와 DB 어디에도 저장하지 않아요.</p></div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="band"><h3>먹고 있는 약과 영양제를 <b>한자리에</b> 모아 보세요</h3><a class="btn btn-primary btn-lg" href="#/signup">회원가입</a></div>
+  </div></section>
+
+  <footer class="footer"><div class="wrap">
+    <div>${Logo()}<p style="margin-top:8px">SUMTECH 2026 루프톤 · 팀 늘크크</p></div>
+    <div class="prose"><p>${T.landingDisclaimer}</p><p>출처: <a href="${SRC.R22.url}" target="_blank" rel="noopener">식약처 e약은요</a> · <a href="${SRC.R12.url}" target="_blank" rel="noopener">MedlinePlus</a> · <a href="${SRC.R3.url}" target="_blank" rel="noopener">PMC</a></p></div>
+  </div></footer>`;
+}
+
+function Signup(){
+  const e = view.signupError || '';
+  return `<main class="page"><div class="wrap" style="max-width:488px">
+    <div class="page-head"><h2>회원가입</h2><p class="muted">이메일과 비밀번호만 있으면 돼요.</p></div>
+    <form data-form="signup" novalidate>
+      <div class="field"><label for="su-email">이메일</label><input class="input" id="su-email" name="email" type="email" autocomplete="email" data-testid="signup-email"></div>
+      <div class="field"><label for="su-pw">비밀번호</label><input class="input" id="su-pw" name="pw" type="password" autocomplete="new-password" data-testid="signup-pw"><span class="hint">8자 이상</span></div>
+      <div class="field"><label for="su-pw2">비밀번호 확인</label><input class="input" id="su-pw2" name="pw2" type="password" autocomplete="new-password" data-testid="signup-pw2"></div>
+      <div class="field"><label class="check"><input type="checkbox" name="consent" data-testid="signup-consent"><span>복용 중인 약·영양제(건강 정보) 수집·이용에 동의해요. 목록은 내 계정에만 저장되고 탈퇴하면 지워져요.</span></label></div>
+      ${e ? `<p class="error" role="alert" data-testid="signup-error">${esc(e)}</p>` : ''}
+      <button class="btn btn-primary btn-block btn-lg" type="submit" data-testid="signup-submit">가입하기</button>
+    </form>
+    <p class="muted" style="margin-top:16px">이미 계정이 있나요? <a href="#/login">로그인</a></p>
+  </div></main>`;
+}
+function Login(){
+  const e = view.loginError || '';
+  return `<main class="page"><div class="wrap" style="max-width:488px">
+    <div class="page-head"><h2>로그인</h2></div>
+    <form data-form="login" novalidate>
+      <div class="field"><label for="li-email">이메일</label><input class="input" id="li-email" name="email" type="email" autocomplete="email" data-testid="login-email" value="${esc(view.prefillEmail||'')}"></div>
+      <div class="field"><label for="li-pw">비밀번호</label><input class="input" id="li-pw" name="pw" type="password" autocomplete="current-password" data-testid="login-pw" value="${esc(view.prefillPw||'')}"></div>
+      ${e ? `<p class="error" role="alert" data-testid="login-error">${esc(e)}</p>` : ''}
+      <button class="btn btn-primary btn-block btn-lg" type="submit" data-testid="login-submit">로그인</button>
+    </form>
+    <button class="btn btn-block" style="margin-top:12px" data-action="demo" data-testid="login-demo">시연 계정으로 채우기</button>
+    <p class="muted" style="margin-top:16px">계정이 없나요? <a href="#/signup">회원가입</a></p>
+  </div></main>`;
+}
+function Home(){
+  const list = myList();
+  const drugs = list.filter(e=>item(e.catalogId).kind!=='영양제').length, sups = list.length - drugs;
+  return `<main class="page"><div class="wrap">
+    <div class="page-head"><div class="eyebrow">홈</div><h2>안녕하세요, <b>${esc(me().split('@')[0])}</b>님</h2></div>
+    ${list.length===0 ? `<div class="notice" data-testid="home-empty">${T.emptyHome}</div>` : ''}
+    <div class="grid grid-2" style="margin-top:16px">
+      <a class="card card-link" href="#/list" data-testid="home-list"><div class="eyebrow">등록·점검</div><h3>복용 목록</h3><p class="muted" style="margin-top:8px">약 <span class="num">${drugs}</span>개 · 영양제 <span class="num">${sups}</span>개</p></a>
+      <a class="card card-link" href="#/analyze" data-testid="home-analyze"><div class="eyebrow">리포트</div><h3>분석하기</h3><p class="muted" style="margin-top:8px">약사·의사에게 보여 줄 복용 리포트</p></a>
+    </div>
+    <div style="margin-top:24px"><a class="btn btn-black btn-lg" href="#/recommend" data-testid="home-recommend">영양제 추천받기</a></div>
+  </div></main>`;
+}
+
+/* ── 복용 목록 ── */
+function List(){
+  view.listMode = view.listMode || 'search';
+  const list = myList();
+  const drugs = list.filter(e=>item(e.catalogId).kind!=='영양제'), sups = list.filter(e=>item(e.catalogId).kind==='영양제');
+  const rows = arr => arr.length ? `<table class="tbl"><thead><tr><th>이름</th><th>성분</th><th>하루 복용량</th><th></th></tr></thead><tbody>${arr.map(e=>{const c=item(e.catalogId);const d=displayEntry(e);return `<tr data-testid="list-row" data-name="${esc(c.name)}"><td><span class="name">${esc(c.name)}</span><br><span class="faint">${esc(c.easy)}</span></td><td class="muted">${esc(c.raw)}</td><td>${esc(d.dose)}</td><td style="text-align:right"><button class="btn btn-sm" data-action="ask-delete" data-id="${e.id}" data-testid="row-delete">삭제</button></td></tr>`;}).join('')}</tbody></table>` : `<p class="faint" style="padding:8px 0">아직 없어요.</p>`;
+  return `<main class="page"><div class="wrap">
+    <div class="page-head"><div class="eyebrow">복용 목록</div><h2>먹고 있는 약과 영양제를 <b>한자리에</b></h2></div>
+    <div class="list-layout">
+      <section class="card" aria-label="등록">
+        <div class="seg" role="tablist"><button role="tab" aria-pressed="${view.listMode==='search'}" data-action="mode" data-mode="search" data-testid="mode-search">검색으로 등록</button><button role="tab" aria-pressed="${view.listMode==='photo'}" data-action="mode" data-mode="photo" data-testid="mode-photo">사진으로 등록</button></div>
+        <div style="margin-top:16px">${view.listMode==='search' ? SearchPanel() : PhotoPanel()}</div>
+      </section>
+      <section class="stack" aria-label="내 목록">
+        ${view.flash ? view.flash : ''}
+        ${list.length===0 ? `<div class="empty" data-testid="list-empty">${T.emptyHome}</div>` : `
+        <div class="card"><h4>약</h4>${rows(drugs)}</div>
+        <div class="card"><h4>영양제</h4>${rows(sups)}</div>`}
+        <div><a class="btn btn-primary btn-lg" href="#/analyze" data-testid="list-analyze">분석하기</a></div>
+      </section>
+    </div>
+  </div></main>`;
+}
+function SearchPanel(){
+  const q = view.q || '', res = view.results, sel = view.selected ? item(view.selected) : null;
+  let body = '';
+  if(sel){
+    body = `<div class="card card-soft" data-testid="selected">
+      <div class="row" style="justify-content:space-between"><div><span class="name" style="font-weight:700">${esc(sel.name)}</span> ${kindBadge(sel.kind)}<br><span class="faint">${esc(sel.company)} · ${esc(sel.raw)}</span></div><button class="btn btn-ghost btn-sm" data-action="unselect">다른 제품</button></div>
+      <form data-form="register" style="margin-top:16px" novalidate>
+        <div class="row-2">
+          <div class="field"><label for="cnt">하루에 먹는 개수</label><input class="input" id="cnt" name="count" type="number" min="1" step="1" inputmode="numeric" data-testid="reg-count" value="${view.count||''}"></div>
+          ${sel.kind==='영양제' ? `<div class="field"><label for="mg">한 알 함량 (mg, 선택)</label><input class="input" id="mg" name="mg" type="number" min="0" inputmode="numeric" data-testid="reg-mg" value="${view.mg||''}"><span class="hint">${T.mgHint}</span></div>` : ''}
+        </div>
+        ${view.regError ? `<p class="error" role="alert">${esc(view.regError)}</p>` : ''}
+        <button class="btn btn-primary btn-block" type="submit" data-testid="reg-submit">등록</button>
+      </form></div>`;
+  } else if(res){
+    body = res.length ? `<div class="results" data-testid="results">${res.map(c=>`<button class="result" data-action="select" data-id="${c.id}" data-testid="result"><span><span class="n">${esc(c.name)}</span> ${kindBadge(c.kind)}<br><span class="s">${esc(c.company)} · ${esc(c.easy)} · ${esc(c.raw)}</span></span><span class="faint">고르기</span></button>`).join('')}</div>`
+                      : `<div class="empty" data-testid="search-empty">${T.notFound}</div>`;
+  }
+  return `<form data-form="search" novalidate>
+    <div class="field"><label for="q">제품명·성분·흔히 부르는 이름</label><div class="row" style="flex-wrap:nowrap"><input class="input" id="q" name="q" placeholder="예 비맥스, 갑상선약, 칼슘" value="${esc(q)}" data-testid="search-input"><button class="btn btn-black" type="submit" data-testid="search-submit">검색</button></div>${view.qError?`<span class="error">${esc(view.qError)}</span>`:''}</div>
+  </form>${body}`;
+}
+function PhotoPanel(){
+  const st = view.photo || { step:'consent' };
+  if(st.step==='consent') return `<div class="stack" data-testid="photo-consent">
+    <p>${T.photoConsent}</p>
+    <div class="row"><button class="btn btn-primary" data-action="photo-consent" data-testid="photo-agree">동의하고 찍기</button><button class="btn" data-action="mode" data-mode="search">검색으로 등록</button></div></div>`;
+  if(st.step==='shoot' || st.step==='error') return `<div class="stack">
+    <div class="card card-soft"><strong>촬영 안내</strong><ul class="tips" data-testid="photo-tips">${T.photoTips.map(t=>`<li>${t}</li>`).join('')}</ul></div>
+    ${st.step==='error' ? `<div class="notice notice-warn" role="alert" data-testid="photo-error">${esc(st.msg)}</div>` : ''}
+    <label class="drop"><input type="file" accept="image/*" data-file="photo" data-testid="photo-file"><strong>${st.step==='error'?'다시 찍기':'사진 올리기'}</strong><br><span class="faint">처방전·약 봉투·약 상자·영양제 상표</span></label>
+    ${st.step==='error' ? `<div class="row"><button class="btn btn-primary" data-action="photo-retry" data-testid="photo-retry">다시 찍기</button><button class="btn" data-action="mode" data-mode="search">검색으로 등록</button></div>` : ''}
+    <div><p class="faint">샘플 사진으로 해 보기</p><div class="row"><button class="chip" data-action="photo-sample" data-sample="blurry" data-testid="sample-blurry">흐린 알약 사진</button><button class="chip" data-action="photo-sample" data-sample="ferobau" data-testid="sample-ferobau">훼로바-유서방정 상자</button><button class="chip" data-action="photo-sample" data-sample="synthroid" data-testid="sample-synthroid">씬지로이드 약 봉투</button></div></div>
+  </div>`;
+  if(st.step==='reading') return `<div class="progress"><div class="p"><span class="dot"></span>사진에서 글자를 읽는 중…</div></div>`;
+  if(st.step==='candidates') return `<div class="stack">
+    <p><strong>사진에서 읽은 후보예요.</strong> 맞는 것을 골라 주세요.</p>
+    <div class="results" data-testid="candidates">${st.list.map(c=>`<button class="result" data-action="select" data-id="${c.id}" data-testid="candidate"><span><span class="n">${esc(c.name)}</span> ${kindBadge(c.kind)}<br><span class="s">${esc(c.raw)}</span></span><span class="faint">고르기</span></button>`).join('')}</div>
+    ${st.list.length===0 ? `<div class="notice notice-none">${T.photoNotFound}</div>` : ''}
+    <div class="row"><button class="btn btn-sm" data-action="photo-retry">다시 찍기</button><button class="btn btn-sm" data-action="mode" data-mode="search">검색으로 등록</button></div>
+  </div>`;
+  if(st.step==='selected'){ view.selected = st.sel; return SearchPanel(); }
+  return '';
+}
+
+/* ── 분석 ── */
+function Analyze(){
+  const list = myList();
+  if(view.running){
+    const steps = ['성분 맞추기','조합 찾기','하루 합계 비교'];
+    return `<main class="page"><div class="wrap prose"><div class="page-head"><h2>분석 중</h2></div><div class="progress" data-testid="progress">${steps.map((s,i)=>`<div class="p ${i<view.runStep?'done':''}"><span class="dot"></span>${s}</div>`).join('')}</div></div></main>`;
+  }
+  return `<main class="page"><div class="wrap prose">
+    <div class="page-head"><div class="eyebrow">분석하기</div><h2>목록 전체를 <b>DB로만</b> 점검해요</h2><p class="muted">해로운 조합과 같은 성분의 하루 합계를 찾아 약사·의사에게 보여 줄 리포트로 만들어요.</p></div>
+    ${list.length===0 ? `<div class="empty">${T.emptyHome}<div style="margin-top:16px"><a class="btn" href="#/list">복용 목록</a></div></div>` :
+    `<p class="muted">등록된 항목 <span class="num">${list.length}</span>개</p><button class="btn btn-primary btn-lg" data-action="analyze" data-testid="analyze-start">분석 시작</button>`}
+  </div></main>`;
+}
+function Report(){
+  const list = myList();
+  const { findings } = judge(list, null);
+  const drugs = list.filter(e=>item(e.catalogId).kind!=='영양제'), sups = list.filter(e=>item(e.catalogId).kind==='영양제');
+  const oneLine = list.map(e=>{ const c=item(e.catalogId); return `${ingName(c.ings[0])} ${e.mg? e.count*e.mg+'mg' : e.count+(c.kind==='영양제'?'알':'정')}`; }).join(', ');
+  const srcIds = [...new Set(findings.flatMap(f=>f.rule.sources))];
+  return `<main class="page"><div class="wrap" style="max-width:800px">
+    <div class="page-head"><div class="eyebrow">복용 리포트 · ${new Date().toISOString().slice(0,10)}</div><h2 data-testid="report-title">주의할 항목 <b class="num">${findings.length}</b>개</h2></div>
+    <div class="summary">
+      <div class="card ${findings.length?'warn':''}"><div class="faint">주의할 항목</div><div class="num" data-testid="sum-findings">${findings.length}</div></div>
+      <div class="card"><div class="faint">약</div><div class="num">${drugs.length}</div></div>
+      <div class="card"><div class="faint">영양제</div><div class="num">${sups.length}</div></div>
+    </div>
+    <section class="stack" style="margin-top:24px" data-testid="report-findings">
+      ${findings.length ? findings.map(f=>Finding(f)).join('') : NoRecordCard(judge(list,null).checkedPairs)}
+    </section>
+    <section class="card" style="margin-top:24px" data-testid="report-list">
+      <h4>복용 중인 약·영양제</h4>
+      <p class="muted">약사에게 보여 줄 한 줄: <strong data-testid="report-oneline">${esc(oneLine)}</strong></p>
+      <table class="tbl"><thead><tr><th>이름</th><th>종류</th><th>하루 복용량</th></tr></thead><tbody>${list.map(e=>{const c=item(e.catalogId);const d=displayEntry(e);return `<tr><td><span class="name">${esc(ingName(c.ings[0]))}</span> <span class="faint">${esc(c.name)}</span></td><td>${kindBadge(c.kind)}</td><td>${esc(d.dose)}</td></tr>`;}).join('')}</tbody></table>
+    </section>
+    ${srcIds.length ? `<section class="card" style="margin-top:24px"><h4>출처</h4><div class="stack" style="margin-top:12px">${srcIds.map(srcLine).join('')}</div><p class="faint" style="margin-top:12px">DB 확인 날짜 ${DB_CHECKED}</p></section>` : ''}
+    <div class="disclaimer" style="margin-top:24px" data-testid="report-disclaimer">${T.consult}. 이 리포트는 등록한 목록과 출처가 있는 조합 DB로만 만든 것이고 처방이나 진단이 아니에요.</div>
+    <div style="margin-top:24px"><a class="btn btn-black btn-lg" href="#/recommend" data-testid="report-recommend">영양제 추천받기</a></div>
+  </div></main>`;
+}
+function Detail(id){
+  const r = ruleById(id);
+  if(!r) return `<main class="page"><div class="wrap"><div class="empty">없는 항목이에요.</div></div></main>`;
+  const isLimit = !!r.limits;
+  return `<main class="page"><div class="wrap" style="max-width:800px">
+    <div class="page-head"><div class="eyebrow">근거 보기</div>
+      <h2 data-testid="detail-title">${isLimit ? `${esc(ingName(r.ing))} <b>하루 기준량</b>` : `${esc(ingLabel(r.a))} ↔ <b>${esc(ingLabel(r.b))}</b>`}</h2>
+      <div style="margin-top:8px">${levelBadge(isLimit?'over':r.level)}</div></div>
+    <div class="card stack">
+      ${r.action ? `<div><div class="faint">해야 할 행동</div><div class="finding-warn act" style="font-family:var(--font-head);font-size:var(--fs-4);font-weight:700;color:var(--warn)">${esc(r.action)}</div></div>` : ''}
+      ${isLimit ? `<div><div class="faint">출처의 하루 기준량</div><p>${r.limits.map(l=>`${l.who} ${l.mg.toLocaleString()}${r.unit}`).join(' / ')}</p></div>` : ''}
+      <div><div class="faint">이유</div><p>${esc(r.reason)}</p></div>
+      <div><div class="faint">원문 문장</div><blockquote class="quote">${esc(r.quote)}</blockquote></div>
+      <div><div class="faint">약사에게 물을 질문</div><p>${esc(r.ask)}</p></div>
+      <div><div class="faint">출처</div><div class="stack" style="margin-top:8px" data-testid="detail-sources">${r.sources.map(srcLine).join('')}</div></div>
+      <p class="faint" data-testid="detail-checked">DB 확인 날짜 ${DB_CHECKED}</p>
+    </div>
+    <div class="disclaimer" style="margin-top:16px">${T.consult}</div>
+    <div style="margin-top:24px"><button class="btn" data-action="back">돌아가기</button></div>
+  </div></main>`;
+}
+
+/* ── 추천 ── */
+function Recommend(sub){
+  if(sub==='result') return RecommendResult();
+  const s = view.survey = view.survey || { goals:[], symptoms:[], note:'' };
+  const chips = (arr, sel, key) => arr.map(v=>`<button type="button" class="chip" aria-pressed="${sel.includes(v)}" data-action="chip" data-key="${key}" data-val="${esc(v)}">${esc(v)}</button>`).join('');
+  return `<main class="page"><div class="wrap prose">
+    <div class="disclaimer" data-testid="rec-disclaimer-top">${T.recDisclaimer}</div>
+    <div class="page-head" style="margin-top:24px"><div class="eyebrow">영양제 추천</div><h2>무엇을 <b>원하세요?</b></h2><p class="muted">답은 추천을 만들 때만 쓰고 저장하지 않아요. 추천은 성분 단위이고 제품·구매 링크는 없어요.</p></div>
+    <form data-form="recommend" novalidate class="stack">
+      <div><h4>원하는 효과</h4><p class="faint">여러 개 골라도 돼요</p><div class="row" data-testid="goals">${chips(GOALS, s.goals, 'goals')}</div></div>
+      <div><h4>지금 증상</h4><div class="row" data-testid="symptoms">${chips(SYMPTOMS, s.symptoms, 'symptoms')}</div></div>
+      <div class="field"><label for="note">더 적고 싶은 것 (선택)</label><textarea class="input" id="note" name="note" placeholder="예 요즘 야근이 많아요">${esc(s.note)}</textarea></div>
+      ${view.recError ? `<p class="error" role="alert">${esc(view.recError)}</p>` : ''}
+      <button class="btn btn-primary btn-lg" type="submit" data-testid="rec-submit">추천 보기</button>
+    </form>
+  </div></main>`;
+}
+function recommend(survey, list){
+  // AI 목업: DB의 성분 효과 안에서만 고른다. 실제 구현에서는 LLM이 같은 제약으로 고른다
+  const picks = [];
+  for(const [ing, ef] of Object.entries(EFFECTS)){
+    const why = [];
+    for(const g of survey.goals) if(ef.goals.includes(g)) why.push(`원하는 효과 '${g}'`);
+    for(const s of survey.symptoms) if(ef.symptoms.includes(s)) why.push(`지금 증상 '${s}'`);
+    if(!why.length) continue;
+    const already = list.some(e=>entryIngs(e).includes(ing));
+    if(already) continue;
+    // F4와 같은 규칙으로 내 목록과 다시 점검
+    const conflicts = [];
+    for(const e of list) for(const b of entryIngs(e)){ const r = findRule(ing, b); if(r) conflicts.push({ rule:r, other:b }); }
+    picks.push({ ing, ef, why, conflicts });
+  }
+  return { ok: picks.filter(p=>!p.conflicts.length), caution: picks.filter(p=>p.conflicts.length) };
+}
+function RecommendResult(){
+  const s = view.survey; if(!s || (!s.goals.length && !s.symptoms.length)){ go('/recommend'); return ''; }
+  const { ok, caution } = recommend(s, myList());
+  const card = p => `<div class="card" data-testid="rec-item"><div class="row" style="justify-content:space-between"><h4>${esc(ingName(p.ing))}</h4><span class="badge badge-cobalt">추천</span></div>
+    <p class="muted" style="margin-top:8px">왜 골랐나요: ${p.why.join(', ')} 때문이에요.</p>
+    <blockquote class="quote">${esc(p.ef.effect)}</blockquote><div style="margin-top:8px">${srcLine(p.ef.src)}</div></div>`;
+  const warnCard = p => `<div class="card" style="border-color:var(--warn)" data-testid="rec-caution"><div class="row" style="justify-content:space-between"><h4>${esc(ingName(p.ing))}</h4>${levelBadge(p.conflicts[0].rule.level)}</div>
+    <p style="margin-top:8px;color:var(--warn);font-weight:700">지금 드시는 ${p.conflicts.map(c=>ingLabel(c.other)).join('·')}과 함께 주의가 필요해요</p>
+    ${p.conflicts.map(c=>`<p class="muted">${esc(ingLabel(c.other))} ↔ ${esc(ingName(p.ing))}: ${esc(c.rule.action || T.levels[c.rule.level])}</p><div class="stack">${c.rule.sources.map(srcLine).join('')}</div>`).join('')}
+    <p class="faint" style="margin-top:8px">${p.why.join(', ')} 때문에 후보에 올랐지만, 추천이 아니라 경고로 보여 드려요.</p></div>`;
+  return `<main class="page"><div class="wrap" style="max-width:800px">
+    <div class="disclaimer" data-testid="rec-disclaimer-top">${T.recDisclaimer}</div>
+    <div class="page-head" style="margin-top:24px"><div class="eyebrow">추천 결과</div><h2>내 약과 부딪히지 않는 <b>성분</b></h2><p class="muted">고른 효과: ${s.goals.join(', ')||'—'} / 증상: ${s.symptoms.join(', ')||'—'}</p></div>
+    <section class="stack" data-testid="rec-ok"><h4>추천</h4>${ok.length ? ok.map(card).join('') : `<div class="empty">DB의 효과 문장과 맞는 추천이 없어요. 다른 효과를 골라 보세요.</div>`}</section>
+    ${caution.length ? `<section class="stack" style="margin-top:24px" data-testid="rec-warn"><h4>주의</h4>${caution.map(warnCard).join('')}</section>` : ''}
+    <div class="disclaimer" style="margin-top:24px" data-testid="rec-disclaimer-bottom">${T.recDisclaimer}</div>
+    <div class="row" style="margin-top:24px"><a class="btn" href="#/recommend">다시 고르기</a><a class="btn btn-ghost" href="#/home">홈으로</a></div>
+  </div></main>`;
+}
+
+/* ═══════════════ 경고 창·토스트 ═══════════════ */
+function showModal(html){ document.getElementById('layer').innerHTML = `<div class="overlay" data-overlay><div class="modal" role="dialog" aria-modal="true" data-testid="modal">${html}</div></div>`; const f = document.querySelector('.modal [data-autofocus]'); if(f) f.focus(); }
+function closeModal(){ document.getElementById('layer').innerHTML = ''; }
+function toast(msg){ const el = document.createElement('div'); el.className='toast'; el.setAttribute('role','status'); el.setAttribute('data-testid','toast'); el.textContent = msg; document.body.appendChild(el); setTimeout(()=>el.remove(), 3000); }
+function WarningModal(findings){
+  const top = findings[0];
+  return `<div class="faint">등록하기 전에 확인하세요</div>
+    <h3>${esc(T.levels[top.level])}</h3>
+    ${findings.map(f=>Finding(f)).join('')}
+    <div class="disclaimer" style="margin-top:16px">${T.consult}</div>
+    <div class="actions"><button class="btn" data-action="modal-cancel" data-testid="modal-cancel">취소</button><a class="btn" href="#/detail/${top.rule.id}" data-action="modal-detail" data-testid="modal-detail">자세히</a><button class="btn btn-black" data-action="modal-add" data-testid="modal-add" data-autofocus>그래도 추가</button></div>`;
+}
+
+/* ═══════════════ 동작 ═══════════════ */
+function search(q){
+  q = q.trim(); const ql = q.toLowerCase();
+  const starts = [], contains = [];
+  for(const c of CATALOG){
+    if(c.name.includes('수출')) continue;
+    const fields = [c.name, c.easy, c.raw, ...c.keys].map(s=>s.toLowerCase());
+    if(fields.some(f=>f.startsWith(ql))) starts.push(c); else if(fields.some(f=>f.includes(ql))) contains.push(c);
+  }
+  return [...starts, ...contains].slice(0,20);
+}
+function registerFlow(entry){
+  const list = myList();
+  if(list.some(e=>e.catalogId===entry.catalogId)){ view.regError = T.already; render(); return; }
+  const { findings, checkedPairs } = judge(list, entry);
+  const commit = () => { list.push(entry); save(); view.selected=null; view.results=null; view.q=''; view.count=''; view.mg=''; view.regError=''; view.photo=null; };
+  if(findings.length){
+    view.pending = entry;
+    showModal(WarningModal(findings));
+  } else {
+    commit();
+    view.flash = NoRecordCard(checkedPairs);
+    render(); toast('목록에 추가했어요');
+  }
+}
+function readPhoto(nameOrSample){
+  view.photo = { step:'reading' }; render();
+  setTimeout(()=>{
+    const n = (nameOrSample||'').toLowerCase();
+    if(n.includes('blur') || n.includes('흐린')) view.photo = { step:'error', msg:T.blurry };
+    else if(n.includes('fero') || n.includes('훼로바')) view.photo = { step:'candidates', list:[item('ferobau'), item('iron')] };
+    else if(n.includes('synth') || n.includes('씬지')) view.photo = { step:'candidates', list:[item('synthroid')] };
+    else view.photo = { step:'candidates', list:[] };
+    render();
+  }, 600);
+}
+document.addEventListener('click', ev => {
+  const a = ev.target.closest('[data-action]'); if(!a) return;
+  const act = a.dataset.action;
+  if(act==='logout'){ state.session=null; save(); view={}; go('/'); }
+  if(act==='demo'){ view.prefillEmail=SEED.email; view.prefillPw=SEED.pw; render(); }
+  if(act==='mode'){ view.listMode=a.dataset.mode; view.selected=null; view.results=null; view.regError=''; view.flash=''; if(a.dataset.mode==='photo') view.photo={step:'consent'}; render(); }
+  if(act==='select'){ view.selected=a.dataset.id; view.regError=''; view.flash=''; if(view.photo) view.photo={step:'selected', sel:a.dataset.id}; render(); setTimeout(()=>{const c=document.getElementById('cnt'); if(c) c.focus();},0); }
+  if(act==='unselect'){ view.selected=null; view.photo=null; render(); }
+  if(act==='photo-consent'){ view.photo={step:'shoot'}; render(); }
+  if(act==='photo-retry'){ view.photo={step:'shoot'}; render(); }
+  if(act==='photo-sample'){ readPhoto(a.dataset.sample); }
+  if(act==='ask-delete'){ const e = myList().find(x=>x.id===a.dataset.id); const c=item(e.catalogId); showModal(`<h3>삭제할까요?</h3><p class="muted"><strong>${esc(c.name)}</strong>을(를) 목록에서 지워요. 분석 보고서에서도 사라져요.</p><div class="actions"><button class="btn" data-action="modal-cancel">취소</button><button class="btn btn-black" data-action="confirm-delete" data-id="${e.id}" data-testid="confirm-delete" data-autofocus>삭제</button></div>`); }
+  if(act==='confirm-delete'){ const l=myList(); const i=l.findIndex(x=>x.id===a.dataset.id); if(i>-1) l.splice(i,1); save(); closeModal(); view.flash=''; render(); toast(T.deleted); }
+  if(act==='modal-cancel'){ closeModal(); view.pending=null; }
+  if(act==='modal-add'){ const e=view.pending; view.pending=null; closeModal(); if(e){ myList().push(e); save(); view.selected=null; view.results=null; view.q=''; view.count=''; view.mg=''; view.photo=null; view.flash=''; render(); toast('경고를 확인하고 목록에 추가했어요'); } }
+  if(act==='modal-detail'){ closeModal(); view.pending=null; }
+  if(act==='analyze'){ view.running=true; view.runStep=0; render(); const tick=()=>{ view.runStep++; if(view.runStep<=3){ render(); setTimeout(tick,300);} else { view.running=false; go('/report'); } }; setTimeout(tick,300); }
+  if(act==='back'){ history.back(); }
+  if(act==='chip'){ const s=view.survey; const arr=s[a.dataset.key]; const v=a.dataset.val; const i=arr.indexOf(v); if(i>-1) arr.splice(i,1); else arr.push(v); a.setAttribute('aria-pressed', i===-1); }
+});
+document.addEventListener('submit', ev => {
+  const f = ev.target.closest('[data-form]'); if(!f) return; ev.preventDefault();
+  const d = Object.fromEntries(new FormData(f).entries());
+  const kind = f.dataset.form;
+  if(kind==='signup'){
+    const email = (d.email||'').trim().toLowerCase();
+    if(!email.includes('@')) view.signupError='이메일을 확인해 주세요';
+    else if(state.users[email]) view.signupError=T.dupEmail;
+    else if((d.pw||'').length<8) view.signupError='비밀번호는 8자 이상이에요';
+    else if(d.pw!==d.pw2) view.signupError='비밀번호가 서로 달라요';
+    else if(!d.consent) view.signupError='동의해야 가입할 수 있어요';
+    else { state.users[email]={pw:d.pw}; state.lists[email]=[]; state.session=email; save(); view={}; go('/home'); return; }
+    render();
+  }
+  if(kind==='login'){
+    const email=(d.email||'').trim().toLowerCase(); const u=state.users[email];
+    if(!u || u.pw!==d.pw){ view.loginError=T.badLogin; view.prefillEmail=d.email; render(); return; }
+    state.session=email; save(); view={}; go('/home');
+  }
+  if(kind==='search'){
+    const q=(d.q||'').trim(); view.q=q; view.selected=null; view.flash='';
+    if(q.length<2){ view.qError=T.minChars; view.results=null; } else { view.qError=''; view.results=search(q); }
+    render();
+  }
+  if(kind==='register'){
+    const c=item(view.selected); const count=parseInt(d.count,10); const mg=d.mg?parseFloat(d.mg):null;
+    view.count=d.count; view.mg=d.mg||'';
+    if(!(count>=1)){ view.regError='하루에 먹는 개수를 1 이상 넣어 주세요'; render(); return; }
+    registerFlow({ id:uid(), catalogId:c.id, count, mg: c.kind==='영양제' && mg>0 ? mg : null });
+  }
+  if(kind==='recommend'){
+    const s=view.survey; s.note=d.note||'';
+    if(!s.goals.length && !s.symptoms.length){ view.recError='원하는 효과나 지금 증상을 하나 이상 골라 주세요'; render(); return; }
+    view.recError=''; go('/recommend/result');
+  }
+});
+document.addEventListener('change', ev => {
+  const i = ev.target; if(i.dataset.file==='photo' && i.files && i.files[0]) readPhoto(i.files[0].name);
+});
+document.addEventListener('keydown', ev => { if(ev.key==='Escape' && document.querySelector('[data-overlay]')){ closeModal(); view.pending=null; } });
+</script>
+</body>
+</html>
