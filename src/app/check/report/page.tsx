@@ -72,7 +72,7 @@ export default async function ReportPage() {
         <section className="card" style={{ marginTop: 24 }} data-testid="report-list">
           <h4>복용 중인 약·영양제</h4>
           <p className="muted">
-            약사에게 보여 줄 한 줄: <strong data-testid="report-oneline">{oneLine || '없음'}</strong>
+            한 줄 요약: <strong data-testid="report-oneline">{oneLine || '없음'}</strong>
           </p>
           <table className="tbl" aria-label="복용 중인 약·영양제">
             <thead>

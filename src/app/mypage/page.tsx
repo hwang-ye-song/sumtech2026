@@ -62,7 +62,7 @@ export default async function MyPage() {
             <div className="eyebrow">리포트</div>
             <h3>검진하기</h3>
             <p className="muted" style={{ marginTop: 8 }}>
-              {inUse ? '약사·의사에게 보여 줄 복용 리포트' : '다 넣은 뒤 한 번 검진하면, 그 뒤로는 더할 때마다 자동으로 점검해요'}
+              {inUse ? '내가 먹는 약·영양제 점검 리포트' : '다 넣은 뒤 한 번 검진하면, 그 뒤로는 더할 때마다 자동으로 점검해요'}
             </p>
           </Link>
         </div>

@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test"
 import { E2E_USER_EMAIL, E2E_USER_PASSWORD } from "../env"
 import { logInFromHome, startCheckFromHome } from "../helpers"
 
-test("S5 30~40대 자녀가 부모님 목록을 검진해, 약사에게 보여 드릴 리포트와 근거를 확인한다", async ({ page }) => {
+test("S5 30~40대 자녀가 부모님 목록을 검진해, 리포트와 근거를 확인한다", async ({ page }) => {
   await logInFromHome(page, E2E_USER_EMAIL, E2E_USER_PASSWORD)
 
   // 1. 홈에서 '검진하기' (바로 점검하고 리포트로 간다)
