@@ -1,4 +1,4 @@
-﻿품목기준코드,제품명,업체명,구분,성분수,성분,성분_영문
+item_seq,name,company,category,ingredient_count,ingredients_text,ingredients_en
 195700020,활명수,동화약품(주),일반의약품,11,아선약 100.0밀리그램 | 진피 150.0밀리그램 | 후박 50.0밀리그램 | L-멘톨 21.0밀리그램 | 고추틴크 0.06밀리리터 | 현호색 180.0밀리그램 | 육계 30.0밀리그램 | 정향 12.0밀리그램 | 건강 12.0밀리그램 | 육두구 6.0밀리그램 | 창출 3.0밀리그램,Atractylodes Rhizome/Capsicum Tincture/Cinnamon Bark/Citrus Unshiu Peel/Clove/Corydalis Tuber/Gambir/Ginger/L-Menthol/Magnolia Bark/Nutmeg
 195900043,아네모정,삼진제약(주),일반의약품,5,건조수산화알루미늄겔 90밀리그램 | 탄산수소나트륨 90밀리그램 | 침강탄산칼슘 40밀리그램 | 탄산마그네슘 25밀리그램 | 스코폴리아엑스10배산 37.5밀리그램,Dried Aluminium Hydroxide Gel/Magnesium Carbonate/Precipitated Calcium Carbonate/Scopolia Extract Powder 10%/Sodium Bicarbonate
 195900045,자모,씨에이치디제약주식회사,일반의약품,5,마황 0.67그램 | 인삼 0.2그램 | 원지 0.17그램 | 길경 0.3그램 | 구아이페네신 0.07그램,Ephedra Herb/Ginseng/Guaifenesin/Platycodon Root/Polygala Root
