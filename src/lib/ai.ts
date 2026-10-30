@@ -8,8 +8,7 @@ import { z } from 'zod'
 export const DEFAULT_VISION_MODEL = process.env.AI_VISION_MODEL || 'google/gemini-3.8-flash'
 export const DEFAULT_TEXT_MODEL = process.env.AI_TEXT_MODEL || 'google/gemini-3.8-flash'
 
-// 사진 흐름은 AI를 두 번 부를 수 있어(흐린 사진 → 다시 찍기) 한 번에 25초까지만 기다린다. 평소 응답은 10초 안쪽이고, 늦으면 추천은 규칙으로 고르고 사진은 다시 시도 안내를 띄운다.
-const TIMEOUT_MS = 25_000
+const TIMEOUT_MS = 45_000
 
 export class AiUnavailableError extends Error {
   constructor(message: string) {
