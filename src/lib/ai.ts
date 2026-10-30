@@ -8,7 +8,7 @@ import { z } from 'zod'
 export const DEFAULT_VISION_MODEL = process.env.AI_VISION_MODEL || 'google/gemini-3.8-flash'
 export const DEFAULT_TEXT_MODEL = process.env.AI_TEXT_MODEL || 'google/gemini-3.8-flash'
 
-const TIMEOUT_MS = 45_000
+const TIMEOUT_MS = 60_000
 
 export class AiUnavailableError extends Error {
   constructor(message: string) {
