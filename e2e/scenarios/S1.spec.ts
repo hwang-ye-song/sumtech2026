@@ -14,18 +14,31 @@ test("S1 갑상선약을 드시는 50~60대 부모님이 서비스 소개를 보
   // 2. 첫 화면 위쪽의 '회원가입'
   await page.getByRole("banner").getByRole("link", { name: "회원가입" }).click()
 
-  // 3~7. 이메일 · 8자 이상 비밀번호 · 비밀번호 확인 · 건강 정보 동의 체크 → '가입하기'
-  await page.getByLabel("이메일").fill(`s1-${Date.now()}@example.com`)
+  // 3~6. 이메일 · 8자 이상 비밀번호 · 실수로 다른 비밀번호 확인 · 건강 정보 동의 체크 → '가입하기'
+  const email = `s1-${Date.now()}@example.com`
+  const consent = page.getByLabel(/건강 정보 수집·이용과 사진 AI 판독에 동의해요/)
+  await page.getByLabel("이메일").fill(email)
+  await page.getByLabel("비밀번호", { exact: true }).fill("test-1234")
+  await page.getByLabel("비밀번호 확인").fill("test-9999")
+  await consent.check()
+  await page.getByRole("button", { name: "가입하기" }).click()
+
+  // expected: 가입되지 않고 오류 안내, 이메일과 동의 체크는 그대로
+  await expect(page.getByRole("main").getByRole("alert")).toHaveText("비밀번호 확인이 비밀번호와 달라요.")
+  await expect(page).toHaveURL(/\/signup/)
+  await expect(page.getByLabel("이메일")).toHaveValue(email)
+  await expect(consent).toBeChecked()
+
+  // 7~8. 비밀번호와 비밀번호 확인을 같게 다시 입력 → '가입하기'
   await page.getByLabel("비밀번호", { exact: true }).fill("test-1234")
   await page.getByLabel("비밀번호 확인").fill("test-1234")
-  await page.getByLabel(/건강 정보 수집·이용과 사진 AI 판독에 동의해요/).check()
   await page.getByRole("button", { name: "가입하기" }).click()
 
   // expected: 가입하면 바로 복용 목록 화면에 등록 안내와 검색창
   await expect(page.getByTestId("welcome")).toContainText("가입을 환영해요! 지금 먹고 있는 약과 영양제를 먼저 등록해 주세요.")
   await expect(page.getByRole("searchbox", { name: "검색창" })).toBeVisible()
 
-  // 7~10. '레보티록신' 검색 → '레보티록신' → 하루 1개 → '등록'
+  // 9~12. '레보티록신' 검색 → '레보티록신' → 하루 1개 → '등록'
   await searchAndPick(page, "레보티록신", "레보티록신")
   await register(page, 1)
 

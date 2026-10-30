@@ -24,7 +24,7 @@ const ALLOWED = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/heic', 
 export async function recognizePhoto(_prev: PhotoState, formData: FormData): Promise<PhotoState> {
   await ensureReady()
   const user = await getCurrentUser()
-  if (!user) redirect('/login')
+  if (!user) redirect('/login?next=/list')
 
   const file = formData.get('photo')
   if (!(file instanceof File) || file.size === 0) return { error: '사진 파일을 골라 주세요.' }

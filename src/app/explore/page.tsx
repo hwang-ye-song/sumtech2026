@@ -143,7 +143,7 @@ export default async function ExplorePage({ searchParams }: { searchParams: Prom
                     ) : null}
                     {note ? <ProductNoteBox note={note} /> : null}
                     <div>
-                      <Link className="btn btn-sm" href={user ? `/list?q=${encodeURIComponent(e.name)}` : '/login'}>
+                      <Link className="btn btn-sm" href={user ? `/list?q=${encodeURIComponent(e.name)}` : '/login?next=/list'}>
                         내 목록에 더하기
                       </Link>
                     </div>

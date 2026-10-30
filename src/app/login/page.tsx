@@ -6,10 +6,11 @@ import { enterPersona, logIn } from '@/app/actions/auth'
 import { getCurrentUser } from '@/lib/session'
 import { safeNext } from '@/lib/next-path'
 import { listPersonas } from '@/lib/personas'
+import { josa } from '@/lib/labels'
 
 export const metadata = { title: '로그인' }
 
-const MENU_NAME: Record<string, string> = { '/list': '복용 목록', '/check': '검진하기', '/check/report': '복용 리포트', '/recommend': '영양제 추천' }
+const MENU_NAME: Record<string, string> = { '/mypage': '마이페이지', '/list': '복용 목록', '/check': '검진하기', '/check/report': '복용 리포트', '/recommend': '영양제 추천' }
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const params = await searchParams
@@ -22,7 +23,13 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
       <div className="wrap" style={{ maxWidth: 488 }}>
         <div className="page-head">
           <h2>로그인</h2>
-          {menu ? <p className="muted">로그인하면 &lsquo;{menu}&rsquo; 화면으로 이어서 가요.</p> : null}
+          {menu ? (
+            <div className="notice" role="status" data-testid="login-required" style={{ marginTop: 16 }}>
+              <strong>로그인이 필요한 화면이에요.</strong>
+              <br />
+              &lsquo;{menu}&rsquo;{josa(menu, '은/는')} 내 계정에 저장한 약·영양제 목록을 써요. 로그인하면 그 화면으로 이어서 가요.
+            </div>
+          ) : null}
         </div>
         <AuthForm action={logIn} submitLabel="로그인" mode="login" next={next} />
         <p className="muted" style={{ marginTop: 16 }}>

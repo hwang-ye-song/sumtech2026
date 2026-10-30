@@ -14,6 +14,7 @@
   --warn:#e3907b; --warn-bg:#36211e;
   --over:#d8b462; --over-bg:#332a17;
   --none:#9a96a3; --none-bg:#25222a;
+  --nav-bg:rgba(22,19,26,.8); --nav-solid:rgba(22,19,26,.96); --panel-bg:rgba(29,25,33,.88); --footer-bg:#0b090d;
   --pill-a:#5b2457; --pill-b:#ffffff; --pill-c:#dfe3ea;
   --r-1:14px; --r-2:22px; --r-3:28px; --r-pill:9999px;
   --fs-0:12px; --fs-1:15px; --fs-2:17px; --fs-3:20px; --fs-4:30px; --fs-5:40px; --fs-6:66px;
@@ -21,6 +22,26 @@
   --ease:cubic-bezier(.2,.7,.2,1); --dur-1:120ms; --dur-2:200ms; --dur-3:300ms; --dur-4:600ms;
   --max:1120px; --g:max(0px,calc((100vw - 1120px) / 2));
 }
+/* 화이트 모드: 머리글의 해·달 버튼으로 바꾼다(기본은 어두운 화면). 같은 자두빛 포인트를 밝은 바탕에 맞춰 진하게 쓴다. */
+:root[data-theme="light"]{
+  --bg:#ffffff; --bg-2:#f6f3f7; --bg-3:#ece7ef;
+  --line:#e4dee8; --line-2:#cfc6d6;
+  --lav-edge:#ece6ef; --lav-mid:#f3eff5; --lav-light:#f8f6f9;
+  --ink:#1f1a24; --ink-2:#4d4555; --ink-3:#756c7e;
+  --brand:#7a3473; --brand-ink:#7a3473; --brand-bg:#f6e8f2;
+  --black:#2a2330;
+  --danger:#c62f45; --danger-bg:#fde9ec;
+  --warn:#b4502c; --warn-bg:#fcede6;
+  --over:#8a6200; --over-bg:#fbf2d9;
+  --none:#665e70; --none-bg:#f0edf2;
+  --nav-bg:rgba(255,255,255,.85); --nav-solid:rgba(255,255,255,.97); --panel-bg:rgba(255,255,255,.92); --footer-bg:#f3eff5;
+  color-scheme:light;
+}
+:root{color-scheme:dark}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line-2);background:transparent;color:var(--ink-2);cursor:pointer;flex:none}
+.theme-toggle:hover{background:var(--bg-2);color:var(--ink)}
+.theme-toggle svg{width:18px;height:18px}
+
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 /* 첫 화면(알약이 떠다니는 배경)이 아닌 화면은 테마 단색 배경만 쓴다 */
@@ -41,7 +62,7 @@ input,textarea{font:inherit;color:inherit}
 .prose{max-width:640px}
 
 /* ───────── 내비 ───────── */
-.nav{position:sticky;top:0;z-index:20;background:rgba(22,19,26,.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:0;z-index:20;background:var(--nav-bg);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 #app{position:relative;z-index:1}
 #pillfield{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .fpill{position:absolute;top:0;aspect-ratio:calc(var(--cw) / var(--ch));background:url(/assets/pills1.jpg) no-repeat;background-size:calc(1152 / var(--cw) * 100%) auto;background-position:calc(var(--cx) / (1152 - var(--cw)) * 100%) calc(var(--cy) / (2048 - var(--ch)) * 100%);-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);filter:saturate(.6) brightness(.6) contrast(.95);opacity:.75;will-change:transform}
@@ -173,7 +194,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
 .hero h1{margin:8px 0 16px}
 .hero .lead{font-size:var(--fs-3);color:var(--ink-2);max-width:560px}
 .hero .cta{display:flex;gap:12px;margin:24px 0 16px;flex-wrap:wrap}
-.panel{width:440px;max-width:100%;justify-self:end;padding:24px;border-radius:var(--r-3);background:rgba(29,25,33,.88);border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.panel{width:440px;max-width:100%;justify-self:end;padding:24px;border-radius:var(--r-3);background:var(--panel-bg);border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.35)}
 .panel .cap{font-size:var(--fs-1);color:var(--ink-3);margin-bottom:12px}
 .panel .chips{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .panel .chip{cursor:default;background:var(--bg);box-shadow:0 2px 8px rgba(17,19,24,.06);font-size:var(--fs-1)}
@@ -195,7 +216,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
 .band{background:var(--black);color:#fff;border-radius:var(--r-3);padding:48px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .band h3{color:#fff}
 .band h3 b{color:#fff}
-.footer{padding:40px 0 64px;background:#0b090d;border-top:1px solid var(--line);font-size:var(--fs-1);color:var(--ink-3)}
+.footer{padding:40px 0 64px;background:var(--footer-bg);border-top:1px solid var(--line);font-size:var(--fs-1);color:var(--ink-3)}
 .footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 /* ───────── 복용 목록 ───────── */
@@ -373,11 +394,15 @@ table.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-2)}
 @keyframes dot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-4px)}}
 /* 휴대폰: 로그인 뒤 주 메뉴를 화면 아래 탭 바로(위쪽 머리글에는 자리가 없어 숨겨져 있었다) */
 @media (max-width:760px){
-  .nav{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(22,19,26,.96)}
-  .nav .tabs:not(.tabs-pub){display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;gap:0;padding:6px 8px calc(6px + env(safe-area-inset-bottom));background:rgba(22,19,26,.96);border-top:1px solid var(--line)}
+  .nav{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--nav-solid)}
+  .nav .tabs:not(.tabs-pub){display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;gap:0;padding:6px 8px calc(6px + env(safe-area-inset-bottom));background:var(--nav-solid);border-top:1px solid var(--line)}
   .nav .tabs:not(.tabs-pub) a{flex:1;display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 4px;border:0;border-radius:var(--r-1);font-size:var(--fs-1);text-align:center}
   .nav .tabs:not(.tabs-pub) a[aria-current="page"]{background:var(--bg-3);color:var(--brand-ink)}
   body:has(.nav .tabs:not(.tabs-pub)){padding-bottom:calc(64px + env(safe-area-inset-bottom))}
   body:has(.nav .tabs:not(.tabs-pub)) .toast{bottom:calc(80px + env(safe-area-inset-bottom))}
 }
 @media print{.nav .tabs{display:none!important}}
+/* 해·달 아이콘: 어두운 화면에서는 해(누르면 화이트 모드), 화이트 모드에서는 달 */
+.theme-toggle .ic-moon{display:none}
+:root[data-theme="light"] .theme-toggle .ic-sun{display:none}
+:root[data-theme="light"] .theme-toggle .ic-moon{display:block}

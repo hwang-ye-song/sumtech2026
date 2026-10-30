@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { getCurrentUser } from '@/lib/session'
 import { logOut } from '@/app/actions/auth'
 import { NavTabs } from '@/components/NavTabs'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export function Logo() {
   return (
@@ -20,6 +21,7 @@ export async function Header() {
         <Logo />
         <NavTabs authed={Boolean(user)} />
         <span className="spacer" />
+        <ThemeToggle />
         {user ? (
           <>
             <Link

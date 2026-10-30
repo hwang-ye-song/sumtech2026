@@ -11,6 +11,9 @@ import { safeNext } from '@/lib/next-path'
 
 export interface AuthState {
   error?: string
+  /** 오류가 나도 다시 치지 않게 돌려주는 입력값(비밀번호는 돌려주지 않는다) */
+  email?: string
+  consent?: boolean
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -31,18 +34,20 @@ function readCredentials(formData: FormData) {
 
 export async function signUp(_prev: AuthState, formData: FormData): Promise<AuthState> {
   const { email, password, passwordConfirm } = readCredentials(formData)
-  if (!EMAIL_RE.test(email)) return { error: '이메일 형식을 확인해 주세요.' }
-  if (password.length < 8) return { error: '비밀번호는 8자 이상이어야 해요.' }
-  if (password !== passwordConfirm) return { error: '비밀번호 확인이 비밀번호와 달라요.' }
+  const consent = formData.get('health_consent') === 'on'
+  const fail = (error: string): AuthState => ({ error, email, consent })
+  if (!EMAIL_RE.test(email)) return fail('이메일 형식을 확인해 주세요.')
+  if (password.length < 8) return fail('비밀번호는 8자 이상이어야 해요.')
+  if (password !== passwordConfirm) return fail('비밀번호 확인이 비밀번호와 달라요.')
   // 건강 정보(복용 목록·약 봉투 사진)는 따로 분명하게 동의를 받는다. 가입할 때 한 번 받고 사진을 올릴 때마다 묻지 않는다.
-  if (formData.get('health_consent') !== 'on') return { error: '건강 정보 수집·이용과 사진 AI 판독에 동의해야 가입할 수 있어요.' }
+  if (!consent) return fail('건강 정보 수집·이용과 사진 AI 판독에 동의해야 가입할 수 있어요.')
   // 시연 계정 이메일(저장된 페르소나 계정·임시 시연 계정 도메인)은 가입으로 가져갈 수 없다.
-  if (await isReservedEmail(email)) return { error: '이미 가입한 이메일이에요' }
+  if (await isReservedEmail(email)) return fail('이미 가입한 이메일이에요')
 
   await ensureReady()
   const db = await getDb()
   const exists = await db.query('SELECT 1 FROM app_user WHERE email = $1', [email])
-  if (exists.length > 0) return { error: '이미 가입한 이메일이에요' }
+  if (exists.length > 0) return fail('이미 가입한 이메일이에요')
 
   const hash = await hashPassword(password)
   const rows = await db.query<{ id: number }>(
@@ -58,7 +63,7 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
 
 export async function logIn(_prev: AuthState, formData: FormData): Promise<AuthState> {
   const { email, password } = readCredentials(formData)
-  if (!email || !password) return { error: '이메일과 비밀번호를 입력해 주세요.' }
+  if (!email || !password) return { error: '이메일과 비밀번호를 입력해 주세요.', email }
 
   await ensureReady()
   const db = await getDb()
@@ -68,7 +73,7 @@ export async function logIn(_prev: AuthState, formData: FormData): Promise<AuthS
   )
   const user = rows[0]
   if (!user || !(await verifyPassword(password, user.password_hash))) {
-    return { error: '이메일 또는 비밀번호가 맞지 않아요' }
+    return { error: '이메일 또는 비밀번호가 맞지 않아요', email }
   }
   await createSession(user.id)
   // 로그인 상태가 바뀌었으니, 로그인 전에 들렀던 화면들의 캐시(로그인으로 튕기는 결과가 그대로 남아 있을 수 있다)를 지운다.

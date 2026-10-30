@@ -47,7 +47,7 @@ interface CandidateRow {
 export async function requestRecommendation(_prev: RecommendState, formData: FormData): Promise<RecommendState> {
   await ensureReady()
   const user = await getCurrentUser()
-  if (!user) redirect('/login')
+  if (!user) redirect('/login?next=/recommend')
 
   const symptoms = formData.getAll('symptom').map(String).filter((s) => (SYMPTOMS as readonly string[]).includes(s))
   const goals = formData.getAll('goal').map(String).filter((g) => GOALS.includes(g))

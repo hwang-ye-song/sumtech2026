@@ -27,4 +27,5 @@ test("S4 갑상선약을 드시는 50~60대 부모님이 자녀가 사 드리려
   await card.getByRole("link", { name: "내 목록에 더하기" }).click()
   await expect(page).toHaveURL(/\/login/)
   await expect(page.getByRole("heading", { level: 2, name: "로그인" })).toBeVisible()
+  await expect(page.getByTestId("login-required")).toContainText("로그인이 필요한 화면이에요.")
 })

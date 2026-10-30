@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { Header } from '@/components/Header'
 import { PillField } from '@/components/PillField'
+import { THEME_INIT_SCRIPT } from '@/components/ThemeToggle'
 import { SERVICE_DESCRIPTION, SERVICE_NAME, SERVICE_TAGLINE } from '@/lib/brand'
 
 export const metadata: Metadata = {
@@ -16,7 +17,10 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         <PillField />
         <div id="app">

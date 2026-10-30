@@ -11,7 +11,8 @@ import { checkItems, type Warning } from '@/lib/check'
 async function requireUser() {
   await ensureReady()
   const user = await getCurrentUser()
-  if (!user) redirect('/login')
+  // 로그인이 풀린 채로 누르면 로그인 화면으로 보내고, 로그인 뒤 복용 목록으로 돌아오게 한다.
+  if (!user) redirect('/login?next=/list')
   return user
 }
 
