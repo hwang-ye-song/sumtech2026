@@ -35,9 +35,9 @@ test("S7 성분표를 읽기 어려운 50~60대 부모님이 약 상자를 사�
   await expect(candidates.getByRole("spinbutton", { name: /훼로바-유서방정.*하루에 먹는 개수/ })).toHaveValue("1")
   await page.getByRole("button", { name: "고른 1개 모두 등록" }).click()
 
-  // expected: "시간을 띄워 드세요"와 "레보티록신(갑상선약) ↔ 철분" 경고가 출처와 함께
+  // expected: "시간 간격을 두고 드세요"와 "레보티록신(갑상선약) ↔ 철분" 경고가 출처와 함께
   const dialog = page.getByRole("dialog")
-  await expect(dialog.getByRole("heading", { level: 3 })).toHaveText("시간을 띄워 드세요")
+  await expect(dialog.getByRole("heading", { level: 3 })).toHaveText("시간 간격을 두고 드세요")
   const card = dialog.getByTestId("warning-card").filter({ hasText: "레보티록신(갑상선약) ↔ 철분" })
   await expect(card.getByRole("link", { name: "출처 보기" }).first()).toBeVisible()
 

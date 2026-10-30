@@ -4,7 +4,7 @@ import { RELATION_LABEL, sourceKindLabel, type Relation } from '@/lib/labels'
 
 const ICON: Record<Relation | 'over', string> = { avoid: '!', separate_timing: '◷', consult: '?', caution: '!', over: '≠' }
 
-// 위험 정도를 색으로 나눈다: 함께 먹지 마세요(빨강) > 시간 띄우기·상의(주황) > 주의(회색). 과다 섭취는 노랑.
+// 위험 정도를 색으로 나눈다: 함께 복용하지 마세요(빨강) > 시간 간격 두기·상의(주황) > 주의(회색). 과다 섭취는 노랑.
 const BADGE: Record<Relation | 'over', string> = {
   avoid: 'badge-danger',
   separate_timing: 'badge-warn',
@@ -13,7 +13,7 @@ const BADGE: Record<Relation | 'over', string> = {
   over: 'badge-over',
 }
 
-/** 단계 배지: '함께 먹지 마세요' / '시간을 띄워 드세요' / '하루 기준량을 넘어요' … */
+/** 단계 배지: '함께 복용하지 마세요' / '시간 간격을 두고 드세요' / '하루 기준량을 넘어요' … */
 export function LevelBadge({ level }: { level: Relation | 'over' }) {
   return (
     <span className={`badge ${BADGE[level]}`}>

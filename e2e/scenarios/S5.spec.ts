@@ -11,7 +11,7 @@ test("S5 50~60대 부모님이 드시는 약·영양제 목록을 검진해, 점
   // expected: 맨 위 "주의할 항목 1개", 레보티록신 ↔ 칼슘 경고(할 일·질문·상담 안내), 아래에 레보티록신 1정과 칼슘 1000mg
   await expect(page.getByTestId("report-title")).toHaveText("주의할 항목 1개")
   const card = page.getByTestId("warning-card").filter({ hasText: "레보티록신" }).filter({ hasText: "칼슘" })
-  await expect(card).toContainText("레보티록신과 최소 4시간 띄워 드세요")
+  await expect(card).toContainText("레보티록신과 최소 4시간 간격을 두고 드세요")
   await expect(card).toContainText("약사에게 물어보세요")
   await expect(page.getByTestId("report-disclaimer")).toContainText("복용을 바꾸기 전에 약사·의사와 상담하세요")
   const table = page.getByRole("table", { name: "복용 중인 약·영양제" })

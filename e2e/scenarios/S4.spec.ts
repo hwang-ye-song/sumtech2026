@@ -18,8 +18,8 @@ test("S4 갑상선약을 드시는 50~60대 부모님이 자녀가 사 드리려
 
   // expected: 레보티록신 ↔ 철분, 할 일, 출처 링크, 처방·진단이 아니라는 안내
   const levo = card.getByTestId("ex-warn").filter({ hasText: "레보티록신(갑상선약) ↔ 철분" })
-  await expect(levo).toContainText("시간을 띄워 드세요")
-  await expect(levo).toContainText("레보티록신과 최소 4시간 띄워 드세요")
+  await expect(levo).toContainText("시간 간격을 두고 드세요")
+  await expect(levo).toContainText("레보티록신과 최소 4시간 간격을 두고 드세요")
   await expect(levo.getByRole("link", { name: "Levothyroxine (MedlinePlus)" })).toBeVisible()
   await expect(page.getByRole("main")).toContainText("이 화면은 처방이나 진단이 아니에요")
 

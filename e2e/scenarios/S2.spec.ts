@@ -11,9 +11,9 @@ test("S2 칼슘을 드시는 50~60대 부모님이 피로회복용 비타민제(
   await searchAndPick(page, "비맥스", "비맥스제트정")
   await register(page, 1)
 
-  // expected: 경고 창 맨 위 "함께 먹지 마세요", "비맥스제트정 ↔ 칼슘", 식약처 원문, 출처 제목, 약사에게 물을 질문, 상담 안내
+  // expected: 경고 창 맨 위 "함께 복용하지 마세요", "비맥스제트정 ↔ 칼슘", 식약처 원문, 출처 제목, 약사에게 물을 질문, 상담 안내
   const dialog = page.getByRole("dialog")
-  await expect(dialog.getByRole("heading", { level: 3 })).toHaveText("함께 먹지 마세요")
+  await expect(dialog.getByRole("heading", { level: 3 })).toHaveText("함께 복용하지 마세요")
   const card = dialog.getByTestId("warning-card").filter({ hasText: "비맥스제트정 ↔ 칼슘" })
   await expect(card).toBeVisible()
   await expect(card).toContainText("인산염, 칼슘염, 경구용 테트라사이클린계 제제, 제산제, 레보도파와 함께 복용하지 마십시오.")

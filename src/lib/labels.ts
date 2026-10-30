@@ -3,8 +3,8 @@
 export type Relation = 'avoid' | 'separate_timing' | 'consult' | 'caution'
 
 export const RELATION_LABEL: Record<Relation, string> = {
-  avoid: '함께 먹지 마세요',
-  separate_timing: '시간을 띄워 드세요',
+  avoid: '함께 복용하지 마세요',
+  separate_timing: '시간 간격을 두고 드세요',
   consult: '의사·약사와 상의하세요',
   caution: '주의하세요',
 }
